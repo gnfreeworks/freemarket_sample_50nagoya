@@ -1,19 +1,5 @@
 .wrapper
-  .header
-    .header__top
-      .header__top__icon メルカリ
-      %form.header__top__form{action: ''}
-        %input{placeholder: '何かお探しですか？'}
-    .header__bottome
-      .header__bottome__left
-        %ul
-          %li カテゴリーから探す
-          %li ブランドから探す
-      .header__bottome__right
-        %ul
-          %li お知らせ
-          %li やることリスト
-          %li マイページ
+  = render 'page-header'
   .main
     .main__top 画像
     .main__midle
@@ -26,6 +12,4 @@
       %P.main__bottome__item1 シャネル新着アイテム
       %p.main__bottome__item2 ルイヴィトン新着アイテム
       %p.main__bottome__item3 ナイキ新着アイテム
-  .footer
-    .footer__top 画像
-    .footer__bottome メルカリについて
+  = render 'page-footer'
