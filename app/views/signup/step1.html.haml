@@ -1,0 +1,56 @@
+.container 
+  .header
+    %h1
+    .header__progress
+
+  .main-form
+    .title
+      %h2 会員情報入力
+    .form
+      = form_for @user, url: step2_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
+        //= render "devise/shared/error_messages", resource: resource
+        .form__block
+          = f.label :ニックネーム
+          %span.form__required
+            必須
+          %br/
+          = f.text_field :nickname, autofocus: true, placeholder: '例）メルカリ太郎'
+        .form__block
+          = f.label :メールアドレス
+          %span.form__required 
+            必須
+          %br/
+          = f.email_field :email, placeholder: 'PC・携帯どちらでも可'
+        .form__block
+          = f.label :パスワード
+          %span.form__required
+            必須
+          %br/
+          = f.password_field :password, autocomplete: "new-password", placeholder: '6文字以上'
+        .form__block
+          = f.label :パスワード（確認）
+          %span.form__block
+            必須
+          %br/
+          = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '6文字以上'
+        .form__block
+          %h3.text__header
+            本人確認
+          .text__main
+            安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+
+        .form__block
+          = f.label :お名前（全角）
+          %span.form__required
+            必須
+          %br/
+          //= f.text_field :first_name, placeholder: '例）山田'
+          //= f.text_field :last_name, placeholder: '例）彩'
+        
+
+
+        .field__check
+
+        .actions
+          = f.submit "次へ進む"
+        // = render "devise/shared/links"
