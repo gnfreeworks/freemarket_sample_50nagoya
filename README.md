@@ -41,9 +41,13 @@
 |name           |名前    |string|null: false|
 
 ## areas テーブル (都道府県テーブル)
-|Column         |  description        |Type      |Options           |
-|---------------|--------------------|----------|-------------------|
-|name           |名前    |string|null: false|
+- Let input next.
+  -- install it gem 'active_hash'
+  -- rails g model Address areas_id:integer name:string」
+  -- refer to https://kossy-web-engineer.hatenablog.com/entry/2019/01/08/205702
+
+### Association
+- belongs_to_active_hash:areas
 
 ## statuses テーブル (商品状態テーブル)
 |Column         |  description        |Type      |Options           |
@@ -121,12 +125,12 @@
 |products_id    |商品id|integer|null: false, foreign_key: true|
 |buyer_id       |出品者id|integer|null: false, foreign_key: true|
 |saler_id       |購入者id|integer|foreign_key: true|
-|saling_status  |出品状態*|integer||
-|deading_status |取引状態*|integer||
+|saling_status  |出品状態|integer||
+|deading_status |取引状態|integer||
 
 ### Appendix
-- [saling_status  saling:0 or soldout:1]
-- [deading_status dealing:0, canceling:1, shipping:1, completed:2]
+- saling_status  [saling:0 or soldout:1]
+- deading_status [dealing:0, canceling:1, shipping:1, completed:2]
 
 ### Association
 - belongs_to :buyer, class_name: 'user', :foreign_key => 'buyer_id'
@@ -149,7 +153,7 @@
 |status     |キャンセル状態|integer|null: false|
 
 ### Appendix
-- status 0:申請中 1:承諾 2:却下
+- status [0:申請中 1:承諾 2:却下]
 
 ## todos テーブル (todos テーブル)
 |Column         |  description        |Type      |Options           |
@@ -160,7 +164,7 @@
 |status         |状態|integer|null: false|
 
 ### Appendix
-- status 0:既読, 1:未読, 2:完了
+- status [0:既読, 1:未読, 2:完了]
 
 ## users テーブル (ユーザーテーブル)
 installed devise
@@ -171,7 +175,7 @@ installed devise
 |nickname       |ニックネーム|string|null: false|
 |birthdaydate   |生年月日|datetime|null: false|
 |profiletext    |プロフィール|text|null: false|
-|authenticphonenumber|認証用電話番号|integer|null: false|
+|authenticphonenumber|認証用電話番号|string|null: false|
 
 ### Association
 - belongs_to :transfer_address
