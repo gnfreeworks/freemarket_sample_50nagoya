@@ -21,7 +21,7 @@
 - belongs_to :status
 - belongs_to :brand
 - belongs_to :sale_charge
-- belongs_to :categories
+- belongs_to :category
 - has_many   :product_images
 
 ## product_images テーブル (商品イメージテーブル)
@@ -107,9 +107,9 @@
 | name   |ブランド名 |string|null: false|
 
 ### Association
-- has_many :categories, through: :category_brands
+- has_many :categories, through: :categories_brands
 
-## category_brands テーブル (カテゴリーブランド中韓テーブル)
+## categories_brands テーブル (カテゴリーブランド中韓テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 | category_id  |カテゴリーid |integer|null: false, foreign_key: true|
