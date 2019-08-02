@@ -68,7 +68,7 @@
 - has_many :sizes, through: :size_categories
 - has_many :brands, through: :category_brands
 
-## size_category テーブル (size_category テーブル)
+## sizes_categories テーブル (sizes_categories テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 |category_id    |カテゴリーid |integer|null: false, foreign_key: true|
@@ -78,7 +78,7 @@
 - belongs_to :category
 - belongs_to :size
 
-## size テーブル (sizeテーブル)
+## sizes テーブル (sizes テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 |name           |名前    |string|null: false|
