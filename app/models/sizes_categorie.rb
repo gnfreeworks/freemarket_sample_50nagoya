@@ -1,2 +1,0 @@
-class SizesCategorie < ApplicationRecord
-end
