@@ -1,0 +1,2 @@
+class SamailCategory < ApplicationRecord
+end
