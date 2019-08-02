@@ -226,7 +226,7 @@ installed devise
 ## banks テーブル (銀行 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|name     |名前|integer|null: false
+|name     |名前|string|null: false
 
 
 ## buyer_evaluations テーブル (出品者評価 テーブル)
