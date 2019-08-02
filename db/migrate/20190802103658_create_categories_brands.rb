@@ -2,8 +2,8 @@ class CreateCategoriesBrands < ActiveRecord::Migration[5.2]
   def change
     create_table :categories_brands do |t|
 
-      t.integer :category_id
-      t.integer :brand_id
+      t.references :category, foreign_key: true
+      t.references :brand, foreign_key: true
     end
   end
 end
