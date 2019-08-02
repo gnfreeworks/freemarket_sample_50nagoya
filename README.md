@@ -21,7 +21,7 @@
 - belongs_to :status
 - belongs_to :brand
 - belongs_to :sale_charge
-- belongs_to :category
+- belongs_to :categories
 - has_many   :product_images
 
 ## product_images テーブル (商品イメージテーブル)
@@ -54,7 +54,7 @@
 |---------------|--------------------|----------|-------------------|
 |name           |名前    |string|null: false|
 
-## categorys テーブル (カテゴリーテーブル)
+## categories テーブル (カテゴリーテーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 | large_category_id   |大カテゴリーid |integer|null: false, foreign_key: true|
@@ -65,7 +65,7 @@
 - belongs_to :large_category
 - belongs_to :medium_category
 - belongs_to :small_category
-- has_many :sizes, through: :size_categorys
+- has_many :sizes, through: :size_categories
 - has_many :brands, through: :category_brands
 
 ## size_category テーブル (size_category テーブル)
@@ -84,19 +84,19 @@
 |name           |名前    |string|null: false|
 
 ### Association
-- has_many :categorys, through: :size_categorys
+- has_many :categories, through: :size_categories
 
-## large_categorys テーブル (大カテゴリーテーブル)
+## large_categories テーブル (大カテゴリーテーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 | name   |大カテゴリー名 |string|null: false|
 
-## medium_categorys テーブル (中カテゴリーテーブル)
+## medium_categories テーブル (中カテゴリーテーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 | name   |中カテゴリー名 |string|null: false|
 
-## samail_categorys テーブル (小カテゴリーテーブル)
+## samail_categories テーブル (小カテゴリーテーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 | name   |小カテゴリー名 |string|null: false|
@@ -107,7 +107,7 @@
 | name   |ブランド名 |string|null: false|
 
 ### Association
-- has_many :categorys, through: :category_brands
+- has_many :categories, through: :category_brands
 
 ## category_brands テーブル (カテゴリーブランド中韓テーブル)
 |Column         |  description        |Type      |Options           |
