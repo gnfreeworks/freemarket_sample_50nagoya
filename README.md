@@ -72,7 +72,7 @@
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 |category_id    |カテゴリーid |integer|null: false, foreign_key: true|
-|size_id        |サイズid    |string|null: false|
+|size_id        |サイズid    |integer|null: false|
 
 ### Association
 - belongs_to :category
