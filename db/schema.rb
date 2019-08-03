@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_02_105223) do
+ActiveRecord::Schema.define(version: 2019_08_03_083943) do
 
   create_table "banks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 2019_08_02_105223) do
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "large_category"
-    t.bigint "medium_category"
-    t.bigint "smail_category"
+    t.bigint "large_category_id"
+    t.bigint "medium_category_id"
+    t.bigint "smail_category_id"
   end
 
   create_table "categories_brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -60,6 +60,10 @@ ActiveRecord::Schema.define(version: 2019_08_02_105223) do
   create_table "sizes_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "category"
     t.bigint "size_id"
+  end
+
+  create_table "smail_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
