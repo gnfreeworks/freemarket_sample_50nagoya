@@ -1,2 +1,0 @@
-class CategoriesBrand < ApplicationRecord
-end

@@ -66,7 +66,6 @@
 - belongs_to :medium_category
 - belongs_to :small_category
 - has_many :sizes, through: :size_categories
-- has_many :brands, through: :category_brands
 
 ## sizes_categories テーブル (sizes_categories テーブル)
 |Column         |  description        |Type      |Options           |
@@ -108,16 +107,6 @@
 
 ### Association
 - has_many :categories, through: :categories_brands
-
-## categories_brands テーブル (カテゴリーブランド中韓テーブル)
-|Column         |  description        |Type      |Options           |
-|---------------|--------------------|----------|-------------------|
-| category_id  |カテゴリーid |integer|null: false, foreign_key: true|
-| brand_id  |ブランドid |integer|null: false, foreign_key: true|
-
-### Association
-- belongs_to :brand
-- belongs_to :category
 
 ## products_stautses テーブル (商品出品 テーブル)
 |Column         |  description        |Type      |Options           |
