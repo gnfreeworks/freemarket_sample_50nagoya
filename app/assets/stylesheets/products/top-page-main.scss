@@ -1,0 +1,27 @@
+.main {
+  &__top {
+    position: relative;
+    height: 300px;
+    img {
+      position: relative;
+      height: 100%;
+      width: 100vw;
+    }
+  }
+  &__midle {
+    width: 700px;
+    margin: 0 auto;
+    h1 {
+      font-size: 30px;
+      text-align: center;
+    }
+  }
+  &__bottome {
+    width: 700px;
+    margin: 0 auto;
+    h1 {
+      font-size: 30px;
+      text-align: center;
+    }
+  }
+}
