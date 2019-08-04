@@ -1,15 +1,6 @@
 .wrapper
   = render 'header'
-  .main
-    .main__top 画像
-    .main__midle
-      ピックアップカテゴリー
-      %p.main__midle__items1 レディース新着アイテム
-      %p.main__midle__items2 メンズ新着アイテム
-      %p.main__midle__items3 ベビーキッズ新着アイテム
-    .main__bottome
-      ピックアップブランド
-      %P.main__bottome__item1 シャネル新着アイテム
-      %p.main__bottome__item2 ルイヴィトン新着アイテム
-      %p.main__bottome__item3 ナイキ新着アイテム
+  = render 'main'
   = render 'footer'
+  %a{href: '', class: 'sell-btn'}
+    出品
