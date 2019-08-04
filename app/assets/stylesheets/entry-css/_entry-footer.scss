@@ -1,0 +1,23 @@
+.entry-footer {
+  height: 200px;
+  text-align: center;
+  &__top {
+    padding-top: 30px;
+    ul {
+      font-size: 8px;
+      display: flex;
+      justify-content: center;
+    }
+    li {
+      padding-left: 20px;
+    }
+  }
+  &__bottome {
+    padding-top: 30px;
+    height: 70px;
+    img {
+      display: inline-block;
+      height: 100%;
+    }
+  }
+}
