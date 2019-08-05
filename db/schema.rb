@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_03_083943) do
+ActiveRecord::Schema.define(version: 2019_08_05_150049) do
 
   create_table "banks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2019_08_03_083943) do
   end
 
   create_table "sizes_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "category"
+    t.bigint "category_id"
     t.bigint "size_id"
   end
 
