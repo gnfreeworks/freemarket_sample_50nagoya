@@ -3,6 +3,7 @@ class CreateShippingTimes < ActiveRecord::Migration[5.2]
     create_table :shipping_times do |t|
 
       t.string :name
+      t.timestamps
     end
   end
 end

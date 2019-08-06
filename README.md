@@ -1,3 +1,8 @@
+# process command
+- $ rake db:migrate
+- $ rake db:seed
+
+
 # README DB Design
 ## products テーブル (商品テーブル)
 |Column         |  description(J)        |Type      |Options        |
