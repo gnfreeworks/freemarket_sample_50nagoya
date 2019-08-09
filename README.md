@@ -119,12 +119,12 @@
 ### Association
 - has_many :categories, through: :categories_brands
 
-## products_stautses テーブル (商品出品 テーブル)
+## products_stauts テーブル (商品出品 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_id    |商品id|integer|null: false, foreign_key: true|
-|buyer_id       |出品者id|integer|null: false, foreign_key: true|
-|saler_id       |購入者id|integer|foreign_key: true|
+|product_id    |商品id|bigint|foreign_key: true|
+|buyer_id       |出品者id|bigint|foreign_key: true|
+|saler_id       |購入者id|bigint|foreign_key: true|
 |saling_status  |出品状態|integer||
 |deading_status |取引状態|integer||
 
@@ -180,8 +180,8 @@ installed devise
 ### Association
 - belongs_to :transfer_address
 - has_one    :payment_method
-- has_many   :buyer, class_name: 'products_stautses', foreign_key: true
-- has_many   :buyer, class_name: 'products_stautses', foreign_key: true
+- has_many   :buyer, class_name: 'products_stauts', foreign_key: true
+- has_many   :buyer, class_name: 'products_stauts', foreign_key: true
 - has_many   :products, through: :goods
 - has_many   :sale_orders
 - has_many   :transfer_orders
@@ -200,7 +200,7 @@ installed devise
 |user_id        |ユーザーid|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :products_stauts
+- belongs_to :products_staut
 - belongs_to :user
 
 ## transfer_order テーブル (振込申請 テーブル)
@@ -239,7 +239,7 @@ installed devise
 ## buyer_evaluations テーブル (出品者評価 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|products_stauts_id     |名前|bigint |null: false|
+|products_staut_id     |名前|bigint |null: false|
 |user_id                |出品者id|bigint|null: false|
 |evaluation_id          |評価id|bigint|foreign_key: true|
 |comment                |コメント|text|null: false|
