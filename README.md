@@ -33,7 +33,7 @@
 ## product_images テーブル (商品イメージテーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_id     |商品id|integer|null: false, foreign_key: true|
+|product_id     |商品id|integer|null: false|
 |url            |保存URL|text|null: false|
 
 ## sale_charges テーブル(販売手数料)
