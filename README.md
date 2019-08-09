@@ -142,8 +142,8 @@
 ## comments テーブル (コメント テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_stauts_id|商品状態id|integer|null: false|
-|user_id        |ユーザーid|integer|null: false|
+|product_stauts_id|商品状態id|bigint|null: false|
+|user_id        |ユーザーid|bigint|null: false|
 |comment        |コメント |integer|null: false|
 
 ## canseling_products テーブル (キャンセル申請 テーブル)
