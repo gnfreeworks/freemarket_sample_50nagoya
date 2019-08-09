@@ -243,8 +243,8 @@ installed devise
 ## evaluations テーブル (評価 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|name           |名前|integer|null: false|
-|icron          |アイコン|text|null: false|
+|name           |名前|string|null: false|
+|icon           |アイコン|text|null: false|
 
 ## payment_methods テーブル(支払い方法 テーブル)
 |Column         |  description        |Type      |Options           |

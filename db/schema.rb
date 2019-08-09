@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_09_112713) do
+ActiveRecord::Schema.define(version: 2019_08_09_143851) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 2019_08_09_112713) do
     t.index ["large_category_id"], name: "index_categories_on_large_category_id"
     t.index ["medium_category_id"], name: "index_categories_on_medium_category_id"
     t.index ["smail_category_id"], name: "index_categories_on_smail_category_id"
+  end
+
+  create_table "evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "large_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
