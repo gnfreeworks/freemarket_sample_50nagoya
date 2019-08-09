@@ -10265,3 +10265,5 @@ SizesCategory.create(category_id: '297', size_id: '27')
 SizesCategory.create(category_id: '297', size_id: '28')
 SizesCategory.create(category_id: '297', size_id: '29')
 SizesCategory.create(category_id: '297', size_id: '30')
+
+SaleCharge.create(charge: '0.1')

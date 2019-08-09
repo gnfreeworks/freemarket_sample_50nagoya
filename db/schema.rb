@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_05_153800) do
+ActiveRecord::Schema.define(version: 2019_08_09_082146) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -53,6 +53,12 @@ ActiveRecord::Schema.define(version: 2019_08_05_153800) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sale_charges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "charge", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "shipping_charges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -88,6 +94,19 @@ ActiveRecord::Schema.define(version: 2019_08_05_153800) do
 
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "kananame", null: false
+    t.integer "birthdaydate", null: false
+    t.string "nickname"
+    t.string "maildaddress", null: false
+    t.string "password", null: false
+    t.text "profiletext"
+    t.integer "authenticphonenumber", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
