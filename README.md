@@ -244,7 +244,7 @@ installed devise
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 |name           |名前|string|null: false|
-|icon           |アイコン|text|null: false|
+|icon           |アイコン|text||
 
 ## payment_methods テーブル(支払い方法 テーブル)
 |Column         |  description        |Type      |Options           |
