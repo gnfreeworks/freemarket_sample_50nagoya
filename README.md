@@ -187,10 +187,10 @@ installed devise
 - has_many   :transfer_orders
 - hes_many   :buyer_evaluations
   
-## sale_ordes テーブル (売り上げ申請 テーブル)
+## sale_orders テーブル (売り上げ申請 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|user_id     |ユーザーid|integer|null: false, foreign_key: true|
+|user_id     |ユーザーid|bigint|null: false, foreign_key: true|
 |sale        |売り上げ|integer|null: false, foreign_key: true|
 
 ## goods テーブル (いいね テーブル)
