@@ -51,7 +51,7 @@
 |---------------|--------------------|----------|-------------------|
 |name           |名前    |string|null: false|
 
-## areas テーブル (都道府県テーブル)
+## areas テーブル (都道府県テーブル) active_hash
 - Let input next.
   -- install it gem 'active_hash'
   -- rails g model Address areas_id:integer name:string」
@@ -212,9 +212,9 @@ installed devise
 ## transfer_addresses テーブル (振込先 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|user_id        |ユーザーid|integer|null: false|
-|bank_id        |振込申請額|integer|null: false, foreign_key: true|
-|acctoun_type   |講座種別|integer|null: false|
+|user_id        |ユーザーid|bigint|null: false|
+|bank_id        |振込申請額|bigint|foreign_key: true|
+|account_type   |講座種別|integer|null: false|
 |branch_code    |支店コード|integer|null: false|
 |account_number |口座番号|integer|null: false|
 |account_fistname|講座名義(名字)|integer|null: false|
@@ -222,6 +222,13 @@ installed devise
 
 ### Association
 - has_many :banks
+- belongs_to_active_hash :account_type
+
+## Account type テーブル (講座種別 テーブル) active_hash
+|Column         |  description        |Type      |Options           |
+|---------------|--------------------|----------|-------------------|
+|name     |講座種別|integer|null: false | 
+
 
 ## banks テーブル (銀行 テーブル)
 |Column         |  description        |Type      |Options           |
