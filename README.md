@@ -24,7 +24,6 @@
 - belongs_to :shipping_time
 - belongs_to :area
 - belongs_to :status
-- belongs_to :brand
 - belongs_to :sale_charge
 - belongs_to :category
 - has_many   :product_images
