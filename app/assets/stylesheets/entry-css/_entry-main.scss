@@ -1,0 +1,15 @@
+.entry-main {
+  flex: 1;
+  &__container {
+    background-color: #fff;
+    width: 700px;
+    margin: 0 auto;
+    &__top {
+      text-align: center;
+      font-size: 20px;
+      padding: 32px;
+      font-weight: bold;
+      border-bottom: 1px solid #EEEEEE; 
+    }
+  }
+}

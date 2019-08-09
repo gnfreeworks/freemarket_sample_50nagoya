@@ -1,3 +1,8 @@
+# process command
+- $ rake db:migrate
+- $ rake db:seed
+
+
 # README DB Design
 ## products テーブル (商品テーブル)
 |Column         |  description(J)        |Type      |Options        |
@@ -6,6 +11,7 @@
 |description    |詳細説明|text|null: false|
 |price          |価格|integer|null: false|
 |profit         |利益|integer|null: false|
+|size|サイズid|integer||
 |sale_charge_id|販売手数料id|integer|null: false, foreign_key: true|
 |status_id|商品状態id|integer|null: false, foreign_key: true|
 |category_id|カテゴリーid|integer|null: false, foreign_key: true|
@@ -19,16 +25,21 @@
 - belongs_to :shipping_time
 - belongs_to :area
 - belongs_to :status
-- belongs_to :brand
 - belongs_to :sale_charge
 - belongs_to :category
+- belongs_to :size
 - has_many   :product_images
 
 ## product_images テーブル (商品イメージテーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_id     |商品id|integer|null: false, foreign_key: true|
+|product_id     |商品id|integer|null: false|
 |url            |保存URL|text|null: false|
+
+## sale_charges テーブル(販売手数料)
+|Column         |  description        |Type      |Options           |
+|---------------|--------------------|----------|-------------------|
+|rate     |レート|integer|null: false|
 
 ## shipping_charges テーブル (配送負担元テーブル)
 |Column         |  description        |Type      |Options           |
@@ -54,7 +65,7 @@
 |---------------|--------------------|----------|-------------------|
 |name           |名前    |string|null: false|
 
-## categorys テーブル (カテゴリーテーブル)
+## categories テーブル (カテゴリーテーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 | large_category_id   |大カテゴリーid |integer|null: false, foreign_key: true|
@@ -64,39 +75,38 @@
 ### Association
 - belongs_to :large_category
 - belongs_to :medium_category
-- belongs_to :small_category
-- has_many :sizes, through: :size_categorys
-- has_many :brands, through: :category_brands
+- belongs_to :smail_category
+- has_many :sizes, through: :size_categories
 
-## size_category テーブル (size_category テーブル)
+## sizes_categories テーブル (sizes_categories テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 |category_id    |カテゴリーid |integer|null: false, foreign_key: true|
-|size_id        |サイズid    |string|null: false|
+|size_id        |サイズid    |integer|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :category
 - belongs_to :size
 
-## size テーブル (sizeテーブル)
+## sizes テーブル (sizes テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 |name           |名前    |string|null: false|
 
 ### Association
-- has_many :categorys, through: :size_categorys
+- has_many :categories, through: :size_categories
 
-## large_categorys テーブル (大カテゴリーテーブル)
+## large_categories テーブル (大カテゴリーテーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 | name   |大カテゴリー名 |string|null: false|
 
-## medium_categorys テーブル (中カテゴリーテーブル)
+## medium_categories テーブル (中カテゴリーテーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 | name   |中カテゴリー名 |string|null: false|
 
-## samail_categorys テーブル (小カテゴリーテーブル)
+## samail_categories テーブル (小カテゴリーテーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 | name   |小カテゴリー名 |string|null: false|
@@ -107,22 +117,12 @@
 | name   |ブランド名 |string|null: false|
 
 ### Association
-- has_many :categorys, through: :category_brands
-
-## category_brands テーブル (カテゴリーブランド中韓テーブル)
-|Column         |  description        |Type      |Options           |
-|---------------|--------------------|----------|-------------------|
-| category_id  |カテゴリーid |integer|null: false, foreign_key: true|
-| brand_id  |ブランドid |integer|null: false, foreign_key: true|
-
-### Association
-- belongs_to :brand
-- belongs_to :category
+- has_many :categories, through: :categories_brands
 
 ## products_stautses テーブル (商品出品 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|products_id    |商品id|integer|null: false, foreign_key: true|
+|product_id    |商品id|integer|null: false, foreign_key: true|
 |buyer_id       |出品者id|integer|null: false, foreign_key: true|
 |saler_id       |購入者id|integer|foreign_key: true|
 |saling_status  |出品状態|integer||
@@ -226,7 +226,7 @@ installed devise
 ## banks テーブル (銀行 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|name     |名前|integer|null: false
+|name     |名前|string|null: false
 
 
 ## buyer_evaluations テーブル (出品者評価 テーブル)
