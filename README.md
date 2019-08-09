@@ -149,7 +149,7 @@
 ## canseling_products テーブル (キャンセル申請 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_stauts_id|商品状態id|integer|null: false|
+|product_stauts_id|商品状態id|bigint|null: false|
 |status     |キャンセル状態|integer|null: false|
 
 ### Appendix
