@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   belongs_to :shipping_time
   belongs_to :status
   belongs_to :sale_charge
+  belongs_to :size
   belongs_to :category
   has_many   :product_images
 

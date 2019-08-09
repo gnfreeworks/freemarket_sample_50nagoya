@@ -7,6 +7,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.integer :profit,        null: false
       t.integer :area_id,       null: false
       t.string  :brand
+      t.integer :size_id
       t.references :sale_charge,     foreign_key: true
       t.references :status,          foreign_key: true
       t.references :category,        foreign_key: true
