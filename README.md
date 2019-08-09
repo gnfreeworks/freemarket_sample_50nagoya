@@ -35,6 +35,11 @@
 |product_id     |商品id|integer|null: false, foreign_key: true|
 |url            |保存URL|text|null: false|
 
+## sale_charges テーブル(販売手数料)
+|Column         |  description        |Type      |Options           |
+|---------------|--------------------|----------|-------------------|
+|charge     |名前|integer|null: false|
+
 ## shipping_charges テーブル (配送負担元テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
