@@ -212,16 +212,16 @@ installed devise
 ## transfer_addresses テーブル (振込先 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|user_id        |ユーザーid|bigint|null: false|
-|bank_id        |振込申請額|bigint|foreign_key: true|
-|account_type   |講座種別|integer|null: false|
-|branch_code    |支店コード|integer|null: false|
-|account_number |口座番号|integer|null: false|
-|account_fistname|講座名義(名字)|integer|null: false|
-|acctoun_lastname|講座名義(名前)|integer|null: false|
+|user_id         |ユーザーid|bigint|null: false|
+|bank_id         |振込申請額|bigint|foreign_key: true|
+|account_type_id |講座種別|integer|null: false|
+|branch_code     |支店コード|integer|null: false|
+|account_number  |口座番号|integer|null: false|
+|account_fistname|講座名義(名字)|string|null: false|
+|acctoun_lastname|講座名義(名前)|string|null: false|
 
 ### Association
-- has_many :banks
+- belongs_to :banks
 - belongs_to_active_hash :account_type
 
 ## Account type テーブル (講座種別 テーブル) active_hash
