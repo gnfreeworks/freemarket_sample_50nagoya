@@ -116,7 +116,7 @@
 ## products_stautses テーブル (商品出品 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|products_id    |商品id|integer|null: false, foreign_key: true|
+|product_id    |商品id|integer|null: false, foreign_key: true|
 |buyer_id       |出品者id|integer|null: false, foreign_key: true|
 |saler_id       |購入者id|integer|foreign_key: true|
 |saling_status  |出品状態|integer||
