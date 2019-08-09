@@ -1,2 +1,0 @@
-class ProductsStaut < ApplicationRecord
-end

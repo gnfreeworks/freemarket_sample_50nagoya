@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_09_161522) do
+ActiveRecord::Schema.define(version: 2019_08_09_164603) do
 
   create_table "account_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_08_09_161522) do
   end
 
   create_table "canseling_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "product_stauts_id", null: false
+    t.bigint "product_status_id", null: false
     t.integer "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2019_08_09_161522) do
   end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "product_stauts_id", null: false
+    t.bigint "product_status_id", null: false
     t.bigint "user_id", null: false
     t.text "comment", null: false
     t.datetime "created_at", null: false
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 2019_08_09_161522) do
     t.index ["status_id"], name: "index_products_on_status_id"
   end
 
-  create_table "products_stauts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "products_statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "product_id"
     t.bigint "buyer_id"
     t.bigint "saler_id"
@@ -137,9 +137,9 @@ ActiveRecord::Schema.define(version: 2019_08_09_161522) do
     t.integer "deading_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["buyer_id"], name: "index_products_stauts_on_buyer_id"
-    t.index ["product_id"], name: "index_products_stauts_on_product_id"
-    t.index ["saler_id"], name: "index_products_stauts_on_saler_id"
+    t.index ["buyer_id"], name: "index_products_statuses_on_buyer_id"
+    t.index ["product_id"], name: "index_products_statuses_on_product_id"
+    t.index ["saler_id"], name: "index_products_statuses_on_saler_id"
   end
 
   create_table "sale_charges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 2019_08_09_161522) do
   end
 
   create_table "todos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "product_stauts_id", null: false
+    t.bigint "product_statu_id", null: false
     t.bigint "user_id", null: false
     t.text "todo", null: false
     t.integer "status", null: false
@@ -245,9 +245,9 @@ ActiveRecord::Schema.define(version: 2019_08_09_161522) do
   add_foreign_key "products", "shipping_charges"
   add_foreign_key "products", "shipping_times"
   add_foreign_key "products", "statuses"
-  add_foreign_key "products_stauts", "products"
-  add_foreign_key "products_stauts", "users", column: "buyer_id"
-  add_foreign_key "products_stauts", "users", column: "saler_id"
+  add_foreign_key "products_statuses", "products"
+  add_foreign_key "products_statuses", "users", column: "buyer_id"
+  add_foreign_key "products_statuses", "users", column: "saler_id"
   add_foreign_key "sizes_categories", "categories"
   add_foreign_key "sizes_categories", "sizes"
   add_foreign_key "transfer_addresses", "banks"

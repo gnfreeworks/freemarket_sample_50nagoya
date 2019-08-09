@@ -119,7 +119,7 @@
 ### Association
 - has_many :categories, through: :categories_brands
 
-## products_stauts テーブル (商品出品 テーブル)
+## products_statuses テーブル (商品出品 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 |product_id    |商品id|bigint|foreign_key: true|
@@ -142,14 +142,14 @@
 ## comments テーブル (コメント テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_stauts_id|商品状態id|bigint|null: false|
+|product_status_id|商品状態id|bigint|null: false|
 |user_id        |ユーザーid|bigint|null: false|
 |comment        |コメント |integer|null: false|
 
 ## canseling_products テーブル (キャンセル申請 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_stauts_id|商品状態id|bigint|null: false|
+|product_status_id|商品状態id|bigint|null: false|
 |status     |キャンセル状態|integer|null: false|
 
 ### Appendix
@@ -158,7 +158,7 @@
 ## todos テーブル (todos テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_stauts_id|商品状態id|bigint|null: false|
+|product_status_id|商品状態id|bigint|null: false|
 |user_id        |ユーザーid|bigint|null: false|
 |text           |todo内容|integer|null: false|
 |status         |状態|integer|null: false|
@@ -180,8 +180,8 @@ installed devise
 ### Association
 - belongs_to :transfer_address
 - has_one    :payment_method
-- has_many   :buyer, class_name: 'products_stauts', foreign_key: true
-- has_many   :buyer, class_name: 'products_stauts', foreign_key: true
+- has_many   :buyer, class_name: 'products_status', foreign_key: true
+- has_many   :buyer, class_name: 'products_status', foreign_key: true
 - has_many   :products, through: :goods
 - has_many   :sale_orders
 - has_many   :transfer_orders
@@ -196,7 +196,7 @@ installed devise
 ## goods テーブル (いいね テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_stauts_id |商品状態id|integer|null: false, foreign_key: true|
+|product_status_id |商品状態id|integer|null: false, foreign_key: true|
 |user_id        |ユーザーid|integer|null: false, foreign_key: true|
 
 ### Association
