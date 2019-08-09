@@ -158,8 +158,8 @@
 ## todos テーブル (todos テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_stauts_id|商品状態id|integer|null: false|
-|user_id        |ユーザーid|integer|null: false|
+|product_stauts_id|商品状態id|bigint|null: false|
+|user_id        |ユーザーid|bigint|null: false|
 |text           |todo内容|integer|null: false|
 |status         |状態|integer|null: false|
 
