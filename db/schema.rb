@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_09_082146) do
+ActiveRecord::Schema.define(version: 2019_08_09_085651) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -51,6 +51,27 @@ ActiveRecord::Schema.define(version: 2019_08_09_082146) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.integer "price", null: false
+    t.integer "profit", null: false
+    t.integer "area_id", null: false
+    t.string "brand"
+    t.bigint "sale_charge_id"
+    t.bigint "status_id"
+    t.bigint "category_id"
+    t.bigint "shipping_charge_id"
+    t.bigint "shipping_time_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["sale_charge_id"], name: "index_products_on_sale_charge_id"
+    t.index ["shipping_charge_id"], name: "index_products_on_shipping_charge_id"
+    t.index ["shipping_time_id"], name: "index_products_on_shipping_time_id"
+    t.index ["status_id"], name: "index_products_on_status_id"
   end
 
   create_table "sale_charges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -114,6 +135,11 @@ ActiveRecord::Schema.define(version: 2019_08_09_082146) do
   add_foreign_key "categories", "large_categories"
   add_foreign_key "categories", "medium_categories"
   add_foreign_key "categories", "smail_categories"
+  add_foreign_key "products", "categories"
+  add_foreign_key "products", "sale_charges"
+  add_foreign_key "products", "shipping_charges"
+  add_foreign_key "products", "shipping_times"
+  add_foreign_key "products", "statuses"
   add_foreign_key "sizes_categories", "categories"
   add_foreign_key "sizes_categories", "sizes"
 end
