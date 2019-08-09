@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_09_145322) do
+ActiveRecord::Schema.define(version: 2019_08_09_151043) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -65,6 +65,16 @@ ActiveRecord::Schema.define(version: 2019_08_09_145322) do
 
   create_table "medium_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payment_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "card_number", null: false
+    t.integer "expiration_year", null: false
+    t.integer "expiration_month", null: false
+    t.integer "security_code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
