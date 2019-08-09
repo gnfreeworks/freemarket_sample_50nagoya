@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_09_143851) do
+ActiveRecord::Schema.define(version: 2019_08_09_145322) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 2019_08_09_143851) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "buyer_evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "products_stauts_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "evaluation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["evaluation_id"], name: "index_buyer_evaluations_on_evaluation_id"
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -147,6 +156,7 @@ ActiveRecord::Schema.define(version: 2019_08_09_143851) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "buyer_evaluations", "evaluations"
   add_foreign_key "categories", "large_categories"
   add_foreign_key "categories", "medium_categories"
   add_foreign_key "categories", "smail_categories"

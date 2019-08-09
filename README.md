@@ -232,9 +232,9 @@ installed devise
 ## buyer_evaluations テーブル (出品者評価 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|products_stauts_id     |名前|integer |null: false|
-|user_id                |出品者id|integer|null: false|
-|evaluation_id          |評価id|integer|null: false, foreign_key: true|
+|products_stauts_id     |名前|bigint |null: false|
+|user_id                |出品者id|bigint|null: false|
+|evaluation_id          |評価id|bigint|foreign_key: true|
 |comment                |コメント|text|null: false|
 
 ### Association
@@ -245,6 +245,9 @@ installed devise
 |---------------|--------------------|----------|-------------------|
 |name           |名前|string|null: false|
 |icon           |アイコン|text||
+
+### Association
+- belong_to :buyer_evaluation
 
 ## payment_methods テーブル(支払い方法 テーブル)
 |Column         |  description        |Type      |Options           |
