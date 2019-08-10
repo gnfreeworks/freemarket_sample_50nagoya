@@ -10270,10 +10270,5 @@ SizesCategory.create(category_id: '297', size_id: '30')
 ## sale_charges テーブル(販売手数料テーブル) 10% = 0.1
 SaleCharge.create(rate: '0.1')
 
-## evaluations (評価 テーブル)
-Evaluation.create(name: '良い')
-Evaluation.create(name: '普通')
-Evaluation.create(name: '悪い')
-
 ## Product table Smaple data
 Product.create(name: '【sample】立体裁断スキッパーシャツブラウス', description: 'ご覧いただきありがとうございます。', price: '2000', profit: '1800',size_id: '4', brand: '', sale_charge_id: '1', status_id: '1', category_id: '4', area_id: '20', shipping_charge_id: '1', shipping_time_id: '1')
