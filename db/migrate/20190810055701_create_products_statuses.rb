@@ -6,7 +6,6 @@ class CreateProductsStatuses < ActiveRecord::Migration[5.2]
       t.references :saler,          foreign_key: { to_table: :users }
       t.integer    :saling_status,  null: false
       t.integer    :deading_status, null: false
-
       t.timestamps
     end
   end
