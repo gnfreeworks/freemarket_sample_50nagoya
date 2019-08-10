@@ -142,14 +142,14 @@
 ## comments テーブル (コメント テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_status_id|商品状態id|bigint|null: false|
+|products_status_id|商品状態id|bigint|null: false|
 |user_id        |ユーザーid|bigint|null: false|
 |comment        |コメント |integer|null: false|
 
 ## canseling_products テーブル (キャンセル申請 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_status_id|商品状態id|bigint|null: false|
+|products_status_id|商品状態id|bigint|null: false|
 |status     |キャンセル状態|integer|null: false|
 
 ### Appendix
@@ -158,7 +158,7 @@
 ## todos テーブル (todos テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_status_id|商品状態id|bigint|null: false|
+|products_status_id|商品状態id|bigint|null: false|
 |user_id        |ユーザーid|bigint|null: false|
 |text           |todo内容|integer|null: false|
 |status         |状態|integer|null: false|
@@ -196,7 +196,7 @@ installed devise
 ## goods テーブル (いいね テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_status_id |商品状態id|integer|null: false, foreign_key: true|
+|products_status_id |商品状態id|integer|null: false, foreign_key: true|
 |user_id        |ユーザーid|integer|null: false, foreign_key: true|
 
 ### Association
@@ -239,7 +239,7 @@ installed devise
 ## buyer_evaluations テーブル (出品者評価 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|products_staut_id     |名前|bigint |null: false|
+|products_status_id     |名前|bigint |null: false|
 |user_id                |出品者id|bigint|null: false|
 |evaluation_id          |評価id|bigint|foreign_key: true|
 |comment                |コメント|text|null: false|
