@@ -122,7 +122,7 @@
 ## products_statuses テーブル (商品出品 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_id    |商品id|bigint|foreign_key: true|
+|products_id    |商品id|bigint|foreign_key: true|
 |buyer_id       |出品者id|bigint|foreign_key: true|
 |saler_id       |購入者id|bigint|foreign_key: true|
 |saling_status  |出品状態|integer||
@@ -171,11 +171,12 @@ installed devise
 |Column         |  description（J)     |Type      |Options           |
 |---------------|---------------------|----------|-------------------|
 |name           |名前|string|null: false|
-|kana_name      |ナマエ|string|null: false|
+|kananame      |ナマエ|string|null: false|
 |nickname       |ニックネーム|string|null: false|
 |birthdaydate   |生年月日|datetime|null: false|
 |profiletext    |プロフィール|text|null: false|
-|authenticphonenumber|認証用電話番号|string|null: false|
+|authenticphonenumber|認証用電話番号|string|unique: true|
+- authentic phone number is not unique in development.
 
 ### Association
 - belongs_to :transfer_address

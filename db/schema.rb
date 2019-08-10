@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_10_034211) do
+ActiveRecord::Schema.define(version: 2019_08_10_050709) do
 
   create_table "account_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2019_08_10_034211) do
   end
 
   create_table "buyer_evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "products_staut_id", null: false
+    t.bigint "products_status_id", null: false
     t.bigint "user_id", null: false
     t.bigint "evaluation_id"
     t.datetime "created_at", null: false
@@ -76,15 +76,6 @@ ActiveRecord::Schema.define(version: 2019_08_10_034211) do
     t.text "icon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "goods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "products_status_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["products_status_id"], name: "index_goods_on_products_status_id"
-    t.index ["user_id"], name: "index_goods_on_user_id"
   end
 
   create_table "large_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -136,19 +127,6 @@ ActiveRecord::Schema.define(version: 2019_08_10_034211) do
     t.index ["shipping_charge_id"], name: "index_products_on_shipping_charge_id"
     t.index ["shipping_time_id"], name: "index_products_on_shipping_time_id"
     t.index ["status_id"], name: "index_products_on_status_id"
-  end
-
-  create_table "products_statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "product_id"
-    t.bigint "buyer_id"
-    t.bigint "saler_id"
-    t.integer "saling_status", null: false
-    t.integer "deading_status", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["buyer_id"], name: "index_products_statuses_on_buyer_id"
-    t.index ["product_id"], name: "index_products_statuses_on_product_id"
-    t.index ["saler_id"], name: "index_products_statuses_on_saler_id"
   end
 
   create_table "sale_charges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -233,32 +211,32 @@ ActiveRecord::Schema.define(version: 2019_08_10_034211) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.string "name", null: false
     t.string "kananame", null: false
-    t.integer "birthdaydate", null: false
     t.string "nickname"
-    t.string "maildaddress", null: false
-    t.string "password", null: false
+    t.datetime "birthdaydate", null: false
     t.text "profiletext"
     t.integer "authenticphonenumber", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "buyer_evaluations", "evaluations"
   add_foreign_key "categories", "large_categories"
   add_foreign_key "categories", "medium_categories"
   add_foreign_key "categories", "smail_categories"
-  add_foreign_key "goods", "products_statuses"
-  add_foreign_key "goods", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "sale_charges"
   add_foreign_key "products", "shipping_charges"
   add_foreign_key "products", "shipping_times"
   add_foreign_key "products", "statuses"
-  add_foreign_key "products_statuses", "products"
-  add_foreign_key "products_statuses", "users", column: "buyer_id"
-  add_foreign_key "products_statuses", "users", column: "saler_id"
   add_foreign_key "sizes_categories", "categories"
   add_foreign_key "sizes_categories", "sizes"
   add_foreign_key "transfer_addresses", "banks"
