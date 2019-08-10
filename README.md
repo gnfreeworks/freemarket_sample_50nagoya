@@ -133,10 +133,11 @@
 - deading_status [dealing:0, canceling:1, shipping:1, completed:2]
 
 ### Association
-- belongs_to :buyer, class_name: 'user', :foreign_key => 'buyer_id'
-- belongs_to :saler, class_name: 'user', :foreign_key => 'saler_id'
+- belongs_to :buyer, class_name: 'User', foreign_key: 'buyer_id'
+- belongs_to :saler, class_name: 'User', foreign_key: 'seller_id'
 - has_many :canseling_products
 - has_many :todos
+- has_many :goods
 - has_many :user, through: :goods
   
 ## comments テーブル (コメント テーブル)
@@ -166,6 +167,10 @@
 ### Appendix
 - status [0:既読, 1:未読, 2:完了]
 
+### Association 
+- belongs_to :user
+- belongs_to :products_status
+
 ## users テーブル (ユーザーテーブル)
 installed devise
 |Column         |  description（J)     |Type      |Options           |
@@ -179,20 +184,23 @@ installed devise
 - authentic phone number is not unique in development.
 
 ### Association
-- belongs_to :transfer_address
 - has_one    :payment_method
-- has_many   :buyer, class_name: 'products_status', foreign_key: true
-- has_many   :buyer, class_name: 'products_status', foreign_key: true
+- has_many   :buyer, class_name: 'ProductsStatus', foreign_key: 'buyer_id'
+- has_many   :saler, class_name: 'ProductsStatus', foreign_key: 'seller_id'
+- has_many   :goods
 - has_many   :products, through: :goods
 - has_many   :sale_orders
 - has_many   :transfer_orders
 - hes_many   :buyer_evaluations
-  
+
 ## sale_orders テーブル (売り上げ申請 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 |user_id     |ユーザーid|bigint|null: false, foreign_key: true|
 |sale        |売り上げ|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
 
 ## goods テーブル (いいね テーブル)
 |Column         |  description        |Type      |Options           |
@@ -201,7 +209,7 @@ installed devise
 |user_id        |ユーザーid|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :products_staut
+- belongs_to :products_stauts
 - belongs_to :user
 
 ## transfer_order テーブル (振込申請 テーブル)
@@ -209,6 +217,9 @@ installed devise
 |---------------|--------------------|----------|-------------------|
 |user_id     |ユーザーid|integer|null: false, foreign_key: true|
 |sale        |振込申請額|integer|null: false|
+
+### Association
+- belongs_to :user
 
 ## transfer_addresses テーブル (振込先 テーブル)
 |Column         |  description        |Type      |Options           |
@@ -223,6 +234,7 @@ installed devise
 
 ### Association
 - belongs_to :banks
+- belongs_to :user
 - belongs_to_active_hash :account_type
 
 ## Account type テーブル (講座種別 テーブル) active_hash

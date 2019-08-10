@@ -204,7 +204,7 @@ ActiveRecord::Schema.define(version: 2019_08_10_055726) do
   end
 
   create_table "todos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "product_statu_id", null: false
+    t.bigint "products_status_id", null: false
     t.bigint "user_id", null: false
     t.text "todo", null: false
     t.integer "status", null: false
