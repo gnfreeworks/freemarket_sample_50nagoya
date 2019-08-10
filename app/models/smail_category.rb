@@ -1,0 +1,2 @@
+class SmailCategory < ApplicationRecord
+end

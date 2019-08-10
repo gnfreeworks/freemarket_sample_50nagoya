@@ -73,5 +73,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog-aws'
-gem 'haml-rails'
 gem 'devise'
+gem 'haml-rails'
+gem 'mini_magick'
+
+# for area master data
+gem 'active_hash'
