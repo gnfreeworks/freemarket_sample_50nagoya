@@ -51,7 +51,7 @@
 |---------------|--------------------|----------|-------------------|
 |name           |名前    |string|null: false|
 
-## areas テーブル (都道府県テーブル)
+## areas テーブル (都道府県テーブル) active_hash
 - Let input next.
   -- install it gem 'active_hash'
   -- rails g model Address areas_id:integer name:string」
@@ -119,12 +119,12 @@
 ### Association
 - has_many :categories, through: :categories_brands
 
-## products_stautses テーブル (商品出品 テーブル)
+## products_statuses テーブル (商品出品 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_id    |商品id|integer|null: false, foreign_key: true|
-|buyer_id       |出品者id|integer|null: false, foreign_key: true|
-|saler_id       |購入者id|integer|foreign_key: true|
+|products_id    |商品id|bigint|foreign_key: true|
+|buyer_id       |出品者id|bigint|foreign_key: true|
+|saler_id       |購入者id|bigint|foreign_key: true|
 |saling_status  |出品状態|integer||
 |deading_status |取引状態|integer||
 
@@ -133,23 +133,24 @@
 - deading_status [dealing:0, canceling:1, shipping:1, completed:2]
 
 ### Association
-- belongs_to :buyer, class_name: 'user', :foreign_key => 'buyer_id'
-- belongs_to :saler, class_name: 'user', :foreign_key => 'saler_id'
+- belongs_to :buyer, class_name: 'User', foreign_key: 'buyer_id'
+- belongs_to :saler, class_name: 'User', foreign_key: 'seller_id'
 - has_many :canseling_products
 - has_many :todos
+- has_many :goods
 - has_many :user, through: :goods
   
 ## comments テーブル (コメント テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_stauts_id|商品状態id|integer|null: false|
-|user_id        |ユーザーid|integer|null: false|
+|products_status_id|商品状態id|bigint|null: false|
+|user_id        |ユーザーid|bigint|null: false|
 |comment        |コメント |integer|null: false|
 
 ## canseling_products テーブル (キャンセル申請 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_stauts_id|商品状態id|integer|null: false|
+|products_status_id|商品状態id|bigint|null: false|
 |status     |キャンセル状態|integer|null: false|
 
 ### Appendix
@@ -158,45 +159,53 @@
 ## todos テーブル (todos テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_stauts_id|商品状態id|integer|null: false|
-|user_id        |ユーザーid|integer|null: false|
+|products_status_id|商品状態id|bigint|null: false|
+|user_id        |ユーザーid|bigint|null: false|
 |text           |todo内容|integer|null: false|
 |status         |状態|integer|null: false|
 
 ### Appendix
 - status [0:既読, 1:未読, 2:完了]
 
+### Association 
+- belongs_to :user
+- belongs_to :products_status
+
 ## users テーブル (ユーザーテーブル)
 installed devise
 |Column         |  description（J)     |Type      |Options           |
 |---------------|---------------------|----------|-------------------|
 |name           |名前|string|null: false|
-|kana_name      |ナマエ|string|null: false|
+|kananame      |ナマエ|string|null: false|
 |nickname       |ニックネーム|string|null: false|
 |birthdaydate   |生年月日|datetime|null: false|
 |profiletext    |プロフィール|text|null: false|
-|authenticphonenumber|認証用電話番号|string|null: false|
+|authenticphonenumber|認証用電話番号|string|unique: true|
+- authentic phone number is not unique in development.
 
 ### Association
-- belongs_to :transfer_address
 - has_one    :payment_method
-- has_many   :buyer, class_name: 'products_stautses', foreign_key: true
-- has_many   :buyer, class_name: 'products_stautses', foreign_key: true
+- has_many   :buyer, class_name: 'ProductsStatus', foreign_key: 'buyer_id'
+- has_many   :saler, class_name: 'ProductsStatus', foreign_key: 'seller_id'
+- has_many   :goods
 - has_many   :products, through: :goods
 - has_many   :sale_orders
 - has_many   :transfer_orders
 - hes_many   :buyer_evaluations
-  
-## sale_ordes テーブル (売り上げ申請 テーブル)
+
+## sale_orders テーブル (売り上げ申請 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|user_id     |ユーザーid|integer|null: false, foreign_key: true|
+|user_id     |ユーザーid|bigint|null: false, foreign_key: true|
 |sale        |売り上げ|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
 
 ## goods テーブル (いいね テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_stauts_id |商品状態id|integer|null: false, foreign_key: true|
+|products_status_id |商品状態id|integer|null: false, foreign_key: true|
 |user_id        |ユーザーid|integer|null: false, foreign_key: true|
 
 ### Association
@@ -209,19 +218,30 @@ installed devise
 |user_id     |ユーザーid|integer|null: false, foreign_key: true|
 |sale        |振込申請額|integer|null: false|
 
+### Association
+- belongs_to :user
+
 ## transfer_addresses テーブル (振込先 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|user_id        |ユーザーid|integer|null: false|
-|bank_id        |振込申請額|integer|null: false, foreign_key: true|
-|acctoun_type   |講座種別|integer|null: false|
-|branch_code    |支店コード|integer|null: false|
-|account_number |口座番号|integer|null: false|
-|account_fistname|講座名義(名字)|integer|null: false|
-|acctoun_lastname|講座名義(名前)|integer|null: false|
+|user_id         |ユーザーid|bigint|null: false|
+|bank_id         |振込申請額|bigint|foreign_key: true|
+|account_type_id |講座種別|integer|null: false|
+|branch_code     |支店コード|integer|null: false|
+|account_number  |口座番号|integer|null: false|
+|account_fistname|講座名義(名字)|string|null: false|
+|acctoun_lastname|講座名義(名前)|string|null: false|
 
 ### Association
-- has_many :banks
+- belongs_to :banks
+- belongs_to :user
+- belongs_to_active_hash :account_type
+
+## Account type テーブル (講座種別 テーブル) active_hash
+|Column         |  description        |Type      |Options           |
+|---------------|--------------------|----------|-------------------|
+|name     |講座種別|integer|null: false | 
+
 
 ## banks テーブル (銀行 テーブル)
 |Column         |  description        |Type      |Options           |
@@ -232,9 +252,9 @@ installed devise
 ## buyer_evaluations テーブル (出品者評価 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|products_stauts_id     |名前|integer |null: false|
-|user_id                |出品者id|integer|null: false|
-|evaluation_id          |評価id|integer|null: false, foreign_key: true|
+|products_status_id     |名前|bigint |null: false|
+|user_id                |出品者id|bigint|null: false|
+|evaluation_id          |評価id|bigint|foreign_key: true|
 |comment                |コメント|text|null: false|
 
 ### Association
@@ -243,8 +263,11 @@ installed devise
 ## evaluations テーブル (評価 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|name           |名前|integer|null: false|
-|icron          |アイコン|text|null: false|
+|name           |名前|string|null: false|
+|icon           |アイコン|text||
+
+### Association
+- belong_to :buyer_evaluation
 
 ## payment_methods テーブル(支払い方法 テーブル)
 |Column         |  description        |Type      |Options           |
