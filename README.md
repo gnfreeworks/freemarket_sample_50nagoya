@@ -11,6 +11,7 @@
 |description    |詳細説明|text|null: false|
 |price          |価格|integer|null: false|
 |profit         |利益|integer|null: false|
+|size|サイズid|integer||
 |sale_charge_id|販売手数料id|integer|null: false, foreign_key: true|
 |status_id|商品状態id|integer|null: false, foreign_key: true|
 |category_id|カテゴリーid|integer|null: false, foreign_key: true|
@@ -24,16 +25,21 @@
 - belongs_to :shipping_time
 - belongs_to :area
 - belongs_to :status
-- belongs_to :brand
 - belongs_to :sale_charge
 - belongs_to :category
+- belongs_to :size
 - has_many   :product_images
 
 ## product_images テーブル (商品イメージテーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|product_id     |商品id|integer|null: false, foreign_key: true|
+|product_id     |商品id|integer|null: false|
 |url            |保存URL|text|null: false|
+
+## sale_charges テーブル(販売手数料)
+|Column         |  description        |Type      |Options           |
+|---------------|--------------------|----------|-------------------|
+|rate     |レート|integer|null: false|
 
 ## shipping_charges テーブル (配送負担元テーブル)
 |Column         |  description        |Type      |Options           |
@@ -69,7 +75,7 @@
 ### Association
 - belongs_to :large_category
 - belongs_to :medium_category
-- belongs_to :small_category
+- belongs_to :smail_category
 - has_many :sizes, through: :size_categories
 
 ## sizes_categories テーブル (sizes_categories テーブル)
@@ -116,7 +122,7 @@
 ## products_stautses テーブル (商品出品 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-|products_id    |商品id|integer|null: false, foreign_key: true|
+|product_id    |商品id|integer|null: false, foreign_key: true|
 |buyer_id       |出品者id|integer|null: false, foreign_key: true|
 |saler_id       |購入者id|integer|foreign_key: true|
 |saling_status  |出品状態|integer||
