@@ -1,4 +1,4 @@
-class CreateSizesCategories < ActiveRecord::Migration[5.2]
+class CreateSizesCategories < ActiveRecord::Migration[5.0]
   def change
     create_table :sizes_categories do |t|
 

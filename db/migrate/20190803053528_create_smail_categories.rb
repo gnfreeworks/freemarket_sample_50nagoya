@@ -1,4 +1,4 @@
-class CreateSmailCategories < ActiveRecord::Migration[5.2]
+class CreateSmailCategories < ActiveRecord::Migration[5.0]
   def change
     create_table :smail_categories do |t|
 
