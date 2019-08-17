@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def basic_auth
-    logger.info "[info basic_auth: start"
     authenticate_or_request_with_http_basic do |username, password|
       username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]
       logger.info "[info nishiyama]username:" + username
