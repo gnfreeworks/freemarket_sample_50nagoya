@@ -18,8 +18,11 @@ class SignupController < ApplicationController
         @user = User.new
     end
 
+    def step5
+        @user = User.new
+    end
+
     def done
-        
     end
 
 end

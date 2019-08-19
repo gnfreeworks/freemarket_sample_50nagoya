@@ -1,0 +1,49 @@
+.contents
+  .header
+    %h1
+      %img.header__img
+    .header__progress
+      %li.header__progress__advance.active
+        会員情報
+        .header__progress__advance__point
+      %li.header__progress__advance.active
+        電話番号認証
+        .header__progress__advance__point
+      %li.header__progress__advance.active
+        お届け先住所入力
+        .header__progress__advance__point
+      %li.header__progress__advance.active
+        支払い方法
+        .header__progress__advance__point
+      %li.header__progress__advance
+        完了
+        .header__progress__advance__point
+  .main-content
+    .main-content__title
+      %h2 支払い方法
+    .main-content__form
+      = form_for @user, url: done_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
+        .main-content__form__box
+          .form__block
+            = f.label :カード番号
+            %span.form__block__required
+              必須
+            %br/
+            %img.pay-image
+          .form__block
+            = f.label :有効期限
+            %span.form__block__required
+              必須
+            %br/
+          .form__block
+            = f.label :セキュリティコード
+            %span.form__block__required
+              必須
+            %br/
+          %p
+          %a.card-number{}カードの裏面の番号とは？
+          .form__actions
+          = f.submit "次へ進む", class: 'progress-btn'
+
+  .footer
+    =render "footer"

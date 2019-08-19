@@ -58,6 +58,10 @@
     width: 62px;
     height: 2px;
     background-color: #ccc;
+    &:first-of-type{
+      visibility: hidden;
+      display: none;
+    }
   }
   .header__progress__advance__point:before{
     left: 50%;
