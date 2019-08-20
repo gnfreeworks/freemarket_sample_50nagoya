@@ -1,0 +1,44 @@
+.footer {
+  &__top {
+    position: relative;
+    height: 260px;
+    background-image: url(mercari-footer.png);
+    &__contaner {
+      margin: 0 auto;
+      width: 700px;
+      display: flex; 
+      justify-content: space-between;
+      color: #fff;
+      &__left {
+        padding: 50px 10px;
+        p {
+          font-size: 25px;
+        }
+        &__icon {
+          display: flex;
+          margin-top: 20px;
+          &__mercari {
+            padding-right: 20px;
+            img {
+              height: 68px;
+            }
+          }
+          &__link {
+            ul {
+              margin-top: 20px;
+              display: flex;
+              li {
+                padding-right: 20px;
+              }
+            }
+          }
+        }
+      }
+      &__right {
+        img {
+          height: 260px;
+        }
+      }
+    }
+  }
+}
