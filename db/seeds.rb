@@ -1006,6 +1006,7 @@ SmailCategory.create(name: 'オフィス家具')
 SmailCategory.create(name: '店舗用品')
 SmailCategory.create(name: 'OA機器')
 SmailCategory.create(name: 'ラッピング/包装')
+SmailCategory.create(name: '   ')
 
 
 # brand table (ブランド テーブル)

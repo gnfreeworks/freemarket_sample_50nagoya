@@ -1,6 +1,6 @@
 class CreateStatuses < ActiveRecord::Migration[5.0]
   def change
-    create_table :statuses do |t|
+    create_table :statuses, options: "DEFAULT CHARSET=utf8" do |t|
 
       t.string :name
       t.timestamps
