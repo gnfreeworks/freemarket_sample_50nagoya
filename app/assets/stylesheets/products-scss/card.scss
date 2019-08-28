@@ -1,0 +1,46 @@
+.card-container {
+  width: 700px;
+  margin: 0 auto;
+  &__category {
+    color: #0099E8;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 26px;
+    text-align: center;
+    a {
+      color: #0099E8;
+      text-decoration: none;
+    }
+  }
+  &__box {
+    display: flex;
+    &__item {
+      background-color: #fff;
+      margin-left: 20px;
+      width: 200px;
+      color: black;
+      text-decoration: none;
+      img {
+        width: 200px
+      }
+      &__info {
+        font-size: 16px;
+        padding: 16px;
+        &__num {
+          font-weight: 600;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+  &__all {
+    font-size: 14px;
+    text-align: right;
+    padding: 20px 0 30px 0;
+    a {
+      color: #0099E8;
+      text-decoration: none;
+    }
+  }
+}
