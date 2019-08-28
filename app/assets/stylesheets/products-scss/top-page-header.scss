@@ -76,6 +76,9 @@
     margin-top: 5px; 
     display: flex;
     justify-content: space-between;
+    &__right--like {
+      visibility: hidden;
+    }
     &__left li{
       display: inline;
       padding-left: 5px;
