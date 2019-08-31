@@ -1,100 +1,89 @@
 .contents
-	.header
-		%h1
-			%img.header__img
-		.header__progress
-			%li.header__progress__advance.active
-				会員情報
-				.header__progress__advance__point
-			%li.header__progress__advance
-				電話番号認証
-				.header__progress__advance__point
-			%li.header__progress__advance
-				お届け先住所入力
-				.header__progress__advance__point
-			%li.header__progress__advance
-				支払い方法
-				.header__progress__advance__point
-			%li.header__progress__advance
-				完了
-				.header__progress__advance__point
-	.main-content
-		.main-content__title
-			%h2 会員情報入力
-		.main-content__form
-			= form_for @user, url: step2_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
-				.main-content__form__box
-					.form__block
-						= f.label :ニックネーム
-						%span.form__block__required
-							必須
-						%br/
-						= f.text_field :nickname, autofocus: true, placeholder: '例）メルカリ太郎', class: 'text_field'
-					.form__block
-						= f.label :メールアドレス
-						%span.form__block__required 
-							必須
-						%br/
-						= f.email_field :email, placeholder: 'PC・携帯どちらでも可', class: 'text_field'
-					.form__block
-						= f.label :パスワード
-						%span.form__block__required
-							必須
-						%br/
-						= f.password_field :password, autocomplete: "new-password", placeholder: '6文字以上', class: 'text_field'
-					.form__block
-						= f.label :パスワード（確認）
-						%span.form__block__required
-							必須
-						%br/
-						= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '6文字以上', class: 'text_field'
-					.form__block
-						%h3.form__block__text__header
-							本人確認
-						.form__block__text__main
-							安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
-					.form__block
-						= f.label :お名前（全角）
-						%span.form__block__required
-							必須
-						%br/
-						.name-box
-							.name-box__text
-								例）山田
-							.name-box__text
-								例）彩
-						//= f.text_field :first_name, placeholder: '例）山田'
-						//= f.text_field :last_name, placeholder: '例）彩'
-					.form__block
-						= f.label :お名前カナ（全角）
-						%span.form__block__required
-							必須
-						%br/
-						.name-box
-							.name-box__text
-								例）ヤマダ
-							.name-box__text
-								例）アヤ
-						//= f.text_field :first_kananame, placeholder: '例）ヤマダ'
-						//= f.text_field :last_kananame, placeholder: '例）アヤ'
-					.form__block
-						= f.label :生年月日
-						%span.form__block__required
-							必須
-						%br/
-					.form__block
-						%p.form__block__info
-							※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+  .header
+    = image_tag '/assets/logo_mercari.png', alt: 'mercari', class: 'header__img'
+    .header__progress
+      %li.header__progress__advance.active
+        会員情報
+        .header__progress__advance__point
+      %li.header__progress__advance
+        電話番号認証
+        .header__progress__advance__point
+      %li.header__progress__advance
+        お届け先住所入力
+        .header__progress__advance__point
+      %li.header__progress__advance
+        支払い方法
+        .header__progress__advance__point
+      %li.header__progress__advance
+        完了
+        .header__progress__advance__point
+  .main-content
+    .main-content__title
+      %h2 会員情報入力
+    .main-content__form
+      = form_for @user, url: step2_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
+        .main-content__form__box
+          .form__block
+            = f.label :ニックネーム
+            %span.form__block__required
+              必須
+            %br/
+            = f.text_field :nickname, autofocus: true, placeholder: '例）メルカリ太郎', class: 'text_field'
+          .form__block
+            = f.label :メールアドレス
+            %span.form__block__required
+              必須
+            %br/
+            = f.email_field :maildaddress, placeholder: 'PC・携帯どちらでも可', class: 'text_field'
+          .form__block
+            = f.label :パスワード
+            %span.form__block__required
+              必須
+            %br/
+            = f.password_field :password, autocomplete: "new-password", placeholder: '6文字以上', class: 'text_field'
+          .form__block
+            = f.label :パスワード（確認）
+            %span.form__block__required
+              必須
+            %br/
+          .form__block
+            %h3.form__block__text__header
+              本人確認
+            .form__block__text__main
+              安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+          .form__block
+            = f.label :お名前（全角）
+            %span.form__block__required
+              必須
+            %br/
+            -# = f.text_field :firstname
+            -# = f.text_field :lastname
+          .form__block
+            = f.label :お名前（カナ）
+            %span.form__block__required
+              必須
+            %br/
+            -# = f.text_field :firstkananame
+            -# = f.text_field :lastkananame
+          .form__block
+            = f.label :生年月日
+            %span.form__block__required
+              必須
+          %br/
+          .form__block
+            %p.form__block__info
+              ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
 					
-				.main-content__bottom
-					.g-recaptcha{"data-callback" => "clearcall", "data-sitekey" => "6Lc15q8UAAAAAIaFFQ7n3V-C1ZeVQoNqXAXpF0xn"}
-					.text__consent
-						「次へ進む」のボタンを押すことにより、
-						%a{} 利用規約
-						に同意したものとみなします
-					.form__actions
-						= f.submit "次へ進む", class: 'progress-btn'
-					.text__right
-						%a{} 本人情報の登録について
-	.footer
-		= render "footer"
+          .main-content__bottom
+            .g-recaptcha{"data-callback" => "clearcall", "data-sitekey" => "6Lc15q8UAAAAAIaFFQ7n3V-C1ZeVQoNqXAXpF0xn"}
+            .text__consent
+              「次へ進む」のボタンを押すことにより、
+              %a{} 利用規約
+              に同意したものとみなします
+            .form__actions
+              = f.submit "次へ進む", class: 'progress-btn'
+            .text__right
+              %a{} 本人情報の登録について
+
+  .main-content__bottom
+    =render '/entry/entry-footer'

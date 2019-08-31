@@ -1,7 +1,7 @@
 .contents
   .header
-    %h1
-      %img.header__img
+    %img
+      = image_tag '/assets/logo_mercari.png', alt: 'mercari', class: 'header__img'
     .header__progress
       %li.header__progress__advance.active
         会員情報
@@ -66,4 +66,5 @@
             %br/
           .form__actions
             = f.submit "次へ進む", class: 'progress-btn'
-          
+  .entry-footer
+    =render '/entry/entry-footer'          

@@ -1,7 +1,7 @@
 .contents
   .header
-    %h1
-      %img.header__img
+    %img
+      = image_tag '/assets/logo_mercari.png', alt: 'mercari', class: 'header__img'
     .header__progress
       %li.header__progress__advance.active
         会員情報
@@ -12,58 +12,37 @@
       %li.header__progress__advance.active
         お届け先住所入力
         .header__progress__advance__point
-      %li.header__progress__advance
+      %li.header__progress__advance.active
         支払い方法
         .header__progress__advance__point
       %li.header__progress__advance
         完了
         .header__progress__advance__point
   .main-content
-    = form_for @user, url: step5_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
-      .main-content__title
-        %h2 発送元・お届け先住所入力
-      .main-content__form
+    .main-content__title
+      %h2 支払い方法
+    .main-content__form
+      = form_for @user, url: done_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
         .main-content__form__box
           .form__block
-            = f.label :お名前
+            = f.label :カード番号
+            %span.form__block__required
+              必須
+            %br/
+            %img.pay-image
+          .form__block
+            = f.label :有効期限
             %span.form__block__required
               必須
             %br/
           .form__block
-            = f.label :お名前カナ
+            = f.label :セキュリティコード
             %span.form__block__required
               必須
             %br/
-          .form__block
-            = f.label :郵便番号
-            %span.form__block__required
-              必須
-            %br/
-          .form__block
-            = f.label :都道府県
-            %span.form__block__required
-              必須
-            %br/
-          .form__block
-            = f.label :市区村町
-            %span.form__block__required
-              必須
-            %br/
-          .form__block
-            = f.label :番町
-            %span.form__block__required
-              必須
-            %br/
-          .form__block
-            = f.label :建物名
-            %span.form__block__discretion
-              任意
-            %br/
-          .form__block
-            = f.label :電話
-            %span.form__block__discretion
-              任意
-            %br/
+            %p
+            %a.card-number{}カードの裏面の番号とは？
           .form__actions
-            = f.submit "次へ進む", class: 'progress-btn'
-          
+          = f.submit "次へ進む", class: 'progress-btn'
+  .entry-footer
+    =render '/entry/entry-footer'

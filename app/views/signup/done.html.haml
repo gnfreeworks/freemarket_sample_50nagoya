@@ -1,7 +1,9 @@
 .contents
   .header
     %h1
-      %img.header__img
+      %img
+        = image_tag '/assets/logo_mercari.png', alt: 'mercari', class: 'header__img'
+
     .header__progress
       %li.header__progress__advance.active
         会員情報
@@ -21,8 +23,27 @@
   .main-content
     .main-content__title
       %h2 登録完了
-    .form__block__text__main
-      ありがとうございました。
-      %br/
-      会員登録が完了しました。
-    .form__actions
+      .form__block__text__main
+        ありがとうございました。
+        %br/
+        会員登録が完了しました。
+      .form__actions
+.footer
+  .footer__top
+    .footer__top__contaner
+      .footer__top__contaner__left
+        %h1 スマホでかんたんフリマアプリ
+        %p 今すぐ無料ダウンロード！
+        .footer__top__contaner__left__icon
+          .footer__top__contaner__left__icon__mercari
+            = image_tag '/assets/custom-banner-icon.png'
+          .footer__top__contaner__left__icon__link
+            %ul
+              %li
+                %a{href: ''}
+                  = image_tag '/assets/app-store.png'
+              %li
+                %a{href: ''}
+                  = image_tag '/assets/google-play.png'
+      .footer__top__contaner__right
+        = image_tag '/assets/download_content_pc.png'

@@ -7,174 +7,196 @@
   background-color: #f5f5f5;
   width: 100%;
 }
-
 .header{
-width: 100%;
-height: 128px;
-text-align: center;
-display: flex;
-&__progress{
-  padding: 40px 0 0 44px;
-  border: 0;
-  width: 508px;
-  height: 32px;
-  font-size: 12px;
+  width: 100%;
+  height: 128px;
+  text-align: center;
   display: flex;
-  vertical-align: center;
-  list-style: none;
-  &__advance{
-    font-weight: 600;
-    margin-right: 40px;
-    &__point{
-    width: 12px;
-    height: 12px;
-    margin: 8px auto 0;
-    background-color: #ccc;
-    border-radius: 50%;
-    z-index: 2;
-    position: relative;
+
+  &__progress{
+    padding: 40px 0 0 44px;
+    border: 0;
+    width: 508px;
+    height: 32px;
+    font-size: 12px;
+    display: flex;
+    vertical-align: center;
+    list-style: none;
+
+    &__advance{
+      font-weight: 600;
+      margin-right: 40px;
+
+      &.active{
+        color: #ea352d;
+        z-index: 0;
+      }
+      &__point{
+        width: 12px;
+        height: 12px;
+        margin: 8px auto 0;
+        background-color: #ccc;
+        border-radius: 50%;
+        position: relative;
+      }
     }
   }
-}
-&__img{
-  width: 185px;
-  height: 49px;
-  line-height: 49px;
-}
-& .active{
-  color: #ea352d;
-  
-  & .header__progress__advance__point{
-    background-color: #ea352d;
+  &__img{
+    width: 200px;
+    height: 100px;
+    line-height: 50px;
+    margin: 20px 10px 0 320px;
   }
 }
+.active .header__progress__advance__point{
+  background-color: #ea352d;
+}
+
 .header__progress__advance__point:before,
 .header__progress__advance__point:after{
   position: absolute;
   bottom: 5px;
-  z-index: 1;
   display: block;
   content: '';
   width: 62px;
   height: 2px;
   background-color: #ccc;
-  &:first-of-type{
-    visibility: hidden;
-    display: none;
-  }
 }
 .header__progress__advance__point:before{
-  left: 50%;
-  position: absolute;
-}
-.header__progress__advance__point:after{
   right: 50%;
   position: absolute;
 }
+.header__progress__advance:first-of-type .header__progress__advance__point:before{
+  content: none;
+}
+.header__progress__advance__point:after{
+  left: 50%;
+  position: absolute;
+}
+.header__progress__advance:last-of-type .header__progress__advance__point:after{
+  content: none;
+}
+.active .header__progress__advance__point:before{
+  background-color: #ea352d;
+}
+.active .header__progress__advance__point:after{
+  z-index: -1;
+  background-color: #ea352d;
+}
+.header__progress__advance:last-of-type .active.header__progress__advance__point:after{
+  content: none;
 }
 h1{
-margin: 40px 0 0 100px;
-display: inline-block;
+  margin: 40px 0 0 100px;
+  display: inline-block;
 }
 
 .main-content{
-background-color:#fff;
-width: 700px;
-margin: 0 auto;
-text-align: center;
-&__title{
-  padding: 32px;
-  border-bottom: solid;
-  border-width: thin;
-  border-color: #f5f5f5;
-  &h2{
-  font-size: 22px; 
-  }
-}
-&__form{
-  height: 1100px;
-  padding: 12px 16px 40px;
-  font-size: 14px;
-  &__box{
-    margin: 0 auto;
-    width: 343px;
-  }
-}
-&__bottom{
+  background-color:#fff;
+  width: 700px;
   margin: 0 auto;
-  width: 343px;      
-}
+  text-align: center;
+
+  &__title{
+    padding: 32px;
+    border-bottom: solid;
+    border-width: thin;
+    border-color: #f5f5f5;
+
+    & h2{
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+  &__form{
+    height: 1100px;
+    padding: 12px 16px 40px;
+    font-size: 14px;
+
+    &__box{
+      margin: 0 auto;
+      width: 343px;
+    }
+    &__bottom{
+      margin: 0 auto;
+      width: 343px;      
+    }
+  }
 }
 .text_field{
-width: 304px;
-padding: 10px 16px 8px;
-border-radius: 4px;
-background-color: #fff;
-line-height: 1.5;
-font-size: 16px; 
-margin-top: 8px;
+  width: 304px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  background-color: #fff;
+  line-height: 1.5;
+  font-size: 16px; 
+  margin-top: 8px;
 }
 label{
-font-display: inline-block;
+  font-display: inline-block;
 }
 .form__block{
-margin-top: 32px;
-text-align: left;
-box-sizing: border-box;
-&:first-of-type{
-  margin-top: 0;
-}
-&__required{
-background-color: red;
-margin: 0 0 8px;
-padding: 2px 4px;
-border-radius: 2px;
-color: #fff;
-font-size: 12px;
-vertical-align: top;
-}
-&__info{
-  color: #888888;
-  margin-top: 8px;
-  margin-bottom: 45px;
-}
+  margin-top: 32px;
+  text-align: left;
+  box-sizing: border-box;
+
+  &:first-of-type{
+    margin-top: 0;
+  }
+  &__required{
+    background-color: red;
+    margin: 0 0 8px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 12px;
+    vertical-align: top;
+  }
+  &__info{
+    color: #888888;
+    margin-top: 8px;
+    margin-bottom: 45px;
+  }
 }
 .name-box{
-display: flex;
-&__text{
-  border: groove;
-  height: 48px;
-  width: 160px;
-  line-height: 3.5;
-  margin-right: 8px;
-  border-radius: 4px;
-}
+  display: flex;
+
+  &__text{
+    border: groove;
+    height: 48px;
+    width: 160px;
+    line-height: 3.5;
+    margin-right: 8px;
+    border-radius: 4px;
+  }
 }
 .form__select{
-border: groove;
-display: inline-block;
-height: 76px;
-width: 48px;
+  border: groove;
+  display: inline-block;
+  height: 76px;
+  width: 48px;
 }
 .progress-btn{
-width: 340px;
-height: 46px;
-border-radius: 2px;
-background-color: red;
-color: #fff;
-font-size: 14px;
-margin-top: 24px;
+  width: 340px;
+  height: 46px;
+  border-radius: 2px;
+  background-color: red;
+  color: #fff;
+  font-size: 14px;
+  margin-top: 24px;
 }
 .text__consent{
-margin-top: 20px;
-& a{
-  color: #0099E8;
-}
+  margin-top: 20px;
+
+  & a{
+    color: #0099E8;
+  }
 }
 .text__right{
-float: right;
-margin-top: 20px;
-& a{
-  color: #0099E8;
-}
+  float: right;
+  margin-top: 20px;
+  
+  & a{
+    color: #0099E8;
+  }
 }
