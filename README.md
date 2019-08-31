@@ -119,12 +119,12 @@
 ### Association
 - has_many :categories, through: :categories_brands
 
-## products_stautses テーブル (商品出品 テーブル)
+## products_statuses テーブル (商品出品 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 |product_id    |商品id|integer|null: false, foreign_key: true|
-|buyer_id       |出品者id|integer|null: false, foreign_key: true|
-|saler_id       |購入者id|integer|foreign_key: true|
+|seller_id       |出品者id|integer|null: false, foreign_key: true|
+|buyer_id       |購入者id|integer|foreign_key: true|
 |saling_status  |出品状態|integer||
 |deading_status |取引状態|integer||
 
@@ -134,7 +134,7 @@
 
 ### Association
 - belongs_to :buyer, class_name: 'user', :foreign_key => 'buyer_id'
-- belongs_to :saler, class_name: 'user', :foreign_key => 'saler_id'
+- belongs_to :seller, class_name: 'user', :foreign_key => 'seller_id'
 - has_many :canseling_products
 - has_many :todos
 - has_many :user, through: :goods

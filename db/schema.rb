@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190809112713) do
+ActiveRecord::Schema.define(version: 20190831064506) do
 
   create_table "areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -82,6 +82,17 @@ ActiveRecord::Schema.define(version: 20190809112713) do
     t.index ["status_id"], name: "index_products_on_status_id", using: :btree
   end
 
+  create_table "products_statuses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "product_id"
+    t.integer  "buyer_id"
+    t.integer  "seller_id"
+    t.integer  "saling_status",  null: false
+    t.integer  "deading_status", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["product_id"], name: "index_products_statuses_on_product_id", using: :btree
+  end
+
   create_table "sale_charges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.float    "rate",       limit: 24, null: false
     t.datetime "created_at",            null: false
@@ -148,6 +159,7 @@ ActiveRecord::Schema.define(version: 20190809112713) do
   add_foreign_key "products", "shipping_charges"
   add_foreign_key "products", "shipping_times"
   add_foreign_key "products", "statuses"
+  add_foreign_key "products_statuses", "products"
   add_foreign_key "sizes_categories", "categories"
   add_foreign_key "sizes_categories", "sizes"
 end
