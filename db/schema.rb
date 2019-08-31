@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(version: 20190831064506) do
     t.integer  "product_id"
     t.integer  "buyer_id"
     t.integer  "seller_id"
-    t.integer  "saling_status",  null: false
-    t.integer  "deading_status", null: false
+    t.integer  "selling_status", null: false
+    t.integer  "dealing_status", null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["product_id"], name: "index_products_statuses_on_product_id", using: :btree
@@ -141,12 +141,12 @@ ActiveRecord::Schema.define(version: 20190831064506) do
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                               null: false
     t.string   "kananame",                           null: false
-    t.integer  "birthdaydate",                       null: false
+    t.date     "birthdaydate",                       null: false
     t.string   "nickname"
     t.string   "maildaddress",                       null: false
-    t.string   "password",                           null: false
+    t.string   "password"
     t.text     "profiletext",          limit: 65535
-    t.integer  "authenticphonenumber",               null: false
+    t.integer  "authenticphonenumber"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end

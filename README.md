@@ -125,12 +125,12 @@
 |product_id    |商品id|integer|null: false, foreign_key: true|
 |seller_id       |出品者id|integer|null: false, foreign_key: true|
 |buyer_id       |購入者id|integer|foreign_key: true|
-|saling_status  |出品状態|integer||
-|deading_status |取引状態|integer||
+|selling_status  |出品状態|integer||
+|dealing_status |取引状態|integer||
 
 ### Appendix
-- saling_status  [saling:0 or soldout:1]
-- deading_status [dealing:0, canceling:1, shipping:1, completed:2]
+- selling_status  [selling:0 or soldout:1]
+- dealing_status  [selling:0, dealing:1, canceling:2, shipping:3, completed:4]
 
 ### Association
 - belongs_to :buyer, class_name: 'user', :foreign_key => 'buyer_id'
@@ -173,7 +173,7 @@ installed devise
 |name           |名前|string|null: false|
 |kana_name      |ナマエ|string|null: false|
 |nickname       |ニックネーム|string|null: false|
-|birthdaydate   |生年月日|datetime|null: false|
+|birthdaydate   |生年月日|date|null: false|
 |profiletext    |プロフィール|text|null: false|
 |authenticphonenumber|認証用電話番号|string|null: false|
 
