@@ -1,4 +1,4 @@
-class AddFirstnameToUser < ActiveRecord::Migration[5.0]
+class AddFirstnameToUsers < ActiveRecord::Migration[5.0]
   def change
     add_column :users, :first_name, :string, null: false
     add_column :users, :last_name, :string, null: false
@@ -12,11 +12,11 @@ class AddFirstnameToUser < ActiveRecord::Migration[5.0]
     add_column :users, :address_last_name, :string, null: false
     add_column :users, :address_firt_kananame, :string, null: false
     add_column :users, :address_last_kananame, :string, null: false
-    add_column :users, :address_number, :integer, null: false
+    add_column :users, :address_zipcode, :integer, null: false
     add_column :users, :address_prefecture, :string, null: false
     add_column :users, :address_block, :string, null: false
+    add_column :users, :address_number, :string
     add_column :users, :address_building, :string
-    add_column :users, :encrypted_password, null: false
-    add_column :users, :password_confirmation, null: false
+
   end
 end
