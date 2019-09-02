@@ -1,0 +1,181 @@
+/********************************************
+ *                 common                   *
+ ********************************************/
+body {
+  position: relative;
+  min-height: 100%;
+  background: #f5f5f5;
+  font-size: 14px;
+  color: #333;
+  line-height: 1;
+}
+
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.bold { font-weight:600; }
+
+.l-container {
+  margin: 24px auto 0;
+  padding: 0 0 40px;
+}
+@media screen and (min-width: 768px){
+  .l-container {
+    width: 700px;
+  }
+}
+@media screen and (min-width: 1068px){
+  .l-container {
+    background-color:#dcdcdc;
+    margin:40px auto 0;
+    width: 1020px;
+  }
+}
+
+.l-content {
+  background-color:#778899;
+  width: 100%;
+}
+@media screen and (min-width: 768px){
+  .l-content {
+    width: 700px;
+  }
+}
+@media screen and (min-width: 1068px){
+  .l-content {
+    float: right;
+  }
+}
+
+.l-side {
+  background-color:#add8e6;
+  margin: 40px auto 0;
+}
+@media screen and (min-width: 768px){
+  .l-side{
+    width: 700px;
+  } 
+}
+@media screen and (min-width: 1068px){
+  .l-side {
+    float: left;
+    width: 280px;
+    margin: 40px auto 0;
+  }
+}
+
+.mypage-user-icon {
+  position: relative;
+  height: 155px;
+  padding:20px;
+  background: url('/images/user_bg.jpg');
+  background-repeat:no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+.mypage-user-icon a{
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translate(0, -50%);
+  color: #333;
+}
+.mypage-user-icon h2{
+  margin:8px 0 0;
+  font-size: 14px;
+}
+
+.mypage-user-icon figure{
+  overflow: hidden;
+  width:  60px;
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+.mypage-number {
+  margin: 8px 0 0;
+  font-size: 0;
+}
+.mypage-number div{
+  display: inline-block;
+  margin: 0 0 0 20px;
+  font-size: 14px;
+}
+.mypage-number span{
+  margin: 0 0 0 5px;
+  font-size: 12px;
+}
+
+@media screen and (min-width: 768px){
+  .mypage-user-icon {
+      height: 200px;
+  }
+}
+
+.mypage-tab-container-notification-todo {
+  margin: 0;
+  background: #fff;
+}
+
+.mypage-tabs {
+  border: 0;
+  background: #eee;
+  font-size: 0;
+}
+
+.mypage-tabs h3 { font-size: 22px; }
+
+.mypage-tabs li{
+  width: 50%;
+}
+
+.mypage-tabs li.active{
+  background: #fff;
+}
+
+.mypage-tabs li{
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+}
+
+.mypage-tabs a{
+  position: relative;
+  display:block;
+  color: #333;
+  font-size: 16px;
+  line-height: 72px;
+}
+
+.mypage-tabs li.active a{
+  border-top: 2px solid #ea352d;
+}
+
+.mypage-tabs .mypage-nav-number {
+  top: 16px;
+  right: 2px;
+}
+
+.mypage-nav-number {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ea352d;
+  text-align: center;
+  line-height: 24px;
+  color: #fff;
+  transform: translate(0, -50%);
+}
+
+.tab-content .tab-pane.active {
+  display: block;
+}

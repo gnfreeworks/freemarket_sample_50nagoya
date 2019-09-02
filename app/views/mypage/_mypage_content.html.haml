@@ -1,0 +1,50 @@
+.l-content
+  %section.mypage-user-icon
+    = link_to '#' do
+      %figure
+        %img{alt: "", src: "/images/member_photo_noimage_thumb.png", height: "60", width: "60"}
+      %h2.bold
+        岡崎太郎２号
+      .mypage-number
+        %div
+          評価 
+          %span.bold
+            0
+        %div
+          出品数 
+          %span.bold
+            0
+  %section.mypage-tab-container-notification-todo
+    %ul.mypage-tabs
+      %li.active
+        %h3
+          %a{href: '#mypage-tab-notification'}
+            お知らせ
+            %span.mypage-nav-number.hidden-large
+              36
+      %li
+        %h3
+          %a{href: '#mypage-tab-todo'}
+            やることリスト
+    .tab-content
+      %ul#mypage-tab-notification.mypage-item-list.tab-pane.active
+        %li
+          = link_to '#mypage-tab-notification', class: 'mypage-item-link' do
+            %figure
+              %img{alt: "", src: "/images/mercari_profile.png", height: "60", width: "60", class: 'lazyloaded'}
+            .mypage-item-body
+              .mypage-item-text
+                《出品するだけ》総額1億円相当還元！メルカリ秋フェスが開催中♪
+              %time
+                %i.icon-time
+                  %span
+                    4 時間前
+            %i.icon-arrow-right
+      %ul#mypage-tab-todo.mypage-item-list.tab-pane
+        %li.mypage-item-not-found.bold
+          現在、やることリストはありません
+  %section.mypage-tab-container
+    %h2.mypage-tab-head
+      購入した商品
+    %ul.mypage-tabs
+    .tab-content
