@@ -31,7 +31,7 @@
         %li
           = link_to '#mypage-tab-notification', class: 'mypage-item-link' do
             %figure
-              %img{alt: "", src: "/images/mercari_profile.png", height: "60", width: "60", class: 'lazyloaded'}
+              %img{alt: "", src: "/images/mercari_profile.png", class: 'lazyloaded'}
             .mypage-item-body
               .mypage-item-text
                 《出品するだけ》総額1億円相当還元！メルカリ秋フェスが開催中♪
@@ -40,6 +40,57 @@
                   %span
                     4 時間前
             %i.icon-arrow-right
+        %li
+          = link_to '#mypage-tab-notification', class: 'mypage-item-link' do
+            %figure
+              %img{alt: "", src: "/images/mercari_profile.png", class: 'lazyloaded'}
+            .mypage-item-body
+              .mypage-item-text
+                《参加ボタンを押すだけ！》10円分のポイントが"必ず"もらえる！メルカリ秋フェスが開催中♪
+              %time
+                %i.icon-time
+                  %span
+                    5 時間前
+            %i.icon-arrow-right
+        %li
+          = link_to '#mypage-tab-notification', class: 'mypage-item-link' do
+            %figure
+              %img{alt: "", src: "/images/mercari_profile.png", class: 'lazyloaded'}
+            .mypage-item-body
+              .mypage-item-text
+                《出品するだけ》総額1億円相当還元！メルカリ秋フェスが開催中♪
+              %time
+                %i.icon-time
+                  %span
+                    2 日前
+            %i.icon-arrow-right
+        %li
+          = link_to '#mypage-tab-notification', class: 'mypage-item-link' do
+            %figure
+              %img{alt: "", src: "/images/mercari_profile.png", class: 'lazyloaded'}
+            .mypage-item-body
+              .mypage-item-text
+                事務局から個別メッセージ「ログイン通知」
+              %time
+                %i.icon-time
+                  %span
+                    4 日前
+            %i.icon-arrow-right
+        %li
+          = link_to '#mypage-tab-notification', class: 'mypage-item-link' do
+            %figure
+              %img{alt: "", src: "/images/mercari_profile.png", class: 'lazyloaded'}
+            .mypage-item-body
+              .mypage-item-text
+                明日、P999還元お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+              %time
+                %i.icon-time
+                  %span
+                    10 日前
+            %i.icon-arrow-right
+          %li.mypage-go-list
+            %a{href: '/jp/mypage/notification/'}
+              一覧を見る
       %ul#mypage-tab-todo.mypage-item-list.tab-pane
         %li.mypage-item-not-found.bold
           現在、やることリストはありません
@@ -47,4 +98,12 @@
     %h2.mypage-tab-head
       購入した商品
     %ul.mypage-tabs
+      %li.active
+        %h3
+          %a{href: '#mypage-tab-transaction-now'}
+            取引中
+      %li
+        %h3
+          %a{href: '#mypage-tab-transaction-old'}
+            過去の取引
     .tab-content

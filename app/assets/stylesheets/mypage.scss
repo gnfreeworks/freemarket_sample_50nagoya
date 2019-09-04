@@ -1,6 +1,20 @@
 /********************************************
  *                 common                   *
  ********************************************/
+ * {
+   background-repeat: no-repeat;
+   font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+   color: #333;
+   margin: 0;
+   padding: 0;
+ }
+
+a {
+  color: #0099e8;
+  text-decoration: none;
+}
+
+
 body {
   position: relative;
   min-height: 100%;
@@ -21,52 +35,36 @@ body {
 .l-container {
   margin: 24px auto 0;
   padding: 0 0 40px;
-}
-@media screen and (min-width: 768px){
-  .l-container {
+  @media screen and (min-width: 768px){
     width: 700px;
   }
-}
-@media screen and (min-width: 1068px){
-  .l-container {
-    background-color:#dcdcdc;
+  @media screen and (min-width: 1068px){
     margin:40px auto 0;
     width: 1020px;
   }
 }
 
 .l-content {
-  background-color:#778899;
-  width: 100%;
-}
-@media screen and (min-width: 768px){
-  .l-content {
+  width: 100%;  
+  @media screen and (min-width: 768px){
     width: 700px;
   }
-}
-@media screen and (min-width: 1068px){
-  .l-content {
+  @media screen and (min-width: 1068px){
     float: right;
   }
 }
 
 .l-side {
-  background-color:#add8e6;
   margin: 40px auto 0;
-}
-@media screen and (min-width: 768px){
-  .l-side{
+  @media screen and (min-width: 768px){
     width: 700px;
-  } 
-}
-@media screen and (min-width: 1068px){
-  .l-side {
+  }
+  @media screen and (min-width: 1068px){
     float: left;
     width: 280px;
-    margin: 40px auto 0;
+    margin: 0 40px 0 0;
   }
 }
-
 .mypage-user-icon {
   position: relative;
   height: 155px;
@@ -75,6 +73,9 @@ body {
   background-repeat:no-repeat;
   background-size: cover;
   text-align: center;
+  @media screen and (min-width: 768px){
+    height: 200px;
+  }
 }
 .mypage-user-icon a{
   display: block;
@@ -112,10 +113,15 @@ body {
   font-size: 12px;
 }
 
-@media screen and (min-width: 768px){
-  .mypage-user-icon {
-      height: 200px;
-  }
+.mypage-tabs {
+  border: 0;
+  background: #eee;
+  font-size: 0;
+}
+
+.mypage-tab-container {
+  margin: 48px 0 0;
+  background: #fff;
 }
 
 .mypage-tab-container-notification-todo {
@@ -123,23 +129,14 @@ body {
   background: #fff;
 }
 
-.mypage-tabs {
-  border: 0;
-  background: #eee;
-  font-size: 0;
-}
-
 .mypage-tabs h3 { font-size: 22px; }
-
-.mypage-tabs li{
-  width: 50%;
-}
 
 .mypage-tabs li.active{
   background: #fff;
 }
 
 .mypage-tabs li{
+  width: 50%;
   display: inline-block;
   text-align: center;
   vertical-align: top;
@@ -178,4 +175,144 @@ body {
 
 .tab-content .tab-pane.active {
   display: block;
+}
+
+.tab-content .tab-pane {
+  display: none;
+}
+
+.mypage-item-link {
+  display: block;
+  min-height:80px;
+  padding: 16px;
+  color:#333;
+}
+
+.mypage-item-link figure{
+  position: relative;
+  overflow: hidden;
+  float:left;
+  width: 48px;
+  height: 48px;
+}
+.mypage-item-link time{
+  display: line-block;
+  color: #888;
+}
+
+.mypage-item-link .icon-time{
+  margin: 0 8px 0 0;
+}
+
+.mypage-item-link .icon-arrow-right{
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+
+i[class^='icon-'], i[class*='icon-'] {
+  display: inline-block;
+  font-family: 'icon-font';
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.mypage-item-list img{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+.mypage-item-body {
+  margin: 0 40px 0 68px;
+}
+
+.mypage-item-text {
+  overflow: hidden;
+  display: block;
+  display: -webkit-box;
+  max-height: 4.4em;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+}
+
+
+.mypage-item-list li {
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+
+.mypage-item-list li:last-child {
+  border-bottom:1px solid #eee;
+}
+
+.mypage-go-list {
+  padding: 16px;
+}
+
+.mypage-go-list a{
+  display: block;
+  height: 56px;
+  margin: 0 auto;
+  background: #eee;
+  color: #333;
+  line-height: 56px;
+  text-align: center;
+}
+
+.mypage-tab-head {
+  padding: 0 4%;
+  background: #fafafa;
+  font-size:16px;
+  line-height: 72px;
+  @media screen and (min-width: 768px){
+    padding: 0 16px;
+  }
+}
+
+
+
+nav ul{
+  list-style: none;
+}
+
+.mypage-nav-list li:first-child {
+  border: 0;
+}
+
+.mypage-nav-list li {
+  border-top: 1px solid #eee;
+}
+.mypage-nav-list-item {
+ position: relative;
+ display:block;
+ max-height:48px;
+ padding: 16px;
+ background: #fff;
+ font-size:14px;
+ color: #333;
+}
+.mypage-nav-list-item.active {
+  background: #eee;
+  font-weight: 600;
+}
+
+.mypage-nav-head {
+  margin: 40px 4% 0;
+  @media screen and (min-width: 768px){
+    margin: 40px 0 0;
+  }
+  font-size: 16px;
 }
