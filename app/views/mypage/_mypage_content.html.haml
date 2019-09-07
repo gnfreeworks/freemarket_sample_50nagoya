@@ -16,19 +16,19 @@
             0
   %section.mypage-tab-container-notification-todo
     %ul.mypage-tabs
-      %li.active
+      %li.tab_item.active
         %h3
-          %a{href: '#mypage-tab-notification'}
+          %a{href: ''}
             お知らせ
             %span.mypage-nav-number.hidden-large
               36
-      %li
+      %li.tab_item
         %h3
-          %a{href: '#mypage-tab-todo'}
+          %a{href: ''}
             やることリスト
     .tab-content
-      %ul#mypage-tab-notification.mypage-item-list.tab-pane.active
-        %li
+      %ul#mypage-tab-notification.mypage-item-list.tab-pane.show
+        %li.tab-content-item
           = link_to '#mypage-tab-notification', class: 'mypage-item-link' do
             %figure
               %img{alt: "", src: "/images/mercari_profile.png", class: 'lazyloaded'}

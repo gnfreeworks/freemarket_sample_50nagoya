@@ -3,6 +3,11 @@ Rails.application.routes.draw do
 
   resources :products
   resources :users, only: :index do
-    resources :mypage, only: :index 
+    resources :mypage, only: :index do
+      collection do 
+        get 'notification'
+        get 'card'
+      end
+    end
   end
 end

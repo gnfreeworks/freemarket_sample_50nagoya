@@ -173,7 +173,11 @@ body {
   transform: translate(0, -50%);
 }
 
-.tab-content .tab-pane.active {
+.hidden-large { 
+  visibility : hidden;
+}
+
+.tab-content .tab-pane.show {
   display: block;
 }
 
