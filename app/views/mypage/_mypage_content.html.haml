@@ -17,13 +17,13 @@
   %section.mypage-tab-container-notification-todo
     %ul.mypage-tabs
       %li.tab_item.active
-        %h3
+        %h3.bold
           %a{href: ''}
             お知らせ
             %span.mypage-nav-number.hidden-large
               36
       %li.tab_item
-        %h3
+        %h3.bold
           %a{href: ''}
             やることリスト
     .tab-content
@@ -95,15 +95,23 @@
         %li.mypage-item-not-found.bold
           現在、やることリストはありません
   %section.mypage-tab-container
-    %h2.mypage-tab-head
+    %h2.mypage-tab-head.bold
       購入した商品
     %ul.mypage-tabs
-      %li.active
-        %h3
+      %li.transaction_tab.active
+        %h3.bold
           %a{href: '#mypage-tab-transaction-now'}
             取引中
-      %li
-        %h3
+      %li.transaction_tab
+        %h3.bold
           %a{href: '#mypage-tab-transaction-old'}
             過去の取引
     .tab-content
+      #mypage-tab-transaction-now
+      %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.transaction-list.show
+        %li.mypage-item-not-found.bold
+          取引中の商品がありません
+      %ul#mypage-tab-transaction-old.mypage-item-list.transaction-list.tab-pane
+        %li.mypage-item-not-found.bold
+          過去に取引した商品がありません
+
