@@ -16,6 +16,8 @@ window.addEventListener("DOMContentLoaded", function() {
       
       //選択されたタブを表示:active, show class追加
       const index = tabsAry.indexOf(this);
+      console.log(index);
+      console.log(document.getElementsByClassName("mypage-item-list")[index].classList);
       document.getElementsByClassName("tab_item")[index].classList.add("active");
       document.getElementsByClassName("mypage-item-list")[index].classList.add("show");
 
@@ -39,6 +41,8 @@ window.addEventListener("DOMContentLoaded", function() {
       
       // //選択されたタブを表示:active, show class追加
       const index = transtabsAry.indexOf(this);
+      console.log(index);
+      console.log(document.getElementsByClassName("transaction-list")[index].classList);
       document.getElementsByClassName("transaction_tab")[index].classList.add("active");
       document.getElementsByClassName("transaction-list")[index].classList.add("show");
 

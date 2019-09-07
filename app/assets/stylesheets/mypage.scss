@@ -165,17 +165,6 @@ body {
   visibility : hidden;
 }
 
-.tab-content {
-  &.tab-pane.show {
-    display: block;
-  }
-  &.tab-pane {
-    display: none;
-  }
-}
-
-
-
 i[class^='icon-'], i[class*='icon-'] {
   display: inline-block;
   font-family: 'icon-font';
@@ -187,6 +176,7 @@ i[class^='icon-'], i[class*='icon-'] {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
 }
+
 .mypage-item {
 
   &-body {
@@ -312,7 +302,7 @@ nav ul{
       background: #fff;
       font-size:14px;
       color: #333;
-        &.active {
+        & .active {
           background: #eee;
           font-weight: 600;
         }
@@ -320,7 +310,7 @@ nav ul{
     & li{
       border-top: 1px solid #eee;
     }
-    &:first-child {
+    & :first-child {
       border: 0;
     }
   }
@@ -336,5 +326,14 @@ nav ul{
     line-height: 24px;
     color: #fff;
     transform: translate(0, -50%);
+  }
+}
+
+.tab-content {
+  & .tab-pane {
+    display: none;
+    &.show {
+      display: block;
+    }
   }
 }
