@@ -1,0 +1,2 @@
+class CanselingProduct < ApplicationRecord
+end
