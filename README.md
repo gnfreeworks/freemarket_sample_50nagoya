@@ -1,4 +1,11 @@
-# process command
+# For new db create process command
+- $ rake db:create
+- $ rake db:migrate
+- $ rake db:seed
+
+# For new db create process command
+- $ rake db:drop
+- $ rake db:create
 - $ rake db:migrate
 - $ rake db:seed
 
@@ -76,7 +83,7 @@
 - belongs_to :large_category
 - belongs_to :medium_category
 - belongs_to :smail_category
-- has_many :sizes, through: :size_categories
+- has_many   :sizes, through: :size_categories
 
 ## sizes_categories テーブル (sizes_categories テーブル)
 |Column         |  description        |Type      |Options           |
@@ -135,9 +142,10 @@
 ### Association
 - belongs_to :buyer, class_name: 'user', :foreign_key => 'buyer_id'
 - belongs_to :seller, class_name: 'user', :foreign_key => 'seller_id'
-- has_many :canseling_products
-- has_many :todos
-- has_many :user, through: :goods
+- has_many   :canseling_products
+- has_many   :todos
+- has_many   :goods
+- has_many   :user, through: :goods
   
 ## comments テーブル (コメント テーブル)
 |Column         |  description        |Type      |Options           |
@@ -182,13 +190,14 @@ installed devise
 ### Association
 - belongs_to :transfer_address
 - has_one    :payment_method
-- has_many   :buyer, class_name: 'products_statuses', foreign_key: true
-- has_many   :buyer, class_name: 'products_statuses', foreign_key: true
+- has_many   :buyed_items, class_name: 'ProductsStatus', foreign_key: 'buyer_id'
+- has_many   :selling_items, class_name: 'ProductsStatus', foreign_key: 'seller_id'
+- has_many   :sold_items, class_name: 'ProductsStatus', foreign_key: 'seller_id',
+- has_many   :goods
 - has_many   :products, through: :goods
 - has_many   :sale_orders
 - has_many   :transfer_orders
 - hes_many   :buyer_evaluations
-- has_many   :goods
   
 ## sale_ordes テーブル (売り上げ申請 テーブル)
 |Column         |  description        |Type      |Options           |
