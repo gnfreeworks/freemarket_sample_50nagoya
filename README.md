@@ -145,7 +145,7 @@
 - has_many   :canseling_products
 - has_many   :todos
 - has_many   :goods
-- has_many   :user, through: :goods
+- has_many   :users, through: :goods
   
 ## comments テーブル (コメント テーブル)
 |Column         |  description        |Type      |Options           |
