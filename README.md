@@ -224,7 +224,7 @@ installed devise
 |acctoun_lastname|講座名義(名前)|integer|null: false|
 
 ### Association
-- belongs_to :banks
+- belongs_to :bank
 - belongs_to :account_type
 
 ## banks テーブル (銀行 テーブル)
