@@ -150,14 +150,16 @@
             あんしん・あんぜんへの取り組み
 
   .product-detail-message
-    .message-content
-      %p
-        相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      %textarea{type:"text",name:"body",class:"textarea-default"}
-      %button{type:"submit",class:"message-submit btn-default btn-gray"}
-        コメントする
+    .message-container
+      .message-content
+        %form{class:"message-form",method:"POST"}
+          %p
+            相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          %textarea{type:"text",name:"body",class:"textarea-default"}
+          %button{type:"submit",class:"message-submit btn-default btn-gray"}
+            コメントする
 
-  %ul.nav-product-link-prev-next
+  %ul.nav-product-link-prev-next.clearfix
     %li.nav-product-link-prev
       %a{ href: '#' }
         = icon("fas", "chevron-left")
@@ -172,16 +174,16 @@
     %ul.social-media-box
       %li
         %a{ href: '#' }
-          = icon("fab", "facebook-square",class:"icon-facebook")
+          = icon("fab fa-3x", "facebook-square",class:"icon-facebook")
       %li
         %a{ href: '#' }
-          = icon("fab", "twitter-square",class:"icon-twitter")
+          = icon("fab fa-3x", "twitter-square",class:"icon-twitter")
       %li
         %a{ href: '#' }
-          = icon("fab", "line",class:"icon-line")
+          = icon("fab fa-3x", "line",class:"icon-line")
       %li
         %a{ href: '#' }
-          = icon("fab", "pinterest-square",class:"icon-pinterest")
+          = icon("fab fa-3x", "pinterest-square",class:"icon-pinterest")
           
   
   .products-in-user-profile
