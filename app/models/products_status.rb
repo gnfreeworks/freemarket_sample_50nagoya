@@ -5,5 +5,5 @@ class ProductsStatus < ApplicationRecord
   has_one     :canseling_product
   has_many    :todos
   has_many    :goods
-  has_many    :user, through: :goods
+  has_many    :users, through: :goods
 end
