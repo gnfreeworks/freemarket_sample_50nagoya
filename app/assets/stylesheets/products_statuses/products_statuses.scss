@@ -25,7 +25,7 @@
 .l-single-container {
   background: #fff;
   @media screen and (min-width: 768px){
-    width: 700px;
+    width: 620px;
     margin: 0 auto;
   }
 }
@@ -37,6 +37,8 @@
     &-stage-outer {
       overflow: hidden;
     }
+
+
 
     .owl-product {
       min-height: 1px;
@@ -76,8 +78,15 @@
     }
   }
 
+  &-stage {
+    max-width: 75%;
+    background-color: #eee8aa;
+    margin: 0 auto;
+  }
+
   &-dots {
     line-height: 0;
+    font-size:0;
   }
   &-dot {
     position: relative;
@@ -285,6 +294,37 @@
   }
 }
 
+.message-form {
+  width:600px;
+  margin: 0 auto;
+
+  p {
+    padding: 8px;
+    font-size: 14px;
+    background: #fff6de;
+  }
+
+  .textarea-default {
+    margin: 8px 0 0;
+  }
+}
+
+.message-submit {
+    width: 100%;
+    margin: 8px 0 0;
+    text-align: center;
+}
+
+.textarea-default {
+  display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: 104px;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 16px;
+    line-height: 1.5;
+}
 
 
 .go-number-likes {
@@ -305,6 +345,57 @@
   margin: 8px 0 0 16px;
 }
 
+.product-social-media-box {
+  margin: 24px 0 0;
+  background: #fff;
+  padding: 16px 0 8px;
+
+  @media screen and (min-width: 768px) {
+    margin: 24px auto;
+    padding: 32px 0 24px;
+    width: 700px;
+  }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.social-media-box {
+  margin: 16px 0 0;
+  text-align: center;
+
+  li,a {
+    display: inline;
+    text-decoration: none;
+  }
+}
+
+
+.nav-product-link-prev-next {
+  margin: 24px 4% 0;
+  @media screen and (min-width: 768px){
+      margin: 24px auto 0;
+      width: 700px;
+  }
+}
+
+.nav-product-link-prev-next li {
+    position: relative;
+    width: 43%;
+    word-wrap: break-word;
+}
+
+.nav-product-link-prev {
+    float: left;
+    padding: 0;
+}
+
+.nav-product-link-next {
+    float: right;
+    padding: 0;
+    text-align: right;
+}
 
 
 
@@ -356,6 +447,16 @@ p {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
+
+ul,ol {
+  list-style: none;
+}
+
+a {
+  color: #0099e8;
+}
+
+
 
 
 // icon カラー設定
