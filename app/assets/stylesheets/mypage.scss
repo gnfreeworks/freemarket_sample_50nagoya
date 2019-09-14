@@ -281,6 +281,17 @@ i[class^='icon-'], i[class*='icon-'] {
   }
 }
 
+.fa-angle-double-right {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  color: #ccc;
+  &:before {
+    content:'\f101';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+  }
+}
 
 
 nav ul{
@@ -315,6 +326,11 @@ nav ul{
       }
     & li{
       border-top: 1px solid #eee;
+      &:hover {
+        .fa-angle-double-right {
+          color: #808080;
+        }
+      }
     }
     & :first-child {
       border: 0;
