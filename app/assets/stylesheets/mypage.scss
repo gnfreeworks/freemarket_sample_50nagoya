@@ -199,6 +199,9 @@ i[class^='icon-'], i[class*='icon-'] {
     & li {
       position: relative;
       border-bottom: 1px solid #eee;
+      &:hover {
+        opacity: 0.6;
+      }
     }
   }
   
@@ -302,9 +305,12 @@ nav ul{
       background: #fff;
       font-size:14px;
       color: #333;
-        & .active {
+        &.active {
           background: #eee;
           font-weight: 600;
+        }
+        &:hover {
+          background-color: #eee;
         }
       }
     & li{
