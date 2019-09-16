@@ -26,10 +26,12 @@
 |area_id|都道府県id|integer|null: false, foreign_key: true|
 |shipping_charge_id|配送料負担先id|integer|null: false, foreign_key: true|
 |shipping_time_id|配送期間|integer|null: false, foreign_key: true|
+|shipping_method_id|発送方法|integer|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :shipping_charge
 - belongs_to :shipping_time
+- belongs_to :shipping_method
 - belongs_to :area
 - belongs_to :status
 - belongs_to :sale_charge
@@ -54,6 +56,11 @@
 |name     |名前|string|null: false|
 
 ## shipping_times テーブル (配送期間テーブル)
+|Column         |  description        |Type      |Options           |
+|---------------|--------------------|----------|-------------------|
+|name           |名前    |string|null: false|
+
+## shipping_methods テーブル (発送方法テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
 |name           |名前    |string|null: false|

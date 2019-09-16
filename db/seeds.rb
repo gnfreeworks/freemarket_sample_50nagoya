@@ -34,6 +34,17 @@ ShippingTime.create(name: "1~2で発送")
 ShippingTime.create(name: "2~3で発送")
 ShippingTime.create(name: "4~7で発送")
 
+# shipping method  (発送方法 テーブル)
+ShippingMethod.create(name: "未定")
+ShippingMethod.create(name: "らくらくメルカリ便")
+ShippingMethod.create(name: "ゆうメール")
+ShippingMethod.create(name: "レターパック")
+ShippingMethod.create(name: "普通郵便(定形、定形外)")
+ShippingMethod.create(name: "クロネコヤマト")
+ShippingMethod.create(name: "ゆうパック")
+ShippingMethod.create(name: "クリックポスト")
+ShippingMethod.create(name: "ゆうパケット")
+
 # size table (商品サイズ テーブル)
 Size.create(name: 'XXS以下')
 Size.create(name: 'XS(SS)')
@@ -10273,12 +10284,11 @@ Evaluation.create(name: 'good', icon: 'icon-good')
 Evaluation.create(name: 'normal', icon: 'icon-normal')
 Evaluation.create(name: 'bad', icon: 'icon-bad')
 
-
 ## sale_charges テーブル(販売手数料テーブル) 10% = 0.1
 SaleCharge.create(rate: '0.1')
 
 ## Product table Smaple data
-Product.create(name: '【sample】立体裁断スキッパーシャツブラウス', description: 'ご覧いただきありがとうございます。', price: '2000', profit: '1800',size_id: '4', brand: '', sale_charge_id: '1', status_id: '1', category_id: '4', area_id: '20', shipping_charge_id: '1', shipping_time_id: '1')
+Product.create(name: '【sample】立体裁断スキッパーシャツブラウス', description: 'ご覧いただきありがとうございます。', price: '2000', profit: '1800',size_id: '4', brand: '', sale_charge_id: '1', status_id: '1', category_id: '4', area_id: '20', shipping_charge_id: '1', shipping_time_id: '1', shipping_method_id: '1')
 
 ## ProductsStatus table Smaple data
 ProductsStatus.create(product_id: '1', buyer_id: '1', seller_id: '2', selling_status: '0', dealing_status: '0' )

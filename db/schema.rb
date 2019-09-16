@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190910140252) do
+ActiveRecord::Schema.define(version: 20190916130729) do
 
   create_table "account_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -134,9 +134,11 @@ ActiveRecord::Schema.define(version: 20190910140252) do
     t.integer  "shipping_time_id"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.integer  "shipping_method_id"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["sale_charge_id"], name: "index_products_on_sale_charge_id", using: :btree
     t.index ["shipping_charge_id"], name: "index_products_on_shipping_charge_id", using: :btree
+    t.index ["shipping_method_id"], name: "index_products_on_shipping_method_id", using: :btree
     t.index ["shipping_time_id"], name: "index_products_on_shipping_time_id", using: :btree
     t.index ["status_id"], name: "index_products_on_status_id", using: :btree
   end
@@ -166,6 +168,12 @@ ActiveRecord::Schema.define(version: 20190910140252) do
   end
 
   create_table "shipping_charges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shipping_methods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -259,6 +267,7 @@ ActiveRecord::Schema.define(version: 20190910140252) do
   add_foreign_key "products", "categories"
   add_foreign_key "products", "sale_charges"
   add_foreign_key "products", "shipping_charges"
+  add_foreign_key "products", "shipping_methods"
   add_foreign_key "products", "shipping_times"
   add_foreign_key "products", "statuses"
   add_foreign_key "products_statuses", "products"
