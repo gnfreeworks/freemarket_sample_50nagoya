@@ -86,3 +86,4 @@ gem 'owlcarousel-rails'
 
 # for area master data
 gem 'active_hash'
+
