@@ -33,7 +33,7 @@ class ProductsStatusesController < ApplicationController
     @shipping_charge = @product_status.product.shipping_charge.name
 
     # 配送方法 - テーブル・カラム清水さんに確認中
-    
+    @shipping_method = @product_status.product.shipping_method.name
     
     # 配送元地域
     @area = @product_status.product.area.name
