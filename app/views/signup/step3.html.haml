@@ -25,29 +25,30 @@
       = form_for @user, url: step4_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
         .main-content__form__box
           .form__block
-            //= f.label :携帯電話の番号
+            = f.label :認証番号
             %br/
-            //= f.text_field :nickname, autofocus: true, placeholder: '認証番号を入力', class: 'text_field'
-          .form__block__text__main
+            %textarea.fake-box 認証番号を入力
+          .form__block__text__main.phone
             SNSで届いた認証番号を入力してください
           .form__actions
             = f.submit "認証して完了", class: 'progress-btn'
-      .sub-content
-        = form_for @user, url: step3_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
-          .attestation-number__error
-            30秒たっても認証番号が届かないかたへ
-          .attestation-number__message
-            電話で認証番号を聞くこともできます
-          .form__actions
-            = f.submit "電話で認証番号を聞く（通話無料）", class: 'progress-btn'
-      .sub-content
-        .attestation-number__error
-          認証番号を再送することもできます。もう一度電話番号を入力してください。
-          %p
-          %a.last-sentence{}電話番号を再度入力する
-        .attestation-number__message
-          ※SNSが届かない場合は
-          %a.last-sentence{}SNS受信設定
-          を確認して、もう一度入力してください。
+        .main-content__form__box.bottom
+          .sub-content
+            = form_for @user, url: step3_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
+              .attestation-number__error
+                30秒たっても認証番号が届かないかたへ
+              .attestation-number__message
+                電話で認証番号を聞くこともできます
+              .form__actions
+                = f.submit "電話で認証番号を聞く（通話無料）", class: 'progress-btn'
+          .sub-content
+            .attestation-number__error
+              認証番号を再送することもできます。もう一度電話番号を入力してください。
+              .last-sentence
+                %a{}電話番号を再度入力する
+            .attestation-number__message
+              ※SNSが届かない場合は
+              %a{}SNS受信設定
+              を確認して、もう一度入力してください。
   .entry-footer
     =render '/entry/entry-footer'

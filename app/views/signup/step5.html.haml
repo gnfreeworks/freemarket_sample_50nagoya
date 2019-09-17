@@ -29,6 +29,7 @@
             %span.form__block__required
               必須
             %br/
+            %textarea.fake-box 半角数字のみ
             %img.pay-image
           .form__block
             = f.label :有効期限
@@ -40,8 +41,9 @@
             %span.form__block__required
               必須
             %br/
-            %p
-            %a.card-number{}カードの裏面の番号とは？
+            %textarea.fake-box カード背面4桁もしくは3桁の番号
+            .card-number
+              %a{} カードの裏面の番号とは？
           .form__actions
           = f.submit "次へ進む", class: 'progress-btn'
   .entry-footer

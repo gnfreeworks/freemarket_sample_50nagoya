@@ -25,15 +25,16 @@
       = form_for @user, url: step3_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
         .main-content__form__box
           .form__block
-            //= f.label :携帯電話の番号
+            = f.label :携帯電話の番号
             %br/
-            //= f.text_field :nickname, autofocus: true, placeholder: '携帯電話の番号を入力', class: 'text_field'
-          .form__block__text__main
+            %textarea.fake-box 携帯電話の番号を入力
+          .form__block__text__main.phone
             本人確認のため、携帯電話のSNS(ショートメッセージサービス)を利用して認証を行います。
           .form__actions
             = f.submit "SMSを送信する", class: 'progress-btn'
           .form__block__text__main
             ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
+          .text__right
             %a{} 電話番号の確認が必要な理由
   .entry-footer
     =render '/entry/entry-footer'    

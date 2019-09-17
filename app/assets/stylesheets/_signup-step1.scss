@@ -83,7 +83,7 @@
   z-index: -1;
   background-color: #ea352d;
 }
-.header__progress__advance:last-of-type .active.header__progress__advance__point:after{
+.header__progress__advance:last-of-type.header__progress__advance__point:after{
   content: none;
 }
 h1{
@@ -109,7 +109,6 @@ h1{
     }
   }
   &__form{
-    height: 1100px;
     padding: 12px 16px 40px;
     font-size: 14px;
 
@@ -117,12 +116,9 @@ h1{
       margin: 0 auto;
       width: 343px;
     }
-    &__bottom{
-      margin: 0 auto;
-      width: 343px;      
-    }
   }
 }
+
 .text_field{
   width: 304px;
   padding: 10px 16px 8px;
@@ -131,9 +127,25 @@ h1{
   line-height: 1.5;
   font-size: 16px; 
   margin-top: 8px;
+  border: 0.5px solid #ccc;
 }
+.text_field-half{
+  width: 130px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  background-color: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+  margin: 8px 8px 0 0; 
+  border: 0.5px solid #ccc;
+}
+
 label{
   font-display: inline-block;
+  font-weight: 600;
+}
+.form-separate{
+  display: flex;
 }
 .form__block{
   margin-top: 32px;
@@ -141,7 +153,7 @@ label{
   box-sizing: border-box;
 
   &:first-of-type{
-    margin-top: 0;
+    margin-top: 20px;
   }
   &__required{
     background-color: red;
@@ -152,22 +164,20 @@ label{
     font-size: 12px;
     vertical-align: top;
   }
+  &__text{
+    font-size: 16px;
+    font-weight: bold;
+    &__main{
+      line-height: 1.5;
+      font-size: 14px;
+      margin: 8px 0 0;
+    }
+  }
   &__info{
     color: #888888;
     margin-top: 8px;
     margin-bottom: 45px;
-  }
-}
-.name-box{
-  display: flex;
-
-  &__text{
-    border: groove;
-    height: 48px;
-    width: 160px;
-    line-height: 3.5;
-    margin-right: 8px;
-    border-radius: 4px;
+    line-height: 1.5;
   }
 }
 .form__select{
@@ -187,6 +197,7 @@ label{
 }
 .text__consent{
   margin-top: 20px;
+  line-height: 1.5;
 
   & a{
     color: #0099E8;
@@ -199,4 +210,8 @@ label{
   & a{
     color: #0099E8;
   }
+}
+
+.form__actions{
+  margin-bottom: 50px;
 }

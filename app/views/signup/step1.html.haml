@@ -48,7 +48,7 @@
             %br/
             =f.password_field :password_confirmation, placeholder: '6文字以上', class:'text_field'
           .form__block
-            %h3.form__block__text__header
+            %h3.form__block__text
               本人確認
             .form__block__text__main
               安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
@@ -57,20 +57,27 @@
             %span.form__block__required
               必須
             %br/
-            -# = f.text_field :firstname
-            -# = f.text_field :lastname
+            .form-separate
+              = f.text_field :first_name, placeholder: '例）山田', class: 'text_field-half'
+              = f.text_field :last_name, placeholder: '例）彩', class: 'text_field-half'
           .form__block
             = f.label :お名前（カナ）
             %span.form__block__required
               必須
             %br/
-            -# = f.text_field :firstkananame
-            -# = f.text_field :lastkananame
+            .form-separate
+              = f.text_field :first_kananame, placeholder: '例）ヤマダ', class: 'text_field-half'
+              = f.text_field :last_kananame, placeholder: '例）アヤ', class: 'text_field-half'
           .form__block
             = f.label :生年月日
             %span.form__block__required
               必須
-          %br/
+            %br/
+            .birthday-select
+              .select-wrap
+                != sprintf(f.date_select(:birthdaydate, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year - 119), prompt: "--", class: 'select-date', date_separator: '%s'),'年','月')+'日'
+            .form-separate
+
           .form__block
             %p.form__block__info
               ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
@@ -86,5 +93,5 @@
             .text__right
               %a{} 本人情報の登録について
 
-  .main-content__bottom
+  .entry-footer
     =render '/entry/entry-footer'
