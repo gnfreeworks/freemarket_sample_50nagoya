@@ -1,6 +1,7 @@
 .main_container
   %section.product-box-container.l-single-container
-    %h1.product-name ZUCCa キャンバススニーカー
+    %h1.product-name 
+      = @product
     .product-main-content.clearfix
       .product-photo
         .owl-carousel.owl-loaded.owl-drag
@@ -48,47 +49,50 @@
             %th 出品者
             %td
               %a{ href: '#' }
-                こげぱん
+              = @buyer
               %div 
                 .product-user-ratings
                   = icon("fas", "laugh",class: "icon-lauph")
-                  %span 41
+                  %span
+                  = @good_count
                 .product-user-ratings
                   = icon("fas", "meh",class: "icon-meh")
-                  %span 0
+                  %span
+                  = @normal_count
                 .product-user-ratings
                   = icon("fas", "frown",class: "icon-frown")
-                  %span 0
+                  %span
+                  = @bad_count
           %tr
             %th カテゴリー
             %td
               %a{ href: '#' }
-                メンズ
+                = @large_category
               %a{ href: '#' }
                 .product-detail-table-sub-category
                   = icon("fas", "chevron-right")
-                  靴
+                  = @medium_category
               %a{ href: '#' }
                 .product-detail-table-sub-sub-category
                   = icon("fas", "chevron-right")
-                  スニーカー
+                  = @smail_category
           %tr
             %th ブランド
             %td
               %a{ href: '#' }
-                ズッカ
+                = @brand
           %tr
             %th 商品のサイズ
             %td
-              27cm
+              = @size
           %tr
             %th 商品の状態
             %td
-              新品、未使用
+              = @status
           %tr
             %th 配送料の負担
             %td
-              送料込み(出品者負担)
+              = @shipping_charge
           %tr
             %th 配送の方法
             %td
@@ -97,15 +101,16 @@
             %th 配送元地域
             %td
               %a{ href: '#' }
-                愛知県
+                = @area
           %tr
             %th 発送日の目安
             %td
-              1~2日で発送
+              = @shipping_time
 
     .product-price-box.text-center
       %span.product-price-box_price.bold
-        ¥6,400
+        ¥
+        = @price
       %span.product-price-box_tax
         (税込)
       %span.product-price-box_shipping-fee
@@ -115,30 +120,9 @@
 
     .product-description.f14
       %p.product-description-inner
-        ズッカ スニーカー
-        ZUCCa キャンバススニーカー
-
-        キャンバス素材を使用したハイカットスニーカー。ソール厚めで特徴的なアイテム。
-
-        &nbsp;
-        新品未使用 箱あり
-
-        定価：17,280円
-
-        色：紺色
+        = @description
 
 
-        サイズ：メンズM(26.5cm～27.5cm位)
-
-        普段ナイキは26.5cmを履いてますが
-
-        大きかったので履かずに保管してました。
-
-        &nbsp;
-
-        素人保管のため神経質な方、細かい事を気にされる方は購入をお控え下さい。
-
-        お値引き交渉不可とさせていただきます。
       .product-button-container.clearfix
         .product-button-left
           %button
