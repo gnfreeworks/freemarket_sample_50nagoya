@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :shipping_charge
   belongs_to :shipping_time
+  belongs_to :shipping_method
   belongs_to :status
   belongs_to :sale_charge
   belongs_to :size
