@@ -22,9 +22,9 @@ class MypageController < ApplicationController
   end
   
   private
-  def user_profile
-  params.permit(:nickname, :profiletext)
 
+  def user_profile
+    params.permit(:nickname, :profiletext)
   end
 
 end
