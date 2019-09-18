@@ -19,7 +19,7 @@ class ProductsStatusesController < ApplicationController
     @medium_category = @product_status.product.category.medium_category.name
     @smail_category = @product_status.product.category.smail_category.name
 
-    # ブランド - カラム清水さんに確認中
+    # ブランド
     brand_id = @product_status.product.brand
     @brand = Brand.find(brand_id).name
 
