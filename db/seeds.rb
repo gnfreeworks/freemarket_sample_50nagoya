@@ -10294,34 +10294,5 @@ Product.create(name: '【sample】立体裁断スキッパーシャツブラウ�
 ProductsStatus.create(product_id: '1', buyer_id: '1', seller_id: '2', selling_status: '0', dealing_status: '0' )
 
 ## User table Smaple data
-User.create(name: '山本 太郎', kananame: 'ヤマモト タロウ', nickname: 'ヤマ', birthdaydate: '2019-08-31', maildaddress: 'yamamoto@gmail.com')
-User.create(name: '田中 次郎', kananame: 'タナカ ジロウ', nickname: 'タナ', birthdaydate: '2019-08-31' , maildaddress: 'tanaka@gmail.com')
-User.create(name: '岡田 三郎', kananame: 'オカダ サンロウ', nickname: 'オカ', birthdaydate: '2019-08-31' , maildaddress: 'tanaka@gmail.com')
-
-## buyer_evaluations テーブル (出品者評価 テーブル)
-BuyerEvaluation.create(products_status_id: '1', user_id: '1', evaluation_id: '1', comment: 'まあまあ発送は早かった')
-
-## goods テーブル (いいね テーブル)
-Good.create(products_status_id: '1', user_id: '2')
-Good.create(products_status_id: '1', user_id: '3')
-
-## payment_methods テーブル(支払い方法 テーブル)
-PaymentMethod.create(user_id: '1', card_number: '239412349849', expiration_year: '12', expiration_month: '06', secrity_code:'987')
-
-## comments テーブル (コメント テーブル)
-Comment.create(products_status_id: '1', user_id: '3', text: '値引きキボンヌ')
-
-## canseling_products テーブル (キャンセル申請 テーブル)
-CanselingProduct.create(products_status_id: '1', status: '0')
-
-## todos テーブル (todos テーブル)
-Todo.create(products_status_id: '1', user_id: '2',text:'キャンセル申請がありました。承諾または却下を選択してください', status: '0')
-
-## sale_ordes テーブル (売り上げ申請 テーブル)
-SaleOrder.create(user_id: '2', status: '100')
-
-## transfer_orders テーブル (振込申請 テーブル)
-TransferOrder.create(user_id: '2', sale: '980')
-
-## transfer_addresses テーブル (振込先 テーブル)
-TransferAddress.create(user_id: '2', bank_id: '1', account_type_id: '1', branch_code: '255', account_number: '9873647', account_fistname: 'TANAKA', account_lastname: 'JIRO')
+User.create(name: '山本', kananame: 'ヤマモト', nickname: 'ヤマ', birthdaydate: '2019-08-31', maildaddress: 'yamamoto@gmail.com')
+User.create(name: '田中', kananame: 'タナカ', nickname: 'タナ', birthdaydate: '2019-08-31' , maildaddress: 'tanaka@gmail.com')

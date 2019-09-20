@@ -1,2 +1,0 @@
-class CanselingProduct < ApplicationRecord
-end
