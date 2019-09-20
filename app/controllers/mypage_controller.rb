@@ -13,10 +13,11 @@ class MypageController < ApplicationController
 
   def profileupdate
     @user = User.find(params[:id])
+
     if @user.update_attributes(user_profile)
-      render 'profile'
+      redirect_to profile_user_mypage_index_path, notice:'変更しました!!'
     else
-      render 'profile'
+      redirect_to profile_user_mypage_index_path, alert:'もう一度入力して下さい。'
     end
 
   end

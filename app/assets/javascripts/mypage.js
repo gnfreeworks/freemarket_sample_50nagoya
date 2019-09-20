@@ -37,7 +37,7 @@ window.addEventListener("DOMContentLoaded", function() {
       document.getElementsByClassName("active")[1].classList.remove("active");
       document.getElementsByClassName("show")[1].classList.remove("show");
       
-      // //選択されたタブを表示:active, show class追加
+      //選択されたタブを表示:active, show class追加
       const index = transtabsAry.indexOf(this);
       document.getElementsByClassName("transaction_tab")[index].classList.add("active");
       document.getElementsByClassName("transaction-list")[index].classList.add("show");
@@ -45,3 +45,8 @@ window.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+
+//To fade out Flash message in 1.5sec
+$(function(){
+  setTimeout("$('.notification').fadeOut('slow')", 1500) 
+})
