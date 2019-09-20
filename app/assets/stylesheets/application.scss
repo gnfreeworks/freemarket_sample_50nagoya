@@ -13,5 +13,8 @@
  *= require_tree .
  *= require_self
  */
- 
- @import 'reset';
+  
+@import 'reset';
+/* app/assets/stylesheets/application.scss */
+@import "font-awesome-sprockets";
+@import "font-awesome";
