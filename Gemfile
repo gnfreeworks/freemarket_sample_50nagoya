@@ -81,7 +81,6 @@ gem 'devise'
 gem 'haml-rails'
 gem 'mini_magick'
 
-
 # for area master data
 gem 'active_hash'
 

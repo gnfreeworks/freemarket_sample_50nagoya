@@ -1,0 +1,114 @@
+.l-content
+  %section.mypage-user-icon
+    = link_to '#' do
+      %figure
+        %img{alt: "", src: "/images/member_photo_noimage_thumb.png", height: "60", width: "60"}
+      %h2.bold
+        = @user.name
+      .mypage-number
+        %div
+          評価 
+          %span.bold
+            = @evaluation_count
+        %div
+          出品数 
+          %span.bold
+            = @products_count
+  %section.mypage-tab-container-notification-todo
+    %ul.mypage-tabs
+      %li.tab_item.active
+        %h3.bold
+          %a{href: ''}
+            お知らせ
+            %span.mypage-nav-number.hidden-large
+      %li.tab_item
+        %h3.bold
+          %a{href: ''}
+            やることリスト
+    .tab-content
+      %ul#mypage-tab-notification.mypage-item-list.tab-pane.show
+        %li.tab-content-item
+          = link_to '#mypage-tab-notification', class: 'mypage-item-link' do
+            %figure
+              %img{alt: "", src: "/images/mercari_profile.png", class: 'lazyloaded'}
+            .mypage-item-body
+              .mypage-item-text
+                《出品するだけ》総額1億円相当還元！メルカリ秋フェスが開催中♪
+              %time
+                %i.far.fa-clock
+                  %span
+                    4 時間前
+            %i.fas.fa-angle-double-right
+        %li
+          = link_to '#mypage-tab-notification', class: 'mypage-item-link' do
+            %figure
+              %img{alt: "", src: "/images/mercari_profile.png", class: 'lazyloaded'}
+            .mypage-item-body
+              .mypage-item-text
+                《参加ボタンを押すだけ！》10円分のポイントが"必ず"もらえる！メルカリ秋フェスが開催中♪
+              %time
+                %i.far.fa-clock
+                  %span
+                    5 時間前
+            %i.fas.fa-angle-double-right
+        %li
+          = link_to '#mypage-tab-notification', class: 'mypage-item-link' do
+            %figure
+              %img{alt: "", src: "/images/mercari_profile.png", class: 'lazyloaded'}
+            .mypage-item-body
+              .mypage-item-text
+                《出品するだけ》総額1億円相当還元！メルカリ秋フェスが開催中♪
+              %time
+                %i.far.fa-clock
+                  %span
+                    2 日前
+            %i.fas.fa-angle-double-right
+        %li
+          = link_to '#mypage-tab-notification', class: 'mypage-item-link' do
+            %figure
+              %img{alt: "", src: "/images/mercari_profile.png", class: 'lazyloaded'}
+            .mypage-item-body
+              .mypage-item-text
+                事務局から個別メッセージ「ログイン通知」
+              %time
+                %i.far.fa-clock
+                  %span
+                    4 日前
+            %i.fas.fa-angle-double-right
+        %li
+          = link_to '#mypage-tab-notification', class: 'mypage-item-link' do
+            %figure
+              %img{alt: "", src: "/images/mercari_profile.png", class: 'lazyloaded'}
+            .mypage-item-body
+              .mypage-item-text
+                明日、P999還元お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+              %time
+                %i.far.fa-clock
+                  %span
+                    10 日前
+            %i.fas.fa-angle-double-right
+          %li.mypage-go-list
+            %a{href: '/jp/mypage/notification/'}
+              一覧を見る
+      %ul#mypage-tab-todo.mypage-item-list.tab-pane
+        %li.mypage-item-not-found.bold
+          現在、やることリストはありません
+  %section.mypage-tab-container
+    %h2.mypage-tab-head.bold
+      購入した商品
+    %ul.mypage-tabs
+      %li.transaction_tab.active
+        %h3.bold
+          %a{href: '#mypage-tab-transaction-now'}
+            取引中
+      %li.transaction_tab
+        %h3.bold
+          %a{href: '#mypage-tab-transaction-old'}
+            過去の取引
+    .tab-content
+      %ul#mypage-tab-transaction-now.mypage-item-list.transaction-list.tab-pane.show
+        %li.mypage-item-not-found.bold
+          取引中の商品がありません
+      %ul#mypage-tab-transaction-old.mypage-item-list.transaction-list.tab-pane
+        %li.mypage-item-not-found.bold
+          過去に取引した商品がありません
