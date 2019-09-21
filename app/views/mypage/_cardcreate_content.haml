@@ -1,0 +1,47 @@
+.l-content
+  %section.l-chapter-container
+    %h2.l-chapter-head　クレジットカード情報入力
+    = form_for @creditcard, url: cardadd_user_mypage_index_path, html: {class: ''} do |f|
+      .main-content__form__box
+        .form__block
+          = f.label :card_number, 'カード番号'
+          %span.form__block__required
+            必須
+          %br/
+          = f.text_field :card_number, autofocus: true, placeholder: '半角数字のみ', class: 'text_field'
+        %ul.signup-card-list
+          %li
+            = image_tag "visa.svg", size: "49x20", alt: ""
+          %li
+            = image_tag "master-card.svg", size: "34x20", alt: ""
+          %li
+            = image_tag "saison-card.svg", size: "30x20", alt: ""
+          %li
+            = image_tag "jcb.svg", size: "32x20", alt: "visa"
+          %li
+            = image_tag "american_express.svg", size: "21x20", alt: ""
+          %li
+            = image_tag "dinersclub.svg", size: "32x20", alt: "visa"
+          %li
+            = image_tag "discover.svg", size: "32x20", alt: "visa"
+        .form__block
+          = f.label :expiration_month, '有効期限'
+          %span.form__block__required
+            必須
+          %br/
+          = f.text_field :expiration_month, autofocus: true, placeholder: '', class: 'text_field'
+          = f.label :expiration_year, '有効期限'
+          %span.form__block__required
+            必須
+          %br/
+          = f.text_field :expiration_year, autofocus: true, placeholder: '', class: 'text_field'
+
+        .form__block
+          = f.label :card_number, 'セキュリティーコード'
+          %span.form__block__required
+            必須
+          %br/
+          = f.text_field :card_number, autofocus: true, placeholder: 'カード背面4桁もしくは3桁の番号', class: 'text_field'
+
+        .form__actions
+          = f.submit "追加する", class: 'progress-btn'

@@ -6,9 +6,20 @@ class MypageController < ApplicationController
     @products_count = ProductsStatus.where(buyer_id: @user.id).count
   end
 
-  def profile
-    @user = User.find(1)  
+  def card
+    @user = User.find(1)
+  end
+  
+  def cardcreate
+    @user = User.find(1)
+    @creditcard = PaymentMethod.new()
+  end
 
+  def cardadd
+  end
+
+  def profile
+    @user = User.find(1)
   end
 
   def profileupdate
@@ -25,6 +36,10 @@ class MypageController < ApplicationController
   private
 
   def user_profile
+    params.permit(:nickname, :profiletext)
+  end
+
+  def credit_param
     params.permit(:nickname, :profiletext)
   end
 

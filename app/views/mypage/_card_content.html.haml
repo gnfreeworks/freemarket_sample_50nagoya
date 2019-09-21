@@ -1,0 +1,18 @@
+.l-content
+  %section.l-chapter-container
+    %h2.l-chapter-head
+      支払い方法
+    .l-single-inner
+      %section
+        .l-single-content
+          %h3.l-chapter-sub-head クレジットカード一覧
+        .settings-payment-list
+      %section.settings-add-card
+        .l-single-content
+        = link_to cardcreate_user_mypage_index_path, class: 'btn-default btn-red submit_button', method: :get, params: { id: @user.id } do
+          %i.far.fa-credit-card
+            クレジットカードを追加する
+      .settings-not-regist
+        %a{href: '#', target: '_blank', }
+          %span 支払い方法について
+          %i.fas.fa-arrow-circle-right
