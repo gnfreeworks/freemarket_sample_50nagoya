@@ -474,7 +474,7 @@ nav ul{
   padding: 12px 4%;
   border-bottom: 1px solid #f5f5f5;
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   font-weight:bold;
   & h2 {
     font-size: 22px;
@@ -567,6 +567,7 @@ input {
   border-top: 1px solid #f5f5f5;
   padding: 40px;
 }
+
 .l-single-content {
   max-width:320px;
   margin: 0 auto;
@@ -595,7 +596,6 @@ input {
 }
 
 .settings-not-regist {
-  color: #0099e8;
   a {
     display: block;
     margin: 40px 0 0;
@@ -615,4 +615,189 @@ input {
     margin: 0 0 0 8px;
     vertical-align: middle;
   }
+}
+
+.l-single-inner {
+  padding: 24px 16px 40px;
+}
+
+.registration-form {
+  padding: 24px 16px 40px;
+}
+.l-single-inner.registration-form .l-single-content {
+  max-width: 343px;
+}
+
+.form-group {
+  margin: 40px 0 0;
+}
+.form-group:first-child {
+  margin: 0;
+}
+.form-group label {
+  font-weight: 600;
+}
+label {
+  display: inline-block;
+}
+
+.form-require {
+  background: #ea352d;
+}
+
+.form-require, .form-arbitrary, .message-is-seller, .news-private {
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+}
+
+.form-group.input-default {
+  width: 100%;
+  margin: 8px 0 0;
+}
+
+.input-default {
+  height: 48px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+ul ol {
+  list-style: none;
+}
+
+.signup-card-list li:first-child {
+  margin: 0;
+}
+
+.signup-card-list li {
+  display: inline-block;
+  margin: 0 0 0 8px;
+  vertical-align: middle;
+}
+
+.payment_card_expire{
+  font-weight: 600;
+}
+
+.signup-form-expire .select-wrap.half {
+  display: inline-block;
+  width: calc(50% - 2px);
+}
+
+.form-group.select-wrap {
+  margin: 8px 0 0;
+}
+
+.form-group .select-wrap {
+  margin: 8px 0 0;
+}
+
+.select-wrap {
+  position: relative;
+  background: #fff;
+}
+
+.select-wrap select {
+  width: calc(100% - 38px);
+}
+
+.signup-form-expire .select-wrap select {
+  width: calc(100% - 38px);
+}
+
+.select-default {
+  position: relative;
+  z-index: 2;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: 0;
+  font-size:16px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+select {
+  outline: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.signup-form-expire .select-wrap .fa-arrow-down {
+  font-size: 20px;
+  margin: 0 6px 0 -15px;
+  position: relative;
+  top: 12px;
+  pointer-events: none;
+}
+
+.select-wrap .fa-arrow-down {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  z-index: 2;
+  color: #888;
+  font-size: 8px;
+  transform: translate(0, -50%);
+}
+
+.signup-seqcode {
+  position: relative;
+  margin: 8px 0 0;
+}
+
+.signup-seqcode-text {
+  text-align: right;
+  color: #0099e8;
+}
+
+.form-question {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0099e8;
+  color: #fff;
+  line-height: 14px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.form-group .input-default {
+  width: 100%;
+  margin: 8px 0 0;
+  box-sizing: border-box;
+}
+
+.signup-seqcode-info.is-show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.signup-seqcode-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 28px;
+  z-index: 1;
+  padding: 16px;
+  border-radius: 6px;
+  background: #eee;
+  color: #333;
+  line-height: 1.5;
+  text-align: center;
+  -webkit-transition: all ease-out .3s;
+  transition: all ease-out .3s;
+  visibility: hidden;
+  opacity: 0;
 }

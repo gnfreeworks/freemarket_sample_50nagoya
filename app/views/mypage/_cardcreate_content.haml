@@ -1,11 +1,11 @@
 .l-content
   %section.l-chapter-container
-    %h2.l-chapter-head　クレジットカード情報入力
-    = form_for @creditcard, url: cardadd_user_mypage_index_path, html: {class: ''} do |f|
-      .main-content__form__box
-        .form__block
-          = f.label :card_number, 'カード番号'
-          %span.form__block__required
+    %h2.l-chapter-head クレジットカード情報入力
+    = form_for @creditcard, url: cardadd_user_mypage_index_path, html: {class: 'l-single-inner registration-form'} do |f|
+      .l-single-content
+        .form-group
+          = f.label 'カード番号', class: 'payment_card_no'
+          %span.form-require
             必須
           %br/
           = f.text_field :card_number, autofocus: true, placeholder: '半角数字のみ', class: 'text_field'
@@ -24,24 +24,30 @@
             = image_tag "dinersclub.svg", size: "32x20", alt: "visa"
           %li
             = image_tag "discover.svg", size: "32x20", alt: "visa"
-        .form__block
-          = f.label :expiration_month, '有効期限'
-          %span.form__block__required
+        .form-group.signup-form-expire
+          = f.label '有効期限', class: 'payment_card_expire'
+          %span.form-require
             必須
           %br/
-          = f.text_field :expiration_month, autofocus: true, placeholder: '', class: 'text_field'
-          = f.label :expiration_year, '有効期限'
-          %span.form__block__required
-            必須
-          %br/
-          = f.text_field :expiration_year, autofocus: true, placeholder: '', class: 'text_field'
+          .select-wrap.half
+            %select#payment_card_expire_yy.select-default
+            %i.fas.fa-arrow-down
+            %span 月
+          .select-wrap.half
+            %select#payment_card_expire_yy.select-default
+            %i.fas.fa-arrow-down
+            %span 年
 
-        .form__block
-          = f.label :card_number, 'セキュリティーコード'
-          %span.form__block__required
+        .form-group
+          = f.label 'セキュリティーコード', class: 'payment_card_security_code'
+          %span.form-require
             必須
           %br/
-          = f.text_field :card_number, autofocus: true, placeholder: 'カード背面4桁もしくは3桁の番号', class: 'text_field'
-
-        .form__actions
-          = f.submit "追加する", class: 'progress-btn'
+          = f.text_field :card_number, autofocus: true, placeholder: 'カード背面4桁もしくは3桁の番号', class: 'input-default', id: 'payment_card_security_code'
+          .signup-seqcode
+            .signup-seqcode-text
+              %span.form-question ?
+              カード裏面の番号とは?
+            .signup-seqcode-info
+              カードの裏面をご参照ください。
+        = f.submit "追加する", class: 'btn-default btn-red', id: 'submit-button'
