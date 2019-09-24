@@ -125,13 +125,16 @@
 
       .product-button-container.clearfix
         .product-button-left
-          %button
-            いいね！
-          %button
-            不適切な商品の報告
+          %button{class:"product-button product-button-like"}
+            = icon("far fa-heart","heart",class:"icon-like")
+            %span{class:"product-button-container span"} いいね！
+          = link_to '#',class:"product-button product-button-report" do
+            = icon("far fa-flag","flag")
+            %span{class:"product-button-container span"} 不適切な商品の報告
         .product-button-right
-          %a{ href: '#' }
-            あんしん・あんぜんへの取り組み
+          = link_to '#',class:"item-button-container a" do
+            = icon("fas fa-lock","lock")
+            %span{class:"product-button-container span"} あんしん・あんぜんへの取り組み
 
   .product-detail-message
     .message-container
