@@ -47,7 +47,7 @@
           %tr
             %th 出品者
             %td
-              %a{ href: '#' }
+              = link_to '#' do
                 こげぱん
               %div 
                 .product-user-ratings
@@ -62,20 +62,20 @@
           %tr
             %th カテゴリー
             %td
-              %a{ href: '#' }
+              = link_to '#' do
                 メンズ
-              %a{ href: '#' }
+              = link_to '#' do
                 .product-detail-table-sub-category
                   = icon("fas", "chevron-right")
                   靴
-              %a{ href: '#' }
+              = link_to '#' do
                 .product-detail-table-sub-sub-category
                   = icon("fas", "chevron-right")
                   スニーカー
           %tr
             %th ブランド
             %td
-              %a{ href: '#' }
+              = link_to '#' do
                 ズッカ
           %tr
             %th 商品のサイズ
@@ -96,7 +96,7 @@
           %tr
             %th 配送元地域
             %td
-              %a{ href: '#' }
+              = link_to '#' do
                 愛知県
           %tr
             %th 発送日の目安
@@ -110,7 +110,7 @@
         (税込)
       %span.product-price-box_shipping-fee
         送料込み
-    %a.product-buy-btn{ href: '#'}
+    = link_to '#',class:"product-buy-btn" do
       購入画面に進む
 
     .product-description.f14
@@ -165,11 +165,11 @@
 
   %ul.nav-product-link-prev-next.clearfix
     %li.nav-product-link-prev
-      %a{ href: '#' }
+      = link_to '#' do
         = icon("fas", "chevron-left")
         短期攻略センター 地学基礎
     %li.nav-product-link-next
-      %a{ href: '#' }
+      = link_to '#' do
         ポーチ【ハワイ限定】
         = icon("fas", "chevron-right")
 
@@ -177,16 +177,16 @@
     .text-center
     %ul.social-media-box
       %li
-        %a{ href: '#' }
+        = link_to '#' do
           = icon("fab fa-3x", "facebook-square",class:"icon-facebook")
       %li
-        %a{ href: '#' }
+        = link_to '#' do
           = icon("fab fa-3x", "twitter-square",class:"icon-twitter")
       %li
-        %a{ href: '#' }
+        = link_to '#' do
           = icon("fab fa-3x", "line",class:"icon-line")
       %li
-        %a{ href: '#' }
+        = link_to '#' do
           = icon("fab fa-3x", "pinterest-square",class:"icon-pinterest")
           
   
