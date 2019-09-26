@@ -506,35 +506,62 @@ a {
 
 // icon 設定
 .icon {
-  &-lauph {
+  &-lauph{
     color: #EF5185;
+    &:before {
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+    }
   }
 
   &-meh {
     color: #FAAA32;
+    &:before {
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+    }
   }
 
   &-frown {
     color: #6AB4D8;
+    &:before {
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+    }
   }
 
   &-like {
     color: #CDCDCD;
+    &:before {
+      font-family: 'Font Awesome 5 Free';
+    }
   }
 
   &-facebook {
     color: #375285;
+    &:before {
+      font-family: 'Font Awesome 5 Brands';
+    }
   }
 
   &-twitter {
     color: #5D9DC9;
+    &:before {
+      font-family: 'Font Awesome 5 Brands';
+    }
   }
 
   &-line {
     color: #03C138;
+    &:before {
+      font-family: 'Font Awesome 5 Brands';
+    }
   }
 
   &-pinterest {
     color: #A9262A;
+    &:before {
+      font-family: 'Font Awesome 5 Brands';
+    }
   }
 }
