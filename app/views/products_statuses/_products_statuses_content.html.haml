@@ -115,14 +115,12 @@
         (税込)
       %span.product-price-box_shipping-fee
         送料込み
-    %a.product-buy-btn{ href: '#'}
+    = link_to '#',class:"product-buy-btn" do
       購入画面に進む
 
     .product-description.f14
       %p.product-description-inner
         = @description
-
-
       .product-button-container.clearfix
         .product-button-left
           %button{class:"product-button product-button-like"}
