@@ -9,6 +9,4 @@ class User < ApplicationRecord
   has_many    :sale_orders
   has_many    :transfer_orders
   has_many    :buyer_evaluations
-
 end
-
