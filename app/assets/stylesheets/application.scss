@@ -12,8 +12,11 @@
  *
  *= require_tree .
  *= require_self
+
+ *= require owl.carousel
+ *= require owl.theme
+
  */
-  
 @import 'reset';
 /* app/assets/stylesheets/application.scss */
 @import "font-awesome-sprockets";
