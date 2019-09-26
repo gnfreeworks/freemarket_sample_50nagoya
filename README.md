@@ -9,7 +9,6 @@
 - $ rake db:migrate
 - $ rake db:seed
 
-
 # README DB Design
 ## products テーブル (商品テーブル)
 |Column         |  description(J)        |Type      |Options        |
@@ -91,7 +90,7 @@
 - belongs_to :medium_category
 - belongs_to :smail_category
 - has_many   :sizes, through: :size_categories
-
+- 
 ## sizes_categories テーブル (sizes_categories テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
@@ -153,7 +152,7 @@
 - has_many   :todos
 - has_many   :goods
 - has_many   :users, through: :goods
-  
+-   
 ## comments テーブル (コメント テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
@@ -182,9 +181,7 @@
 - status [0:未読, 1:既読, 2:完了]
 
 ## users テーブル (ユーザーテーブル)
-
 installed devise
-
 |Column         |  description（J)     |Type      |Options           |
 |---------------|---------------------|----------|-------------------|
 |name           |名前|string|null: false|
@@ -233,7 +230,7 @@ installed devise
 |---------------|--------------------|----------|-------------------|
 |user_id        |ユーザーid|integer|null: false|
 |bank_id        |振込申請額|integer|null: false, foreign_key: true|
-|account_type_id|講座種別|integer|null: false|
+|acctoun_type_id|講座種別|integer|null: false|
 |branch_code    |支店コード|integer|null: false|
 |account_number |口座番号|integer|null: false|
 |account_fistname|講座名義(名字)|integer|null: false|
@@ -258,10 +255,10 @@ installed devise
 |comment                |コメント|text|null: false|
 
 ### Association
- - belongs_to :products_status
- - belongs_to :user
- - belongs_to :evaluation
-
+- belongs_to :products_status
+- belongs_to :user
+- belongs_to :evaluation
+  
 ## evaluations テーブル (評価 テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
@@ -287,4 +284,3 @@ installed devise
 
 ## Designer
 - Satoshi Shimizu
-
