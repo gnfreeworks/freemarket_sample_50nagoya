@@ -19,14 +19,18 @@ class MypageController < ApplicationController
 
   def cardadd
     @creditcard = PaymentMethod.new(credit_param)
-    if @creditcard.save
-      redirect_to cardcreate_user_mypage_index_path, notice:'クレジットカードを追加しました!'
+
+    if @creditcard.user_id = params[:user_id]
+      redirect_to cardcreate_user_mypage_index_path, alert:'既に同じカードが登録されています'
     else
-      redirect_to cardcreate_user_mypage_index_path, notice:'もう一度入力して下さい'
+      if @creditcard.save
+        redirect_to cardcreate_user_mypage_index_path, notice:'クレジットカードを追加しました!'
+      else
+        redirect_to cardcreate_user_mypage_index_path, notice:'もう一度入力して下さい'
+      end
     end
-
   end
-
+ 
   def profile
     @user = User.find(1)
   end
