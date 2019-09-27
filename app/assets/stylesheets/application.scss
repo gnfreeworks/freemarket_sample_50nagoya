@@ -13,7 +13,9 @@
  *= require_self
  *= require common/btn.scss
  *= require_tree .
-*/
+ *= require owl.carousel
+ *= require owl.theme
+ */
 
 @import 'reset';
 /* app/assets/stylesheets/application.scss */

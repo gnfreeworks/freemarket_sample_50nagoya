@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root 'products#index'
   
   resources :products
+
+  get 'products_statuses' => 'products_statuses#index'
+
   resources :users, only: :index do
     resources :mypage, only: :index do
       collection do 
@@ -15,4 +18,5 @@ Rails.application.routes.draw do
       end
     end
   end
+
 end

@@ -1,0 +1,19 @@
+.footer
+  .footer__top
+    .footer__top__contaner
+      .footer__top__contaner__left
+        %h1 スマホでかんたんフリマアプリ
+        %p 今すぐ無料ダウンロード！
+        .footer__top__contaner__left__icon
+          .footer__top__contaner__left__icon__mercari
+            = image_tag '/images/custom-banner-icon.png'
+          .footer__top__contaner__left__icon__link
+            %ul
+              %li
+                = link_to '#' do
+                  = image_tag '/images/app-store.png'
+              %li
+                = link_to '#' do
+                  = image_tag '/images/google-play.png'
+      .footer__top__contaner__right
+        = image_tag '/images/download_content_pc.png' 
