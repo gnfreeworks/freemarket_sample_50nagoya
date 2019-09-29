@@ -9,7 +9,7 @@
         .settings-payment-list
       %section.settings-add-card
         .l-single-content
-          = link_to cardcreate_user_mypage_index_path, class: 'btn-default btn-red submit_button', method: :get, params: { id: @user.id } do
+          = link_to cardCreate_user_mypage_index_path, class: 'btn-default btn-red submit_button', method: :get, params: { id: @user.id } do
             %i.far.fa-credit-card
               クレジットカードを追加する
       .settings-not-regist

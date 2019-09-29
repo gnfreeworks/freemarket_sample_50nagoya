@@ -1,7 +1,7 @@
 .l-content
   %section.l-chapter-container
     %h2.l-chapter-head クレジットカード情報入力
-    = form_for @creditcard, url: cardadd_user_mypage_index_path, html: {class: 'l-single-inner registration-form'} do |f|
+    = form_for @creditcard, url: cardAdd_user_mypage_index_path, html: {class: 'l-single-inner registration-form'} do |f|
       .l-single-content
         .form-group
           = f.label 'カード番号', class: 'payment_card_no'

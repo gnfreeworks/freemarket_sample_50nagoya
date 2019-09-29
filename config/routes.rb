@@ -7,13 +7,12 @@ Rails.application.routes.draw do
 
   resources :users, only: :index do
     resources :mypage, only: :index do
-      collection do 
-        get   'notification'
+      collection do
         get   'profile'
-        post  'profileupdate'
+        post  'profileUpdate'
         get   'card'
-        get   'cardcreate'
-        post  'cardadd'
+        get   'cardCreate'
+        post  'cardAdd'
 
       end
     end

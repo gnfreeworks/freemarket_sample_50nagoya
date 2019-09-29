@@ -1,6 +1,6 @@
 class MypageController < ApplicationController
 
-  before_action :set_month_year, only: [:cardcreate, :cardadd]
+  before_action :setMonthYear, only: [:cardCreate, :cardAdd]
 
   def index
     @user = User.find(1)
@@ -12,23 +12,23 @@ class MypageController < ApplicationController
     @user = User.find(1)
   end
   
-  def cardcreate
+  def cardCreate
     @user = User.find(1)
     @creditcard = PaymentMethod.new()
   end
 
-  def cardadd
-    @creditcard = PaymentMethod.new(credit_param)
+  def cardAdd
+    @creditcard = PaymentMethod.new(creditParam)
 
     if @creditcard.user_id = params[:user_id]
       flash.now[:alert] = '既に同じカードが存在するため登録できません'
-      render :cardcreate
+      render :cardCreate
     else
       if @creditcard.save
-        redirect_to cardcreate_user_mypage_index_path, notice:'クレジットカードを追加しました!'
+        redirect_to cardCreate_user_mypage_index_path, notice:'クレジットカードを追加しました!'
       else
         flash.now[:alert] = 'もう一度入力して下さい'
-        render :cardcreate
+        render :cardCreate
       end
     end
   end
@@ -37,10 +37,10 @@ class MypageController < ApplicationController
     @user = User.find(1)
   end
 
-  def profileupdate
+  def profileUpdate
     @user = User.find(params[:id])
 
-    if @user.update_attributes(user_profile)
+    if @user.update_attributes(userProfile)
       redirect_to profile_user_mypage_index_path, notice:'変更しました!!'
     else
       flash.now[:alert] = 'もう一度入力して下さい。'
@@ -50,16 +50,16 @@ class MypageController < ApplicationController
   end
   
   private
-  def set_month_year
+  def setMonthYear
     @month = ['--', '1',  '2',  '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
     @year =  {'--': '--', '19': '2019', '20': '2020', '21': '2021', '22': '2022', '23': '2023', '24': '2024', '25': '2025', '26': '2026', '27': '2027', '28': '2028', '29': '2029'}
   end
 
-  def user_profile
+  def userProfile
     params.permit(:nickname, :profiletext)
   end
 
-  def credit_param
+  def creditParam
     params.require(:payment_method).permit(:card_number, :expiration_month, :expiration_year, :secrity_code).merge(user_id: params[:user_id])
   end
 
