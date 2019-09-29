@@ -1,0 +1,571 @@
+* {
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+}
+
+//float回り込み解除
+.clearfix:after{
+  clear:both;
+  content:'.';
+  display:block;
+  font-size:0;
+  height:0;
+  line-height:0;
+  visibility:hidden
+}
+
+.clearfix{zoom:1}
+
+
+.main_container {
+  background-color: #EEEEEE;
+}
+
+.l-single-container {
+  background: #fff;
+  @media screen and (min-width: 768px){
+    width: 620px;
+    margin: 0 auto;
+  }
+}
+
+.owl {
+  &-carousel {
+    position: relative;
+
+    &-stage-outer {
+      overflow: hidden;
+    }
+
+
+
+    .owl-product {
+      min-height: 1px;
+      float: left;
+      user-select: none;
+    }
+
+    .owl-product-inner {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding: 0 0 100%;
+    }
+
+    .is-higher-height {
+      min-height: 300px;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: auto;
+        height: 100%;
+        margin: auto;
+      }
+    }
+
+    .owl-nav {
+      display: none;
+    }
+    .owl-prev {
+      display: none;
+    }
+    .owl-next {
+      display: none;
+    }
+  }
+
+  &-stage {
+    max-width: 75%;
+    background-color: #eee8aa;
+    margin: 0 auto;
+  }
+
+  &-dots {
+    line-height: 0;
+    font-size:0;
+  }
+  &-dot {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+
+    @media screen and (min-width: 768px) {
+      width: 60px;
+      height: 60px;
+      max-height: none;
+    }
+
+    &-inner {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding: 0 0 100%;
+      pointer-events: none;
+      
+      @media screen and (min-width: 768px){
+        position: static;
+        width: auto;
+        height: auto;
+        padding: 0;
+      }
+    }
+    img.is-higher-height {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(0, -50%);
+    }
+  }
+}
+
+.product {
+  &-name {
+    font-size: 24px;
+    text-align: center;
+    word-wrap: break-word;
+    line-height: 1.4;
+  }
+
+  &-main-content {
+    margin: 16px 0 0;
+  }
+  
+  &-photo {
+    position: relative;
+    min-width: 280px;
+    max-width: 360px;
+    min-height: 280px;
+    margin: 0 auto;
+    background: #fafafa;
+
+    @media screen and (min-width: 768px){
+      float: left;
+      min-width: 300px;
+      max-width: 300px;
+      min-height: 375px;
+    }
+  }
+
+  &-box-container {
+    padding: 24px 16px 55px 16px;
+    background: #fff;
+    margin: 40px auto 0;
+
+    @media screen and (min-width: 768px){
+      padding: 24px 40px 40px;
+    }
+  }
+
+  &-main-content {
+    margin: 16px 0 0;
+  }
+  
+  &-detail-table {
+    width: 100%;
+    max-width: 360px;
+    margin: 8px auto 0;
+    border-collapse: collapse;
+    border: 1px solid #f5f5f5;
+
+    @media screen and (min-width: 768px){
+      float: right;
+      max-width: 300px;
+      height: 420px;
+      margin: 0 auto;
+    }
+  }
+
+
+  &-price-box {
+    margin: 24px 0 0;
+    &_price {
+      margin: 0 8px 0 0;
+      font-size: 32px;
+
+      @media screen and (min-width: 768px){
+        margin: 0 16px 0 0;
+        font-size: 50px;
+      }
+    }
+    &_tax {
+      font-size: 10px;
+    }
+    &_shipping-fee {
+      display: inline-block;
+      font-size: 16px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+  }
+
+  &-detail-table {
+    th {
+      width: 39%;
+      text-align: left;
+      font-weight: 400;
+      background: #fafafa;
+
+      @media screen and (min-width: 768px){
+        padding: 8px;
+      }
+    }
+
+    td {
+      width: 61%;
+      background: #fff;
+
+      @media screen and (min-width: 768px){
+        padding :8px;
+      }
+    }
+  }
+
+  &-buy-btn {
+    display: block;
+    margin-top: 16px;
+    background: #ea352d;
+    font-size: 14px;
+    color: #fff;
+    line-height: 56;
+    text-align: center;
+    font-weight: 600;
+    text-decoration: none;
+
+    @media screen and (min-width: 768px){
+      font-size: 24px;
+      line-height: 60px;
+    }
+  }
+
+  &-description {
+    line-height: 1.5;
+    padding: 24px 0 0;
+
+    @media screen and (min-width: 768px){
+      padding: 32px 0 0;
+    }
+
+    &-inner {
+      white-space: pre-wrap;
+    }
+  }
+
+  &-button{
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 40px;
+    font-size: 11px;
+
+    &-container {
+      margin: 16px 0 0;
+      font-size: 0;
+    }
+
+    &-container a {
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    &-container span {
+      display: inline-block;
+      margin: 1px 0 0 8px;
+      font-size: 12px;
+      vertical-align: middle;
+      @media screen and (min-width: 768px){
+        font-size: 14px;
+      }
+    }
+    
+    &-container i {
+      font-size: 14px;
+      vertical-align: middle;
+    }
+
+    &-left {
+      @media screen and (min-width: 768px){
+        float: left;
+      }
+    }
+
+    &-right {
+      margin: 16px 0 0;
+      @media screen and (min-width: 768px){
+        float: right;
+        margin: 8px 0 0;
+      }
+    }
+
+    &-like {
+      color: rgb(51, 51, 51);
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgb(245, 245, 245);
+      border-image: initial;
+      background: rgb(245, 245, 245);
+    }
+
+    &-report {
+      color: rgb(51, 51, 51);
+      margin: 0px 0px 0px 8px;
+      background: rgb(245, 245, 245);
+      @media screen and (min-width: 768px){
+        margin: 0px 0px 0px 16px;
+      }
+    }
+  }
+
+  &-detail-message {
+    margin: 8px auto;
+
+    @media screen and (min-width: 768px){
+      width: 700px;
+    }
+  }
+
+}
+
+.message-content {
+  background: #fff;
+  padding: 24px 7.5%;
+  @media screen and (min-width: 768px){
+    padding: 24px;
+  }
+}
+
+.message-form {
+  width:600px;
+  margin: 0 auto;
+
+  p {
+    padding: 8px;
+    font-size: 14px;
+    background: #fff6de;
+  }
+
+  .textarea-default {
+    margin: 8px 0 0;
+  }
+}
+
+.message-submit {
+    width: 100%;
+    margin: 8px 0 0;
+    text-align: center;
+}
+
+.textarea-default {
+  display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: 104px;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+.go-number-likes {
+  padding: 4px 0;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: center;
+  color: #fff;
+  background: #05B0B4;
+}
+
+.product-user-ratings:first-child {
+  margin: 0;
+}
+
+.product-user-ratings {
+  display: inline-block;
+  margin: 8px 0 0 16px;
+}
+
+.product-social-media-box {
+  margin: 24px 0 0;
+  background: #fff;
+  padding: 16px 0 8px;
+
+  @media screen and (min-width: 768px) {
+    margin: 24px auto;
+    padding: 32px 0 24px;
+    width: 700px;
+  }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.social-media-box {
+  margin: 16px 0 0;
+  text-align: center;
+
+  li,a {
+    display: inline;
+    text-decoration: none;
+  }
+}
+
+
+.nav-product-link-prev-next {
+  margin: 24px 4% 0;
+  @media screen and (min-width: 768px){
+      margin: 24px auto 0;
+      width: 700px;
+  }
+}
+
+.nav-product-link-prev-next li {
+    position: relative;
+    width: 43%;
+    word-wrap: break-word;
+}
+
+.nav-product-link-prev {
+    float: left;
+    padding: 0;
+}
+
+.nav-product-link-next {
+    float: right;
+    padding: 0;
+    text-align: right;
+}
+
+
+
+.f14 {
+  font-size: 14px;
+
+  @media screen and (min-width: 768px){
+    font-size: 18px;
+  }
+}
+
+.active {
+  opacity: 1;
+  cursor: default;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+div {
+  display: block;
+}
+
+form {
+  display: block;
+  margin-top: 0em;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+ul,ol {
+  list-style: none;
+}
+
+a {
+  color: #0099e8;
+}
+
+
+
+
+// icon 設定
+.icon {
+  &-lauph{
+    color: #EF5185;
+    &:before {
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+    }
+  }
+
+  &-meh {
+    color: #FAAA32;
+    &:before {
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+    }
+  }
+
+  &-frown {
+    color: #6AB4D8;
+    &:before {
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+    }
+  }
+
+  &-like {
+    color: #CDCDCD;
+    &:before {
+      font-family: 'Font Awesome 5 Free';
+    }
+  }
+
+  &-like {
+    color: #CDCDCD;
+  }
+
+  &-facebook {
+    color: #375285;
+    &:before {
+      font-family: 'Font Awesome 5 Brands';
+    }
+  }
+
+  &-twitter {
+    color: #5D9DC9;
+    &:before {
+      font-family: 'Font Awesome 5 Brands';
+    }
+  }
+
+  &-line {
+    color: #03C138;
+    &:before {
+      font-family: 'Font Awesome 5 Brands';
+    }
+  }
+
+  &-pinterest {
+    color: #A9262A;
+    &:before {
+      font-family: 'Font Awesome 5 Brands';
+    }
+  }
+}
