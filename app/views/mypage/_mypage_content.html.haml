@@ -18,12 +18,12 @@
     %ul.mypage-tabs
       %li.tab_item.active
         %h3.bold
-          %a{href: ''}
+          = link_to '#' do
             お知らせ
             %span.mypage-nav-number.hidden-large
       %li.tab_item
         %h3.bold
-          %a{href: ''}
+          = link_to '#' do
             やることリスト
     .tab-content
       %ul#mypage-tab-notification.mypage-item-list.tab-pane.show
@@ -88,7 +88,7 @@
                     10 日前
             %i.fas.fa-angle-double-right
           %li.mypage-go-list
-            %a{href: '/jp/mypage/notification/'}
+            = link_to '/jp/mypage/notification/' do
               一覧を見る
       %ul#mypage-tab-todo.mypage-item-list.tab-pane
         %li.mypage-item-not-found.bold
@@ -99,11 +99,11 @@
     %ul.mypage-tabs
       %li.transaction_tab.active
         %h3.bold
-          %a{href: '#mypage-tab-transaction-now'}
+          = link_to '#mypage-tab-transaction-now' do
             取引中
       %li.transaction_tab
         %h3.bold
-          %a{href: '#mypage-tab-transaction-old'}
+          = link_to '#mypage-tab-transaction-old' do
             過去の取引
     .tab-content
       %ul#mypage-tab-transaction-now.mypage-item-list.transaction-list.tab-pane.show
