@@ -1,0 +1,196 @@
+.main_container
+  %section.product-box-container.l-single-container
+    %h1.product-name ZUCCa キャンバススニーカー
+    .product-main-content.clearfix
+      .product-photo
+        .owl-carousel.owl-loaded.owl-drag
+          .owl-stage-outer
+            .owl-stage{style:"left:0px,width:2400px"}
+              .owl-product
+                .owl-product-inner.is-higher-height
+                  = image_tag 'm50773888918_1.jpg',class: "owl-lazy",alt:"ZUCCa キャンパススニーカー",style:"opacity :1;"
+          
+          .owl-nav
+            .owl-prev
+              prev
+            .owl-next
+              next
+              
+          .owl-dots
+            .owl-dot
+              .owl-dot-inner
+                = image_tag 'm50773888918_1.jpg',class: "is-higher-height",height: "50"
+            .owl-dot
+              .owl-dot-inner
+                = image_tag 'm50773888918_2.jpg',class: "is-higher-height",height: "50"
+            .owl-dot
+              .owl-dot-inner
+                = image_tag 'm50773888918_3.jpg',class: "is-higher-height",height: "50"
+            .owl-dot
+              .owl-dot-inner
+                = image_tag 'm50773888918_4.jpg',class: "is-higher-height",height: "50"
+            .owl-dot
+              .owl-dot-inner
+                = image_tag 'm50773888918_5.jpg',class: "is-higher-height",height: "50"
+            .owl-dot
+              .owl-dot-inner
+                = image_tag 'm50773888918_6.jpg',class: "is-higher-height",height: "50"
+            .owl-dot
+              .owl-dot-inner
+                = image_tag 'm50773888918_7.jpg',class: "is-higher-height",height: "50"
+
+        .go-number-likes
+          現在、4人がこの商品にいいね！しています
+
+      %table.product-detail-table
+        %tbody
+          %tr
+            %th 出品者
+            %td
+              = link_to '#' do
+                こげぱん
+              %div 
+                .product-user-ratings
+                  = icon("fas", "laugh",class: "icon-lauph")
+                  %span 41
+                .product-user-ratings
+                  = icon("fas", "meh",class: "icon-meh")
+                  %span 0
+                .product-user-ratings
+                  = icon("fas", "frown",class: "icon-frown")
+                  %span 0
+          %tr
+            %th カテゴリー
+            %td
+              = link_to '#' do
+                メンズ
+              = link_to '#' do
+                .product-detail-table-sub-category
+                  = icon("fas", "chevron-right")
+                  靴
+              = link_to '#' do
+                .product-detail-table-sub-sub-category
+                  = icon("fas", "chevron-right")
+                  スニーカー
+          %tr
+            %th ブランド
+            %td
+              = link_to '#' do
+                ズッカ
+          %tr
+            %th 商品のサイズ
+            %td
+              27cm
+          %tr
+            %th 商品の状態
+            %td
+              新品、未使用
+          %tr
+            %th 配送料の負担
+            %td
+              送料込み(出品者負担)
+          %tr
+            %th 配送の方法
+            %td
+              らくらくメルカリ便
+          %tr
+            %th 配送元地域
+            %td
+              = link_to '#' do
+                愛知県
+          %tr
+            %th 発送日の目安
+            %td
+              1~2日で発送
+
+    .product-price-box.text-center
+      %span.product-price-box_price.bold
+        ¥6,400
+      %span.product-price-box_tax
+        (税込)
+      %span.product-price-box_shipping-fee
+        送料込み
+    = link_to '#',class:"product-buy-btn" do
+      購入画面に進む
+
+    .product-description.f14
+      %p.product-description-inner
+        ズッカ スニーカー
+        ZUCCa キャンバススニーカー
+
+        キャンバス素材を使用したハイカットスニーカー。ソール厚めで特徴的なアイテム。
+
+        &nbsp;
+        新品未使用 箱あり
+
+        定価：17,280円
+
+        色：紺色
+
+
+        サイズ：メンズM(26.5cm～27.5cm位)
+
+        普段ナイキは26.5cmを履いてますが
+
+        大きかったので履かずに保管してました。
+
+        &nbsp;
+
+        素人保管のため神経質な方、細かい事を気にされる方は購入をお控え下さい。
+
+        お値引き交渉不可とさせていただきます。
+        
+      .product-button-container.clearfix
+        .product-button-left
+          %button{class:"product-button product-button-like"}
+            = icon("far fa-heart","heart",class:"icon-like")
+            %span{class:"product-button-container span"} いいね！
+          = link_to '#',class:"product-button product-button-report" do
+            = icon("far fa-flag","flag")
+            %span{class:"product-button-container span"} 不適切な商品の報告
+        .product-button-right
+          = link_to '#',class:"item-button-container a" do
+            = icon("fas fa-lock","lock")
+            %span{class:"product-button-container span"} あんしん・あんぜんへの取り組み
+
+  .product-detail-message
+    .message-container
+      .message-content
+        %form{class:"message-form",method:"POST"}
+          %p
+            相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          %textarea{type:"text",name:"body",class:"textarea-default"}
+          %button{type:"submit",class:"message-submit btn-default btn-gray"}
+            コメントする
+
+  %ul.nav-product-link-prev-next.clearfix
+    %li.nav-product-link-prev
+      = link_to '#' do
+        = icon("fas", "chevron-left")
+        短期攻略センター 地学基礎
+    %li.nav-product-link-next
+      = link_to '#' do
+        ポーチ【ハワイ限定】
+        = icon("fas", "chevron-right")
+
+  .product-social-media-box
+    .text-center
+    %ul.social-media-box
+      %li
+        = link_to '#' do
+          = icon("fab fa-3x", "facebook-square",class:"icon-facebook")
+      %li
+        = link_to '#' do
+          = icon("fab fa-3x", "twitter-square",class:"icon-twitter")
+      %li
+        = link_to '#' do
+          = icon("fab fa-3x", "line",class:"icon-line")
+      %li
+        = link_to '#' do
+          = icon("fab fa-3x", "pinterest-square",class:"icon-pinterest")
+          
+  
+  .products-in-user-profile
+    //この出品者の他の商品を表示
+
+  

@@ -1,0 +1,19 @@
+.notification {
+
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  opacity: 1;
+
+  .notice {
+    background-color:#dff0d8;
+    color: #468877;
+    padding: 20px;
+  }
+
+  .alert {
+    background-color: rgb(243, 149, 149);
+    color: rgb(243, 28, 0);
+    padding: 20px;
+  }
+}

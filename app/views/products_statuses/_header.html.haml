@@ -1,0 +1,29 @@
+.header
+  .header__top
+    .header__top__icon
+      = image_tag '/images/image.png', alt: '', height: '', width: '', class: ''
+    %form.header__top__form{action: ''}
+      %input{type: 'text', placeholder: '何かお探しですか？'}
+  .header__bottome
+    .header__bottome__left
+      %ul
+        %li 
+          = link_to '#' do
+            カテゴリーから探す
+        %li
+          = link_to '#' do
+            ブランドから探す
+    .header__bottome__right
+      %ul
+        %li.header__bottome__right--like
+          = link_to '#' do
+            いいね！一覧
+        %li
+          = link_to '#' do
+            お知らせ
+        %li
+          = link_to '#' do
+            やることリスト
+        %li
+          = link_to '#' do
+            マイページ
