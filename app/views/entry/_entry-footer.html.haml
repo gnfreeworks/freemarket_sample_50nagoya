@@ -1,8 +1,9 @@
-.entry-footer
-  .entry-footer__top
-    %ul
-      %li プライバシーポリシー
-      %li メルカリ利用規約
-      %li 特定商取引に関する表記
-  .entry-footer__bottome
-    = image_tag '/images/logo-gray.svg', alt: '', class: ''
+.single-footer
+  %nav
+    %ul.clearfix
+      %li
+        = link_to 'メルカリ利用規約', '#'
+      %li 
+        = link_to '特定商取引に関する表記', '#'
+  = link_to '#', class: 'single-footer-logo' do
+    = image_tag '/images/logo-gray.svg', width: '80', hight: '65', alt: 'mercari'

@@ -244,16 +244,7 @@ ActiveRecord::Schema.define(version: 20190921032443) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                                null: false
-    t.string   "kananame",                            null: false
-    t.date     "birthdaydate",                        null: false
-    t.string   "nickname"
-    t.string   "maildaddress",                        null: false
-    t.string   "password",                            null: false
-    t.text     "profiletext",           limit: 65535
-    t.integer  "authenticphonenumber",                null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "nickname",                            null: false
     t.string   "first_name",                          null: false
     t.string   "last_name",                           null: false
     t.string   "first_kananame",                      null: false
@@ -261,18 +252,21 @@ ActiveRecord::Schema.define(version: 20190921032443) do
     t.integer  "birthday_year",                       null: false
     t.integer  "birthday_month",                      null: false
     t.integer  "birthday_day",                        null: false
-    t.integer  "address_phone_number"
-    t.string   "address_first_name",                  null: false
-    t.string   "address_last_name",                   null: false
-    t.string   "address_firt_kananame",               null: false
-    t.string   "address_last_kananame",               null: false
-    t.integer  "address_zipcode",                     null: false
-    t.string   "address_prefecture",                  null: false
-    t.string   "address_block",                       null: false
+    t.string   "maildaddress",                        null: false
+    t.string   "password"
+    t.text     "profiletext",           limit: 65535
+    t.string   "address_phone_number"
+    t.string   "address_first_name"
+    t.string   "address_last_name"
+    t.string   "address_firt_kananame"
+    t.string   "address_last_kananame"
+    t.integer  "address_zipcode"
+    t.string   "address_prefecture"
+    t.string   "address_block"
     t.string   "address_number"
     t.string   "address_building"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_foreign_key "buyer_evaluations", "products_statuses"

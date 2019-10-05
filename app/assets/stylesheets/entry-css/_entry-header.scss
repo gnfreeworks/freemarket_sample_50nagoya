@@ -1,8 +1,33 @@
-.entry-header {
+.single-header {
   text-align: center;
-  height: 100px;
-  img {
+  @media screen and (min-width: 768px) {
+    height: 128px;
+  }
+  a {
     display: inline-block;
-    height: 100%;
+    width: 120px;
+    height: 33px;
+    margin: 0 8px 0 0;
+    line-height: 33px;
+    @media screen and (min-width: 768px) {
+      width: 185px;
+      height: 49px;
+      line-height: 49px;
+    }
+  }
+  h1 {
+    display: inline-block;
+    margin: 11px 0 12px;
+    @media screen and (min-width: 768px) {
+      margin: 40px 0 0;
+    }
+  }
+  img {
+    width: 120px;
+    height: 33px;
+    @media screen and (min-width: 768px) {
+      width: 185px;
+      height: 49px;
+    }
   }
 }

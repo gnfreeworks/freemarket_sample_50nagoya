@@ -10294,9 +10294,9 @@ Product.create(name: '【sample】立体裁断スキッパーシャツブラウ�
 ProductsStatus.create(product_id: '1', buyer_id: '1', seller_id: '2', selling_status: '0', dealing_status: '0' )
 
 ## User table Smaple data
-User.create(name: '山本 太郎', kananame: 'ヤマモト タロウ', nickname: 'ヤマ', birthdaydate: '2019-08-31', maildaddress: 'yamamoto@gmail.com')
-User.create(name: '田中 次郎', kananame: 'タナカ ジロウ', nickname: 'タナ', birthdaydate: '2019-08-31' , maildaddress: 'tanaka@gmail.com')
-User.create(name: '岡田 三郎', kananame: 'オカダ サンロウ', nickname: 'オカ', birthdaydate: '2019-08-31' , maildaddress: 'tanaka@gmail.com')
+User.create(nickname: 'ヤマ', first_name: '山本',last_name: '太郎',  first_kananame: 'ヤマモト', last_kananame: 'タロウ', birthday_year: '2019',birthday_month: '8',  birthday_day: '12', maildaddress: 'yamamoto@gmail.com', profiletext: '発送は平日週１になります、曜日は週毎に異なります。')
+User.create(nickname: 'タナ', first_name: '田中',last_name: '次郎',  first_kananame: 'タナカ', last_kananame: 'ジロウ', birthday_year: '2019',birthday_month: '12',  birthday_day: '12', maildaddress: 'tanaka@gmail.com', profiletext: '▽コメント逃げやめてください')
+User.create(nickname: 'オカ', first_name: '岡田',last_name: '三郎',  first_kananame: 'オカダ', last_kananame: 'サンロウ', birthday_year: '2019',birthday_month: '8',  birthday_day: '12', maildaddress: 'okada@gmail.com', profiletext: '発送は平日週１になります、曜日は週毎に異なります。')
 
 ## buyer_evaluations テーブル (出品者評価 テーブル)
 BuyerEvaluation.create(products_status_id: '1', user_id: '1', evaluation_id: '1', comment: 'まあまあ発送は早かった')
