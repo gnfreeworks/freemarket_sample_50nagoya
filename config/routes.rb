@@ -4,13 +4,13 @@ Rails.application.routes.draw do
   resources :products
   resources :signup do
     collection do
-      get 'step0'
-      get 'step1'
-      get 'step2'
-      get 'step3'
-      get 'step4'
-      get 'step5'
-      get 'done' 
+      get   'step0'
+      get   'step1'
+      post  'step2'
+      post  'step3'
+      post  'step4'
+      post  'step5'
+      post  'done' 
     end
   end
 

@@ -1,33 +1,33 @@
-.contents
-  .header
-    %img
-      = image_tag '/assets/logo_mercari.png', alt: 'mercari', class: 'header__img'
-    .header__progress
-      %li.header__progress__advance.active
-        会員情報
-        .header__progress__advance__point
-      %li.header__progress__advance.active
-        電話番号認証
-        .header__progress__advance__point
-      %li.header__progress__advance
-        お届け先住所入力
-        .header__progress__advance__point
-      %li.header__progress__advance
-        支払い方法
-        .header__progress__advance__point
-      %li.header__progress__advance
-        完了
-        .header__progress__advance__point
+.single-container
+  .single-header
+    = render '/entry/entry-header'
+    %nav.progress-bar.signup-bar
+      %ol.clearfix
+        %li
+          会員情報
+          .progress-status
+        %li
+          電話番号認証
+          .progress-status
+        %li.active
+          お届け先住所入力
+          .progress-status
+        %li
+          支払い方法
+          .progress-status
+        %li
+          完了
+          .progress-status
   .main-content
     .main-content__title
       %h2 電話番号認証
     .main-content__form
-      = form_for @user, url: step4_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
+      = form_for @user, url: step4_signup_index_path, html: {class: 'first-main__box'} do |f|
         .main-content__form__box
           .form__block
-            = f.label :認証番号
+            = f.label :authorization_code, '認証番号'
             %br/
-            %textarea.fake-box 認証番号を入力
+            = f.text_field :authorization_code, {class: 'fake-box', placeholder: '認証番号を入力' }
           .form__block__text__main.phone
             SNSで届いた認証番号を入力してください
           .form__actions

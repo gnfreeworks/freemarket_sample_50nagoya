@@ -1,8 +1,4 @@
 .single-footer {
-  position: absolute;
-  right: 0;
-  left: 0;
-  bottom: 0;
   z-index: 1;
   height: 200px;
   padding: 40px 0;
@@ -21,7 +17,7 @@
   }
   li {
     margin: 16px 0 0;
-    font-size: 16px;
+    font-size: 12px;
     @media screen and (min-width: 768px) {
       display: inline-block;
       margin: 0 0 0 16px;

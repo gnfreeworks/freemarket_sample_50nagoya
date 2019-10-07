@@ -9,4 +9,14 @@ class User < ApplicationRecord
   has_many    :sale_orders
   has_many    :transfer_orders
   has_many    :buyer_evaluations
+  
+  attr_writer :password_field
+  attr_reader :password_field
+  
+  attr_writer :tell_number
+  attr_reader :tell_number
+  
+  attr_writer :authorization_code
+  attr_reader :authorization_code
+
 end
