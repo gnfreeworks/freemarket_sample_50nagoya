@@ -9,10 +9,10 @@
         %li
           電話番号認証
           .progress-status
-        %li
+        %li.active
           お届け先住所入力
           .progress-status
-        %li.active
+        %li
           支払い方法
           .progress-status
         %li
@@ -29,23 +29,23 @@
             %span.form__block__required
               必須
             %br/
-            = f.text_field :address_first_name, class: 'text_field'
-            = f.text_field :address_last_name, class: 'text_field'
+            = f.text_field :address_first_name, class: 'text_field', value:'丹下'
+            = f.text_field :address_last_name, class: 'text_field', value:'綾'
 
           .form__block
             = f.label :お名前カナ
             %span.form__block__required
               必須
             %br/
-            = f.text_field :address_firt_kananame, class: 'text_field'
-            = f.text_field :address_last_kananame, class: 'text_field'
+            = f.text_field :address_firt_kananame, class: 'text_field', value:'タンゲ'
+            = f.text_field :address_last_kananame, class: 'text_field', value:'タンゲ'
 
           .form__block
             = f.label :郵便番号
             %span.form__block__required
               必須
             %br/
-            = f.number_field :address_zipcode, placeholder:'例）123-4567', class: 'text_field'
+            = f.number_field :address_zipcode, placeholder:'例）123-4567', class: 'text_field', value:'4444444'
           .form__block
             = f.label :都道府県
             %span.form__block__required
@@ -56,19 +56,19 @@
             %span.form__block__required
               必須
             %br/
-            = f.text_field :address_prefecture, placeholder: '例）横浜市緑区', class: 'text_field'
+            = f.text_field :address_prefecture, placeholder: '例）横浜市緑区', class: 'text_field', value:'横浜市緑区'
           .form__block
             = f.label :番町
             %span.form__block__required
               必須
             %br/
-            = f.text_field :address_block, placeholder: '例）青山1-1-1', class: 'text_field'
+            = f.text_field :address_block, placeholder: '例）青山1-1-1', class: 'text_field', value:'3番'
           .form__block
             = f.label :建物名
             %span.form__block__discretion
               任意
             %br/
-            = f.text_field :address_number, placeholder: '例）柳ビル103', class: 'text_field'
+            = f.text_field :address_number, placeholder: '例）柳ビル103', class: 'text_field', value:'ビル302'
           .form__block
             = f.label :電話
             %span.form__block__discretion

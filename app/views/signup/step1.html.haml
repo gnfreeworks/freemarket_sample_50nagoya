@@ -74,11 +74,16 @@
             %span.form__block__required
               必須
             %br/
-            .birthday-select
-              .select-wrap
-                /*!= sprintf(f.date_select(:birthdaydate, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year - 119), prompt: "--", class: 'select-date', date_separator: '%s'),'年','月')+'日'
+            .birthday-select-wrap
+              != sprintf(f.date_select(:birthday_date,
+                                        use_month_numbers: true,
+                                        include_blank: '%i.fas.fa-arrow-down',
+                                        start_year: Time.now.year,
+                                        end_year: (Time.now.year - 30),
+                                        with_css_classes: 'XXXX', date_separator: '%s'),
+                                        '年','月')+'日'
             .form-separate
-
+            
           .form__block
             %p.form__block__info
               ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。

@@ -578,8 +578,12 @@ input {
   font-weight: 800;
 }
 
-.settings-payment-list {
-
+.settings-payment-list li {
+  padding: 24px 0;
+  border-bottom: 1px solid #eee;
+}
+.settings-payment-list li form {
+  position: relative;
 }
 
 .settings-add-card {
@@ -726,12 +730,12 @@ ul ol {
   cursor: pointer;
 }
 
-select {
-  outline: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
+// select {
+//   outline: 0;
+//   -webkit-appearance: none;
+//   -moz-appearance: none;
+//   appearance: none;
+// }
 
 .signup-form-expire .select-wrap .fa-arrow-down {
   font-size: 20px;
@@ -800,4 +804,39 @@ select {
   transition: all ease-out .3s;
   visibility: hidden;
   opacity: 0;
+}
+
+.settings-payment-num, .settings-payment-num {
+  margin: 8px 0 0;
+  font-size: 16px;
+}
+
+.settings-payment-remove {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px 6px;
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #ea352d;
+  color: #ea352d;
+  }
+
+.select-payment select {
+    padding-right: 3px;
+    background: #fff;
+    display: inline-block;
+    margin: 8px 10px;
+    width: calc(38% - 2px);
+    height:48px;
+    border-radius:4px;
+    border: 1px solid #ccc;
+    background: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.settings-add-card a i {
+  margin-right: 16px;
 }

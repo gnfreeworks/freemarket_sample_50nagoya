@@ -122,3 +122,21 @@ label{
 .form__actions{
   margin-bottom: 50px;
 }
+
+.birthday-select-wrap 
+  select {
+    position: relative;
+    background: #fff;
+    display: inline-block;
+    margin: 8px 0 0;
+    width: calc(30% - 17px);
+
+    z-index:2;
+    height:48px;
+    border-radius:4px;
+    border: 1px solid #ccc;
+    background: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    cursor: pointer;
+}

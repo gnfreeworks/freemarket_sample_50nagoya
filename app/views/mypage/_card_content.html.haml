@@ -6,12 +6,24 @@
       %section
         .l-single-content
           %h3.l-chapter-sub-head クレジットカード一覧
-        .settings-payment-list
       %section.settings-add-card
         .l-single-content
-          = link_to cardCreate_user_mypage_index_path, class: 'btn-default btn-red submit_button', method: :get, params: { id: @user.id } do
-            %i.far.fa-credit-card
-              クレジットカードを追加する
+          - if @creditcard.nil?
+            = link_to cardCreate_user_mypage_index_path, class: 'btn-default btn-red submit_button', method: :get, params: { id: @user.id } do
+              %i.far.fa-credit-card
+                クレジットカードを追加する
+          - else
+            %ul.settings-payment-list
+              %li
+                = form_for @creditcard, url: cardAdd_user_mypage_index_path, html: {class: 'l-single-content'} do |f|
+                  %figure
+                    %img{ alt: "", src: "/images/visa.svg", height: "60", width: "60"}
+                  .settings-payment-num
+                    = "************ " + @creditcard_last4
+                  .settings-payment-num
+                    = @creditcard.expiration_date.strftime("%m") + '/' +  @creditcard.expiration_date.strftime("%y") 
+                  = f.submit "削除する", class: 'settings-payment-remove'
+                    
       .settings-not-regist
         = link_to '#', target: '_blank' do
           %span 支払い方法について

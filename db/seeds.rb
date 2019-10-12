@@ -10294,9 +10294,9 @@ Product.create(name: '【sample】立体裁断スキッパーシャツブラウ�
 ProductsStatus.create(product_id: '1', buyer_id: '1', seller_id: '2', selling_status: '0', dealing_status: '0' )
 
 ## User table Smaple data
-User.create(nickname: 'ヤマ', first_name: '山本',last_name: '太郎',  first_kananame: 'ヤマモト', last_kananame: 'タロウ', birthday_year: '2019',birthday_month: '8',  birthday_day: '12', maildaddress: 'yamamoto@gmail.com', profiletext: '発送は平日週１になります、曜日は週毎に異なります。')
-User.create(nickname: 'タナ', first_name: '田中',last_name: '次郎',  first_kananame: 'タナカ', last_kananame: 'ジロウ', birthday_year: '2019',birthday_month: '12',  birthday_day: '12', maildaddress: 'tanaka@gmail.com', profiletext: '▽コメント逃げやめてください')
-User.create(nickname: 'オカ', first_name: '岡田',last_name: '三郎',  first_kananame: 'オカダ', last_kananame: 'サンロウ', birthday_year: '2019',birthday_month: '8',  birthday_day: '12', maildaddress: 'okada@gmail.com', profiletext: '発送は平日週１になります、曜日は週毎に異なります。')
+User.create(nickname: 'ヤマ', first_name: '山本',last_name: '太郎',  first_kananame: 'ヤマモト', last_kananame: 'タロウ', birthday_date: '2019/01/01', maildaddress: 'yamamoto@gmail.com', profiletext: '発送は平日週１になります、曜日は週毎に異なります。')
+User.create(nickname: 'タナ', first_name: '田中',last_name: '次郎',  first_kananame: 'タナカ', last_kananame: 'ジロウ', birthday_date: '2019/01/01', maildaddress: 'tanaka@gmail.com', profiletext: '▽コメント逃げやめてください')
+User.create(nickname: 'オカ', first_name: '岡田',last_name: '三郎',  first_kananame: 'オカダ', last_kananame: 'サンロウ', birthday_date: '2019/01/01', maildaddress: 'okada@gmail.com', profiletext: '発送は平日週１になります、曜日は週毎に異なります。')
 
 ## buyer_evaluations テーブル (出品者評価 テーブル)
 BuyerEvaluation.create(products_status_id: '1', user_id: '1', evaluation_id: '1', comment: 'まあまあ発送は早かった')
@@ -10306,7 +10306,7 @@ Good.create(products_status_id: '1', user_id: '2')
 Good.create(products_status_id: '1', user_id: '3')
 
 ## payment_methods テーブル(支払い方法 テーブル)
-PaymentMethod.create(user_id: '1', card_number: '239412349849', expiration_year: '12', expiration_month: '06', secrity_code:'987')
+PaymentMethod.create(user_id: '1', card_number: '239412349849', expiration_date: '2019/05/01', secrity_code:'987')
 
 ## comments テーブル (コメント テーブル)
 Comment.create(products_status_id: '1', user_id: '3', text: '値引きキボンヌ')

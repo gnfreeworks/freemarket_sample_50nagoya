@@ -103,12 +103,11 @@ ActiveRecord::Schema.define(version: 20190921032443) do
 
   create_table "payment_methods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.string   "card_number",      null: false
-    t.integer  "expiration_year",  null: false
-    t.integer  "expiration_month", null: false
-    t.integer  "secrity_code",     null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "card_number",     null: false
+    t.date     "expiration_date", null: false
+    t.integer  "secrity_code",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["user_id"], name: "index_payment_methods_on_user_id", using: :btree
   end
 
@@ -249,9 +248,7 @@ ActiveRecord::Schema.define(version: 20190921032443) do
     t.string   "last_name",                           null: false
     t.string   "first_kananame",                      null: false
     t.string   "last_kananame",                       null: false
-    t.integer  "birthday_year",                       null: false
-    t.integer  "birthday_month",                      null: false
-    t.integer  "birthday_day",                        null: false
+    t.date     "birthday_date"
     t.string   "maildaddress",                        null: false
     t.string   "password"
     t.text     "profiletext",           limit: 65535

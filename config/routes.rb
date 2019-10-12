@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       post  'done' 
     end
   end
-
+  get 'signup/show' => 'signup#show'
   get 'products_statuses' => 'products_statuses#index'
 
   resources :users, only: :index do
