@@ -5,11 +5,11 @@ class ProductsStatusesController < ApplicationController
     @product_status = ProductsStatus.find(1)
 
     # 製品名
-    @product = @product_status.product.name
+    @product_name = @product_status.product.name
 
     # ユーザー情報
     @user = User.find(@product_status.buyer_id)
-    @buyer = @user.name
+    @buyer_name = @user.name
     @good_count = @user.buyer_evaluations.where(evaluation_id: 1).count
     @normal_count = @user.buyer_evaluations.where(evaluation_id: 2).count
     @bad_count = @user.buyer_evaluations.where(evaluation_id: 3).count
@@ -21,7 +21,7 @@ class ProductsStatusesController < ApplicationController
 
     # ブランド
     brand_id = @product_status.product.brand
-    @brand = Brand.find(brand_id).name
+    @brand_name = Brand.find(brand_id).name
 
     # 商品サイズ
     @size = @product_status.product.size.name
