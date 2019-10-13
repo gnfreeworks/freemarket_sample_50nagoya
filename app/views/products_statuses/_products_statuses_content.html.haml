@@ -64,15 +64,15 @@
             %th カテゴリー
             %td
               = link_to '#' do
-                = @large_category
+                = @large_category_name
               = link_to '#' do
                 .product-detail-table-sub-category
                   = icon("fas", "chevron-right")
-                  = @medium_category
+                  = @medium_category_name
               = link_to '#' do
                 .product-detail-table-sub-sub-category
                   = icon("fas", "chevron-right")
-                  = @smail_category
+                  = @smail_category_name
           %tr
             %th ブランド
             %td
@@ -81,28 +81,28 @@
           %tr
             %th 商品のサイズ
             %td
-              = @size
+              = @size_name
           %tr
             %th 商品の状態
             %td
-              = @status
+              = @status_name
           %tr
             %th 配送料の負担
             %td
-              = @shipping_charge
+              = @shipping_charge_name
           %tr
             %th 配送の方法
             %td
-              = @shipping_method
+              = @shipping_method_name
           %tr
             %th 配送元地域
             %td
               = link_to '#' do
-                = @area
+                = @area_name
           %tr
             %th 発送日の目安
             %td
-              = @shipping_time
+              = @shipping_time_name
 
     .product-price-box.text-center
       %span.product-price-box_price.bold

@@ -15,31 +15,31 @@ class ProductsStatusesController < ApplicationController
     @bad_count = @user.buyer_evaluations.where(evaluation_id: 3).count
 
     # カテゴリ
-    @large_category = @product_status.product.category.large_category.name
-    @medium_category = @product_status.product.category.medium_category.name
-    @smail_category = @product_status.product.category.smail_category.name
+    @large_category_name = @product_status.product.category.large_category.name
+    @medium_category_name = @product_status.product.category.medium_category.name
+    @smail_category_name = @product_status.product.category.smail_category.name
 
     # ブランド
     brand_id = @product_status.product.brand
     @brand_name = Brand.find(brand_id).name
 
     # 商品サイズ
-    @size = @product_status.product.size.name
+    @size_name = @product_status.product.size.name
 
     # 商品状態
-    @status = @product_status.product.status.name
+    @status_name = @product_status.product.status.name
 
     # 配送料負担
-    @shipping_charge = @product_status.product.shipping_charge.name
+    @shipping_charge_name = @product_status.product.shipping_charge.name
 
-    # 配送方法 - テーブル・カラム清水さんに確認中
-    @shipping_method = @product_status.product.shipping_method.name
+    # 配送方法
+    @shipping_method_name = @product_status.product.shipping_method.name
     
     # 配送元地域
-    @area = @product_status.product.area.name
+    @area_name = @product_status.product.area.name
 
     # 発送日目安
-    @shipping_time = @product_status.product.shipping_time.name
+    @shipping_time_name = @product_status.product.shipping_time.name
 
     # 価格
     @price = @product_status.product.price.to_s(:delimited)
