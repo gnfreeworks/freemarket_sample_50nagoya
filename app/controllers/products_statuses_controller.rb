@@ -48,4 +48,9 @@ class ProductsStatusesController < ApplicationController
     @description = @product_status.product.description
   
   end
+
+  def buy
+
+  end
+  
 end
