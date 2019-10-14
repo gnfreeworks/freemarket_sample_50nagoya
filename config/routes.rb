@@ -4,17 +4,18 @@ Rails.application.routes.draw do
   resources :products
 
   get 'products_statuses' => 'products_statuses#index'
+  get 'products_buy' => 'products_statuses#buy'
 
   resources :users, only: :index do
     resources :mypage, only: :index do
-      collection do 
-        get   'notification'
-        get   'card'
+      collection do
         get   'profile'
-        post  'profileupdate'
+        post  'profileUpdate'
+        get   'card'
+        get   'cardCreate'
+        post  'cardAdd'
 
       end
     end
   end
-
 end

@@ -82,11 +82,12 @@ gem 'fog-aws'
 gem 'devise'
 gem 'haml-rails'
 gem 'mini_magick'
-gem 'owlcarousel-rails'
 
+# for Font-awesome 5
+gem 'font-awesome-sass', '5.3.1'
+
+gem 'owlcarousel-rails'
 
 # for area master data
 gem 'active_hash'
 
-# for Font-awesome 5
-gem 'font-awesome-sass', '5.3.1'
