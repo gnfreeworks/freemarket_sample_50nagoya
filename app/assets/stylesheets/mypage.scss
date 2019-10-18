@@ -512,7 +512,7 @@ nav ul{
   
 }
 
-.input-default {
+.form__block .input-default {
   height: 28px;
   padding: 10px 16px 8px;
   border-radius: 4px;
@@ -822,7 +822,22 @@ ul ol {
   color: #ea352d;
   }
 
-.select-payment select {
+  .creditcard-select-wrap select {
+    padding-right: 3px;
+    background: #fff;
+    display: inline-block;
+    margin: 8px 10px;
+    width: calc(38% - 2px);
+    height:48px;
+    border-radius:4px;
+    border: 1px solid #ccc;
+    background: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    cursor: pointer;
+
+  }
+  .select-payment select {
     padding-right: 3px;
     background: #fff;
     display: inline-block;

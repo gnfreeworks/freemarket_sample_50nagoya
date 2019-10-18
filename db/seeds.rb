@@ -10290,13 +10290,13 @@ SaleCharge.create(rate: '0.1')
 ## Product table Smaple data
 Product.create(name: '【sample】立体裁断スキッパーシャツブラウス', description: 'ご覧いただきありがとうございます。', price: '2000', profit: '1800',size_id: '4', brand: '1', sale_charge_id: '1', status_id: '1', category_id: '4', area_id: '20', shipping_charge_id: '1', shipping_time_id: '1', shipping_method_id: '1')
 
+## User table Smaple data
+User.create(nickname: 'ヤマ', first_name: '山本',last_name: '太郎',  first_kananame: 'ヤマモト', last_kananame: 'タロウ', birthday_date: '2019/01/01', email: 'yamamoto@gmail.com', profiletext: '発送は平日週１になります、曜日は週毎に異なります。', password: 'password', address_first_name: '山田', address_last_name: '綾', address_firt_kananame: 'ヤマダ', address_last_kananame: 'アヤ', address_zipcode: '1234567', address_prefecture: '横浜市緑区', address_block: '青山1-1-1', address_building: '柳ビル103', address_phone_number: '09012345678')
+User.create(nickname: 'タナ', first_name: '田中',last_name: '次郎',  first_kananame: 'タナカ',  last_kananame: 'ジロウ', birthday_date: '2019/01/01', email: 'tanaka@gmail.com', profiletext: '▽コメント逃げやめてください', password: 'password', address_first_name: '田中', address_last_name: '綾', address_firt_kananame: 'タナカ', address_last_kananame: 'アヤ', address_zipcode: '1234567', address_prefecture: '東京都緑区', address_block: '青山1-1-1', address_building: '柳ビル103', address_phone_number: '09044445555')
+User.create(nickname: 'オカ', first_name: '岡田',last_name: '三郎',  first_kananame: 'オカダ', last_kananame: 'サンロウ', birthday_date: '2019/01/01', email: 'okada@gmail.com', profiletext: '発送は平日週１になります、曜日は週毎に異なります。', password: 'password', address_first_name: '虹色', address_last_name: '綾', address_firt_kananame: 'ニジイロ', address_last_kananame: 'アヤ', address_zipcode: '1234567', address_prefecture: '富山県緑区', address_block: '青山1-1-1', address_building: '柳ビル103', address_phone_number: '08088887777')
+
 ## ProductsStatus table Smaple data
 ProductsStatus.create(product_id: '1', buyer_id: '1', seller_id: '2', selling_status: '0', dealing_status: '0' )
-
-## User table Smaple data
-User.create(nickname: 'ヤマ', first_name: '山本',last_name: '太郎',  first_kananame: 'ヤマモト', last_kananame: 'タロウ', birthday_date: '2019/01/01', maildaddress: 'yamamoto@gmail.com', profiletext: '発送は平日週１になります、曜日は週毎に異なります。')
-User.create(nickname: 'タナ', first_name: '田中',last_name: '次郎',  first_kananame: 'タナカ', last_kananame: 'ジロウ', birthday_date: '2019/01/01', maildaddress: 'tanaka@gmail.com', profiletext: '▽コメント逃げやめてください')
-User.create(nickname: 'オカ', first_name: '岡田',last_name: '三郎',  first_kananame: 'オカダ', last_kananame: 'サンロウ', birthday_date: '2019/01/01', maildaddress: 'okada@gmail.com', profiletext: '発送は平日週１になります、曜日は週毎に異なります。')
 
 ## buyer_evaluations テーブル (出品者評価 テーブル)
 BuyerEvaluation.create(products_status_id: '1', user_id: '1', evaluation_id: '1', comment: 'まあまあ発送は早かった')

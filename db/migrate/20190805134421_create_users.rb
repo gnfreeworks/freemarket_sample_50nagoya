@@ -7,10 +7,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string  :first_kananame, null: false
       t.string  :last_kananame, null: false
       t.date    :birthday_date
-      t.string  :maildaddress, null: false, unique: true
-      t.string  :password
       t.text    :profiletext
-      t.string  :address_phone_number
       t.string  :address_first_name
       t.string  :address_last_name
       t.string  :address_firt_kananame
@@ -18,8 +15,8 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.integer :address_zipcode
       t.string  :address_prefecture
       t.string  :address_block
-      t.string  :address_number
       t.string  :address_building
+      t.string  :address_phone_number
       t.timestamps
     end
   end

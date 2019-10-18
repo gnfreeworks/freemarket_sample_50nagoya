@@ -35,19 +35,19 @@
             %span.form__block__required
               必須
             %br/
-            = f.email_field :maildaddress, placeholder: 'PC・携帯どちらでも可', class: 'text_field'
+            = f.email_field :email, placeholder: 'PC・携帯どちらでも可', class: 'text_field'
           .form__block
             = f.label :パスワード
             %span.form__block__required
               必須
             %br/
-            = f.password_field :password, autocomplete: "new-password", placeholder: '6文字以上', class: 'text_field'
+            = f.password_field :password, autocomplete: "new-password", placeholder: '7文字以上', class: 'text_field'
           .form__block
             = f.label :パスワード（確認）
             %span.form__block__required
               必須
             %br/
-            =f.password_field :password_confirmation, placeholder: '6文字以上', class:'text_field'
+            =f.password_field :password_confirmation, placeholder: '7文字以上', class:'text_field'
           .form__block
             %h3.form__block__text
               本人確認

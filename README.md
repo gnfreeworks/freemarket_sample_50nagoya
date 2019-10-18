@@ -189,13 +189,10 @@ installed devise
 |last_name        |名前|string|null: false|
 |first_kananame   |カナ苗字|string|null: false|
 |last_kananame    |カナ名前|string|null: false|
-|birthday_year    |生年月日-西暦|integer|null: false|
-|birthday_month   |生年月日-月|integer|null: false|
-|birthday_day     |生年月日-日|integer|null: false|
-|maildaddress     |email|string|null: false, unique true|
+|birthday_date    |生年月日-西暦|date|null: false|
+|email            |email|string|null: false, unique true|
 |password         |パスワード|password|null: false|
 |profiletext      |プロフィール|text||
-|address_phone_number     |電話番号|string||
 |address_first_name       |住所-苗字|string||
 |address_last_name        |住所-名前|string||
 |address_firt_kananame    |住所-カナ苗字|string||
@@ -203,8 +200,9 @@ installed devise
 |address_zipcode          |住所-郵便番号|integer||
 |address_prefecture       |住所-県|string||
 |address_block            |住所-ブロック|string||
-|address_number           |住所-番地|string||
-|address_building         |住所-建物名|string||
+|address_building         |住所-建物名-番地|string||
+|address_phone_number     |電話番号|string||
+
 ### Association
 - belongs_to :transfer_address
 - has_one    :payment_method

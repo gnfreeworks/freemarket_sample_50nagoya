@@ -9,19 +9,10 @@ class SignupController < ApplicationController
     @user = User.new
   end
 
-  def update
-  end
-
-  def create
-  end
-
   def step2
-    if user_params_step1[:password] == user_params_step1[:password_confirmation] 
       session[:step1] = user_params_step1
       session[:step1].delete(:password_confirmation) 
       @user = User.new
-    else
-    end
   end
   
   def show
@@ -53,7 +44,6 @@ class SignupController < ApplicationController
     user.update(session[:step4])
     payment = PaymentMethod.new(user_params_step5)
     payment.save
-    binding.pry
     session.delete(:id)
     session.delete(:step4)
   end
@@ -61,7 +51,7 @@ class SignupController < ApplicationController
   private
     def user_params_step1
       params.require(:user).permit(:nickname,
-                                   :maildaddress,
+                                   :email,
                                    :password,
                                    :password_confirmation,
                                    :first_name,
@@ -83,25 +73,21 @@ class SignupController < ApplicationController
 
     def user_params_step4
       params.require(:user).permit(:address_first_name,
-                                  :address_last_name,
-                                  :address_firt_kananame,
-                                  :address_last_kananame,
-                                  :address_zipcode,
-                                  :address_prefecture,
-                                  :address_block,
-                                  :address_number,
-                                  :address_phone_number)
+                                   :address_last_name,
+                                   :address_firt_kananame,
+                                   :address_last_kananame,
+                                   :address_zipcode,
+                                   :address_prefecture,
+                                   :address_block,
+                                   :address_building,
+                                   :address_phone_number)
     end
 
     def user_params_step5
       params.require(:payment_method).permit(:card_number,
-                                  :'expiration_date(2i)',
-                                  :'expiration_date(1i)',
-                                  :'expiration_date(3i)',
-                                  :secrity_code,
-                                  :address_prefecture,
-                                  :address_block,
-                                  :address_number,
-                                  :address_phone_number).merge(user_id: session[:id])
+                                             :'expiration_date(1i)',
+                                             :'expiration_date(2i)',
+                                             :'expiration_date(3i)',
+                                             :secrity_code).merge(user_id: session[:id])
     end
 end
