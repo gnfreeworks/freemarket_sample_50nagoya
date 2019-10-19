@@ -182,14 +182,26 @@
 
 ## users テーブル (ユーザーテーブル)
 installed devise
-|Column         |  description（J)     |Type      |Options           |
-|---------------|---------------------|----------|-------------------|
-|name           |名前|string|null: false|
-|kana_name      |ナマエ|string|null: false|
-|nickname       |ニックネーム|string|null: false|
-|birthdaydate   |生年月日|date|null: false|
-|profiletext    |プロフィール|text|null: false|
-|authenticphonenumber|認証用電話番号|string|null: false|
+|Column           |  description（J)     |Type      |Options           |
+|-----------------|---------------------|----------|-------------------|
+|nickname         |ニックネーム|string|null: false|
+|first_name       |苗字|string|null: false|
+|last_name        |名前|string|null: false|
+|first_kananame   |カナ苗字|string|null: false|
+|last_kananame    |カナ名前|string|null: false|
+|birthday_date    |生年月日-西暦|date|null: false|
+|email            |email|string|null: false, unique true|
+|password         |パスワード|password|null: false|
+|profiletext      |プロフィール|text||
+|address_first_name       |住所-苗字|string||
+|address_last_name        |住所-名前|string||
+|address_firt_kananame    |住所-カナ苗字|string||
+|address_last_kananame    |住所-カナ名前|string||
+|address_zipcode          |住所-郵便番号|integer||
+|address_prefecture       |住所-県|string||
+|address_block            |住所-ブロック|string||
+|address_building         |住所-建物名-番地|string||
+|address_phone_number     |電話番号|string||
 
 ### Association
 - belongs_to :transfer_address

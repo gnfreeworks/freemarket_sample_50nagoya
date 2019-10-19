@@ -1,0 +1,47 @@
+.single-container
+  .single-header
+    = render '/entry/entry-header'
+    %nav.progress-bar.signup-bar
+      %ol.clearfix
+        %li
+          会員情報
+          .progress-status
+        %li
+          電話番号認証
+          .progress-status
+        %li
+          お届け先住所入力
+          .progress-status
+        %li
+          支払い方法
+          .progress-status
+        %li.active
+          完了
+          .progress-status
+  .main-content
+    .main-content__title
+      %h2 登録完了
+      .form__block__text__main
+        ありがとうございました。
+        %br/
+        会員登録が完了しました。
+      .form__actions
+.footer
+  .footer__top
+    .footer__top__contaner
+      .footer__top__contaner__left
+        %h1 スマホでかんたんフリマアプリ
+        %p 今すぐ無料ダウンロード！
+        .footer__top__contaner__left__icon
+          .footer__top__contaner__left__icon__mercari
+            = image_tag '/assets/custom-banner-icon.png'
+          .footer__top__contaner__left__icon__link
+            %ul
+              %li
+                %a{href: ''}
+                  = image_tag '/assets/app-store.png'
+              %li
+                %a{href: ''}
+                  = image_tag '/assets/google-play.png'
+      .footer__top__contaner__right
+        = image_tag '/assets/download_content_pc.png'
