@@ -1,7 +1,5 @@
 class MypageController < ApplicationController
 
-  before_action :setMonthYear, only: [:cardCreate, :cardAdd]
-
   def index
     @user = User.find(1)
     @evaluation_count = @user.buyer_evaluations.count
@@ -50,20 +48,12 @@ class MypageController < ApplicationController
   end
   
   private
-  def setMonthYear
-    @month 
-    @year 
-  end
-
   def userProfile
     params.permit(:nickname, :profiletext)
   end
 
   def creditParam
-    params.require(:payment_method).permit(:card_number,
-                                           :expiration_date,
-                                           :secrity_code)
-                                           .merge(user_id: params[:user_id])
+    params.require(:payment_method).permit(:card_number, :expiration_date, :secrity_code).merge(user_id: params[:user_id])
   end
 
 end

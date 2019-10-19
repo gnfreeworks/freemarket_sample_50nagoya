@@ -50,17 +50,7 @@ class SignupController < ApplicationController
 
   private
     def user_params_step1
-      params.require(:user).permit(:nickname,
-                                   :email,
-                                   :password,
-                                   :password_confirmation,
-                                   :first_name,
-                                   :last_name,
-                                   :first_kananame,
-                                   :last_kananame,
-                                   :'birthday_date(1i)',
-                                   :'birthday_date(2i)',
-                                   :'birthday_date(3i)')
+      params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :first_name, :last_name, :first_kananame, :last_kananame, :'birthday_date(1i)', :'birthday_date(2i)', :'birthday_date(3i)')
     end
 
     def user_params_step2
@@ -72,22 +62,10 @@ class SignupController < ApplicationController
     end
 
     def user_params_step4
-      params.require(:user).permit(:address_first_name,
-                                   :address_last_name,
-                                   :address_firt_kananame,
-                                   :address_last_kananame,
-                                   :address_zipcode,
-                                   :address_prefecture,
-                                   :address_block,
-                                   :address_building,
-                                   :address_phone_number)
+      params.require(:user).permit(:address_first_name, :address_last_name, :address_firt_kananame, :address_last_kananame, :address_zipcode, :address_prefecture, :address_block, :address_building, :address_phone_number)
     end
 
     def user_params_step5
-      params.require(:payment_method).permit(:card_number,
-                                             :'expiration_date(1i)',
-                                             :'expiration_date(2i)',
-                                             :'expiration_date(3i)',
-                                             :secrity_code).merge(user_id: session[:id])
+      params.require(:payment_method).permit(:card_number, :'expiration_date(1i)', :'expiration_date(2i)', :'expiration_date(3i)', :secrity_code).merge(user_id: session[:id])
     end
 end
