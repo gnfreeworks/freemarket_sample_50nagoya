@@ -1,0 +1,54 @@
+.single-container
+  .single-header
+    = render '/entry/entry-header'
+    %nav.progress-bar.signup-bar
+      %ol.clearfix
+        %li
+          会員情報
+          .progress-status
+        %li.active
+          電話番号認証
+          .progress-status
+        %li
+          お届け先住所入力
+          .progress-status
+        %li
+          支払い方法
+          .progress-status
+        %li
+          完了
+          .progress-status
+  .main-content
+    .main-content__title
+      %h2 電話番号認証
+    .main-content__form
+      = form_for @user, url: step4_signup_index_path, html: {class: 'first-main__box'} do |f|
+        .main-content__form__box
+          .form__block
+            = f.label :authorization_code, '認証番号'
+            %br/
+            = f.text_field :authorization_code, {class: 'fake-box', placeholder: '認証番号を入力' }
+          .form__block__text__main.phone
+            SNSで届いた認証番号を入力してください
+          .form__actions
+            = f.submit "認証して完了", class: 'progress-btn'
+        .main-content__form__box.bottom
+          .sub-content
+            = form_for @user, url: step3_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
+              .attestation-number__error
+                30秒たっても認証番号が届かないかたへ
+              .attestation-number__message
+                電話で認証番号を聞くこともできます
+              .form__actions
+                = f.submit "電話で認証番号を聞く（通話無料）", class: 'progress-btn'
+          .sub-content
+            .attestation-number__error
+              認証番号を再送することもできます。もう一度電話番号を入力してください。
+              .last-sentence
+                %a{}電話番号を再度入力する
+            .attestation-number__message
+              ※SNSが届かない場合は
+              %a{}SNS受信設定
+              を確認して、もう一度入力してください。
+  .entry-footer
+    =render '/entry/entry-footer'

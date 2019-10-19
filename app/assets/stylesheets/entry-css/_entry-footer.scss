@@ -1,23 +1,35 @@
-.entry-footer {
+.single-footer {
+  z-index: 1;
   height: 200px;
+  padding: 40px 0;
   text-align: center;
-  &__top {
-    padding-top: 30px;
-    ul {
-      font-size: 8px;
-      display: flex;
-      justify-content: center;
-    }
-    li {
-      padding-left: 20px;
+  @media screen and (min-width: 768px) {
+    width: 456px;
+    height: 220px;
+    margin: 0 auto;
+  }
+  a {
+    display: block;
+    color: #333;
+  }
+  ul {
+    font-size: 0;
+  }
+  li {
+    margin: 16px 0 0;
+    font-size: 12px;
+    @media screen and (min-width: 768px) {
+      display: inline-block;
+      margin: 0 0 0 16px;
     }
   }
-  &__bottome {
-    padding-top: 30px;
-    height: 70px;
-    img {
-      display: inline-block;
-      height: 100%;
-    }
+  li:first-child {
+    margin: 0;
+  }
+
+  &-logo {
+    width: 80px;
+    height: 65px;
+    margin: 40px auto 0;
   }
 }

@@ -5,6 +5,8 @@
     %title FreemarketSample50nagoya
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %script{src: 'https://www.google.com/recaptcha/api.js'}
+    %script{type: "text/javascript", scr: "https://code.jquery.com/jquery-2.1.4.min.js" }
   %body
     = render "layouts/notifications"
     = yield

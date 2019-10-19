@@ -1,8 +1,131 @@
-.entry-header {
+.single-header {
   text-align: center;
-  height: 100px;
-  img {
-    display: inline-block;
-    height: 100%;
+  @media screen and (min-width: 768px) {
+    height: 128px;
   }
+  h1 {
+    display: inline-block;
+    margin: 11px 0 12px;
+    @media screen and (min-width: 768px) {
+      margin: 40px 0 0;
+    }
+  }
+  img {
+    width: 120px;
+    height: 33px;
+    @media screen and (min-width: 768px) {
+      width: 185px;
+      height: 49px;
+    }
+  }
+}
+
+.single-container{
+  padding: 0 0 250px;
+  @media screen and (min-width:768px){
+    padding: 0 0 220px;
+  }
+}
+
+.signup-bar.progress-bar {
+  padding: 16px 0;
+  border-top: 1px solid #eee;
+  @media screen and (min-width: 768px){
+    padding: 40px 0 0 44px;
+    border:0;
+  }
+}
+
+.progress-bar { 
+  font-size: 0;
+  text-align: center;
+  @media screen and (min-width: 768px) {
+    display: inline-block;
+    vertical-align: top;
+
+  }
+
+  ol {
+    margin: 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    min-width: 40px;
+    margin: 0 5% 0 0;
+    font-size: 12px;
+    color: #888;
+    @media screen and (min-width: 768px){
+      margin: 0 40px 0 0;
+      min-width: 60px;
+    }     
+  }
+  li.active {
+    font-weight: 600;
+    color: #ea352d;
+    .progress-status {
+      background: #ea352d;
+    }
+  } 
+}
+
+
+.progress-status {
+  width: 12px;
+  height: 12px;
+  margin: 8px auto 0;
+  background: #ccc;
+  border-radius: 50%;
+
+  li {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    min-width: 40px;
+    margin: 0 5% 0 0;
+    font-size: 12px;
+    color: #888;
+  }
+}
+
+.progress-status::after {
+  left: 50%;
+}
+.progress-status::after {
+  position: absolute;
+  bottom: 5px;
+  z-index: -1;
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: #ccc;
+}
+
+.progress-status::before {
+  right: 50%;
+}
+.progress-status::before {
+  position: absolute;
+  bottom: 5px;
+  z-index: -1;
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: #ccc;
+}
+
+.progress-bar li:first-of-type .progress-status::before{
+  content: none;
+}
+.progress-bar li:last-of-type .progress-status:after{
+  content: none;
+}
+h1{
+  margin: 40px 0 0 100px;
+  display: inline-block;
 }
