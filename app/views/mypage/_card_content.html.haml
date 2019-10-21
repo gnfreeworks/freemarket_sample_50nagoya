@@ -9,13 +9,13 @@
       %section.settings-add-card
         .l-single-content
           - if @creditcard.nil?
-            = link_to cardCreate_user_mypage_index_path, class: 'btn-default btn-red submit_button', method: :get, params: { id: @user.id } do
+            = link_to cardCreate_mypage_index_path, class: 'btn-default btn-red submit_button', method: :get, params: { id: @user.id } do
               %i.far.fa-credit-card
                 クレジットカードを追加する
           - else
             %ul.settings-payment-list
               %li
-                = form_for @creditcard, url: cardAdd_user_mypage_index_path, html: {class: 'l-single-content'} do |f|
+                = form_for @creditcard, url: cardAdd_mypage_index_path, html: {class: 'l-single-content'} do |f|
                   %figure
                     %img{ alt: "", src: "/images/visa.svg", height: "60", width: "60"}
                   .settings-payment-num

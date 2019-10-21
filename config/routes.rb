@@ -18,16 +18,14 @@ Rails.application.routes.draw do
   get 'products_statuses' => 'products_statuses#index'
   get 'products_buy' => 'products_statuses#buy'
 
-  resources :users, only: :index do
-    resources :mypage, only: :index do
-      collection do
-        get   'profile'
-        post  'profileUpdate'
-        get   'card'
-        get   'cardCreate'
-        post  'cardAdd'
-        get   'logout'
-      end
+  resources :mypage, only: :index do
+    collection do
+      get   'profile'
+      post  'profileUpdate'
+      get   'card'
+      get   'cardCreate'
+      post  'cardAdd'
+      get   'logout'
     end
   end
 end

@@ -24,7 +24,7 @@ class MypageController < ApplicationController
     creditcard = PaymentMethod.where(user_id: params[:user_id])
     if creditcard.empty?
       @creditcard = PaymentMethod.create(creditParam)
-      redirect_to card_user_mypage_index_path, notice:'クレジットカードを追加しました!'
+      redirect_to card_mypage_index_path, notice:'クレジットカードを追加しました!'
     else
       flash.now[:alert] = '既に同じカードが存在するため登録できません'
       render :card
@@ -43,7 +43,7 @@ class MypageController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update_attributes(userProfile)
-      redirect_to profile_user_mypage_index_path, notice:'変更しました!!'
+      redirect_to profile_mypage_index_path, notice:'変更しました!!'
     else
       flash.now[:alert] = 'もう一度入力して下さい。'
       render :index
