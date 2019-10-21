@@ -1,13 +1,13 @@
 class MypageController < ApplicationController
 
   def index
-    @user = User.find(1)
+    @user = User.find(current_user.id)
     @evaluation_count = @user.buyer_evaluations.count
     @products_count = ProductsStatus.where(buyer_id: @user.id).count
   end
 
   def card
-    @user = User.find(1)
+    @user = User.find(current_user.id)
     @creditcard = @user.payment_method
     unless @creditcard.nil?
       @creditcard_last4 = (@creditcard.card_number.to_i % 10000).to_s
@@ -15,12 +15,12 @@ class MypageController < ApplicationController
   end
   
   def cardCreate
-    @user = User.find(1)
+    @user = User.find(current_user.id)
     @creditcard = PaymentMethod.new
   end
 
   def cardAdd
-    @user = User.find(1)
+    @user = User.find(current_user.id)
     creditcard = PaymentMethod.where(user_id: params[:user_id])
     if creditcard.empty?
       @creditcard = PaymentMethod.create(creditParam)
@@ -31,8 +31,12 @@ class MypageController < ApplicationController
     end
   end
  
+  def logout
+    @user = User.find(current_user.id) if user_signed_in?
+  end
+
   def profile
-    @user = User.find(1)
+    @user = User.find(current_user.id)
   end
 
   def profileUpdate

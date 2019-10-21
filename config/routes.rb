@@ -26,7 +26,7 @@ Rails.application.routes.draw do
         get   'card'
         get   'cardCreate'
         post  'cardAdd'
-
+        get   'logout'
       end
     end
   end

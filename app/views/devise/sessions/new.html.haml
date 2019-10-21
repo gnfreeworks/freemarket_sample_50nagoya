@@ -1,0 +1,54 @@
+.single-container
+  %header.single-header
+    =render '/entry/entry-header'
+  %main.single-main
+    .login-panel
+      .login-no-account
+        %p アカウントをお持ちでない方はこちら
+        = link_to step0_signup_index_path, method: :get do
+          新規会員登録
+      .login-form-inner
+        %button.btn-default.btn-sns.btn-sns-facebook#facebook-login
+          %i.fab.fa-facebook.color-white.fa-2x
+          Facebookでログイン
+        %button.btn-default.btn-sns.btn-sns-google#google-login
+          Googleでログイン
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .login-form-inner
+          .form-group
+            = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'メールアドレス', class: 'login-input-text input-default'
+          .form-group
+            = f.password_field :password, autocomplete: "current-password", placeholder: 'パスワード', class: 'login-input-text input-default'
+          .form-group
+            .main-content__bottom
+              .g-recaptcha{"data-callback" => "clearcall", "data-sitekey" => "6Lc15q8UAAAAAIaFFQ7n3V-C1ZeVQoNqXAXpF0xn"}
+              .text__consent
+          = f.submit "ログイン", class: 'login-submit btn-default btn-red'
+  %footer.single-footer
+
+-# <h2>Log in</h2>
+
+-# <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+-#   <div class="field">
+-#     <%= f.label :email %><br />
+-#     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+-#   </div>
+
+-#   <div class="field">
+-#     <%= f.label :password %><br />
+-#     <%= f.password_field :password, autocomplete: "current-password" %>
+-#   </div>
+
+-#   <% if devise_mapping.rememberable? %>
+-#     <div class="field">
+-#       <%= f.check_box :remember_me %>
+-#       <%= f.label :remember_me %>
+-#     </div>
+-#   <% end %>
+
+-#   <div class="actions">
+-#     <%= f.submit "Log in" %>
+-#   </div>
+-# <% end %>
+
+-# <%= render "devise/shared/links" %>

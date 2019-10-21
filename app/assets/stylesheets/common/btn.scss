@@ -10,7 +10,7 @@
 }
 .btn-red {
   background-color: #ea352d;
-  margin: 16px 0 0;
+  border: 1px solid #ea352d;
   color : #fff;
   .fa-envelope {
     color: #fff;
@@ -30,6 +30,7 @@
   color: #fff;
   background-color: #808080;
 }
+
 .btn-facebook {
   background-color: #385185;
   margin: 16px 0 0;
@@ -45,4 +46,8 @@
 
 .btn-corner {
   border-radius: 0px;
+}
+
+.color-white {
+  color: white;
 }

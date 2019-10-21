@@ -8,5 +8,6 @@
     %script{src: 'https://www.google.com/recaptcha/api.js'}
     %script{type: "text/javascript", scr: "https://code.jquery.com/jquery-2.1.4.min.js" }
   %body
+    = csrf_meta_tags
     = render "layouts/notifications"
     = yield
