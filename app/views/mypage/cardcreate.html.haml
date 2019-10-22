@@ -3,6 +3,6 @@
   .l-content
     %section.l-chapter-container
       %h2.l-chapter-head クレジットカード情報入力
-      = form_for @creditcard, url: cardAdd_user_mypage_index_path, html: {class: 'l-single-inner registration-form'} do |f|
-        = render partial: 'cardcreate_content', locals: { creditcard: @creditcard, f: f } 
-        = render partial: 'card_sideber'
+      = form_for @credit_card, url: cardAdd_mypage_index_path, html: {class: 'l-single-inner registration-form'} do |f|
+        = render partial: 'cardcreate_content', locals: { credit_card: @credit_card, f: f } 
+  = render partial: 'card_sideber'

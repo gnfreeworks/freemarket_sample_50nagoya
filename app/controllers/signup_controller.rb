@@ -16,7 +16,7 @@ class SignupController < ApplicationController
   end
   
   def show
-    @creditcard = PaymentMethod.new
+    @credit_card = PaymentMethod.new
   end
 
   def step3
@@ -36,12 +36,13 @@ class SignupController < ApplicationController
 
   def step5
     session[:step4] = user_params_step4
-    @creditcard = PaymentMethod.new
+    @credit_card = PaymentMethod.new
   end
 
   def done
     user = User.find(session[:id])
     user.update(session[:step4])
+    sign_in User.find(session[:id]) unless user_signed_in?
     payment = PaymentMethod.new(user_params_step5)
     payment.save
     session.delete(:id)

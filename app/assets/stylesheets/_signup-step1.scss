@@ -87,12 +87,14 @@ label{
     line-height: 1.5;
   }
 }
+
 .form__select{
   border: groove;
   display: inline-block;
   height: 76px;
   width: 48px;
 }
+
 .progress-btn{
   width: 340px;
   height: 46px;
@@ -102,6 +104,7 @@ label{
   font-size: 14px;
   margin-top: 24px;
 }
+
 .text__consent{
   margin-top: 20px;
   line-height: 1.5;
@@ -139,4 +142,35 @@ label{
     font-size: 16px;
     line-height: 1.5;
     cursor: pointer;
+}
+
+.fake-box{
+  width: 304px;
+  height: 25px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #ccc;
+  border: 1px solid #ccc;
+  line-height: 1.5;
+  font-size: 16px; 
+  margin-top: 8px;
+}
+
+.form__block__text__main.phone{
+  text-align: left;
+}
+
+.main-content__form__box.bottom{
+  text-align: left;
+  margin-top: 20px;
+}
+
+.attestation-number__error{
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.last-sentence{
+  margin: 5px 0 5px 0;
 }
