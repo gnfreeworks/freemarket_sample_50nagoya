@@ -1,13 +1,13 @@
 class MypageController < ApplicationController
 
   def index
-    @user = User.find(current_user.id)
+    @user = current_user
     @evaluation_count = @user.buyer_evaluations.count
     @products_count = ProductsStatus.where(buyer_id: @user.id).count
   end
 
   def card
-    @user = User.find(current_user.id)
+    @user = current_user
     @credit_card = @user.payment_method
     unless @credit_card.nil?
       @credit_card_last4 = (@credit_card.card_number.to_i % 10000).to_s
@@ -15,12 +15,12 @@ class MypageController < ApplicationController
   end
   
   def cardCreate
-    @user = User.find(current_user.id)
+    @user = current_user
     @credit_card = PaymentMethod.new
   end
 
   def cardAdd
-    @user = User.find(current_user.id)
+    @user = current_user
     credit_card = PaymentMethod.where(user_id: params[:user_id])
     if credit_card.empty?
       @credit_card = PaymentMethod.create(creditParam)
@@ -32,23 +32,21 @@ class MypageController < ApplicationController
   end
  
   def logout
-    @user = User.find(current_user.id) if user_signed_in?
+    @user = current_user if user_signed_in?
   end
 
   def profile
-    @user = User.find(current_user.id)
+    @user = current_user
   end
 
   def profileUpdate
-    @user = User.find(params[:id])
-
+    @user = current_user
     if @user.update_attributes(userProfile)
       redirect_to profile_mypage_index_path, notice:'変更しました!!'
     else
       flash.now[:alert] = 'もう一度入力して下さい。'
       render :index
     end
-
   end
   
   private
