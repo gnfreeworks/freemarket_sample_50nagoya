@@ -5,4 +5,4 @@
       %h2.l-chapter-head クレジットカード情報入力
       = form_for @creditcard, url: cardAdd_mypage_index_path, html: {class: 'l-single-inner registration-form'} do |f|
         = render partial: 'cardcreate_content', locals: { creditcard: @creditcard, f: f } 
-        = render partial: 'card_sideber'
+  = render partial: 'card_sideber'

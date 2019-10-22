@@ -92,6 +92,24 @@ body {
   margin: 0 auto;
 }
 
+.l-single-container {
+  background: #fff;
+}
+
+.l-single-head {
+  padding: 24px  8px;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.l-single-head.registration,
+.l-chapter-head.registration {
+  padding: 16px;
+  font-weight: 800;
+}
+
+
 .l-single-inner {
   padding: 24px 16px 40px;
 }
@@ -115,4 +133,13 @@ body {
 
 .l-single-inner .btn-red:first-child {
   margin: 0;
+}
+
+.l-single-inner.registration-form {
+  padding: 24px 16px 40px;
+}
+
+
+.l-single-inner.registration-form .l-single-content {
+  max-width: 343px;
 }
