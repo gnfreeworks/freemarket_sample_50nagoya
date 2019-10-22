@@ -1,5 +1,5 @@
 .single-container
-  .single-header
+  %header.single-header
     = render '/entry/entry-header'
     %nav.progress-bar.signup-bar
       %ol.clearfix
@@ -18,7 +18,7 @@
         %li
           完了
           .progress-status
-  .main-content
+  %main.main-content
     .main-content__title
       %h2 電話番号認証
     .main-content__form
@@ -50,5 +50,5 @@
               ※SNSが届かない場合は
               %a{}SNS受信設定
               を確認して、もう一度入力してください。
-  .entry-footer
+  %footer.single-footer
     =render '/entry/entry-footer'

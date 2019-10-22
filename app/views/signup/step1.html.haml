@@ -1,5 +1,5 @@
 .single-container
-  .single-header
+  %header.single-header
     = render '/entry/entry-header'
     %nav.progress-bar.signup-bar
       %ol.clearfix
@@ -18,7 +18,7 @@
         %li
           完了
           .progress-status
-  .main-content
+  %main.main-content
     .main-content__title
       %h2 会員情報入力
     .main-content__form
@@ -92,6 +92,5 @@
               = f.submit "次へ進む", class: 'progress-btn'
             .text__right
               %a{} 本人情報の登録について
-
-  .entry-footer
+  %footer.single-footer
     =render '/entry/entry-footer'

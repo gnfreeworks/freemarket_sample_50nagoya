@@ -42,6 +42,7 @@ class SignupController < ApplicationController
   def done
     user = User.find(session[:id])
     user.update(session[:step4])
+    sign_in User.find(session[:id]) unless user_signed_in?
     payment = PaymentMethod.new(user_params_step5)
     payment.save
     session.delete(:id)
