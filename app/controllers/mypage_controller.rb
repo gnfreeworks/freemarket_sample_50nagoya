@@ -8,22 +8,22 @@ class MypageController < ApplicationController
 
   def card
     @user = User.find(current_user.id)
-    @creditcard = @user.payment_method
-    unless @creditcard.nil?
-      @creditcard_last4 = (@creditcard.card_number.to_i % 10000).to_s
+    @credit_card = @user.payment_method
+    unless @credit_card.nil?
+      @credit_card_last4 = (@credit_card.card_number.to_i % 10000).to_s
     end
   end
   
   def cardCreate
     @user = User.find(current_user.id)
-    @creditcard = PaymentMethod.new
+    @credit_card = PaymentMethod.new
   end
 
   def cardAdd
     @user = User.find(current_user.id)
-    creditcard = PaymentMethod.where(user_id: params[:user_id])
-    if creditcard.empty?
-      @creditcard = PaymentMethod.create(creditParam)
+    credit_card = PaymentMethod.where(user_id: params[:user_id])
+    if credit_card.empty?
+      @credit_card = PaymentMethod.create(creditParam)
       redirect_to card_mypage_index_path, notice:'クレジットカードを追加しました!'
     else
       flash.now[:alert] = '既に同じカードが存在するため登録できません'

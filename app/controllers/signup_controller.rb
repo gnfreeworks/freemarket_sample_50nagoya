@@ -16,7 +16,7 @@ class SignupController < ApplicationController
   end
   
   def show
-    @creditcard = PaymentMethod.new
+    @credit_card = PaymentMethod.new
   end
 
   def step3
@@ -36,7 +36,7 @@ class SignupController < ApplicationController
 
   def step5
     session[:step4] = user_params_step4
-    @creditcard = PaymentMethod.new
+    @credit_card = PaymentMethod.new
   end
 
   def done
