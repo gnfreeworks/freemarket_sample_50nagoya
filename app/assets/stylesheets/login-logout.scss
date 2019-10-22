@@ -27,46 +27,6 @@
   }
 }
 
-
-.btn-sns-facebook:first-child {
-  margin: 0;
-}
-
-.btn-sns-facebook {
-  margin: 16px 0 0;
-  background: #385185;
-  color: #fff;
-}
-
-.btn-sns {
-  position: relative;
-  i {
-    position: absolute;
-    top: 50%;
-    left: 16px;
-    transform: translate(0, -50%);
-  }
-}
-
-.btn-default {
-  display: block;
-  width: 100%;
-  line-height: 48px;
-  font-size: 14px;
-  border: 1px solid transparent;
-  transition: all ease-out .3s;
-  cursor: pointer;
-  text-align: center;
-}
-
-.btn-sns-google {
-  margin: 16px 0 0;
-  background: #fff url('/images/google.svg') no-repeat 3px top;
-  border: #979797 solid 1px;
-  color: #333;
-}
-
-
 .log-form-inner .form-group:first-child {
   margin: 0;
 }

@@ -87,12 +87,14 @@ label{
     line-height: 1.5;
   }
 }
+
 .form__select{
   border: groove;
   display: inline-block;
   height: 76px;
   width: 48px;
 }
+
 .progress-btn{
   width: 340px;
   height: 46px;
@@ -102,6 +104,7 @@ label{
   font-size: 14px;
   margin-top: 24px;
 }
+
 .text__consent{
   margin-top: 20px;
   line-height: 1.5;
@@ -153,6 +156,7 @@ label{
   font-size: 16px; 
   margin-top: 8px;
 }
+
 .form__block__text__main.phone{
   text-align: left;
 }
@@ -166,9 +170,7 @@ label{
   font-weight: bold;
   line-height: 1.5;
 }
-a{
-  color: #0099E8;
-}
+
 .last-sentence{
   margin: 5px 0 5px 0;
 }

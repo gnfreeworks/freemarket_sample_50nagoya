@@ -8,31 +8,37 @@
   margin: 0;
   padding: 0;
 }
+
 *, ::before, ::after {
  border-style: solid;
  border-width: 0;
 }
+
 a {
  color: #0099e8;
  text-decoration: none;
 }
 
 body {
- position: relative;
- min-height: 100%;
- background: #f5f5f5;
- font-size: 14px;
- color: #333;
- line-height: 1;
+  position: relative;
+  min-height: 100%;
+  background: #f5f5f5;
+  font-size: 14px;
+  color: #333;
+  line-height: 1;
 }
 
 .clearfix:after {
- content: '';
- display: block;
- clear: both;
+  content: '';
+  display: block;
+  clear: both;
 }
 
 .bold { font-weight:600; }
+
+/**********************************/
+/**        l-container           **/
+/**********************************/
 
 .l-container {
  margin: 24px auto 0;
@@ -46,6 +52,10 @@ body {
  }
 }
 
+/**********************************/
+/**          l-content           **/
+/**********************************/
+
 .l-content {
  width: 100%;  
  @media screen and (min-width: 768px){
@@ -57,6 +67,9 @@ body {
  }
 }
 
+/**********************************/
+/**          l-side              **/
+/**********************************/
 
 .l-side {
  margin: 40px auto 0;
@@ -68,4 +81,38 @@ body {
    width: 280px;
    margin: 0 40px 0 0;
  }
+}
+
+/**********************************/
+/**          l-single            **/
+/**********************************/
+
+.l-single-content {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.l-single-inner {
+  padding: 24px 16px 40px;
+}
+
+.l-single-inner {
+  border-top: 1px solid #f5f5f5;
+  padding: 40px;
+}
+
+.l-single-inner.registration-form .l-single-content {
+  max-width: 343px;
+}
+
+.l-single-inner {
+  border-top: 1px solid #f5f5f5;
+  padding :40px;
+  @media screen and (min-width: 768px) {
+    padding: 64px;
+  }
+}
+
+.l-single-inner .btn-red:first-child {
+  margin: 0;
 }

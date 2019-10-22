@@ -436,7 +436,7 @@ nav ul{
 
 }
 
-.setting-profile-icon .input-default {
+.setting-profile-icon .profile-input-default {
   width: 220px;
   margin: 0 0 0 8px;
   vertical-align: middle;
@@ -493,17 +493,6 @@ input {
 /**********************************/
 /**          credit              **/
 /**********************************/
-
-.l-single-inner {
-  border-top: 1px solid #f5f5f5;
-  padding: 40px;
-}
-
-.l-single-content {
-  max-width:320px;
-  margin: 0 auto;
-}
-
 .l-chapter-sub-head {
   font-size: 14px;
   font-weight: 800;
@@ -539,8 +528,6 @@ input {
   }
 }
 
-
-
 .signup-card-list {
   margin: 8px 0 0;
   font-size: 0;
@@ -552,15 +539,8 @@ input {
   }
 }
 
-.l-single-inner {
-  padding: 24px 16px 40px;
-}
-
 .registration-form {
   padding: 24px 16px 40px;
-}
-.l-single-inner.registration-form .l-single-content {
-  max-width: 343px;
 }
 
 .form-group {
@@ -589,13 +569,12 @@ label {
   vertical-align: top;
 }
 
-.form-group.input-default {
+.form-group .input-default {
   width: 100%;
   margin: 8px 0 0;
 }
 
-.input-default {
-  height: 48px;
+.profile-input-default {
   padding: 10px 16px 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
@@ -746,34 +725,34 @@ ul ol {
   color: #ea352d;
   }
 
-  .creditcard-select-wrap select {
-    padding-right: 3px;
-    background: #fff;
-    display: inline-block;
-    margin: 8px 10px;
-    width: calc(38% - 2px);
-    height:48px;
-    border-radius:4px;
-    border: 1px solid #ccc;
-    background: 0;
-    font-size: 16px;
-    line-height: 1.5;
-    cursor: pointer;
+.creditcard-select-wrap select {
+  padding-right: 3px;
+  background: #fff;
+  display: inline-block;
+  margin: 8px 10px;
+  width: calc(38% - 2px);
+  height:48px;
+  border-radius:4px;
+  border: 1px solid #ccc;
+  background: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+}
 
-  }
-  .select-payment select {
-    padding-right: 3px;
-    background: #fff;
-    display: inline-block;
-    margin: 8px 10px;
-    width: calc(38% - 2px);
-    height:48px;
-    border-radius:4px;
-    border: 1px solid #ccc;
-    background: 0;
-    font-size: 16px;
-    line-height: 1.5;
-    cursor: pointer;
+.select-payment select {
+  padding-right: 3px;
+  background: #fff;
+  display: inline-block;
+  margin: 8px 10px;
+  width: calc(38% - 2px);
+  height:48px;
+  border-radius:4px;
+  border: 1px solid #ccc;
+  background: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
 }
 
 .settings-add-card a i {
@@ -788,25 +767,3 @@ ul ol {
   }
 }
 
-.l-single-content {
-  max-width: 320px;
-  margin: 0 auto;
-
-}
-
-.l-single-inner {
-  border-top: 1px solid #f5f5f5;
-  padding :40px;
-  @media screen and (min-width: 768px) {
-    padding: 64px;
-  }
-}
-
-.l-single-inner .btn-red:first-child {
-  margin: 0;
-}
-
-.l-single-content {
-  max-width: 320px;
-  margin: 0 auto;
-}

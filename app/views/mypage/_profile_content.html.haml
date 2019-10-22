@@ -6,7 +6,7 @@
       .setting-profile-icon
         %figure
           %img{ alt: "", src: "/images/member_photo_noimage_thumb.png", height: "60", width: "60"}
-        %input{ name: "nickname", type: "text", placeholder: "例)AYA☆セール中", value: @user.nickname, class: 'input-default'}
+        %input{ name: "nickname", type: "text", placeholder: "例)AYA☆セール中", value: @user.nickname, class: 'profile-input-default'}
       .setting-profile-content
         %textarea{ name: 'profiletext', value: '', class: 'textarea-default', placeholder: '例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪' }
           = @user.profiletext
