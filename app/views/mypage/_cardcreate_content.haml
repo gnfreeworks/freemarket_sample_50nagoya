@@ -1,6 +1,7 @@
 .l-single-content
   .form-group
     = f.label 'カード番号', class: 'payment_card_no'
+    = f.hidden_field :user_id, value: user.id
     %span.form-require
       必須
     %br/

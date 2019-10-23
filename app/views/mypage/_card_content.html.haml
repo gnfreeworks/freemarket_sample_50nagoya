@@ -15,10 +15,11 @@
           - else
             %ul.settings-payment-list
               %li
-                = form_for @credit_card, url: cardAdd_mypage_index_path, html: {class: 'l-single-content'} do |f|
+                = form_for @credit_card, url: cardDestroy_mypage_index_path, html: {method: :delete, class: 'l-single-content'} do |f|
                   %figure
                     %img{ alt: "", src: "/images/visa.svg", height: "60", width: "60"}
                   .settings-payment-num
+                    = f.hidden_field :id, value: @credit_card.id
                     = "************ " + @credit_card_last4
                   .settings-payment-num
                     = @credit_card.expiration_date.strftime("%m") + '/' +  @credit_card.expiration_date.strftime("%y") 

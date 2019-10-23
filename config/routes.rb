@@ -20,12 +20,13 @@ Rails.application.routes.draw do
 
   resources :mypage, only: :index do
     collection do
-      get   'profile'
-      post  'profileUpdate'
-      get   'card'
-      get   'cardCreate'
-      post  'cardAdd'
-      get   'logout'
+      get    'profile'
+      post   'profileUpdate'
+      get    'card'
+      get    'cardCreate'
+      post   'cardAdd'
+      delete 'cardDestroy'
+      get    'logout'
     end
   end
 end

@@ -1,4 +1,5 @@
 class MypageController < ApplicationController
+  before_action :authenticate_user!, except: :index
 
   def index
     @user = current_user
@@ -13,6 +14,12 @@ class MypageController < ApplicationController
       @credit_card_last4 = (@credit_card.card_number.to_i % 10000).to_s
     end
   end
+
+  def cardDestroy
+    credit_card = PaymentMethod.find(paymentMethodId[:id])
+    credit_card.destroy
+    redirect_to card_mypage_index_path, notice:'クレジットカード情報を削除しました!'
+  end
   
   def cardCreate
     @user = current_user
@@ -20,10 +27,11 @@ class MypageController < ApplicationController
   end
 
   def cardAdd
-    @user = current_user
-    credit_card = PaymentMethod.where(user_id: params[:user_id])
-    if credit_card.empty?
-      @credit_card = PaymentMethod.create(creditParam)
+
+    @credit_card = PaymentMethod.new(creditParam)
+    @credit_card.user_id = current_user.id
+
+    if @credit_card.save
       redirect_to card_mypage_index_path, notice:'クレジットカードを追加しました!'
     else
       flash.now[:alert] = '既に同じカードが存在するため登録できません'
@@ -55,7 +63,11 @@ class MypageController < ApplicationController
   end
 
   def creditParam
-    params.require(:payment_method).permit(:card_number, :expiration_date, :secrity_code).merge(user_id: params[:user_id])
+    params.require(:payment_method).permit(:user_id, :card_number, :expiration_date, :secrity_code)
+  end
+  
+  def paymentMethodId
+    params.require(:payment_method).permit(:id)
   end
 
 end
