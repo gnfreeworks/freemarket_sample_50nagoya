@@ -29,47 +29,47 @@
             %span.form__block__required
               必須
             %br/
-            = f.text_field :nickname, autofocus: true, placeholder: '例）メルカリ太郎', class: 'text_field'
+            = f.text_field :nickname, autofocus: true, placeholder: '例）メルカリ太郎', class: 'text_field', id: 'input-nickname'
           .form__block
             = f.label :メールアドレス
             %span.form__block__required
               必須
             %br/
-            = f.email_field :email, placeholder: 'PC・携帯どちらでも可', class: 'text_field'
+            = f.email_field :email, placeholder: 'PC・携帯どちらでも可', class: 'text_field', id: 'input-email',type: 'email'
           .form__block
             = f.label :パスワード
             %span.form__block__required
               必須
             %br/
-            = f.password_field :password, autocomplete: "new-password", placeholder: '7文字以上', class: 'text_field'
+            = f.password_field :password, autocomplete: "new-password", placeholder: '7文字以上', class: 'text_field', id: 'input-password'
           .form__block
             = f.label :パスワード（確認）
             %span.form__block__required
               必須
             %br/
-            =f.password_field :password_confirmation, placeholder: '7文字以上', class:'text_field'
+            =f.password_field :password_confirmation, placeholder: '7文字以上', class:'text_field', id: 'input-password_confirm'
           .form__block
             %h3.form__block__text
               本人確認
             .form__block__text__main
               安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
-          .form__block
+          .form__block#input-name
             = f.label :お名前（全角）
             %span.form__block__required
               必須
             %br/
             .form-separate
-              = f.text_field :first_name, placeholder: '例）山田', class: 'text_field-half'
-              = f.text_field :last_name, placeholder: '例）彩', class: 'text_field-half'
-          .form__block
+              = f.text_field :first_name, placeholder: '例）山田', class: 'text_field-half', id: 'input-first_name'
+              = f.text_field :last_name, placeholder: '例）彩', class: 'text_field-half', id: 'input-last_name'
+          .form__block#input-kananame
             = f.label :お名前（カナ）
             %span.form__block__required
               必須
             %br/
             .form-separate
-              = f.text_field :first_kananame, placeholder: '例）ヤマダ', class: 'text_field-half'
-              = f.text_field :last_kananame, placeholder: '例）アヤ', class: 'text_field-half'
-          .form__block
+              = f.text_field :first_kananame, placeholder: '例）ヤマダ', class: 'text_field-half', id: 'input-first_kananame'
+              = f.text_field :last_kananame, placeholder: '例）アヤ', class: 'text_field-half', id: 'input-last_kananame'
+          .form__block#input-birthday
             = f.label :生年月日
             %span.form__block__required
               必須
@@ -89,7 +89,7 @@
               %a{} 利用規約
               に同意したものとみなします
             .form__actions
-              = f.submit "次へ進む", class: 'progress-btn'
+              = f.submit "次へ進む", class: 'progress-btn btn-step1', data: { disable_with: 'Submitting...'}, disabled:true
             .text__right
               %a{} 本人情報の登録について
   %footer.single-footer

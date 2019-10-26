@@ -10,7 +10,9 @@ class MypageController < ApplicationController
   def card
     @user = current_user
     @credit_card = @user.payment_method
+
     unless @credit_card.nil?
+      reg = Regexp.new(@credit_card.card_number);
       @credit_card_last4 = (@credit_card.card_number.to_i % 10000).to_s
     end
   end

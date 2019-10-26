@@ -27,11 +27,11 @@
           .form__block
             = f.label :authorization_code, '認証番号'
             %br/
-            = f.text_field :authorization_code, {class: 'fake-box', placeholder: '認証番号を入力' }
+            = f.text_field :authorization_code, {class: 'fake-box', placeholder: '認証番号を入力', id: 'authorization_code' }
           .form__block__text__main.phone
             SNSで届いた認証番号を入力してください
           .form__actions
-            = f.submit "認証して完了", class: 'progress-btn'
+            = f.submit "認証して完了", class: 'progress-btn btn-step3', disabled:true
         .main-content__form__box.bottom
           .sub-content
             = form_for @user, url: step3_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
