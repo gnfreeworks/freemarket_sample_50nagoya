@@ -150,7 +150,6 @@ label{
   padding: 10px 16px 8px;
   border-radius: 4px;
   background-color: #fff;
-  color: #ccc;
   border: 1px solid #ccc;
   line-height: 1.5;
   font-size: 16px; 
@@ -173,4 +172,31 @@ label{
 
 .last-sentence{
   margin: 5px 0 5px 0;
+}
+
+.alert {
+  margin-top: 15px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  &__success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+  }
+
+  &__waring {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+  }
+
+  &__error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+  }
+
 }

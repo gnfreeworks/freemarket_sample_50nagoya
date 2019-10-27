@@ -27,11 +27,11 @@
           .form__block
             = f.label :tell_number, '携帯電話の番号'
             %br/
-            = f.text_field :tell_number, {class: 'fake-box', placeholder: '携帯電話の番号を入力' }
+            = f.text_field :tell_number, {class: 'fake-box', placeholder: '携帯電話の番号を入力', id: 'input-tel' }
           .form__block__text__main.phone
             本人確認のため、携帯電話のSNS(ショートメッセージサービス)を利用して認証を行います。
           .form__actions
-            = f.submit "SMSを送信する", class: 'progress-btn'
+            = f.submit "SMSを送信する", class: 'progress-btn btn-step2', disabled:true
           .form__block__text__main
             ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
           .text__right

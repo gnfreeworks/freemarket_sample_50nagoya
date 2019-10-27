@@ -7,6 +7,9 @@ class SignupController < ApplicationController
 
   def step1
     @user = User.new
+    session.delete(:user_id)
+    session.delete(:step1)
+    session.delete(:step4)
   end
 
   def step2
@@ -28,7 +31,7 @@ class SignupController < ApplicationController
     if user_params_step3 = '3333'
       user_params = session[:step1]
       user = User.create(user_params)
-      session[:id] = user.id
+      sign_in user unless user_signed_in?
       session.delete(:step1)
       @user = User.new
     end
@@ -40,12 +43,11 @@ class SignupController < ApplicationController
   end
 
   def done
-    user = User.find(session[:id])
+    user = User.find(current_user.id)
     user.update(session[:step4])
-    sign_in User.find(session[:id]) unless user_signed_in?
     payment = PaymentMethod.new(user_params_step5)
     payment.save
-    session.delete(:id)
+    session.delete(:user_id)
     session.delete(:step4)
   end
 
@@ -67,6 +69,6 @@ class SignupController < ApplicationController
     end
 
     def user_params_step5
-      params.require(:payment_method).permit(:card_number, :'expiration_date(1i)', :'expiration_date(2i)', :'expiration_date(3i)', :secrity_code).merge(user_id: session[:id])
+      params.require(:payment_method).permit(:card_number, :'expiration_date(1i)', :'expiration_date(2i)', :'expiration_date(3i)', :secrity_code).merge(user_id: current_user.id)
     end
 end
