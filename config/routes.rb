@@ -27,6 +27,8 @@ Rails.application.routes.draw do
       post   'cardAdd'
       delete 'cardDestroy'
       get    'logout'
+      get    'identification'
+      post   'identificationSave'
     end
   end
 end

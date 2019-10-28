@@ -14,6 +14,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string  :address_last_kananame
       t.integer :address_zipcode
       t.string  :address_prefecture
+      t.string  :address_city
       t.string  :address_block
       t.string  :address_building
       t.string  :address_phone_number

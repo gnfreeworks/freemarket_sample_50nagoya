@@ -45,7 +45,7 @@
             %span.form__block__required
               必須
             %br/
-            = f.number_field :address_zipcode, class: 'text_field', placeholder:'例）123-4567', id: 'input-address_zipcode'
+            = f.text_field :address_zipcode, class: 'text_field', placeholder:'例）123-4567', id: 'input-address_zipcode'
           .form__block
             = f.label :都道府県
             %span.form__block__required
@@ -57,7 +57,7 @@
             %span.form__block__required
               必須
             %br/
-            = f.text_field :address_prefecture, class: 'text_field', placeholder: '例）横浜市緑区', id: 'input-address_prefecture'
+            = f.text_field :address_city, class: 'text_field', placeholder: '例）横浜市緑区', id: 'input-address_city'
           .form__block
             = f.label :番町
             %span.form__block__required

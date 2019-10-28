@@ -59,6 +59,15 @@ class MypageController < ApplicationController
     end
   end
   
+  def identification
+    @user = current_user
+  end
+
+  def identificationSave
+    
+  end
+
+
   private
   def userProfile
     params.permit(:nickname, :profiletext)

@@ -2,15 +2,16 @@
  *               form  common start         *
  ********************************************/
 
-.text_field{
-  width: 304px;
+.text_field_input{
+  width: 100%;
+  margin: 8px 0 0;
   padding: 10px 16px 8px;
   border-radius: 4px;
+  border: 1px solid #ccc;
   background-color: #fff;
   line-height: 1.5;
-  font-size: 16px; 
-  margin-top: 8px;
-  border: 0.5px solid #ccc;
+  font-size: 16px;
+  box-sizing:border-box;
 }
 
 .main-content{
@@ -51,6 +52,15 @@
   }
   &__required{
     background-color: red;
+    margin: 0 0 8px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 12px;
+    vertical-align: top;
+  }
+  &__discretion{
+    background-color: #ccc;
     margin: 0 0 8px;
     padding: 2px 4px;
     border-radius: 2px;
@@ -758,3 +768,6 @@ ul ol {
   }
 }
 
+.text-right {
+  text-align: right;
+}
