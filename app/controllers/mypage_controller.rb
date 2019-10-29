@@ -64,9 +64,14 @@ class MypageController < ApplicationController
   end
 
   def identificationSave
-    
+    @user = current_user
+    if @user.update_attributes(setIndentification)
+      redirect_to identification_mypage_index_path, notice:'変更しました!!'      
+    else
+      flash.now[:alert] = 'もう一度入力して下さい。'
+      render :identification
+    end
   end
-
 
   private
   def userProfile
@@ -79,6 +84,10 @@ class MypageController < ApplicationController
   
   def paymentMethodId
     params.require(:payment_method).permit(:id)
+  end
+
+  def setIndentification
+    params.require(:user).permit(:address_zipcode, :address_prefecture, :address_city, :address_block, :address_building)
   end
 
 end
