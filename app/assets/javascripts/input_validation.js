@@ -421,6 +421,7 @@ $(document).on('change', '*', function (){
     || isEmptyInput($('#input-address_last_kananame')) 
     || isEmptyInput($('#input-address_zipcode')) 
     || isEmptyInput($('#input-address_prefecture')) 
+    || isEmptyInput($('#input-address_city')) 
     || isEmptyInput($('#input-address_block'))){
       isDisableButton($('.btn-step4'));
     }else{

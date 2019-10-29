@@ -199,6 +199,7 @@ installed devise
 |address_last_kananame    |住所-カナ名前|string||
 |address_zipcode          |住所-郵便番号|integer||
 |address_prefecture       |住所-県|string||
+|address_city             |住所-市町村|string||
 |address_block            |住所-ブロック|string||
 |address_building         |住所-建物名-番地|string||
 |address_phone_number     |電話番号|string||

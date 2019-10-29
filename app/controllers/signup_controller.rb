@@ -65,7 +65,7 @@ class SignupController < ApplicationController
     end
 
     def user_params_step4
-      params.require(:user).permit(:address_first_name, :address_last_name, :address_firt_kananame, :address_last_kananame, :address_zipcode, :address_prefecture, :address_block, :address_building, :address_phone_number)
+      params.require(:user).permit(:address_first_name, :address_last_name, :address_firt_kananame, :address_last_kananame, :address_zipcode, :address_prefecture, :address_city, :address_block, :address_building, :address_phone_number)
     end
 
     def user_params_step5
