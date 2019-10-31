@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190921032443) do
+ActiveRecord::Schema.define(version: 20191016132004) do
 
   create_table "account_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -103,12 +103,11 @@ ActiveRecord::Schema.define(version: 20190921032443) do
 
   create_table "payment_methods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.string   "card_number",      null: false
-    t.integer  "expiration_year",  null: false
-    t.integer  "expiration_month", null: false
-    t.integer  "secrity_code",     null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "card_number",     null: false
+    t.date     "expiration_date", null: false
+    t.integer  "secrity_code",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["user_id"], name: "index_payment_methods_on_user_id", using: :btree
   end
 
@@ -244,16 +243,32 @@ ActiveRecord::Schema.define(version: 20190921032443) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                               null: false
-    t.string   "kananame",                           null: false
-    t.date     "birthdaydate",                       null: false
-    t.string   "nickname"
-    t.string   "maildaddress",                       null: false
-    t.string   "password"
-    t.text     "profiletext",          limit: 65535
-    t.integer  "authenticphonenumber"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.string   "nickname",                                          null: false
+    t.string   "first_name",                                        null: false
+    t.string   "last_name",                                         null: false
+    t.string   "first_kananame",                                    null: false
+    t.string   "last_kananame",                                     null: false
+    t.date     "birthday_date"
+    t.text     "profiletext",            limit: 65535
+    t.string   "address_first_name"
+    t.string   "address_last_name"
+    t.string   "address_firt_kananame"
+    t.string   "address_last_kananame"
+    t.integer  "address_zipcode"
+    t.string   "address_prefecture"
+    t.string   "address_city"
+    t.string   "address_block"
+    t.string   "address_building"
+    t.string   "address_phone_number"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.string   "email",                                default: "", null: false
+    t.string   "encrypted_password",                   default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
   add_foreign_key "buyer_evaluations", "products_statuses"

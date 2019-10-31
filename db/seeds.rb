@@ -10290,13 +10290,13 @@ SaleCharge.create(rate: '0.1')
 ## Product table Smaple data
 Product.create(name: '【sample】立体裁断スキッパーシャツブラウス', description: 'ご覧いただきありがとうございます。', price: '2000', profit: '1800',size_id: '4', brand: '1', sale_charge_id: '1', status_id: '1', category_id: '4', area_id: '20', shipping_charge_id: '1', shipping_time_id: '1', shipping_method_id: '1')
 
+## User table Smaple data
+User.create(nickname: 'ヤマ', first_name: '山本',last_name: '太郎',  first_kananame: 'ヤマモト', last_kananame: 'タロウ', birthday_date: '2019/01/01', email: 'yamamoto@gmail.com', profiletext: '発送は平日週１になります、曜日は週毎に異なります。', password: 'password', address_first_name: '山田', address_last_name: '綾', address_firt_kananame: 'ヤマダ', address_last_kananame: 'アヤ', address_zipcode: '1234567', address_prefecture:'神奈川県', address_city:'横浜市緑区', address_block: '青山1-1-1', address_building: '柳ビル103', address_phone_number: '09012345678')
+User.create(nickname: 'タナ', first_name: '田中',last_name: '次郎',  first_kananame: 'タナカ',  last_kananame: 'ジロウ', birthday_date: '2019/01/01', email: 'tanaka@gmail.com', profiletext: '▽コメント逃げやめてください', password: 'password', address_first_name: '田中', address_last_name: '綾', address_firt_kananame: 'タナカ', address_last_kananame: 'アヤ', address_zipcode: '1234567', address_prefecture: '東京都', address_city:'緑区', address_block: '青山1-1-1', address_building: '柳ビル103', address_phone_number: '09044445555')
+User.create(nickname: 'オカ', first_name: '岡田',last_name: '三郎',  first_kananame: 'オカダ', last_kananame: 'サンロウ', birthday_date: '2019/01/01', email: 'okada@gmail.com', profiletext: '発送は平日週１になります、曜日は週毎に異なります。', password: 'password', address_first_name: '虹色', address_last_name: '綾', address_firt_kananame: 'ニジイロ', address_last_kananame: 'アヤ', address_zipcode: '1234567', address_prefecture: '石川県', address_city:'野々市町', address_block: '青山1-1-1', address_building: '柳ビル103', address_phone_number: '08088887777')
+
 ## ProductsStatus table Smaple data
 ProductsStatus.create(product_id: '1', buyer_id: '1', seller_id: '2', selling_status: '0', dealing_status: '0' )
-
-## User table Smaple data
-User.create(name: '山本 太郎', kananame: 'ヤマモト タロウ', nickname: 'ヤマ', birthdaydate: '2019-08-31', maildaddress: 'yamamoto@gmail.com')
-User.create(name: '田中 次郎', kananame: 'タナカ ジロウ', nickname: 'タナ', birthdaydate: '2019-08-31' , maildaddress: 'tanaka@gmail.com')
-User.create(name: '岡田 三郎', kananame: 'オカダ サンロウ', nickname: 'オカ', birthdaydate: '2019-08-31' , maildaddress: 'tanaka@gmail.com')
 
 ## buyer_evaluations テーブル (出品者評価 テーブル)
 BuyerEvaluation.create(products_status_id: '1', user_id: '1', evaluation_id: '1', comment: 'まあまあ発送は早かった')
@@ -10306,7 +10306,7 @@ Good.create(products_status_id: '1', user_id: '2')
 Good.create(products_status_id: '1', user_id: '3')
 
 ## payment_methods テーブル(支払い方法 テーブル)
-PaymentMethod.create(user_id: '1', card_number: '239412349849', expiration_year: '12', expiration_month: '06', secrity_code:'987')
+PaymentMethod.create(user_id: '1', card_number: '239412349849', expiration_date: '2019/05/01', secrity_code:'987')
 
 ## comments テーブル (コメント テーブル)
 Comment.create(products_status_id: '1', user_id: '3', text: '値引きキボンヌ')

@@ -7,28 +7,99 @@
   text-align: center;
   border-radius: 4px;
 }
-.btn-red {
-  color: #fff;
-  background-color: #ea352d;
-  margin: 16px 0 0;
+
+.btn-default {
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
 }
+
+
+.btn-default__login {
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-red {
+  background-color: #ea352d;
+  border: 1px solid #ea352d;
+  color : #fff;
+  margin: 20px 0 0;
+  .fa-envelope {
+    color: #fff;
+  }
+}
+
+.btn-mail{
+  position: relative;
+}
+
 .btn-blue {
   color: #fff;
   background-color: #0099e8;
 }
+
 .btn-gray {
   color: #fff;
   background-color: #808080;
 }
-.btn-facebook {
-  color: #fff;
-  background-color: #385185; 
 
+.btn-facebook {
+  background-color: #385185;
+  margin: 16px 0 0;
+  .fa-facebook {
+    color: #fff;
+  }
 }
 .btn-google {
+  margin: 16px 0 0;
   border: 1px solid #C0C0C0;
   background-color: #fff;
 }
+
 .btn-corner {
   border-radius: 0px;
+}
+
+.color-white {
+  color: white;
+}
+
+.btn-sns-facebook:first-child {
+  margin: 0;
+}
+
+.btn-sns-facebook {
+  margin: 16px 0 0;
+  background: #385185;
+  color: #fff;
+}
+
+.btn-sns {
+  position: relative;
+  i {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translate(0, -50%);
+  }
+}
+
+
+.btn-sns-google {
+  margin: 16px 0 0;
+  background: #fff url('/images/google.svg') no-repeat 3px top;
+  border: #979797 solid 1px;
+  color: #333;
 }

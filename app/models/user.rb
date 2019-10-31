@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
   has_one     :transfer_address
   has_one     :payment_method
   has_many    :buyed_items, foreign_key: "buyer_id", class_name: "ProductsStatus"
@@ -9,4 +13,14 @@ class User < ApplicationRecord
   has_many    :sale_orders
   has_many    :transfer_orders
   has_many    :buyer_evaluations
+  
+  attr_writer :password_field
+  attr_reader :password_field
+  
+  attr_writer :tell_number
+  attr_reader :tell_number
+  
+  attr_writer :authorization_code
+  attr_reader :authorization_code
+
 end
