@@ -11,8 +11,6 @@ h2 {
 h3 {
   display: block;
   font-size: 1.17em;
-  // margin-block-start: 1em;
-  // margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-weight: bold;
@@ -43,58 +41,164 @@ h3 {
 
 // ***************************
 
-.l-single-container {
-  background: #fff;
+.l {
+  &-single {
+    &-container {
+      background: #fff;
+    }
+
+    &-head {
+      padding: 24px 8px;
+      font-size: 18px;
+      line-height: 1.5;
+      text-align: center;
+    }
+  }
+
+  &-left {
+    float: left;
+  }
+
+  &-right {
+    float: right;
+  }
 }
 
-.l-single-head {
-  padding: 24px 8px;
-  font-size: 18px;
-  line-height: 1.5;
-  text-align: center;
-}
 
-.sell-form {
-  border-top: 1px solid #eee;
-}
 
-.sell-upload-box {
-  padding: 40px 2.5%;
-}
+.sell {
+  &-form {
+    border-top: 1px solid #eee;
+    
+    &-box {
+      margin: 40px 0 0;
+    }
+  }
 
-.sell-upload-head {
-  font-size: 16px;
-}
+  &-upload {
+    &-box {
+      padding: 40px 2.5%;
+    }
 
-.sell-dropbox-container {
-  display: inline;
-  margin: 16px auto 0;
-}
+    &-head {
+      font-size: 16px;
+    }
 
-.sell-dropbox-container .sell-upload-items-container {
+    &-drop-box.have-item-0 {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    &-drop-box {
+      position: relative;
+      min-height: 162px;
+      background: #f5f5f5;
+      border: 1px dashed #ccc;
+      font-size: 0;
+      text-align: center;
+      -webkit-transition: -webkit-box-shadow ease-out .3s;
+      transition: -webkit-box-shadow ease-out .3s;
+      transition: box-shadow ease-out .3s;
+      transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
+      cursor: pointer;
+      float: right;
+      margin-left: 2%;
+    }
+
+    &-drop-box .fa-camera {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      font-size: 14px;
+    }
+
+    &-head+p {
+      margin: 8px 0 0;
+      line-height: 1.5;
+      text-align: left;
+    }
+  }
+
+
+  &-dropbox-container {
     display: inline;
+    margin: 16px auto 0;
+  }
+
+  &-dropbox-container &-upload-items-container {
+    display: inline;
+  }
+
+
+
+  &-sub-head {
+    color: #888;
+    font-size: 14px;
+  }
+
+  &-content {
+    padding: 40px;
+    border-top: 1px solid #eee;
+  }
+
+
+  &-price {
+    .form-group .l-left {
+      width: 50%;
+      line-height: 48px;
+    }
+
+    .form-group .l-right {
+      width: 50%;
+    }
+
+    &-input {
+      text-align: right;
+    }
+
+    &-input .input-default {
+      margin: 0;
+      text-align: right;
+    }
+    
+    &-input>div {
+      display: inline-block;
+      width: 80%;
+      margin: 0 0 0 5%;
+    }
+
+  }
+
+
+  &-price>li:first-child {
+    padding: 0 0 24px;
+    border: 0;
+  }
+
+  &-price>li {
+    padding: 24px 0;
+    border-top: 1px solid #ccc;
+  }
+
+
+  &-btn {
+    &-box p {
+      line-height: 1.5;
+    }
+
+    &-box .btn-red {
+      margin: 40px 0 0;
+    }
+
+    &-box .btn-gray {
+      width: 45%;
+      margin: 24px auto 0;
+    }
+  }
 }
 
-.sell-upload-drop-box.have-item-0 {
-  width: 100%;
-  margin-left: 0;
-}
-
-.sell-upload-drop-box {
-  position: relative;
-  min-height: 162px;
-  background: #f5f5f5;
-  border: 1px dashed #ccc;
-  font-size: 0;
-  text-align: center;
-  -webkit-transition: -webkit-box-shadow ease-out .3s;
-  transition: -webkit-box-shadow ease-out .3s;
-  transition: box-shadow ease-out .3s;
-  transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
-  cursor: pointer;
-  float: right;
-  margin-left: 2%;
-}
 
 input {
   border: 0;
@@ -102,130 +206,44 @@ input {
   font-family: inherit;
   -webkit-appearance: none;
   -moz-appearance: none;
-}
-
-input {
   -webkit-border-radius: 0;
-}
-
-.visible-pc {
-  display: none;
-}
-
-pre {
-  overflow: auto;
-}
-
-.sell-upload-drop-box .fa-camera {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  font-size: 14px;
-}
-
-.sell-upload-head+p {
-  margin: 8px 0 0;
-  line-height: 1.5;
-  text-align: left;
-}
-
-.sell-sub-head {
-  color: #888;
-  font-size: 14px;
-}
-
-.sell-content {
-  padding: 40px;
-  border-top: 1px solid #eee;
-}
-
-.sell-form-box {
-  margin: 40px 0 0;
-}
-
-label {
-  display: block;
-  text-align: left;
 }
 
 .select-wrap {
   position: relative;
   background: #fff;
+
+  .fa-chevron-down {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    z-index: 2;
+    color: #888;
+    font-size: 18px;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+  }
 }
 
-.select-wrap .fa-chevron-down {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  z-index: 2;
-  color: #888;
-  font-size: 18px;
-  -webkit-transform: translate(0, -50%);
-  transform: translate(0, -50%);
+
+.form-group {
+  select {
+    width: 100%;
+  }
+
+  .select-wrap {
+    margin: 8px 0 0;
+  }
+
+  .fa-chevron-down {
+    position: absolute;
+  }
+
+  label+.textarea-default {
+    margin: 8px 0 0;
+  }
 }
 
-.form-group select {
-  width: 100%;
-}
-
-.form-group .select-wrap {
-  margin: 8px 0 0;
-}
-
-.form-group .fa-chevron-down {
-  position: absolute;
-}
-
-.form-group label+.textarea-default {
-  margin: 8px 0 0;
-}
-
-// i[class^='icon-'], i[class*='icon-'] {
-//   display: inline-block;
-//   font-family: 'icon-font';
-//   speak: none;
-//   font-style: normal;
-//   font-weight: 400;
-//   font-variant: normal;
-//   text-transform: none;
-//   line-height: 1;
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
-// }
-
-.sell-price .form-group .l-right {
-  width: 50%;
-}
-
-.sell-price-input {
-  text-align: right;
-}
-
-.l-left {
-  float: left;
-}
-
-.sell-price .form-group .l-left {
-  width: 50%;
-  line-height: 48px;
-}
-
-.l-right {
-  float: right;
-}
-
-.sell-price-input .input-default {
-  margin: 0;
-  text-align: right;
-}
-
-.sell-price-input>div {
-  display: inline-block;
-  width: 80%;
-  margin: 0 0 0 5%;
-}
 
 .input-default {
   height: 48px;
@@ -237,33 +255,14 @@ label {
   font-size: 16px;
 }
 
-.sell-price>li:first-child {
-  padding: 0 0 24px;
-  border: 0;
-}
-
-.sell-price>li {
-  padding: 24px 0;
-  border-top: 1px solid #ccc;
+.btn-gray {
+  background: #aaa;
+  border: 1px solid #aaa;
+  color: #fff;
 }
 
 .bold {
   font-weight: 600;
-}
-
-.sell-btn-box .btn-red {
-  margin: 40px 0 0;
-}
-
-.sell-btn-box .btn-gray {
-    width: 45%;
-    margin: 24px auto 0;
-}
-
-.btn-gray {
-    background: #aaa;
-    border: 1px solid #aaa;
-    color: #fff;
 }
 
 p {
@@ -272,8 +271,17 @@ p {
   margin-block-end: 0em;
 }
 
-.sell-btn-box p {
-  line-height: 1.5;
+.visible-pc {
+  display: none;
+}
+
+pre {
+  overflow: auto;
+}
+
+label {
+  display: block;
+  text-align: left;
 }
 
 //selectの標準矢印を非表示
