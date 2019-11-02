@@ -10,17 +10,17 @@
               出品画像
               %span.form-require
                 必須
-              %p
-                最大10枚までアップロードできます
-              .sell-dropbox-container.clearfix.state-image-number-10
-                .sell-upload-products-container
-                  .sell-upload-items.have-item-0
-                    %ul
-                .sell-upload-drop-box.have-item-0
-                  %input.sell-upload-drop-file{multiple: true,type:"file",name:"image1",style:"display: none;"}
-                  %pre.visible-pc
-                    ドラッグアンドドロップまたはクリックしてファイルをアップロード
-                  = icon("fas fa-camera","camera")
+            %p
+              最大10枚までアップロードできます
+            .sell-dropbox-container.clearfix.state-image-number-10
+              .sell-upload-products-container
+                .sell-upload-items.have-item-0
+                  %ul
+              .sell-upload-drop-box.have-item-0
+                %input.sell-upload-drop-file{multiple: true,type:"file",name:"image1",style:"display: none;"}
+                %pre.visible-pc
+                  ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                = icon 'fas', 'camera'
           .sell-content
             .form-group
               %label
@@ -30,7 +30,7 @@
               %div
                 %input.input-default{placeholder:"商品名(必須 40文字まで)"}
             .form-group
-              %lavel
+              %label
                 商品の説明
                 %span.form-require
                   必須
@@ -46,16 +46,14 @@
                       必須
                   %div
                     .select-wrap
-                      <下矢印アイコンを表示する＞
-                      ＜セレクトボックスを表示する＞
+                      = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
                 .form-group
                   %label
                     商品の状態
                     %span.form-require
                       必須
                     .select-wrap
-                      ＜下矢印アイコンを表示する＞
-                      ＜セレクトボックスを表示する＞
+                      = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
           .sell-content.clearfix
             %h3.sell-sub-head
               配送について
@@ -68,24 +66,21 @@
                     %span.form-require
                       必須
                     .select-wrap
-                      ＜下矢印アイコンを表示する＞
-                      ＜セレクトボックスを表示する＞
+                      = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
                 .form-group
                   %label
                     発送元の地域
                     %span.form-require
                       必須
                     .select-wrap
-                      ＜下矢印アイコンを表示する＞
-                      ＜セレクトボックスを表示する＞
+                      = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
                 .form-group
                   %label
                     発送までの日数
                     %span.form-require
                       必須
                     .select-wrap
-                      ＜下矢印アイコンを表示する＞
-                      ＜セレクトボックスを表示する＞
+                      = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
           .sell-content.clearfix
             %h3.sell-sub-head
               販売価格(300〜9,999,999)
@@ -102,17 +97,13 @@
                       .l-right.sell-price-input
                         ¥
                         %div
-                          %input.input-default{placeholder:"例)300"}
+                          %input.input-default{placeholder:"例) 300"}
                   %li.clearfix
-                    .l-left
-                      販売手数料 (10%)
-                    .l-right
-                      -
+                    .l-left 販売手数料 (10%)
+                    .l-right -
                   %li.clearfix.bold
-                    .l-left
-                      販売利益
-                    .l-right
-                      -
+                    .l-left 販売利益
+                    .l-right -
           .modal{role:"dialog",tabindex:"-1"}
             .modal-inner
           .sell-content.sell-btn-box
@@ -136,6 +127,6 @@
                 に同意したことになります。
             %button.btn-default.btn-red{type:"submit"}
               出品する
-            = link_to "#",class:"btn-default,btn-gray" do
+            = link_to "#",class:"btn-default btn-gray" do
               もどる
         .overlay

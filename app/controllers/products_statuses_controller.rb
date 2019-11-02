@@ -2,7 +2,7 @@ class ProductsStatusesController < ApplicationController
 
   def index
     # 製品情報
-    @product_status = ProductsStatus.find(1)
+    @product_status = ProductsStatus.find(current_user.id)
 
     # 製品名
     @product_name = @product_status.product.name
