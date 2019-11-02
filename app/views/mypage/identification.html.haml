@@ -1,0 +1,64 @@
+%nav.bread-crumbs
+%main.l-container.clearfix
+  .l-content
+    %section.l-chapter-container.mypage-identification
+      %h2.l-chapter-head 本人情報の登録
+      = form_for(@user, url: identificationSave_mypage_index_path, method: "post", html: {class: 'l-single-inner'}) do |f|
+        %dev
+          %p
+            お客さまの本人情報をご登録ください。
+            %br
+            登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
+          %p.text-right
+            = link_to '#', class: '' do
+              本人確認書類のアップロードについて
+              %i.fas.fa-angle-double-right
+        .form-group
+          = f.label 'お名前'
+          %br/
+          %p 
+            = @user.first_name + " " + @user.last_name
+        .form-group
+          = f.label 'お名前カナ'
+          %br/
+          %p 
+            = @user.first_kananame + " " + @user.last_kananame
+        .form-group
+          = f.label '生年月日'
+          %br/
+          %p 
+            = @user.first_kananame + " " + @user.last_kananame
+        .form-group
+          = f.label :郵便番号
+          %span.form__block__discretion
+            任意
+          %br/
+          = f.text_field :address_zipcode, class: 'text_field_input', placeholder:'例）123-4567', id: 'input-address_zipcode', value: "#{@user.address_zipcode}"
+        .form-group
+          = f.label :都道府県
+          %span.form__block__discretion
+            任意
+          %br/
+          = f.text_field :address_prefecture, class: 'text_field_input', placeholder: '例）神奈川県', id: 'input-address_prefecture', value: "#{@user.address_prefecture}"
+        .form-group
+          = f.label :市区村町
+          %span.form__block__discretion
+            任意
+          %br/
+          = f.text_field :address_city, class: 'text_field_input', placeholder: '例）横浜市緑区', id: 'input-address_city', value: "#{@user.address_city}"
+        .form-group
+          = f.label :番町
+          %span.form__block__discretion
+            任意
+          %br/
+          = f.text_field :address_block, class: 'text_field_input', placeholder: '例）青山1-1-1', id: 'input-address_block', value: "#{@user.address_block}"
+        .form-group
+          = f.label :建物名
+          %span.form__block__discretion
+            任意
+          %br/
+          = f.text_field :address_building, class: 'text_field_input', placeholder: '例）柳ビル103', value: "#{@user.address_building}"
+        .form__actions
+          = f.submit "登録する", class: 'btn-default btn-red'
+
+  = render partial: 'identification_sideber'

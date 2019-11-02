@@ -1,5 +1,5 @@
 .single-container
-  .single-header
+  %header.single-header
     = render '/entry/entry-header'
     %nav.progress-bar.signup-bar
       %ol.clearfix
@@ -18,9 +18,11 @@
         %li
           完了
           .progress-status
-  .main-content
+  %main.main-content
     .main-content__title
       %h2 支払い方法
     .main-content__form
-      = form_for @creditcard, url: done_signup_index_path, html: {class: 'first-main__box'} do |f|
-        = render partial: '/mypage/cardcreate_content', locals: { creditcard: @creditcard, f: f } 
+      = form_for @credit_card, url: done_signup_index_path, html: {class: 'first-main__box'} do |f|
+        = render partial: '/mypage/cardcreate_content', locals: { f: f } 
+  %footer.single-footer
+    =render '/entry/entry-footer'

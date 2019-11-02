@@ -1,5 +1,5 @@
 .single-container
-  .single-header
+  %header.single-header
     = render '/entry/entry-header'
     %nav.progress-bar.signup-bar
       %ol.clearfix
@@ -18,7 +18,7 @@
         %li
           完了
           .progress-status
-  .main-content
+  %main.main-content
     .main-content__title
       %h2 電話番号の確認
     .main-content__form
@@ -27,14 +27,14 @@
           .form__block
             = f.label :tell_number, '携帯電話の番号'
             %br/
-            = f.text_field :tell_number, {class: 'fake-box', placeholder: '携帯電話の番号を入力' }
+            = f.text_field :tell_number, {class: 'fake-box', placeholder: '携帯電話の番号を入力', id: 'input-tel' }
           .form__block__text__main.phone
             本人確認のため、携帯電話のSNS(ショートメッセージサービス)を利用して認証を行います。
           .form__actions
-            = f.submit "SMSを送信する", class: 'progress-btn'
+            = f.submit "SMSを送信する", class: 'progress-btn btn-step2', disabled:true
           .form__block__text__main
             ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
           .text__right
             %a{} 電話番号の確認が必要な理由
-  .entry-footer
-    =render '/entry/entry-footer'    
+  %footer.single-footer
+    =render '/entry/entry-footer'
