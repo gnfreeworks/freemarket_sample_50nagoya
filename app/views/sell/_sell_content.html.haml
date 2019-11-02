@@ -46,6 +46,7 @@
                       必須
                   %div
                     .select-wrap
+                      = icon 'fas', 'chevron-down'
                       = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
                 .form-group
                   %label
