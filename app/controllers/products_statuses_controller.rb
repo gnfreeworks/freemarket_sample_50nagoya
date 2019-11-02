@@ -9,7 +9,7 @@ class ProductsStatusesController < ApplicationController
 
     # ユーザー情報
     @user = User.find(@product_status.buyer_id)
-    @buyer_name = @user.name
+    @buyer_name = @user.nickname
     @good_count = @user.buyer_evaluations.where(evaluation_id: 1).count
     @normal_count = @user.buyer_evaluations.where(evaluation_id: 2).count
     @bad_count = @user.buyer_evaluations.where(evaluation_id: 3).count
