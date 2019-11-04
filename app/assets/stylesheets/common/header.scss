@@ -1,0 +1,224 @@
+
+header {
+  display: block;
+  vertical-align: baseline;
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+  font: inherit;
+}
+
+.header__wrapper {
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  position: relative;
+  z-index: 3;
+  color: rgb(51, 51, 51);
+  font-size: 15px;
+}
+
+.header__container {
+  width: 700px;
+  margin: 0px auto;
+  padding: 8px 0px 0px;
+  @media  screen and (min-width: 1068px) {
+    width: 1020px;
+  }
+}
+
+.header__inner__top {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.header__inner__bottom {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.logo__item {
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+  height: 40px;
+  margin-right: 45px;
+}
+
+.logo__item__image {
+  height: 36px;
+  width: 134px;
+}
+.search__bar {
+  position: relative;
+  width: 100%;
+}
+.serch__items__box{
+  font-weight: bold;
+}
+
+.search__bar__text {
+  background-color: rgb(245, 245, 245);
+  font-size: 16px;
+  height: 40px;
+  line-height: 1.4em;
+  position: relative;
+  width: 100%;
+  -webkit-appearance: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(204, 204, 204);
+  border-image: initial;
+  border-radius: 4px;
+  outline: none;
+  padding: 0px 50px 0px 10px;
+  transition: all 0.3s ease-out 0s;
+}
+
+.search_bar__btn {
+  background-color: transparent;
+  cursor: pointer;
+  height: 40px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 40px;
+  -webkit-appearance: none;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  border-radius: 0px 4px 4px 0px;
+  padding: 0xp;
+}
+
+.serch__items__box{
+  display: flex;
+  margin-left: -3px;
+}
+
+.serch__by__category {
+  padding-left: 0px;
+  cursor: pointer;
+  height: 44px;
+  position: relative;
+  z-index: 3;
+  padding: 0px 10px;
+}
+
+.serch__by__brand{
+  padding-right: 0px;
+  cursor: pointer;
+  height: 44px;
+  position: relative;
+  z-index: 3;
+  padding: 0px 10px;
+
+}
+
+.user-info__items {
+  display: flex;
+  position: relative;
+  list-style: none;
+}
+
+.user-info__item {
+  height: 44px;
+  position: relative;
+  padding: 0px 7px;
+  @media screen and (min-width: 1068px){
+    padding: 0px 14px;
+  }
+}
+.user-info__item:hover {
+  color: rgb(0, 149, 238);
+}
+
+.category__container {
+  display: none;
+  position: absolute;
+  top: 44px;
+  z-index: 4;
+  @media screen and (min-width: 1068px){
+    left: 0px;
+  }
+}
+
+.large__category__container {
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  width: 224px;
+}
+
+.large__category__inner {
+  width: 224px;
+}
+
+.medium__category__container {
+  background-color: rgb(255, 255, 255);
+  bottom: 0px;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  //display:block;
+  display: none;
+  left: 224px;
+  position: absolute;
+  top: 0px;
+  width: 224px;
+}
+
+.medium__category__inner {
+  width: 224px;
+  background-color: rgb(255, 255, 255);
+}
+
+.small__categorys__container {
+  background-color: rgb(255, 255, 255);
+  bottom: 0px;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  //display:block;
+  display: none;
+  left: 224px;
+  position: absolute;
+  top: 0px;
+  width: 320px;
+}
+
+.small__category__inner{
+  width: 320px;
+  background-color: rgb(255, 255, 255);
+}
+
+.category__list__text {
+  display: block;
+  font-size: 14px;
+  line-height: 44px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0px 16px;
+
+}
+
+
+.serch__by__category:hover
+.category__container {
+  display: block;
+}
+
+.large__category__container > li:hover
+.medium__category__container {
+  display: block;
+}
+.medium__category__container > li:hover
+.small__categorys__container {
+  display: block;
+}
+.category__list__text:hover {
+  background-color: #dc143c;
+  color: white;
+}

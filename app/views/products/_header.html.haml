@@ -1,29 +1,78 @@
-.header
-  .header__top
-    .header__top__icon
-      = image_tag '/assets/logo_mercari.png', alt: '', height: '', width: '', class: ''
-    %form.header__top__form{action: ''}
-      %input{type: 'text', placeholder: '何かお探しですか？'}
-  .header__bottome
-    .header__bottome__left
-      %ul
-        %li 
-          カテゴリーから探す
-          %a{href: ''}
-        %li
-          ブランドから探す
-          %a{href: ''}
-    .header__bottome__right
-      %ul
-        %li.header__bottome__right--like
-          いいね！一覧
-          %a{href: ''}
-        %li
-          お知らせ
-          %a{href: ''}
-        %li
-          やることリスト
-          %a{href: ''}
-        %li
-          マイページ
-          %a{href: ''}
+%header.header__wrapper
+  .header__container
+    .header__inner__top
+      .logo__item
+        = link_to '#', class: 'logo__item__link' do
+          = image_tag '/images/logo.svg', alt: 'logo', class: 'logo__item__image'
+      %form.search__bar
+        %input.search__bar__text{name: 'keyword', placeholder:'何かお探しですか?', type:'search'}
+        %button.search_bar__btn
+          %i.fas.fa-search.fa-lg
+    .header__inner__bottom
+      .serch__items__box
+        .serch__by__category
+          = link_to '#', class: '' do
+            %i.fas.fa-list-ul.darkgray.red
+            カテゴリーから探す
+          .category__container
+            %ul.large__category__container
+              %li.large__category__inner
+                = link_to "#{lc.large_category.name}","/category/#{lc.id}", class: 'category__list__text'
+                  %ul.medium__category__container
+                    %li.medium__category__inner
+                      = link_to "#{@medium_id_categorys[lc.id].medium_category.name}", "/category/#{lc.id}", class: 'category__list__text'
+                        %ul.small__categorys__container
+                          %li.small__category__inner
+                            = link_to "#{lc.smail_category.name}", "/category/#{lc.id}", class: 'category__list__text'
+        .serch__by__brand
+          = link_to '#', class: '' do
+            %i.fas.fa-tags.darkgray.red
+            ブランドから探す
+      %ul.user-info__items
+        %li.user-info__item
+          = link_to '#', class: '' do
+            %i.fas.fa-heart.darkgray.fa-lg
+            いいね! 一覧
+        %li.user-info__item
+          = link_to '#', class: '' do
+            %i.fas.fa-bell.darkgray.fa-lg
+            お知らせ
+        %li.user-info__item
+          = link_to '#', class: '' do
+            %i.fas.fa-check-circle.darkgray.fa-lg
+            やることリスト
+        %li.user-info__item
+          = link_to '#', class: '' do
+            %i.fas.fa-smile.darkgray.fa-lg
+            マイページ
+
+
+-# .header
+-#   .header__top
+-#     .header__top__icon
+-#       = image_tag '/assets/logo_mercari.png', alt: '', height: '', width: '', class: ''
+-#     %form.header__top__form{action: ''}
+-#       %input{type: 'text', placeholder: '何かお探しですか？'}
+-#   .header__bottome
+-#     .header__bottome__left
+-#       %ul
+-#         %li 
+-#           カテゴリーから探す
+-#           %a{href: ''}
+-#         %li
+-#           ブランドから探す
+-#           %a{href: ''}
+-#     .header__bottome__right
+-#       %ul
+-#         %li.header__bottome__right--like
+-#           いいね！一覧
+-#           %a{href: ''}
+-#         %li
+-#           お知らせ
+-#           %a{href: ''}
+-#         %li
+-#           やることリスト
+-#           %a{href: ''}
+-#         %li
+-#           マイページ
+-#           %a{href: ''}
