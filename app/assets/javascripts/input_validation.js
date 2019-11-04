@@ -140,9 +140,11 @@ function isDisableButton (obj, btnSw = true){
 
   if(btnSw){
     obj.css('background-color', 'silver');
+    obj.css('border', '1px solid silver');
     obj.prop('disabled', true);
   }else{
     obj.css('background-color', 'red');
+    obj.css('border', '1px solid #ea352d');
     obj.prop('disabled', false);
   }
 }
