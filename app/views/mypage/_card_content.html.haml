@@ -9,7 +9,7 @@
       %section.settings-add-card
         .l-single-content
           - if @credit_card.nil?
-            = link_to cardCreate_mypage_index_path, class: 'btn-default btn-red submit_button', method: :get, params: { id: @user.id } do
+            = link_to cardcreate_mypage_index_path, class: 'btn-default btn-red submit_button', method: :get, params: { id: @user.id } do
               %i.far.fa-credit-card
                 クレジットカードを追加する
           - else
