@@ -4,75 +4,100 @@
       .logo__item
         = link_to '#', class: 'logo__item__link' do
           = image_tag '/images/logo.svg', alt: 'logo', class: 'logo__item__image'
-      %form.search__bar
-        %input.search__bar__text{name: 'keyword', placeholder:'何かお探しですか?', type:'search'}
-        %button.search_bar__btn
-          %i.fas.fa-search.fa-lg
+      .search__box
+        %form.search__bar
+          %input.search__bar__text{name: 'keyword', placeholder:'何かお探しですか?', type:'search'}
+          %button.search_bar__btn
+            %i.fas.fa-search.fa-lg
     .header__inner__bottom
+      %nav.serch__samllbox
+        = link_to '/category/', class: 'serch__samllbox__link' do
+          %i.fas.fa-list-ul.fa-fw.red
+          カテゴリーから探す
+        = link_to '/brand/', class: 'serch__samllbox__link' do
+          %i.fas.fa-tags.fa-fw.red
+          ブランドから探す
       .serch__items__box
         .serch__by__category
-          = link_to '#', class: '' do
-            %i.fas.fa-list-ul.darkgray.red
+          = link_to '#', class: 'serch__by__category__text' do
+            %i.fas.fa-list-ul.fa-fw.red
             カテゴリーから探す
           .category__container
             %ul.large__category__container
-              %li.large__category__inner
-                = link_to "#{lc.large_category.name}","/category/#{lc.id}", class: 'category__list__text'
+              - @category_parent.each do |parent|
+                %li.large__category__inner
+                  = link_to "#{parent.name}", "/category/#{parent.id}", class: 'category__text'
                   %ul.medium__category__container
-                    %li.medium__category__inner
-                      = link_to "#{@medium_id_categorys[lc.id].medium_category.name}", "/category/#{lc.id}", class: 'category__list__text'
-                        %ul.small__categorys__container
-                          %li.small__category__inner
-                            = link_to "#{lc.smail_category.name}", "/category/#{lc.id}", class: 'category__list__text'
+                    = render partial: "layouts/header_child_category", collection: @category_children1, as: "category"
         .serch__by__brand
-          = link_to '#', class: '' do
-            %i.fas.fa-tags.darkgray.red
+          = link_to '#', class: 'serch__by__category__link' do
+            %i.fas.fa-tags.fa-fw.red
             ブランドから探す
+          .category__container
+            %ul.large__category__container
+              - @brands.each do |brand|
+                %li.large__category__inner
+                  = link_to "#{brand.name}", "/brand/#{brand.id}", class: 'category__text'
       %ul.user-info__items
         %li.user-info__item
           = link_to '#', class: '' do
-            %i.fas.fa-heart.darkgray.fa-lg
+            %i.fas.fa-heart.lightsteelblue.fa-lg
             いいね! 一覧
         %li.user-info__item
           = link_to '#', class: '' do
-            %i.fas.fa-bell.darkgray.fa-lg
+            %i.fas.fa-bell.lightsteelblue.fa-lg
             お知らせ
         %li.user-info__item
           = link_to '#', class: '' do
-            %i.fas.fa-check-circle.darkgray.fa-lg
+            %i.fas.fa-check-circle.lightsteelblue.fa-lg
             やることリスト
         %li.user-info__item
           = link_to '#', class: '' do
-            %i.fas.fa-smile.darkgray.fa-lg
+            %i.fas.fa-smile.lightsteelblue.fa-lg
             マイページ
-
-
--# .header
--#   .header__top
--#     .header__top__icon
--#       = image_tag '/assets/logo_mercari.png', alt: '', height: '', width: '', class: ''
--#     %form.header__top__form{action: ''}
--#       %input{type: 'text', placeholder: '何かお探しですか？'}
--#   .header__bottome
--#     .header__bottome__left
--#       %ul
--#         %li 
--#           カテゴリーから探す
--#           %a{href: ''}
--#         %li
--#           ブランドから探す
--#           %a{href: ''}
--#     .header__bottome__right
--#       %ul
--#         %li.header__bottome__right--like
--#           いいね！一覧
--#           %a{href: ''}
--#         %li
--#           お知らせ
--#           %a{href: ''}
--#         %li
--#           やることリスト
--#           %a{href: ''}
--#         %li
--#           マイページ
--#           %a{href: ''}
+          .user-info__window
+            .user-info__window__inner
+              %figure.user-info__background
+                .user-info__icon
+                  = image_tag "/images/member_photo_noimage_thumb.png", class: "user-info__icon__image"
+                %figcaption.user-info__nickname
+                  = current_user.nickname if user_signed_in?
+                %ul.user-info__evaluation__container
+                  %li.user-info__evaluation__inner
+                    = link_to '#', class: 'user-info__evaluation__text' do
+                      .user-info__evaluation__sales
+                        売上金 :
+                      .user-info__evaluation__sales
+                        = "¥ #{current_user.buyer_evaluations.count}"
+                  %li.user-info__evaluation__inner
+                    = link_to '#', class: 'user-info__evaluation__text' do
+                      .user-info__evaluation__sales
+                        出品数 :
+                      .user-info__evaluation__sales
+                        P 0
+              .user-info__link__box
+                %ul.user-info__link__container
+                  %li.user-info__link__inner
+                  = link_to '#', class: 'user-info__link__text' do
+                    いいね一覧
+                    %i.fas.fa-angle-double-right
+                  %li.user-info__link__inner
+                  = link_to '#', class: 'user-info__link__text' do
+                    出品した商品 - 出品中
+                    %i.fas.fa-angle-double-right
+                  %li.user-info__link__inner
+                  = link_to '#', class: 'user-info__link__text' do
+                    出品した商品 - 取引中
+                    %i.fas.fa-angle-double-right
+                  %li.user-info__link__inner
+                  = link_to '#', class: 'user-info__link__text' do
+                    出品した商品 - 売却済み
+                    %i.fas.fa-angle-double-right
+                  %li.user-info__link__inner
+                  = link_to '#', class: 'user-info__link__text' do
+                    購入した商品 - 取引中
+                    %i.fas.fa-angle-double-right
+                  %li.user-info__link__inner
+                  = link_to '#', class: 'user-info__link__text' do
+                    購入した商品 - 過去の取引
+                    %i.fas.fa-angle-double-right

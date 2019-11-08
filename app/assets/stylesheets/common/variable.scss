@@ -9,8 +9,27 @@ $successColor: #3c763d;
 $waringColor: #8a6d3b;
 $errorColor: #a94442;
 
+$lavender :#e6e6fa;
+$aliceblue: #f0f8ff;
+$lightsteelblue: #b0c4de;
+
 $whisper: #eeeeee;
 $littleWhisper: #F5F5F5;
+$white: white;
+
+.lightsteelblue {
+  color: #b0c4de;
+}
+
+.lavender {
+  color: $lavender;
+}
+.aliceblue {
+  color: $aliceblue;
+}
+.white {
+  color: $white;
+}
 
 .darkgray {
   color: $darkGray;
