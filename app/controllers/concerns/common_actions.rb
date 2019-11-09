@@ -2,6 +2,8 @@ module CommonActions
   extend ActiveSupport::Concern
 
   def set_categories
+
+    #### カテゴリー表示
     @category_parent = ViewCategory.where(ancestry: nil)
     @category_children1  = ViewCategory.where(ancestry: 1)     #レディース
     @category_children2  = ViewCategory.where(ancestry: 219)   #メンズ
