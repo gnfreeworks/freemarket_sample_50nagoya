@@ -23,7 +23,7 @@ class MypageController < ApplicationController
     redirect_to card_mypage_index_path, notice:'クレジットカード情報を削除しました!'
   end
   
-  def cardCreate
+  def cardcreate
     @user = current_user
     @credit_card = PaymentMethod.new
   end

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       get    'profile'
       post   'profileUpdate'
       get    'card'
-      get    'cardCreate'
+      get    'cardcreate'
       post   'cardAdd'
       delete 'cardDestroy'
       get    'logout'
