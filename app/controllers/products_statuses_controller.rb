@@ -1,8 +1,8 @@
 class ProductsStatusesController < ApplicationController
 
-  def index
+  def show
     # 製品情報
-    @product_status = ProductsStatus.find(current_user.id)
+    @product_status = ProductsStatus.find(params[:id])
 
     # 製品名
     @product_name = @product_status.product.name

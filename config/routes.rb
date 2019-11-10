@@ -14,8 +14,10 @@ Rails.application.routes.draw do
       post  'done' 
     end
   end
+
+  resources :products_statuses, only: :show
+
   get 'signup/show' => 'signup#show'
-  get 'products_statuses' => 'products_statuses#index'
   get 'products_buy' => 'products_statuses#buy'
   get 'sell' => 'sell#create'
 
