@@ -10,13 +10,28 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_self
- *= require common/btn.scss
- *= require_tree .
  *= require owl.carousel
  *= require owl.theme
  */
+@import 'config/reset';
 
-@import 'reset';
+@import 'common/variable';
+@import 'common/btn';
+@import 'common/container-parts';
+@import 'common/flash';
+@import 'common/form';
+@import 'common/header';
+
+@import 'entry-css/entry-footer';
+@import 'entry-css/entry-header';
+@import 'entry-css/entry';
+
+@import 'products_statuses/products_buy';
+@import 'products_statuses/products_statuses';
+
+@import 'signup-in';
+@import 'logout-in';
+@import 'mypage';
+
 @import "font-awesome-sprockets";
 @import "font-awesome";

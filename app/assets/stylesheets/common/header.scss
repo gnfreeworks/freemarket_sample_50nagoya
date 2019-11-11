@@ -1,3 +1,5 @@
+
+
 header {
   display: block;
   vertical-align: baseline;
@@ -10,13 +12,12 @@ header {
 }
 
 .header__wrapper {
-  background-color: rgb(255, 255, 255);
+  background-color: $white;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   position: relative;
   z-index: 3;
-  color: rgb(51, 51, 51);
+  color: $black;
   font-size: 15px;
-  a {text-decoration: none;} 
 }
 
 .header__container {
@@ -78,7 +79,7 @@ header {
 
   &__sm{
     display: none;
-    @media (max-width: 840px) {
+    @media (max-width: 839px) {
       margin-top: 15px;
       padding: 0px 10px 8px;
       width: 100%;
@@ -89,15 +90,11 @@ header {
 
 .user-info__samll-box {
   display: none;
-  @media (max-width: 840px) {
+  @media (max-width: 839px) {
     -webkit-box-align: center;
     align-items: center;
     display: flex;
     }
-}
-
-.user-info__samll-box__icon {
-
 }
 
 .samll-box__icon__link {
@@ -157,22 +154,22 @@ header {
 }
 
 .signup__color {
-  color: rgb(255, 255, 255);
-  background: rgb(234, 53, 45);
-  border-color: rgb(234, 53, 45);
+  color: $white;
+  background: $cinnabarRed;
+  border-color: $cinnabarRed;
 }
 
 .signin__color {
-  color: rgb(0, 149, 238);
-  background: rgb(255, 255, 255);
-  border-color: rgb(0, 149, 238);
+  color: $pureblue;
+  background: $white;
+  border-color: $pureblue
 }
 
 .signin__color:hover {
   @media  screen and (min-width: 840px) {
     color: white;
-    background: rgb(0, 149, 238);
-    border-color: rgb(0, 149, 238);
+    background: $pureblue;
+    border-color: $pureblue;
   }
 }
 
@@ -181,7 +178,7 @@ header {
 }
 
 .search__bar__text {
-  background-color: rgb(245, 245, 245);
+  background-color: $littleWhisper;
   font-size: 16px;
   height: 40px;
   line-height: 1.4em;
@@ -190,7 +187,7 @@ header {
   -webkit-appearance: none;
   border-width: 1px;
   border-style: solid;
-  border-color: rgb(204, 204, 204);
+  border-color: $darkGray;
   border-image: initial;
   border-radius: 4px;
   outline: none;
@@ -216,10 +213,10 @@ header {
 }
 
 .serch__samll-box{
-  display: flex;
-  width: 100%;
-  @media  screen and (min-width: 840px) {
-    display: none;
+  display: none;
+  @media  screen and (max-width: 839px) {
+    display: flex;
+    width: 100%;
   }
 }
 
@@ -237,10 +234,11 @@ header {
 }
 
 .serch__items__box{
-  display: flex;
-  margin-left: -3px;
-  @media (max-width: 840px) {
-    display: none;    
+  display: none;
+  
+  @media (min-width: 840px) {
+    display: flex;
+    margin-left: -3px;
   }
 }
 
@@ -270,12 +268,12 @@ header {
 }
 
 .user-info__items {
-  display: flex;
-  position: relative;
-  list-style: none;
-  line-height: 44px;
-  @media (max-width: 840px) {
-    display: none;
+  display: none;
+  @media (min-width: 840px) {
+    display: flex;
+    position: relative;
+    list-style: none;
+    line-height: 44px;
   }
 }
 
@@ -289,7 +287,7 @@ header {
 }
 
 .user-info__item:hover {
-  color: rgb(0, 149, 238);
+  color: $pureblue;
 }
 
 .category__container {
@@ -303,7 +301,7 @@ header {
 }
 
 .large__category__container {
-  background-color: rgb(255, 255, 255);
+  background-color: $white;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   width: 224px;
 }
@@ -313,7 +311,7 @@ header {
 }
 
 .medium__category__container {
-  background-color: rgb(255, 255, 255);
+  background-color: $white;
   bottom: 0px;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   //display:block;
@@ -326,11 +324,11 @@ header {
 
 .medium__category__inner {
   width: 224px;
-  background-color: rgb(255, 255, 255);
+  background-color: $white;
 }
 
 .small__categorys__container {
-  background-color: rgb(255, 255, 255);
+  background-color: $white;
   bottom: 0px;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   //display:block;
@@ -343,7 +341,7 @@ header {
 
 .small__category__inner{
   width: 320px;
-  background-color: rgb(255, 255, 255);
+  background-color: $white;
 }
 
 .category__text {
@@ -399,7 +397,7 @@ header {
 
 .user-info__window {
   right: 0px;
-  background-color: rgb(255, 255, 255);
+  background-color: $white;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   position: absolute;
   top: 44px;
@@ -445,11 +443,11 @@ header {
 }
 
 .user-info__evaluation__container {
-  background-color: rgb(250, 250, 250);
+  background-color: $white;
   width: 300px;
   border-width: 1px;
   border-style: solid;
-  border-color: rgb(239, 239, 239);
+  border-color: $whiteGray;
   border-image: initial;
   margin: 16px auto;
 }
@@ -474,7 +472,7 @@ header {
 }
 
 .user-info__link__container {
-  border-top: 1px solid rgb(239, 239, 239);
+  border-top: 1px solid $whiteGray;
   list-style: none;
 }
 
@@ -489,13 +487,13 @@ header {
   }
 }
 .user-info__link__inner:not(:first-child) {
-    border-top: 1px solid rgb(239, 239, 239);
+    border-top: 1px solid $whiteGray;
 }
 
 .user-info__link__text {
   -webkit-box-align: center;
   align-items: center;
-  background-color: rgb(255, 255, 255);
+  background-color: $white;
   display: flex;
   height: 48px;
   -webkit-box-pack: justify;

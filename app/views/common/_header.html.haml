@@ -8,13 +8,13 @@
         .user-info__samll-box
           .user-info__samll-box__icon
             = link_to '#', class: 'samll-box__icon__link' do
-              %i.fas.fa-bell.lightsteelblue.fa-2x
+              %i.far.fa-bell.lightsteelblue.fa-2x
           .user-info__samll-box__icon
             = link_to '#', class: 'samll-box__icon__link' do
-              %i.fas.fa-check-circle.lightsteelblue.fa-2x
+              %i.far.fa-check-square.lightsteelblue.fa-2x
           .user-info__samll-box__icon
-            = link_to '#', class: 'samll-box__icon__link' do
-              %i.fas.fa-smile.lightsteelblue.fa-2x
+            = link_to 'mypage', class: 'samll-box__icon__link' do
+              %i.far.fa-smile.lightsteelblue.fa-2x
       - else
         .sign-info__container__sm
           = link_to step0_signup_index_path, class: 'sign-info__button signup__color' do
@@ -64,19 +64,19 @@
         - if user_signed_in?
           %li.user-info__item
             = link_to '#', class: '' do
-              %i.fas.fa-heart.lightsteelblue.fa-lg
+              %i.far.fa-heart.lightsteelblue.fa-lg
               いいね! 一覧
           %li.user-info__item
             = link_to '#', class: '' do
-              %i.fas.fa-bell.lightsteelblue.fa-lg
+              %i.far.fa-bell.lightsteelblue.fa-lg
               お知らせ
           %li.user-info__item
             = link_to '#', class: '' do
-              %i.fas.fa-check-circle.lightsteelblue.fa-lg
+              %i.far.fa-check-square.lightsteelblue.fa-lg
               やることリスト
           %li.user-info__item.user-info
-            = link_to '#', class: '' do
-              %i.fas.fa-smile.lightsteelblue.fa-lg
+            = link_to 'mypage', class: '' do
+              %i.far.fa-smile.lightsteelblue.fa-lg
               マイページ
             .user-info__window
               .user-info__window__inner

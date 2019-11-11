@@ -1,6 +1,8 @@
 class MypageController < ApplicationController
+  include CommonActions
+  before_action :set_categories, only: :index
   before_action :authenticate_user!, except: :index
-
+  
   def index
     @user = current_user
     @evaluation_count = @user.buyer_evaluations.count

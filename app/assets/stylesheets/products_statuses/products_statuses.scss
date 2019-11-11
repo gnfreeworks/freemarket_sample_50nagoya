@@ -19,7 +19,7 @@
 
 
 .main_container {
-  background-color: #EEEEEE;
+  background-color: $whisper;
 }
 
 .l-single-container {
@@ -303,18 +303,18 @@
     }
 
     &-like {
-      color: rgb(51, 51, 51);
+      color: $black;
       border-width: 1px;
       border-style: solid;
-      border-color: rgb(245, 245, 245);
+      border-color: $littleWhisper;
       border-image: initial;
-      background: rgb(245, 245, 245);
+      background: $littleWhisper;
     }
 
     &-report {
-      color: rgb(51, 51, 51);
+      color: $black;
       margin: 0px 0px 0px 8px;
-      background: rgb(245, 245, 245);
+      background: $littleWhisper;
       @media screen and (min-width: 768px){
         margin: 0px 0px 0px 16px;
       }
