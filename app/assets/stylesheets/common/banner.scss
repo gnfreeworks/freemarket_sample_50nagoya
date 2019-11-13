@@ -1,0 +1,69 @@
+.app-banner {
+  background: url('/images/download_bg_pc.jpg');
+  background-position: center;
+  background-size: cover;
+}
+.app-banner__pc {
+  overflow: hidden;
+  position: relative;
+  display: none;
+  width: 750px;
+  height: 260px;
+  margin: 0 auto;
+  color: #fff;
+  @media (min-width: 768px){
+    display: block;
+  }
+  &>figure {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    height: 100%;
+    img {
+      width: 100%;
+      vertical-align: middle;
+    }
+  }
+}
+
+.app-banner__pc__inner {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  h2, p {
+    text-shadow: 0 0 5px rgba(0,0,0,0.4);
+  }
+  h2 {
+    margin: 0;
+    font-size: 16px;
+  }
+  p {
+    margin: 10px 0 0;
+    font-size: 24px;
+  }
+}
+.app-banner__icon {
+  margin: 20px 0 0;
+  figure {
+    float: left;
+  }
+
+  ul {
+    float: left;
+    margin: 0 0 0 24px;
+    line-height: 68px;
+  }
+  li {
+    float: left;
+    margin-right: 10px;
+  }
+  a {
+    display: block;
+    line-height: 68px;
+  }
+
+}
