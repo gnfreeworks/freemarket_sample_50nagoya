@@ -1,12 +1,11 @@
+= render partial: 'common/global_header'
 %nav.bread-crumbs
 %main.l-container.clearfix
   .l-content
     .l-chapter-container
       .l-single-inner
         .l-single-content
-          = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn-default btn-red'
-    -# = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    -#   .l-single-content
-    -#   = f.submit "ログイン", class: 'login-submit btn-default btn-red'
-        
+          = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn-default btn-red'        
   = render partial: 'sideber'
+= render partial: 'common/global_pc_banner'
+= render partial: 'common/global_footer'

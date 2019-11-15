@@ -140,6 +140,7 @@ function isDisableButton (obj, btnSw = true){
 
   if(btnSw){
     obj.css('background-color', 'silver');
+    obj.css('border', 'silver');
     obj.prop('disabled', true);
   }else{
     obj.css('background-color', 'red');
@@ -382,7 +383,7 @@ $(document).on('blur', '#input-secrity_code', function (){
   }
 
   if(isEmptyInput($(this))){
-    builderHTMLType($(this),'waring', '必須や!!');
+    builderHTMLType($(this),'waring', '必須です');
   }else {
     let code = $(this).val();
     if (code.match(/^([0-9]{3})$/)　|| code.match(/^([0-9]{4})$/)) {
