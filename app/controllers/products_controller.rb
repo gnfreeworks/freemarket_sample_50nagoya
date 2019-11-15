@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
-  def index
+  include CommonActions
+  before_action :set_categories, only: :index
 
+  def index
   end
 end

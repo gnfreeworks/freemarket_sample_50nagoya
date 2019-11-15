@@ -1,6 +1,8 @@
 class MypageController < ApplicationController
+  include CommonActions
+  before_action :set_categories, except:[:cardDestroy, :cardAdd, :profileUpdate]
   before_action :authenticate_user!, except: :index
-
+  
   def index
     @user = current_user
     @evaluation_count = @user.buyer_evaluations.count
@@ -10,7 +12,7 @@ class MypageController < ApplicationController
   def card
     @user = current_user
     @credit_card = @user.payment_method
-
+    
     unless @credit_card.nil?
       reg = Regexp.new(@credit_card.card_number);
       @credit_card_last4 = (@credit_card.card_number.to_i % 10000).to_s
@@ -29,7 +31,6 @@ class MypageController < ApplicationController
   end
 
   def cardAdd
-
     @credit_card = PaymentMethod.new(creditParam)
     @credit_card.user_id = current_user.id
 
