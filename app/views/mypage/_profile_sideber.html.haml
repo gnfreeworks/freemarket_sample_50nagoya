@@ -2,7 +2,7 @@
   %nav.mypage-nav
     %ul.mypage-nav-list
       %li
-        = link_to '#', class: 'mypage-nav-list-item' do
+        = link_to mypage_index_path, class: 'mypage-nav-list-item' do
           マイページ
           %i.fas.fa-angle-double-right
       %li
@@ -80,7 +80,7 @@
           メール/パスワード
           %i.fas.fa-angle-double-right
       %li
-        = link_to '#', class: 'mypage-nav-list-item' do
+        = link_to identification_mypage_index_path, class: 'mypage-nav-list-item' do
           本人情報
           %i.fas.fa-angle-double-right
       %li
@@ -88,6 +88,6 @@
           電話番号の確認
           %i.fas.fa-angle-double-right
       %li
-        = link_to '#', class: 'mypage-nav-list-item' do
+        = link_to logout_mypage_index_path, class: 'mypage-nav-list-item' do
           ログアウト
           %i.fas.fa-angle-double-right
