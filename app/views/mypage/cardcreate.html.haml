@@ -1,3 +1,4 @@
+= render partial: 'common/global_header'
 %nav.bread-crumbs
 %main.l-container.clearfix
   .l-content
@@ -6,3 +7,5 @@
       = form_for @credit_card, url: cardAdd_mypage_index_path, html: {class: 'l-single-inner registration-form'} do |f|
         = render partial: 'cardcreate_content', locals: { user: @user, credit_card: @credit_card, f: f } 
   = render partial: 'card_sideber'
+= render partial: 'common/global_pc_banner'
+= render partial: 'common/global_footer'
