@@ -16,7 +16,7 @@ header {
   z-index: 3;
   color: $black;
   font-size: 15px;
-  a, figcaption {
+  figcaption {
     color: $black;
   }
 }
@@ -148,7 +148,13 @@ header {
   }
 }
 
-.signin__color{
+.signup__color {
+  color: $white;
+  background: $red;
+  border-color: $red;
+}
+
+.signin__color {
   color: $pureblue;
   background: $white;
   border-color: $pureblue;
