@@ -91,3 +91,5 @@ gem 'owlcarousel-rails'
 # for area master data
 gem 'active_hash'
 
+# https://github.com/stefankroes/ancestry
+gem 'ancestry', '3.0.7'

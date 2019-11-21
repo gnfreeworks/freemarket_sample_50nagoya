@@ -81,16 +81,27 @@
 ## categories テーブル (カテゴリーテーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
-| large_category_id   |大カテゴリーid |integer|null: false, foreign_key: true|
-| medium_category_id  |中カテゴリーid |integer|null: false, foreign_key: true|
-| smail_category_id   |小カテゴリーid |integer|null: false, foreign_key: true|
+| parent_id     |親カテゴリーid |integer|null: false, foreign_key: true|
+| children_id   |子カテゴリーid |integer|null: false, foreign_key: true|
+| grandchild_id |孫カテゴリーid |integer|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :large_category
 - belongs_to :medium_category
 - belongs_to :smail_category
 - has_many   :sizes, through: :size_categories
-- 
+
+## view_categories テーブル (階層カテゴリーテーブル)
+|Column         |  description        |Type      |Options           |
+|---------------|--------------------|----------|-------------------|
+| name          |カテゴリー名 |integer|null: false|
+| ancestry      |    *      |integer|null: false|
+
+- *: "ancestry" is refer to https://qiita.com/Rubyist_SOTA/items/49383aa7f60c42141871
+
+### Association
+- has_ancestry
+
 ## sizes_categories テーブル (sizes_categories テーブル)
 |Column         |  description        |Type      |Options           |
 |---------------|--------------------|----------|-------------------|
@@ -109,20 +120,6 @@
 ### Association
 - has_many :categories, through: :size_categories
 
-## large_categories テーブル (大カテゴリーテーブル)
-|Column         |  description        |Type      |Options           |
-|---------------|--------------------|----------|-------------------|
-| name   |大カテゴリー名 |string|null: false|
-
-## medium_categories テーブル (中カテゴリーテーブル)
-|Column         |  description        |Type      |Options           |
-|---------------|--------------------|----------|-------------------|
-| name   |中カテゴリー名 |string|null: false|
-
-## samail_categories テーブル (小カテゴリーテーブル)
-|Column         |  description        |Type      |Options           |
-|---------------|--------------------|----------|-------------------|
-| name   |小カテゴリー名 |string|null: false|
 
 ## brands テーブル (ブランドテーブル)
 |Column         |  description        |Type      |Options           |
@@ -138,6 +135,8 @@
 |product_id    |商品id|integer|null: false, foreign_key: true|
 |seller_id       |出品者id|integer|null: false, foreign_key: true|
 |buyer_id       |購入者id|integer|foreign_key: true|
+|category_parent_id       |親カテゴリid|integer|null: false|
+|brand_id       |ブランドid|integer|null: false|
 |selling_status  |出品状態|integer||
 |dealing_status |取引状態|integer||
 
@@ -180,8 +179,7 @@
 ### Appendix
 - status [0:未読, 1:既読, 2:完了]
 
-## users テーブル (ユーザーテーブル)
-installed devise
+## users テーブル (ユーザーテーブル) Installed devise
 |Column           |  description（J)     |Type      |Options           |
 |-----------------|---------------------|----------|-------------------|
 |nickname         |ニックネーム|string|null: false|
