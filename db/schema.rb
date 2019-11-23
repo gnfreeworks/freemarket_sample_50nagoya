@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191016132004) do
+ActiveRecord::Schema.define(version: 20191104234302) do
 
   create_table "account_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -55,14 +55,11 @@ ActiveRecord::Schema.define(version: 20191016132004) do
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "large_category_id"
-    t.integer  "medium_category_id"
-    t.integer  "smail_category_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.index ["large_category_id"], name: "index_categories_on_large_category_id", using: :btree
-    t.index ["medium_category_id"], name: "index_categories_on_medium_category_id", using: :btree
-    t.index ["smail_category_id"], name: "index_categories_on_smail_category_id", using: :btree
+    t.integer  "parent_id",     null: false
+    t.integer  "children_id",   null: false
+    t.integer  "grandchild_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -146,10 +143,12 @@ ActiveRecord::Schema.define(version: 20191016132004) do
     t.integer  "product_id"
     t.integer  "buyer_id"
     t.integer  "seller_id"
-    t.integer  "selling_status", null: false
-    t.integer  "dealing_status", null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "category_parent_id"
+    t.integer  "brand_id"
+    t.integer  "selling_status",     null: false
+    t.integer  "dealing_status",     null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.index ["product_id"], name: "index_products_statuses_on_product_id", using: :btree
   end
 
@@ -271,11 +270,16 @@ ActiveRecord::Schema.define(version: 20191016132004) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "view_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_view_categories_on_ancestry", using: :btree
+  end
+
   add_foreign_key "buyer_evaluations", "products_statuses"
   add_foreign_key "canseling_products", "products_statuses"
-  add_foreign_key "categories", "large_categories"
-  add_foreign_key "categories", "medium_categories"
-  add_foreign_key "categories", "smail_categories"
   add_foreign_key "comments", "products_statuses"
   add_foreign_key "goods", "products_statuses"
   add_foreign_key "payment_methods", "users"

@@ -1,0 +1,4 @@
+%li.medium__category__inner
+  = link_to "#{category.name}", "/category/#{category.id}", class: 'category__children__text'
+  %ul.small__categorys__container
+    = render partial: "layouts/header_grandchild_category", collection: category.children, as: "children"
