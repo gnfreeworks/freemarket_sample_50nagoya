@@ -1,31 +1,34 @@
-.single-header {
-  text-align: center;
-  @media screen and (min-width: 768px) {
-    height: 128px;
-  }
-  h1 {
-    display: inline-block;
-    margin: 11px 0 12px;
-    @media screen and (min-width: 768px) {
-      margin: 40px 0 0;
-    }
-  }
-  img {
-    width: 120px;
-    height: 33px;
-    @media screen and (min-width: 768px) {
-      width: 185px;
-      height: 49px;
-    }
-  }
-}
-
-.single-container{
+.single-container {
   padding: 0 0 250px;
   @media screen and (min-width:768px){
     padding: 0 0 220px;
   }
 }
+
+.single-header {
+  text-align: center;
+  @media screen and (min-width: 768px) {
+    height: 128px;
+  }
+}
+
+.single-header__titele {
+  display: inline-block;
+  margin: 11px 0 12px;
+  @media screen and (min-width: 768px) {
+    margin: 40px 0 0;
+  }
+}
+
+.single-header__image {
+  width: 120px;
+  height: 33px;
+  @media screen and (min-width: 768px) {
+    width: 185px;
+    height: 49px;
+  }
+}
+
 
 .signup-bar.progress-bar {
   padding: 16px 0;
