@@ -10,24 +10,25 @@
   @media screen and (min-width: 768px) {
     height: 128px;
   }
-}
 
-.single-header__titele {
-  display: inline-block;
-  margin: 11px 0 12px;
-  @media screen and (min-width: 768px) {
-    margin: 40px 0 0;
+  &__titele {
+    display: inline-block;
+    margin: 11px 0 12px;
+    @media screen and (min-width: 768px) {
+      margin: 40px 0 0;
+    }
+  }
+  
+  &__image {
+    width: 120px;
+    height: 33px;
+    @media screen and (min-width: 768px) {
+      width: 185px;
+      height: 49px;
+    }
   }
 }
 
-.single-header__image {
-  width: 120px;
-  height: 33px;
-  @media screen and (min-width: 768px) {
-    width: 185px;
-    height: 49px;
-  }
-}
 
 
 .signup-bar.progress-bar {
