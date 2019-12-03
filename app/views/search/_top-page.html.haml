@@ -1,0 +1,95 @@
+.page__container
+  .page__box
+    .slider-visual__container
+      .swiper-container.top-carousel
+        .swiper-wrapper
+          .swiper-slide
+            = image_tag 'top-banner_1.png', alt: 'swipe01'
+          .swiper-slide
+            = image_tag 'top-banner_2.jpg', alt: 'swipe02'
+        .swiper-button-prev
+        .swiper-button-next
+        .swiper-pagination
+    .spacer__container
+      .spacr__inner
+        %h2.spacer__title
+          人気のカテゴリー
+        .spacer__batch__box
+          %ul.spacer__batch__inner
+            %li.spacer__batch__block.cycle
+              = link_to '#', class: 'spacer__batch__text' do
+                レディース
+            %li.spacer__batch__block.cycle
+              = link_to '#', class: 'spacer__batch__text' do
+                メンズ
+            %li.spacer__batch__block.cycle
+              = link_to '#', class: 'spacer__batch__text' do
+                家電・スマホ・カメラ
+            %li.spacer__batch__block.cycle
+              = link_to '#', class: 'spacer__batch__text' do
+                おもちゃ・ホビー・グッズ
+    .main__continer
+      .main__inner
+        %h3.main__title
+          レディース新着アイテム
+        = link_to '#', class: 'more_link' do
+          もっと見る
+      .products__continer
+        %ul.product__list
+          = render partial: 'product', collection: @ladies_products, as: "product"
+      .main__inner
+        %h3.main__title
+          メンズ新着アイテム
+      .products__continer
+        %ul.product__list
+          = render partial: 'product', collection: @mens_products, as: "product"
+      .main__inner
+        %h3.main__title
+          家電・スマホ・カメラ 新着アイテム
+      .products__continer
+        %ul.product__list
+          = render partial: 'product', collection: @goods_products, as: "product"
+      .main__inner
+        %h3.main__title
+          おもちゃ・ホビー・グッズ 新着アイテム
+      .products__continer
+        %ul.product__list
+          = render partial: 'product', collection: @toy_products, as: "product"
+    .spacer__container
+      .spacr__inner
+        %h2.spacer__title
+          人気のブランド
+        .spacer__batch__box
+          .spacer__batch__block.cycle
+            .spacer__batch__text
+              レディース
+          .spacer__batch__block.cycle
+            .spacer__batch__text
+              ルイヴィトン
+          .spacer__batch__block.cycle
+            .spacer__batch__text
+              シュプリーム
+          .spacer__batch__block.cycle
+            .spacer__batch__text
+              ナイキ
+    .main__continer
+      .main__inner
+        %h3.main__title
+          シャネル新着アイテム
+        = link_to '#', class: 'more_link' do
+          もっと見る
+      .products__continer
+        %ul.product__list
+          = render partial: 'product', collection: @chanel_products, as: "product"
+      .main__inner
+        %h3.main__title
+          ルイヴィトン新着アイテム
+      .products__continer
+        %ul.product__list
+          = render partial: 'product', collection: @lv_products, as: "product"
+  .product-btn__container
+    = link_to '#', class: 'product-btn__link' do
+      .product-btn__innner
+        .product-btn__text
+          出品
+        %i.fas.fa-camera-retro.product-btn__icon

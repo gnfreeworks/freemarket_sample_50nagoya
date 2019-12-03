@@ -1,0 +1,11 @@
+%li.product__inner
+  .product__content
+    = link_to "#{product.id}", class: 'product__box' do
+      %figure.product__figure
+        %figcaption
+          %span.product__title
+            = product.product.name
+        .product__image__box
+          .product__price
+            = number_to_currency(product.product.price, :format => "%u%n", :unit => "￥")
+          = image_tag '/images/m93608280668_1.jpg', alt: 'product', class: 'product__image'
