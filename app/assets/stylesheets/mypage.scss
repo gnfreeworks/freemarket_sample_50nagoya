@@ -16,10 +16,11 @@
 
 .main-content{
   background-color:#fff;
-  width: 700px;
+  @media screen and (min-width: 768px){
+    width: 700px;
+  }
   margin: 0 auto;
   text-align: center;
-
   &__title{
     padding: 32px;
     border-bottom: solid;
@@ -37,7 +38,7 @@
 
     &__box{
       margin: 0 auto;
-      width: 343px;
+      max-width: 343px;
     }
   }
 }
@@ -165,6 +166,7 @@
     color: #333;
     font-size: 16px;
     line-height: 72px;
+    padding-left: 10px;
   }
 
   & h3 {
@@ -492,8 +494,7 @@ textarea {
   -webkit-appearence: none;
 }
 
-input {
-  border: 0;
+.form__block > input {
   outline: 0;
   font-family: inherit;
   -webkit-appearance: none;
