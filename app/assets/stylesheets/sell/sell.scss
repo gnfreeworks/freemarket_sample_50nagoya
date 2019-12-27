@@ -213,12 +213,26 @@ a {
 
   &-price {
     .form-group .l-left {
-      width: 50%;
       line-height: 48px;
+      width: 50%;
     }
 
     .form-group .l-right {
       width: 50%;
+    }
+
+    .clearfix.bold .l-left {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .clearfix .l-right1{
+      float: right;
+    }
+    
+    .clearfix .l-right2{
+      float: right;
+      font-size: 34px;
     }
 
     &-input {
@@ -330,7 +344,7 @@ input {
 }
 
 .bold {
-  font-weight: 600;
+  // font-weight: 600;
 }
 
 p {

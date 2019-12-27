@@ -90,8 +90,8 @@
           .sell-content.clearfix
             %h3.sell-sub-head
               販売価格(300〜9,999,999)
-            = link_to '#',target:"_blank",class:"form-question" do
-              ？
+              = link_to '#',target:"_blank",class:"form-question" do
+                ？
             .sell-form-box
               %ul.sell-price
                 %li.form-group
@@ -103,13 +103,14 @@
                     .l-right.sell-price-input
                       ¥
                       %div
-                        %input.input-default{placeholder:"例) 300"}
+                        %input#price_calc.input-default{placeholder:"例) 300"}
                 %li.clearfix
                   .l-left 販売手数料 (10%)
-                  .l-right -
+                  .l-right1 -
                 %li.clearfix.bold
                   .l-left 販売利益
-                  .l-right -
+                  .l-right2 -
+                    
           .modal{role:"dialog",tabindex:"-1"}
             .modal-inner
           .sell-content.sell-btn-box
