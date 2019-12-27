@@ -2,7 +2,6 @@ $(function(){
   $('#price_calc').on('input', function(){
     var data = $('#price_calc').val();
     if ((data >= 300) && (data <= 9999999)){
-      // var profit = Math.round(data * 0.9)
       var profit = Math.ceil(data * 90 / 100)
       var fee = (data - profit)
       $('.l-right1').html(fee);
