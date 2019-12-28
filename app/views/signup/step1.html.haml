@@ -1,6 +1,8 @@
 .single-container
   %header.single-header
-    = render '/entry/entry-header'
+    %h1.single-header__titele
+      = link_to '/', class: "single-header__link" do
+        = image_tag 'logo.svg', alt: 'logo', class: 'single-header__image'
     %nav.progress-bar.signup-bar
       %ol.clearfix
         %li.active
@@ -81,7 +83,6 @@
           .form__block
             %p.form__block__info
               ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
-          
           .main-content__bottom
             .g-recaptcha{"data-callback" => "clearcall", "data-sitekey" => "6Lc15q8UAAAAAIaFFQ7n3V-C1ZeVQoNqXAXpF0xn"}
             .text__consent
@@ -92,5 +93,4 @@
               = f.submit "次へ進む", class: 'progress-btn btn-step1', data: { disable_with: 'Submitting...'}, disabled:true
             .text__right
               %a{} 本人情報の登録について
-  %footer.single-footer
-    =render '/entry/entry-footer'
+  =render '/entry/entry-footer'

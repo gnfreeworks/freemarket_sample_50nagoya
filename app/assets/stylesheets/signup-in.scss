@@ -1,33 +1,7 @@
-.main-content{
-  background-color:#fff;
-  width: 700px;
-  margin: 0 auto;
-  text-align: center;
-
-  &__title{
-    padding: 32px;
-    border-bottom: solid;
-    border-width: thin;
-    border-color: #f5f5f5;
-
-    & h2{
-      font-size: 22px;
-      font-weight: bold;
-    }
-  }
-  &__form{
-    padding: 12px 16px 40px;
-    font-size: 14px;
-
-    &__box{
-      margin: 0 auto;
-      width: 343px;
-    }
-  }
-}
 
 .text_field{
-  width: 304px;
+  height: 32px;
+  width: 100%;
   padding: 10px 16px 8px;
   border-radius: 4px;
   background-color: #fff;
