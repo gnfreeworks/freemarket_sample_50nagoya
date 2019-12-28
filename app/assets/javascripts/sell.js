@@ -3,7 +3,8 @@ $(function(){
     var data = $('#price_calc').val();
     if ((data >= 300) && (data <= 9999999)){
       var profit = Math.ceil(data * 90 / 100)
-      var fee = (data - profit)
+      var fee = (data - profit).toLocaleString();
+      profit = profit.toLocaleString();
       $('.l-right1').html(fee);
       $('.l-right1').prepend('¥');
       $('.l-right2').html(profit);
