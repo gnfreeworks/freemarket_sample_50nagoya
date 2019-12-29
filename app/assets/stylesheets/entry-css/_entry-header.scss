@@ -1,16 +1,25 @@
+.single-container {
+  padding: 0 0 250px;
+  @media screen and (min-width:768px){
+    padding: 0 0 220px;
+  }
+}
+
 .single-header {
   text-align: center;
   @media screen and (min-width: 768px) {
     height: 128px;
   }
-  h1 {
+
+  &__titele {
     display: inline-block;
     margin: 11px 0 12px;
     @media screen and (min-width: 768px) {
       margin: 40px 0 0;
     }
   }
-  img {
+  
+  &__image {
     width: 120px;
     height: 33px;
     @media screen and (min-width: 768px) {
@@ -20,12 +29,7 @@
   }
 }
 
-.single-container{
-  padding: 0 0 250px;
-  @media screen and (min-width:768px){
-    padding: 0 0 220px;
-  }
-}
+
 
 .signup-bar.progress-bar {
   padding: 16px 0;
@@ -42,9 +46,7 @@
   @media screen and (min-width: 768px) {
     display: inline-block;
     vertical-align: top;
-
   }
-
   ol {
     margin: 0;
     list-style: none;
