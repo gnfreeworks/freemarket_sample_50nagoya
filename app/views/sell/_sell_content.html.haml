@@ -4,7 +4,7 @@
       .sell-container-inner
         %h2.l-single-head
           商品の情報を入力
-        %form{class:"sell-form"}
+        = form_for(@product,html: {class: "sell-form"}) do |f|
           .sell-upload-box
             %h3.sell-upload-head
               出品画像
@@ -41,21 +41,21 @@
               商品の詳細
             .sell-form-box
               .form-group
-                %label
-                  カテゴリー
-                  %span.form-require
-                    必須
-                .select-wrap
-                  = icon 'fas', 'chevron-down'
-                  = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
+                = f.label "parent_category","カテゴリー"
+                %span.form-require
+                  必須
+                .product-detail-category
+                  .select-wrap
+                    = f.select :category, @category_parent_array, {}, {class:"select-default", id:'parent_category'}
+                    = icon 'fas', 'chevron-down'
               .form-group
                 %label
                   商品の状態
                   %span.form-require
                     必須
                 .select-wrap
-                  = icon 'fas', 'chevron-down'
                   = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
+                  = icon 'fas', 'chevron-down'
           .sell-content.clearfix
             %h3.sell-sub-head
               配送について
@@ -68,24 +68,24 @@
                   %span.form-require
                     必須
                 .select-wrap
-                  = icon 'fas', 'chevron-down'
                   = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
+                  = icon 'fas', 'chevron-down'
               .form-group
                 %label
                   発送元の地域
                   %span.form-require
                     必須
                 .select-wrap
-                  = icon 'fas', 'chevron-down'
                   = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
+                  = icon 'fas', 'chevron-down'
               .form-group
                 %label
                   発送までの日数
                   %span.form-require
                     必須
                 .select-wrap
-                  = icon 'fas', 'chevron-down'
                   = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
+                  = icon 'fas', 'chevron-down'
           .sell-content.clearfix
             %h3.sell-sub-head
               販売価格(300〜9,999,999)
