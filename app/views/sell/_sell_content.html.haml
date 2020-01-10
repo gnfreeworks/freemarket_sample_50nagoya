@@ -54,7 +54,7 @@
                   %span.form-require
                     必須
                 .select-wrap
-                  = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
+                  = f.select :name, @status_array, {}, {class:"select-default", id:'product_status'}
                   = icon 'fas', 'chevron-down'
           .sell-content.clearfix
             %h3.sell-sub-head
@@ -68,7 +68,7 @@
                   %span.form-require
                     必須
                 .select-wrap
-                  = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
+                  = f.select :name, @charge_array, {}, {class:"select-default", id:'shipping_charge'}
                   = icon 'fas', 'chevron-down'
               .form-group
                 %label
@@ -76,7 +76,7 @@
                   %span.form-require
                     必須
                 .select-wrap
-                  = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
+                  = f.select :name, @area_array, {}, {class:"select-default", id:'shipping_area'}
                   = icon 'fas', 'chevron-down'
               .form-group
                 %label
@@ -84,7 +84,7 @@
                   %span.form-require
                     必須
                 .select-wrap
-                  = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
+                  = f.select :name, @time_array, {}, {class:"select-default", id:'shipping_time'}
                   = icon 'fas', 'chevron-down'
           .sell-content.clearfix
             %h3.sell-sub-head

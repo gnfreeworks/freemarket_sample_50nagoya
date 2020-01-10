@@ -198,9 +198,9 @@ ShippingCharge.create(name: "送料込み(出品者負担)")
 ShippingCharge.create(name: "着払い(購入者負担)")
 
 # shipping time table  (発送までの日数 テーブル)
-ShippingTime.create(name: "1~2で発送")
-ShippingTime.create(name: "2~3で発送")
-ShippingTime.create(name: "4~7で発送")
+ShippingTime.create(name: "1~2日で発送")
+ShippingTime.create(name: "2~3日で発送")
+ShippingTime.create(name: "4~7日で発送")
 
 # shipping method  (発送方法 テーブル)
 ShippingMethod.create(name: "未定")

@@ -232,12 +232,13 @@ $(function(){
   }
   // 親カテゴリー選択後のイベント
   $('#parent_category').on('change', function(){
-    var parentCategory = document.getElementById('parent_category').value; //選択された親カテゴリーの名前を取得
+    // var parentCategory = document.getElementById('parent_category').value; //選択された親カテゴリーの名前を取得
+    var parentCategory = document.getElementById('parent_category').value;
     if (parentCategory != "---"){ //親カテゴリーが初期値でないことを確認
       $.ajax({
         url: '/sell/get_category_children',
         type: 'GET',
-        data: { parent_name: parentCategory },
+        data: { parent_id: parentCategory },
         dataType: 'json'
       })
       .done(function(children){
@@ -321,17 +322,17 @@ $(function(){
   }
   // 孫カテゴリー選択後のイベント
   $('.product-detail-category').on('change', '#grandchild_category', function(){
-    var parentName = document.getElementById('parent_category').value; //選択された親カテゴリーのnameを取得
+    var parentId = document.getElementById('parent_category').value; //選択された親カテゴリーのidを取得
     var childId = $('#child_category option:selected').data('category'); //選択された子カテゴリーのidを取得
     var grandchildId = $('#grandchild_category option:selected').data('category'); //選択された孫カテゴリーのidを取得
-    console.log(parentName);
+    console.log(parentId);
     console.log(childId);
     console.log(grandchildId);
     if (grandchildId != "---"){ //孫カテゴリーが初期値でないことを確認
       $.ajax({
         url: '/sell/get_size',
         type: 'GET',
-        data: { parent_name: parentName, child_id: childId ,grandchild_id: grandchildId },
+        data: { parent_id: parentId, child_id: childId ,grandchild_id: grandchildId },
         dataType: 'json'
       })
       .done(function(sizes){
