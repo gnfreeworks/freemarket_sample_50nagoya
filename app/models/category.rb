@@ -5,5 +5,6 @@ class Category < ApplicationRecord
   belongs_to  :smail_category
   has_many    :sizes_categories
   has_many    :sizes, through: :sizes_categories
+  
 
 end

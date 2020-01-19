@@ -21,6 +21,10 @@ h3 {
   background: #ea352d;
 }
 
+.form-arbitrary {
+  background: #ccc;
+}
+
 .clearfix {
   zoom: 1;
   font-weight: normal;
@@ -138,7 +142,38 @@ a {
         width: 106px;
       }
     }
-
+    &-drop-box.have-item-5 {
+      width: 100%;
+      margin-left: 0;
+    }
+    &-drop-box.have-item-6 {
+      width: 80%;
+      @media screen and (min-width: 768px){
+        width: 491px;
+      }
+    }
+    &-drop-box.have-item-7 {
+      width: 60%;
+      @media screen and (min-width: 768px){
+        width: 363px;
+      }
+    }
+    &-drop-box.have-item-8 {
+      width: 40%;
+      @media screen and (min-width: 768px){
+        width: 234px;
+      }
+    }
+    &-drop-box.have-item-9 {
+      width: 20%;
+      @media screen and (min-width: 768px){
+        width: 106px;
+      }
+    }
+    &-drop-box.have-item-10 {
+      display:none;
+      opacity: 0;
+    }
 
 
     &-drop-box {
@@ -160,8 +195,8 @@ a {
       @media screen and (min-width: 768px){
         float: right;
         width: 620px;
+        height: 100%;
         box-sizing: border-box;
-        // padding: 40px;
       }
     }
 
@@ -291,8 +326,8 @@ a {
     display: inline;
     margin: 16px auto 0;
     @media screen and (min-width: 768px){
-        display: block;
-        width: 620px;
+      display: block;
+      width: 620px;
     }
   }
 
@@ -444,6 +479,8 @@ input {
   font-size: 16px;
 }
 
+
+
 .btn-gray {
   background: #aaa;
   border: 1px solid #aaa;
@@ -476,4 +513,37 @@ select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+
+
+.textarea-default {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 104px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+#post_img ,#post_img_last{
+  height: 162px;
+  width: 100%;
+  display:none;
+  opacity: 0;
+  &_last {
+    display:block;
+  }
+}
+
+.error_alert{
+  color: red;
+  list-style: none;
+  margin: 8px 0 0;
+}
+
+.product-detail-size_brand {
+  margin: 40px 0 0;
 }

@@ -21,12 +21,13 @@ Rails.application.routes.draw do
   get 'products_buy' => 'products_statuses#buy'
 
   get 'sell' => 'sell#new'
-  resources :sell, only: [:show, :edit, :destroy] do
+  resources :sell, only: [:create,:show, :edit, :destroy] do
     collection do
       #Ajaxで動くアクションのルートを作成
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
       get 'get_size', defaults: { format: 'json' }
+      get 'get_method', defaults: { format: 'json' }
     end
   end
 

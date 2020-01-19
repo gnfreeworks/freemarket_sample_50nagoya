@@ -1,12 +1,17 @@
 class SellController < ApplicationController
   include CommonActions
+  before_action :authenticate_user!
   before_action :set_categories, only: [:index, :new ,:edit]
 
   def new
-    #--- カテゴリー ---
+    #データベースに保存する箱を用意
     @product = Product.new
+    10.times { @product.product_images.build }
+
+    #--- カテゴリー ---
     #セレクトボックスの初期値設定
     @category_parent_array = ["---"]
+    
     #データベースから、親カテゴリーのみ抽出し、配列化
     @category_parent.each do |parent|
       @category_parent_array << [parent.name,parent.id]
@@ -29,13 +34,18 @@ class SellController < ApplicationController
     @area.each do |area|
       @area_array << [area.name,area.id]
     end
-
     #--- 発送までの日数 ---
     @time = ShippingTime.all
     @time_array = ["---",]
     @time.each do |time|
       @time_array << [time.name,time.id]
     end
+  end
+
+  def create
+    # productテーブルへデータ保存
+    @Product = Product.create(product_params)
+    # @image = ProductImage.new(image_params)
 
   end
 
@@ -50,6 +60,7 @@ class SellController < ApplicationController
   def destroy
 
   end
+
 
   # //親カテゴリーが選択された後に動くアクション
   def get_category_children
@@ -66,7 +77,6 @@ class SellController < ApplicationController
   # //孫カテゴリーが選択された後に動くアクション
   def get_size
     parentId = "#{params[:parent_id]}".to_i
-    # parentId = ViewCategory.find_by(name: params[:parent_id]).id
     selected_CategoryId = Category.where("parent_id=#{parentId} and children_id=#{params[:child_id]} and grandchild_id=#{params[:grandchild_id]}")[0].id
     size_Category = SizesCategory.where(category_id: selected_CategoryId).select("size_id")
     sizeCategory_Array = []
@@ -75,5 +85,30 @@ class SellController < ApplicationController
     end
     @sizes = sizeCategory_Array
   end
+
+  # //配送料の負担が選択された後に動くアクション(配送方法を取得)
+  def get_method
+    @methods = ShippingMethod.all
+  end
+
+private
+
+  def product_params
+    params1 = params.require(:product).permit(:name,:description,:price,:area_id,:brand,:status_id,:category_id,:shipping_charge_id,:shipping_time_id,:shipping_method_id)
+    params2 = params.permit(:size_id).merge(sale_charge_id:1)
+    profit = profit_calc(params.require(:product)["price"].to_i)
+    hash_profit = {"profit" => profit}
+    productParams = params1.merge(params2).merge(hash_profit)
+  end
+
+  def image_params
+    params.require(:product).permit(image: [])
+  end
+
+  def profit_calc(price)
+    rate = SaleCharge.find(1).rate
+    profit = (price * rate.to_f).ceil
+  end
+
 
 end

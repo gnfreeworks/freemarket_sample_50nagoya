@@ -6,9 +6,10 @@ class Product < ApplicationRecord
   belongs_to :sale_charge
   belongs_to :size
   belongs_to :category
-  has_many   :product_images
   has_many   :products_statuses
-
+  has_many :product_images, dependent: :destroy
+  accepts_nested_attributes_for :product_images
+  
   # refer to active has github(https://github.com/zilkey/active_hash/blob/master/README.md)
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :area
