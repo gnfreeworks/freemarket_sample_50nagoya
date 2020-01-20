@@ -31,6 +31,10 @@ $(function(){
 
 
 
+/************************************************************************/
+/**                             画像選択処理                             **/
+/************************************************************************/
+
 // //テストDrag投稿
 // $(function() {
 //   var input_area = $('.sell-upload-drop-box');
@@ -41,12 +45,6 @@ $(function(){
 //     $(this).css({'display':'none'});
 //   });
 // });
-
-
-
-/************************************************************************/
-/**                             画像選択処理                             **/
-/************************************************************************/
 
 $(function(){
 
@@ -448,12 +446,13 @@ $(function(){
                       <div class="form-group" id= 'brand_wrapper'>
                         <label class="form-group label" for="ブランド">ブランド</label>
                         <span class='form-arbitrary'>任意</span>
-                        <input class="input-default" placeholder="例)シャネル" type="text" name="product[brand]" id="brand"
+                        <input class="input-default" placeholder="例)シャネル" type="text" name="product[brand]" id="brand" list="brandsList"
                         <i class="fas fa-chevron-down"></i>
                         </div>
                       </div>`;
     $('.product-detail-size_brand').append(sizeSelectHtml);
   }
+  
   // 孫カテゴリー選択後のイベント
   $('.product-detail-category').on('change', '#grandchild_category', function(){
     var parentId = document.getElementById('parent_category').value; //選択された親カテゴリーのidを取得
@@ -485,6 +484,30 @@ $(function(){
       $('#brand_wrapper').remove();
     }
   });
+
+  // ブランドカテゴリーの入力候補表示イベント
+  var brand_array;
+  $(document).on("keyup","#brand",function() {
+    brand_array = new Array();
+    let input = $("#brand").val();
+    $.ajax({
+      url: '/sell/get_brand',
+      type: 'GET',
+      data: { keyword: input },
+      dataType: 'json'
+    })
+    .done(function(brands) {
+      brands.forEach(function(brand){
+        brand_array.push({id:brand.id,value:brand.name},);
+      });
+    })
+    availableTags = brand_array;
+    $("#brand").autocomplete({
+      source: availableTags
+    });
+    console.log($("#brand").value);
+  });
+
 });
 
 
@@ -546,16 +569,6 @@ $(function(){
 /************************************************************************/
 /**                        入力チェック処理                               **/
 /************************************************************************/
-/**
- 文字列チェック
- @param  targetObj      Objct   メッセージ対象オブジェクト
- @param  messageType    String  メッセージタイプ
-                            ・"success"               : 成功
-                            ・"waring"                : 警告
-                            ・"error"                 : エラー
- @param  message        String  表示するメッセージ文
- @return html           String  表示するHTML形式
- */
 
 function builderHTMLType(targetObj, addObj, message){
   let type = "";
@@ -580,7 +593,7 @@ function isEmptyInput (obj){
 $(function(){
   $('#new_product').submit(function(){
 
-    /************* 空チェック ************/
+    /************* 空チェック処理 ************/
     flag = 0;
 
     //画像チェック用
@@ -634,7 +647,33 @@ $(function(){
 
     if(!flag == 0){
       return false;  // submitを中止
-    }
+    }else{
+      // モーダルウィンドウ用HTML
+      function appendModalView(){
+        var methodSelectHtml = '';
+        methodSelectHtml = `<div>
+                              <h3 class="modal-head">出品が完了しました</h3>
+                              <div class="sell-modal-body">
+                                あなたが出品した商品は「出品した商品一覧」からいつでも見ることができます。
+                                <a class="btn-default btn-red" href="./">続けて出品する</a>
+                                <p class="text-center">
+                                  <a href="./">商品ページへ言ってシェアする</a>
+                                </p>
+                              </div>
+                            </div>`;
+        $('.modal-inner').append(methodSelectHtml);
+      }
+      
+      appendModalView();  // モーダルウィンドウHTML追加
+      $(".modal").addClass("is-show is-animate sell-draft");  //HTMLタグにクラス追加
+      $(".overlay").addClass("modal-open is-animate");  //HTMLタグにクラス追加
+      $('.modal').fadeIn();  //モーダルウィンドウをフェードインで表示
+      return false;
 
+    }
   })
 });
+
+
+
+

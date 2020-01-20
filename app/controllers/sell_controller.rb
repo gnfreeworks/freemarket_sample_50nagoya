@@ -43,8 +43,9 @@ class SellController < ApplicationController
   end
 
   def create
-    # productテーブルへデータ保存
-    @Product = Product.create(product_params)
+    # binding.pry
+    @product = Product.create(product_params)
+    @productStatus = ProductsStatus.create(product_id:@product.id,seller_id:current_user.id,category_parent_id:@product.category_id,brand_id:@product.brand,selling_status:"0",dealing_status:"0")
     # @image = ProductImage.new(image_params)
 
   end
@@ -86,6 +87,10 @@ class SellController < ApplicationController
     @sizes = sizeCategory_Array
   end
 
+  def get_brand
+    @brands = Brand.brand_search(params[:keyword]) # brand_serchメソッドはbrandモデルに記載
+  end
+
   # //配送料の負担が選択された後に動くアクション(配送方法を取得)
   def get_method
     @methods = ShippingMethod.all
@@ -98,6 +103,12 @@ private
     params2 = params.permit(:size_id).merge(sale_charge_id:1)
     profit = profit_calc(params.require(:product)["price"].to_i)
     hash_profit = {"profit" => profit}
+    brandId = brand_check(params.require(:product)["brand"])
+    
+    if brandId.nil? then
+      params1["brand"] = ""
+    end    
+    
     productParams = params1.merge(params2).merge(hash_profit)
   end
 
@@ -108,6 +119,10 @@ private
   def profit_calc(price)
     rate = SaleCharge.find(1).rate
     profit = (price * rate.to_f).ceil
+  end
+
+  def brand_check(brand)
+    brand_id = Brand.find_by(name: brand)
   end
 
 

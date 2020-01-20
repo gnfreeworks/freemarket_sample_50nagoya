@@ -547,3 +547,150 @@ select {
 .product-detail-size_brand {
   margin: 40px 0 0;
 }
+
+//autocomplete表示数制限（スクロールバー表示）
+.ui-autocomplete {
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 20px;
+}
+
+
+//モーダルウィンドウ用
+// .modal{
+//     display: none;
+//     background: rgba(0,0,0,0.8);
+//     height: 100vh;
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+// }
+// .modal__bg{
+//     background: rgba(0,0,0,0.8);
+//     height: 100vh;
+//     position: absolute;
+//     width: 100%;
+// }
+// .modal__content{
+//     background: #fff;
+//     left: 50%;
+//     padding: 40px;
+//     position: absolute;
+//     top: 50%;
+//     transform: translate(-50%,-50%);
+//     width: 60%;
+// }
+
+.modal.is-animate {
+  opacity: 1;
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.modal.is-show {
+  display: block;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  // background: rgba(0,0,0,0.8);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3000;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transition: all ease-out .3s;
+  transition: all ease-out .3s;
+  opacity: 0;
+  -webkit-transform: translate(0, -10px);
+  transform: translate(0, -10px);
+}
+
+.modal-inner {
+  position: relative;
+  overflow: hidden;
+  width: 95%;
+  max-width: 375px;
+  margin: 8px auto;
+  background: #fff;
+  @media screen and (min-width: 768px){
+    max-width: none;
+    width: 600px;
+    margin: 20px auto;
+  }
+}
+
+.sell-draft .modal-head {
+  text-align: center;
+  line-height: 80px;
+}
+
+.modal-head {
+  font-size: 16px;
+}
+
+.sell-modal-body {
+  border-top: 1px solid #eee;
+  padding: 40px;
+}
+
+.sell-draft .btn-red {
+  margin: 40px auto 0;
+}
+
+.sell-draft a {
+  cursor: pointer;
+}
+
+.btn-red {
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff;
+}
+
+.btn-default {
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  -webkit-transition: all ease-out .3s;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
+}
+
+.sell-modal-body p {
+    margin: 8px 0 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.overlay.is-animate {
+  opacity: 1;
+}
+
+.overlay.modal-open {
+  display: block;
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2999;
+  background: rgba(0,0,0,0.64);
+  -webkit-transition: all ease-out .3s;
+  transition: all ease-out .3s;
+  opacity: 0;
+}
