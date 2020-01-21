@@ -663,13 +663,11 @@ $(function(){
                             </div>`;
         $('.modal-inner').append(methodSelectHtml);
       }
-      
       appendModalView();  // モーダルウィンドウHTML追加
       $(".modal").addClass("is-show is-animate sell-draft");  //HTMLタグにクラス追加
       $(".overlay").addClass("modal-open is-animate");  //HTMLタグにクラス追加
       $('.modal').fadeIn();  //モーダルウィンドウをフェードインで表示
       return false;
-
     }
   })
 });
