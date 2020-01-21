@@ -478,14 +478,14 @@ nav ul{
   padding: 10px;
   border: 1px solid #ccc;
   background: #fff;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.5;
   box-sizing: border-box;
 }
 
-// .textarea-default {
-//   min-height: 216px;
-// } 
+.setting-profile-content > .textarea-default {
+  min-height: 216px;
+} 
 
 textarea {
   border-radius: 0;

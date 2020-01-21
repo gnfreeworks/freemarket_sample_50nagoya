@@ -15,3 +15,4 @@
 //= require turbolinks
 //= require_tree .
 //= require owl.carousel
+//= require jquery-ui/widgets/autocomplete

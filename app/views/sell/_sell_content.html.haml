@@ -4,7 +4,7 @@
       .sell-container-inner
         %h2.l-single-head
           商品の情報を入力
-        %form{class:"sell-form"}
+        = form_for @product,url: { controller: "sell",action: "create"}, html: {class: "sell-form"} do |f|
           .sell-upload-box
             %h3.sell-upload-head
               出品画像
@@ -12,12 +12,13 @@
                 必須
             %p
               最大10枚までアップロードできます
-            .sell-dropbox-container.clearfix.state-image-number-10
+            .sell-dropbox-container.clearfix.state-image-number-10#imgview
               .sell-upload-products-container
                 .sell-upload-items.have-item-0
-                  %ul
+                  %ul{id:"img_field",onClick:"$('#file').click()"}
               .sell-upload-drop-box.have-item-0
-                %input.sell-upload-drop-file{multiple: true,type:"file",name:"image1",style:"display: none;"}
+                = f.file_field :image ,multiple: true, class:"sell-upload-drop-file", id:"post_img_last",data: {image: 0},accept: "image/*"
+                -# = f.file_field :url,name: "item[item_images_attributes][][image]",multiple: true, class:"sell-upload-drop-file", id:"filedata"
                 %pre.visible-pc
                   ドラッグアンドドロップ
                   またはクリックしてファイルをアップロード
@@ -29,63 +30,65 @@
                 %span.form-require
                   必須
               %div
-                %input.input-default{placeholder:"商品名(必須 40文字まで)"}
+                = f.text_field :name, class:"input-default", placeholder:"商品名(必須 40文字まで)"
             .form-group
               %label
                 商品の説明
                 %span.form-require
                   必須
-              %textarea.textarea-default{rows:"5",placeholder:"商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
+              = f.text_area :description, class:"textarea-default", rows:"5",placeholder:"商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
           .sell-content.clearfix
             %h3.sell-sub-head
               商品の詳細
             .sell-form-box
               .form-group
-                %label
-                  カテゴリー
-                  %span.form-require
-                    必須
-                .select-wrap
-                  = icon 'fas', 'chevron-down'
-                  = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
+                = f.label "parent_category","カテゴリー"
+                %span.form-require
+                  必須
+                %div
+                  .product-detail-category#product-detail-category
+                    .select-wrap#parent_wrapper
+                      = f.select :category_id, @category_parent_array, {}, {class:"select-default", id:'parent_category'}
+                      = icon 'fas', 'chevron-down'
+                  .product-detail-size_brand#product-detail-size_brand
               .form-group
                 %label
                   商品の状態
                   %span.form-require
                     必須
                 .select-wrap
+                  = f.select :status_id, @status_array, {}, {class:"select-default", id:'product_status'}
                   = icon 'fas', 'chevron-down'
-                  = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
           .sell-content.clearfix
             %h3.sell-sub-head
               配送について
             = link_to '#',target:"_blank",class:"form-question" do
               ？
             .sell-form-box
-              .form-group
+              .form-group#shippingCharge
                 %label
                   配送料の負担
                   %span.form-require
                     必須
                 .select-wrap
+                  = f.select :shipping_charge_id, @charge_array, {}, {class:"select-default", id:'shipping_charge'}
                   = icon 'fas', 'chevron-down'
-                  = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
               .form-group
                 %label
                   発送元の地域
                   %span.form-require
                     必須
                 .select-wrap
+                  = f.select :area_id, @area_array, {}, {class:"select-default", id:'shipping_area'}
                   = icon 'fas', 'chevron-down'
-                  = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
               .form-group
                 %label
                   発送までの日数
                   %span.form-require
                     必須
                 .select-wrap
+                  = f.select :shipping_time_id, @time_array, {}, {class:"select-default", id:'shipping_time'}
                   = icon 'fas', 'chevron-down'
-                  = select_tag '', options_for_select(["---", "sample1", "sample2", "sample3"]),class:"select-default"
           .sell-content.clearfix
             %h3.sell-sub-head
               販売価格(300〜9,999,999)
@@ -94,7 +97,7 @@
             .sell-form-box
               %ul.sell-price
                 %li.form-group
-                  .clearfix
+                  .clearfix#priceview
                     %label.l-left
                       価格
                       %span.form-require
@@ -102,7 +105,7 @@
                     .l-right.sell-price-input
                       ¥
                       %div
-                        %input#price_calc.input-default{placeholder:"例) 300"}
+                        = f.text_field :price, id:"price_calc",class:"input-default", placeholder:"例) 300"
                 %li.clearfix
                   .l-left 販売手数料 (10%)
                   .l-right1 -
@@ -131,8 +134,7 @@
                 = link_to "#" do
                   加盟店規約
                 に同意したことになります。
-            %button.btn-default.btn-red{type:"submit"}
-              出品する
+            = f.submit "出品する", class:"btn-default btn-red", id:"submitflag"
             = link_to "#",class:"btn-default btn-gray" do
               もどる
         .overlay

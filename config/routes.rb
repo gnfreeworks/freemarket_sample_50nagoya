@@ -19,7 +19,19 @@ Rails.application.routes.draw do
 
   get 'signup/show' => 'signup#show'
   get 'products_buy' => 'products_statuses#buy'
-  get 'sell' => 'sell#create'
+
+  get 'sell' => 'sell#new'
+  resources :sell, only: [:create,:show,:destroy] do
+    get 'edit' => 'sell#edit'
+    collection do
+      #Ajaxで動くアクションのルートを作成
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'get_size', defaults: { format: 'json' }
+      get 'get_method', defaults: { format: 'json' }
+      get 'get_brand', defaults: { format: 'json' }  #brandモデルにメソッド記載
+    end
+  end
 
   resources :mypage, only: :index do
     collection do
