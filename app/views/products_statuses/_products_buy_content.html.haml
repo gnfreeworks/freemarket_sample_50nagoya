@@ -7,10 +7,10 @@
         %h3.buy-product-image
         = image_tag 'm50773888918_1.jpg', class:"lazyloaded"
         %p.buy-product-name.bold
-          新品同様ヴィトンフラットシューズ 24.5
+          = @product_name
         %form{class:"buy-form",method:"POST"}
           %p.buy-price-ja.bold
-            ¥23,300
+            = "¥" + @price
             %span.product-shipping-fee.f14.bold
               送料込み
           %ul.buy-price-table
@@ -18,7 +18,8 @@
               .buy-price-cell
                 支払い金額
               .buy-price-cell
-                %span ¥23,300
+                %span
+                  = "¥" + @price
           %button.btn-default.btn-red.bold
             購入する
 
@@ -40,9 +41,11 @@
       .buy-content-inner
         %h3 支払い方法
         %p.buy-user-info-text
-          ************1198
+          = @card_number
           %br
-          10/19
+          = @expiration
+          -# = @expiration_month
+          -# = @expiration_year
         = image_tag "jcb.svg", size: "32x20", alt: "jcb"
         = link_to '#',class:"buy-user-info-fix" do
           変更する
