@@ -93,3 +93,6 @@ gem 'active_hash'
 
 # https://github.com/stefankroes/ancestry
 gem 'ancestry', '3.0.7'
+
+# サジェスト入力用gem https://qiita.com/anuma/items/c76de8d009266491fba1
+gem 'jquery-ui-rails'
