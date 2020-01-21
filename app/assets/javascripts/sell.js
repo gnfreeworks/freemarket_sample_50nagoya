@@ -55,6 +55,7 @@ $(function(){
         <img src=${loadedImageUri} id="${imgId}">
       </figure>
       <div class="sell-upload-button">
+        <a href="" class="sell-upload-edit">編集</a>
         <a href>削除</a>
       </div>
     </li>`
@@ -86,7 +87,7 @@ $(function(){
   });
 });
 
-
+//***********ドラッグの場合************* */
 $(function(){
   // プレビューに挿入する画像枠(5-10)HTMLの作成
   function buildbox(){
@@ -114,6 +115,7 @@ $(function(){
         <img src=${loadedImageUri} id="${imgId}">
       </figure>
       <div class="sell-upload-button">
+        <a href="" class="sell-upload-edit">編集</a>
         <a href>削除</a>
       </div>
     </li>`
@@ -667,7 +669,6 @@ $(function(){
       $(".modal").addClass("is-show is-animate sell-draft");  //HTMLタグにクラス追加
       $(".overlay").addClass("modal-open is-animate");  //HTMLタグにクラス追加
       $('.modal').fadeIn();  //モーダルウィンドウをフェードインで表示
-      return false;
     }
   })
 });

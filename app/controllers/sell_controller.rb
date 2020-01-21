@@ -43,11 +43,9 @@ class SellController < ApplicationController
   end
 
   def create
-    # binding.pry
     @product = Product.create(product_params)
     @productStatus = ProductsStatus.create(product_id:@product.id,seller_id:current_user.id,category_parent_id:@product.category_id,brand_id:@product.brand,selling_status:"0",dealing_status:"0")
     # @image = ProductImage.new(image_params)
-
   end
 
   def show
