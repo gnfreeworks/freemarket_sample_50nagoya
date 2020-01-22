@@ -32,60 +32,107 @@ $(function(){
 
 
 /************************************************************************/
-/**                             画像選択処理                             **/
+/**                             画像表示処理                             **/
 /************************************************************************/
 
-// //テストDrag投稿
-// $(function() {
-//   var input_area = $('.sell-upload-drop-box');
-//   $(document).on('change','#post_img,#post_img_last',function(event) {
-//     var new_input = $(`<input multiple="multiple" class="sell-upload-drop-file" id="post_img" accept="image/*" type="file" name="product[image][]">`);
-//     input_area.prepend(new_input);
-//     $(".sell-upload-drop-box").children(":first").css({'display':'block'});
-//     $(this).css({'display':'none'});
-//   });
-// });
-
 $(function(){
-
+//---------------クリックでの画像選択処理---------------//
   function buildImage(loadedImageUri,imgId){
     var html =
-    `<li class="sell-upload-item">
+    `<li class="sell-upload-item" data-img-id="${imgId}">
       <figure class="sell-upload-figure landscape">
         <img src=${loadedImageUri} id="${imgId}">
       </figure>
       <div class="sell-upload-button">
-        <a href="" class="sell-upload-edit">編集</a>
-        <a href>削除</a>
+        <a href="javascript:void(0)" class="sell-upload-edit">編集</a>
+        <a href="javascript:void(0)" class="sell-img-delete">削除</a>
       </div>
     </li>`
     return html
   };
 
-  $fileField = $('#post_img_last')
-  var files_array = [];
+  var fileField = $('.sell-upload-drop-box')
+  var count = 0;
 
-  // 選択された画像を取得し表示
-  $($fileField).on('change', $fileField, function(e) {
-    
+  $(fileField).on('change', fileField, function(e) {
     file = e.target.files[0]
-    files_array.push(file);
-    reader = new FileReader(),
-    $preview = $("#img_field");
+    reader = new FileReader()
+    var imgId = count;
 
     reader.onload = (function(file) {
       return function(e) {
-        $preview.empty();
         var loadedImageUri = e.target.result
-        document.querySelector(".sell-upload-items.have-item-0").classList.value = "sell-upload-items have-item-1";
-        document.querySelector(".sell-upload-drop-box.have-item-0").classList.value = "sell-upload-drop-box have-item-1";
-        $(buildImage(loadedImageUri)).appendTo(".sell-upload-items ul").trigger("create");
+
+        //画像の数に合わせてクラス名の数字を修正
+        var className1 = document.querySelector(`.sell-upload-items`).classList.value;
+        var countStr1 = "sell-upload-items have-item-".length;
+        var className11= Number(className1.substr(countStr1, (className1.length - countStr1)));
+
+        var className2 = document.querySelector(`.sell-upload-drop-box`).classList.value;
+        var countStr2 = "sell-upload-drop-box have-item-".length;
+        var className21= Number(className2.substr(countStr2, (className2.length - countStr2)));
+
+        document.querySelector(`.sell-upload-items.have-item-${className11}`).classList.value = `sell-upload-items have-item-${(className11 + 1)}`;
+        document.querySelector(`.sell-upload-drop-box.have-item-${className21}`).classList.value = `sell-upload-drop-box have-item-${(className21 + 1)}`;
+        // document.querySelector(`.sell-upload-items.have-item-${count}`).classList.value = `sell-upload-items have-item-${count+1}`;
+        // document.querySelector(`.sell-upload-drop-box.have-item-${count}`).classList.value = `sell-upload-drop-box have-item-${count+1}`;
+
+        $(buildImage(loadedImageUri,imgId)).appendTo(".sell-upload-items ul").trigger("create");
+        count = ++count;
+        console.log("onload内count = " + count);
       };
     })(file);
     reader.readAsDataURL(file);
 
+    //画像表示が終わったらファイルが入ったinputのidを変更し、新しいinputを挿入
+    $('#post_img_last').attr('id', 'post_img');
+    console.log("挿入前count = " + count);
+    var html = `<input multiple="multiple" class="sell-upload-drop-file" id="post_img_last" data-img-input-id="${count+1}" accept="image/*" type="file" name="product[image][]">`
+    $(html).appendTo('.sell-upload-drop-box');
+
   });
 });
+
+
+//-----------------画像「編集」と「削除」ボタンの処理-----------------//
+// 今回は「削除」ボタンのみ実装する
+$(function(){
+  $('#img_field').on('click','li a',function() {  //クリックされたaタグ情報を取得
+    if($(this).context.text == "削除"){
+    //----- 削除クリック時の処理
+
+      //クリックされた画像をli要素ごと削除（画像１つを削除）
+      $(this).parent().parent().remove();
+
+      //クリックされた画像のinputタグを削除
+      var img_id = $(this).parent().parent().attr("data-img-id"); //クリックされた画像の枠(li)に付けられたimg-data-idの番号を取得
+      var obj = $(".sell-upload-drop-box input")
+
+      for(var i = 0; i < obj.length; i++){
+        if(obj.eq(i).data("img-input-id") == img_id){
+          obj.eq(i).remove(); //inputタグ削除
+
+          //画像の数に合わせてクラス名の数字を修正
+          var className1 = document.querySelector(`.sell-upload-items`).classList.value;
+          var countStr1 = "sell-upload-items have-item-".length;
+          var className11= Number(className1.substr(countStr1, (className1.length - countStr1)));
+
+          var className2 = document.querySelector(`.sell-upload-drop-box`).classList.value;
+          var countStr2 = "sell-upload-drop-box have-item-".length;
+          var className21= Number(className2.substr(countStr2, (className2.length - countStr2)));
+
+          document.querySelector(`.sell-upload-items.have-item-${className11}`).classList.value = `sell-upload-items have-item-${className11 - 1}`;
+          document.querySelector(`.sell-upload-drop-box.have-item-${className21}`).classList.value = `sell-upload-drop-box have-item-${className21 - 1}`;
+        }
+      }
+    }else if($(this).context.text == "編集"){
+    //----- 編集クリック時の処理
+    }
+  });
+
+});
+
+
 
 //***********ドラッグの場合************* */
 $(function(){
@@ -123,53 +170,53 @@ $(function(){
   };
 
   //画像枠をクリック時のイベント作成
-  $('.sell-upload-drop-box').on('drop','#post_img,#post_img_last',function(e) {
-      e.preventDefault();
-      files = e.originalEvent.dataTransfer.files;
-      for (var i=0; i<files.length; i++) {
-        files_array.push(files[i]);
-        var fileReader = new FileReader();
-        fileReader.onload = function( e ) {
-          var loadedImageUri = e.target.result;
-          var imgId = "img-"+files_array.length;
-          var new_input = $(`<input multiple="multiple" class="sell-upload-drop-file" id="post_img" accept="image/*" type="file" name="images[]">`);
+  // $('.sell-upload-drop-box').on('drop','#post_img,#post_img_last',function(e) {
+  //     e.preventDefault();
+  //     files = e.originalEvent.dataTransfer.files;
+  //     for (var i=0; i<files.length; i++) {
+  //       files_array.push(files[i]);
+  //       var fileReader = new FileReader();
+  //       fileReader.onload = function( e ) {
+  //         var loadedImageUri = e.target.result;
+  //         var imgId = "img-"+files_array.length;
+  //         var new_input = $(`<input multiple="multiple" class="sell-upload-drop-file" id="post_img" accept="image/*" type="file" name="images[]">`);
 
-          // if(files_array)
-          $('.sell-upload-drop-box').prepend(new_input);
-          $(buildImage(e.target.result,imgId)).appendTo(".sell-upload-items ul").trigger("create");
-          $(imgId).attr('src', e.target.result);
+  //         // if(files_array)
+  //         $('.sell-upload-drop-box').prepend(new_input);
+  //         $(buildImage(e.target.result,imgId)).appendTo(".sell-upload-items ul").trigger("create");
+  //         $(imgId).attr('src', e.target.result);
 
-          class_items1 = ".sell-upload-items.have-item-" + (files_array.length - 1);
-          class_items2 = "sell-upload-items have-item-" + (files_array.length);
-          class_drop1 = ".sell-upload-drop-box.have-item-" + (files_array.length - 1);
-          class_drop2 = "sell-upload-drop-box have-item-" + (files_array.length);
-          document.querySelector(class_items1).classList.value = class_items2;
-          document.querySelector(class_drop1).classList.value = class_drop2;
+  //         class_items1 = ".sell-upload-items.have-item-" + (files_array.length - 1);
+  //         class_items2 = "sell-upload-items have-item-" + (files_array.length);
+  //         class_drop1 = ".sell-upload-drop-box.have-item-" + (files_array.length - 1);
+  //         class_drop2 = "sell-upload-drop-box have-item-" + (files_array.length);
+  //         document.querySelector(class_items1).classList.value = class_items2;
+  //         document.querySelector(class_drop1).classList.value = class_drop2;
 
-          if(files_array.length==5){
-            //画像表示枠追加(5-6個用)
-            $(buildbox()).appendTo(".sell-upload-products-container");
-          }
-        };
-        // ファイルの読み込み実行
-        fileReader.readAsDataURL(files[i]);
-      }
+  //         if(files_array.length==5){
+  //           //画像表示枠追加(5-6個用)
+  //           $(buildbox()).appendTo(".sell-upload-products-container");
+  //         }
+  //       };
+  //       // ファイルの読み込み実行
+  //       fileReader.readAsDataURL(files[i]);
+  //     }
 
-    //   var num = 1;
-    //   var new_input = $(`<input multiple="multiple" class="sell-upload-drop-file" id="post_img" accept="image/*" type="file" name="product[image][]">`);
-    //   $('.sell-upload-drop-box.have-item-0 ul').prepend(new_input);
+  //   //   var num = 1;
+  //   //   var new_input = $(`<input multiple="multiple" class="sell-upload-drop-file" id="post_img" accept="image/*" type="file" name="product[image][]">`);
+  //   //   $('.sell-upload-drop-box.have-item-0 ul').prepend(new_input);
 
-    //   $(buildImage(e.target.result,num)).appendTo(".sell-upload-items.have-item-0 ul").trigger("create");
-    //   $("#img-1").attr('src', e.target.result);
+  //   //   $(buildImage(e.target.result,num)).appendTo(".sell-upload-items.have-item-0 ul").trigger("create");
+  //   //   $("#img-1").attr('src', e.target.result);
 
-    // var file = e.target.files[0]
-    // var reader = new FileReader();
-    // reader.onload = function (e) {
-    //     var img = document.getElementById("img-1")
-    //     img.src = e.target.result;
-    // }
-    // reader.readAsDataURL(file);
-  });
+  //   // var file = e.target.files[0]
+  //   // var reader = new FileReader();
+  //   // reader.onload = function (e) {
+  //   //     var img = document.getElementById("img-1")
+  //   //     img.src = e.target.result;
+  //   // }
+  //   // reader.readAsDataURL(file);
+  // });
 
 
 
@@ -251,73 +298,73 @@ $(function(){
   //   }
   // });
 
-  // 画像削除処理
-  $(document).on('click','.sell-upload-products-container a', function(){
-    event.preventDefault();
-    // index関数を利用して、クリックされたaタグが、div内で何番目のものか特定する。
-    var index = $(".sell-upload-products-container a").index(this);
-    // クリックされたaタグの順番から、削除すべき画像を特定し、配列から削除する。
-    files_array.splice(index - 1, 1);
-    // 画像表示枠のクラス名変更
-    if(files_array.length==0){
-      document.querySelector(".sell-upload-items.have-item-1").classList.value = "sell-upload-items have-item-0";
-      document.querySelector(".sell-upload-drop-box.have-item-1").classList.value = "sell-upload-drop-box have-item-0";
-    }else if(files_array.length==1){
-      document.querySelector(".sell-upload-items.have-item-2").classList.value = "sell-upload-items have-item-1";
-      document.querySelector(".sell-upload-drop-box.have-item-2").classList.value = "sell-upload-drop-box have-item-1";
-    }else if(files_array.length==2){
-      document.querySelector(".sell-upload-items.have-item-3").classList.value = "sell-upload-items have-item-2";
-      document.querySelector(".sell-upload-drop-box.have-item-3").classList.value = "sell-upload-drop-box have-item-2";
-    }else if(files_array.length==3){
-      document.querySelector(".sell-upload-items.have-item-4").classList.value = "sell-upload-items have-item-3";
-      document.querySelector(".sell-upload-drop-box.have-item-4").classList.value = "sell-upload-drop-box have-item-3";
-    }else if(files_array.length==4){
-      document.querySelector(".sell-upload-items.have-item-5").classList.value = "sell-upload-items have-item-4";
-      document.querySelector(".sell-upload-drop-box.have-item-5").classList.value = "sell-upload-drop-box have-item-4";
-      //画像表示枠削除(5-6個用)
-      $(".sell-upload-items.have-item-0").remove();
-    }else if(files_array.length==5){
-      document.querySelector(".sell-upload-items.have-item-1").classList.value = "sell-upload-items have-item-0";
-      document.querySelector(".sell-upload-drop-box.have-item-1").classList.value = "sell-upload-drop-box have-item-0";
-    }else if(files_array.length==6){
-      document.querySelector(".sell-upload-items.have-item-2").classList.value = "sell-upload-items have-item-1";
-      document.querySelector(".sell-upload-drop-box.have-item-2").classList.value = "sell-upload-drop-box have-item-1";
-    }else if(files_array.length==7){
-      document.querySelector(".sell-upload-items.have-item-3").classList.value = "sell-upload-items have-item-2";
-      document.querySelector(".sell-upload-drop-box.have-item-3").classList.value = "sell-upload-drop-box have-item-2";
-    }else if(files_array.length==8){
-      document.querySelector(".sell-upload-items.have-item-4").classList.value = "sell-upload-items have-item-3";
-      document.querySelector(".sell-upload-drop-box.have-item-4").classList.value = "sell-upload-drop-box have-item-3";
-    }else if(files_array.length==9){
-      document.querySelector(".sell-upload-items.have-item-5").classList.value = "sell-upload-items have-item-4";
-      document.querySelector(".sell-upload-drop-box.have-item-5").classList.value = "sell-upload-drop-box have-item-4";
-    }
+//   // 画像削除処理
+//   $(document).on('click','.sell-upload-products-container a', function(){
+//     event.preventDefault();
+//     // index関数を利用して、クリックされたaタグが、div内で何番目のものか特定する。
+//     var index = $(".sell-upload-products-container a").index(this);
+//     // クリックされたaタグの順番から、削除すべき画像を特定し、配列から削除する。
+//     files_array.splice(index - 1, 1);
+//     // 画像表示枠のクラス名変更
+//     if(files_array.length==0){
+//       document.querySelector(".sell-upload-items.have-item-1").classList.value = "sell-upload-items have-item-0";
+//       document.querySelector(".sell-upload-drop-box.have-item-1").classList.value = "sell-upload-drop-box have-item-0";
+//     }else if(files_array.length==1){
+//       document.querySelector(".sell-upload-items.have-item-2").classList.value = "sell-upload-items have-item-1";
+//       document.querySelector(".sell-upload-drop-box.have-item-2").classList.value = "sell-upload-drop-box have-item-1";
+//     }else if(files_array.length==2){
+//       document.querySelector(".sell-upload-items.have-item-3").classList.value = "sell-upload-items have-item-2";
+//       document.querySelector(".sell-upload-drop-box.have-item-3").classList.value = "sell-upload-drop-box have-item-2";
+//     }else if(files_array.length==3){
+//       document.querySelector(".sell-upload-items.have-item-4").classList.value = "sell-upload-items have-item-3";
+//       document.querySelector(".sell-upload-drop-box.have-item-4").classList.value = "sell-upload-drop-box have-item-3";
+//     }else if(files_array.length==4){
+//       document.querySelector(".sell-upload-items.have-item-5").classList.value = "sell-upload-items have-item-4";
+//       document.querySelector(".sell-upload-drop-box.have-item-5").classList.value = "sell-upload-drop-box have-item-4";
+//       //画像表示枠削除(5-6個用)
+//       $(".sell-upload-items.have-item-0").remove();
+//     }else if(files_array.length==5){
+//       document.querySelector(".sell-upload-items.have-item-1").classList.value = "sell-upload-items have-item-0";
+//       document.querySelector(".sell-upload-drop-box.have-item-1").classList.value = "sell-upload-drop-box have-item-0";
+//     }else if(files_array.length==6){
+//       document.querySelector(".sell-upload-items.have-item-2").classList.value = "sell-upload-items have-item-1";
+//       document.querySelector(".sell-upload-drop-box.have-item-2").classList.value = "sell-upload-drop-box have-item-1";
+//     }else if(files_array.length==7){
+//       document.querySelector(".sell-upload-items.have-item-3").classList.value = "sell-upload-items have-item-2";
+//       document.querySelector(".sell-upload-drop-box.have-item-3").classList.value = "sell-upload-drop-box have-item-2";
+//     }else if(files_array.length==8){
+//       document.querySelector(".sell-upload-items.have-item-4").classList.value = "sell-upload-items have-item-3";
+//       document.querySelector(".sell-upload-drop-box.have-item-4").classList.value = "sell-upload-drop-box have-item-3";
+//     }else if(files_array.length==9){
+//       document.querySelector(".sell-upload-items.have-item-5").classList.value = "sell-upload-items have-item-4";
+//       document.querySelector(".sell-upload-drop-box.have-item-5").classList.value = "sell-upload-drop-box have-item-4";
+//     }
 
-    // クリックされたaタグが含まれるli要素をHTMLから削除する。
-    $(this).parent().parent().remove();
+//     // クリックされたaタグが含まれるli要素をHTMLから削除する。
+//     $(this).parent().parent().remove();
 
 
-//[一時中断]削除機能は一時中断。画像を削除した場合に1-5個の枠、6-10個の枠それぞれの中で削除されるだけで跨いでの連携ができていない。
+// //[一時中断]削除機能は一時中断。画像を削除した場合に1-5個の枠、6-10個の枠それぞれの中で削除されるだけで跨いでの連携ができていない。
 
-    // ******配列を再読み込みして画像を再表示する******
-    // if(files_array.length <= 5){
-    //   var add_space1 = ".sell-upload-items.have-item-" + files_array.length + " ul";
-    // }else if(files_array.length > 5){
-    //   var add_space1 = ".sell-upload-items.have-item-5 ul";
-    //   var add_space2 = ".sell-upload-items.have-item-" + (files_array.length-5) + " ul";
-    // }
+//     // ******配列を再読み込みして画像を再表示する******
+//     // if(files_array.length <= 5){
+//     //   var add_space1 = ".sell-upload-items.have-item-" + files_array.length + " ul";
+//     // }else if(files_array.length > 5){
+//     //   var add_space1 = ".sell-upload-items.have-item-5 ul";
+//     //   var add_space2 = ".sell-upload-items.have-item-" + (files_array.length-5) + " ul";
+//     // }
 
-    // for (var i = 1; i < files_array.length; ++i){
-    //   console.log(i);
-    //   console.log(files_array.length);
-    //   console.log("add_space1="+add_space1);
-    //   if(i <= 5){
-    //     $(buildImage(loadedImageUri,)).appendTo(add_space1).trigger("create");
-    //   }else if(i > 5){
-    //     $(buildImage(loadedImageUri,)).appendTo(add_space2).trigger("create");
-    //   }
-    // }
-  });
+//     // for (var i = 1; i < files_array.length; ++i){
+//     //   console.log(i);
+//     //   console.log(files_array.length);
+//     //   console.log("add_space1="+add_space1);
+//     //   if(i <= 5){
+//     //     $(buildImage(loadedImageUri,)).appendTo(add_space1).trigger("create");
+//     //   }else if(i > 5){
+//     //     $(buildImage(loadedImageUri,)).appendTo(add_space2).trigger("create");
+//     //   }
+//     // }
+//   });
 });
 
 
@@ -592,86 +639,86 @@ function isEmptyInput (obj){
   return result;
 }
 
-$(function(){
-  $('#new_product').submit(function(){
+// $(function(){
+//   $('#new_product').submit(function(){
 
-    /************* 空チェック処理 ************/
-    flag = 0;
+//     /************* 空チェック処理 ************/
+//     flag = 0;
 
-    //画像チェック用
-    // if (isEmptyInput($('#product_name'))) {
-    //   builderHTMLType($('#product_name'),$('#imgview') ,'入力してください');
-    // }else{$('#product_name_error').remove();}
+//     //画像チェック用
+//     // if (isEmptyInput($('#product_name'))) {
+//     //   builderHTMLType($('#product_name'),$('#imgview') ,'入力してください');
+//     // }else{$('#product_name_error').remove();}
 
-    if (isEmptyInput($('#product_name'))) {
-      builderHTMLType($('#product_name'),$('#product_name') ,'入力してください'); flag = ++flag;
-    }else{$('#product_name_error').remove();}
+//     if (isEmptyInput($('#product_name'))) {
+//       builderHTMLType($('#product_name'),$('#product_name') ,'入力してください'); flag = ++flag;
+//     }else{$('#product_name_error').remove();}
 
-    if (isEmptyInput($('#product_description'))) {
-      builderHTMLType($('#product_description'), $('#product_description'), '入力してください'); flag = ++flag;
-    }else{$('#product_description_error').remove();}
+//     if (isEmptyInput($('#product_description'))) {
+//       builderHTMLType($('#product_description'), $('#product_description'), '入力してください'); flag = ++flag;
+//     }else{$('#product_description_error').remove();}
 
-    if (isEmptyInput($('#parent_category'))) {
-      builderHTMLType($('#parent_category'),$('#product-detail-category'), '選択してください'); flag = ++flag;
-    }else{$('#parent_category_error').remove();}
+//     if (isEmptyInput($('#parent_category'))) {
+//       builderHTMLType($('#parent_category'),$('#product-detail-category'), '選択してください'); flag = ++flag;
+//     }else{$('#parent_category_error').remove();}
 
-    if (isEmptyInput($('#child_category'))) {
-      builderHTMLType($('#child_category'),$('#product-detail-category'), '選択してください'); flag = ++flag;
-    }else{$('#child_category_error').remove();}
+//     if (isEmptyInput($('#child_category'))) {
+//       builderHTMLType($('#child_category'),$('#product-detail-category'), '選択してください'); flag = ++flag;
+//     }else{$('#child_category_error').remove();}
 
-    if (isEmptyInput($('#grandchild_category'))) {
-      builderHTMLType($('#grandchild_category'),$('#product-detail-category'), '選択してください'); flag = ++flag;
-    }else{$('#grandchild_category_error').remove();}
+//     if (isEmptyInput($('#grandchild_category'))) {
+//       builderHTMLType($('#grandchild_category'),$('#product-detail-category'), '選択してください'); flag = ++flag;
+//     }else{$('#grandchild_category_error').remove();}
 
-    if (isEmptyInput($('#size'))) {
-      builderHTMLType($('#size'),$('#size_wrapper'), '選択してください'); flag = ++flag;
-    }else{$('#size_error').remove();}
+//     if (isEmptyInput($('#size'))) {
+//       builderHTMLType($('#size'),$('#size_wrapper'), '選択してください'); flag = ++flag;
+//     }else{$('#size_error').remove();}
     
-    if (isEmptyInput($('#product_status'))) {
-      builderHTMLType($('#product_status'),$('#product_status'), '選択してください'); flag = ++flag;
-    }else{$('#product_status_error').remove();}
+//     if (isEmptyInput($('#product_status'))) {
+//       builderHTMLType($('#product_status'),$('#product_status'), '選択してください'); flag = ++flag;
+//     }else{$('#product_status_error').remove();}
 
-    if (isEmptyInput($('#shipping_charge'))) {
-      builderHTMLType($('#shipping_charge'),$('#shipping_charge'), '選択してください'); flag = ++flag;
-    }else{$('#shipping_charge_error').remove();}
+//     if (isEmptyInput($('#shipping_charge'))) {
+//       builderHTMLType($('#shipping_charge'),$('#shipping_charge'), '選択してください'); flag = ++flag;
+//     }else{$('#shipping_charge_error').remove();}
 
-    if (isEmptyInput($('#shipping_area'))) {
-      builderHTMLType($('#shipping_area'),$('#shipping_area'), '選択してください'); flag = ++flag;
-    }else{$('#shipping_area_error').remove();}
+//     if (isEmptyInput($('#shipping_area'))) {
+//       builderHTMLType($('#shipping_area'),$('#shipping_area'), '選択してください'); flag = ++flag;
+//     }else{$('#shipping_area_error').remove();}
 
-    if (isEmptyInput($('#shipping_time'))) {
-      builderHTMLType($('#shipping_time'),$('#shipping_time'), '選択してください'); flag = ++flag;
-    }else{$('#shipping_time_error').remove();}
+//     if (isEmptyInput($('#shipping_time'))) {
+//       builderHTMLType($('#shipping_time'),$('#shipping_time'), '選択してください'); flag = ++flag;
+//     }else{$('#shipping_time_error').remove();}
 
-    if (isEmptyInput($('#price_calc'))) {
-      builderHTMLType($('#price_calc'),$('#priceview'), '300以上9999999以下で入力してください'); flag = ++flag;
-    }else{$('#price_calc_error').remove();}
+//     if (isEmptyInput($('#price_calc'))) {
+//       builderHTMLType($('#price_calc'),$('#priceview'), '300以上9999999以下で入力してください'); flag = ++flag;
+//     }else{$('#price_calc_error').remove();}
 
-    if(!flag == 0){
-      return false;  // submitを中止
-    }else{
-      // モーダルウィンドウ用HTML
-      function appendModalView(){
-        var methodSelectHtml = '';
-        methodSelectHtml = `<div>
-                              <h3 class="modal-head">出品が完了しました</h3>
-                              <div class="sell-modal-body">
-                                あなたが出品した商品は「出品した商品一覧」からいつでも見ることができます。
-                                <a class="btn-default btn-red" href="./">続けて出品する</a>
-                                <p class="text-center">
-                                  <a href="./">商品ページへ言ってシェアする</a>
-                                </p>
-                              </div>
-                            </div>`;
-        $('.modal-inner').append(methodSelectHtml);
-      }
-      appendModalView();  // モーダルウィンドウHTML追加
-      $(".modal").addClass("is-show is-animate sell-draft");  //HTMLタグにクラス追加
-      $(".overlay").addClass("modal-open is-animate");  //HTMLタグにクラス追加
-      $('.modal').fadeIn();  //モーダルウィンドウをフェードインで表示
-    }
-  })
-});
+//     if(!flag == 0){
+//       return false;  // submitを中止
+//     }else{
+//       // モーダルウィンドウ用HTML
+//       function appendModalView(){
+//         var methodSelectHtml = '';
+//         methodSelectHtml = `<div>
+//                               <h3 class="modal-head">出品が完了しました</h3>
+//                               <div class="sell-modal-body">
+//                                 あなたが出品した商品は「出品した商品一覧」からいつでも見ることができます。
+//                                 <a class="btn-default btn-red" href="./">続けて出品する</a>
+//                                 <p class="text-center">
+//                                   <a href="./">商品ページへ言ってシェアする</a>
+//                                 </p>
+//                               </div>
+//                             </div>`;
+//         $('.modal-inner').append(methodSelectHtml);
+//       }
+//       appendModalView();  // モーダルウィンドウHTML追加
+//       $(".modal").addClass("is-show is-animate sell-draft");  //HTMLタグにクラス追加
+//       $(".overlay").addClass("modal-open is-animate");  //HTMLタグにクラス追加
+//       $('.modal').fadeIn();  //モーダルウィンドウをフェードインで表示
+//     }
+//   })
+// });
 
 
 
