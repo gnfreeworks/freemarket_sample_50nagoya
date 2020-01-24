@@ -34,8 +34,6 @@ $(function(){
 /************************************************************************/
 /**                             画像表示処理                             **/
 /************************************************************************/
-
-
 $(function(){
   function buildImage(loadedImageUri,imgId){
     var html =
@@ -78,15 +76,13 @@ $(function(){
 
         $(buildImage(loadedImageUri,imgId)).appendTo(".sell-upload-items ul").trigger("create");
         count = ++count;
-        console.log("onload内count = " + count);
       };
     })(file);
     reader.readAsDataURL(file);
 
     //画像表示が終わったらファイルが入ったinputのidを変更し、新しいinputを挿入
     $('#post_img_last').attr('id', 'post_img');
-    console.log("挿入前count = " + count);
-    var html = `<input multiple="multiple" class="sell-upload-drop-file" id="post_img_last" data-img-input-id="${count+1}" accept="image/*" type="file" name="product[image][]">`
+    var html = `<input multiple="multiple" class="sell-upload-drop-file" id="post_img_last" data-img-input-id="${count+1}" accept="image/*" type="file" name="product[urls][]">`
     $(html).appendTo('.sell-upload-drop-box');
 
   });
@@ -96,7 +92,6 @@ $(function(){
     file = e.target.files[0]
     reader = new FileReader()
     var imgId = count;
-    console.log("count = " + count);
     reader.onload = (function(file) {
       return function(e) {
         var loadedImageUri = e.target.result
@@ -115,20 +110,17 @@ $(function(){
 
         $(buildImage(loadedImageUri,imgId)).appendTo(".sell-upload-items ul").trigger("create");
         count = ++count;
-        console.log("onload内count = " + count);
       };
     })(file);
     reader.readAsDataURL(file);
 
     //画像表示が終わったらファイルが入ったinputのidを変更し、新しいinputを挿入
     $('#post_img_last').attr('id', 'post_img');
-    console.log("挿入前count = " + count);
-    var html = `<input multiple="multiple" class="sell-upload-drop-file" id="post_img_last" data-img-input-id="${count+1}" accept="image/*" type="file" name="product[image][]">`
+    var html = `<input multiple="multiple" class="sell-upload-drop-file" id="post_img_last" data-img-input-id="${count+1}" accept="image/*" type="file" name="product[urls][]">`
     $(html).appendTo('.sell-upload-drop-box');
 
   });
 
-  
 });
 
 
@@ -171,105 +163,6 @@ $(function(){
 });
 
 
-
-// //---------------ドラッグでの画像選択処理---------------//
-// $(function(){
-
-//   // // 画像を管理するための配列を定義
-//   // var files_array = [];
-  
-//   // // 通常のドラッグオーバイベントを停止
-//   // $('.sell-upload-drop-box').on('dragover',function(e){
-//   //   e.preventDefault();
-//   // });
-
-//   //新ドラッグアンドドロップ画像読み込みテスト
-//   //プレビューに挿入するHTMLの作成
-//   function buildImage(loadedImageUri,imgId){
-//     var html =
-//     `<li class="sell-upload-item" data-img-id="${imgId}">
-//       <figure class="sell-upload-figure landscape">
-//         <img src=${loadedImageUri} id="${imgId}">
-//       </figure>
-//       <div class="sell-upload-button">
-//         <a href="javascript:void(0)" class="sell-upload-edit">編集</a>
-//         <a href="javascript:void(0)" class="sell-img-delete">削除</a>
-//       </div>
-//     </li>`
-//     return html
-//   };
-
-//   // ドロップ時のイベントの作成
-//   $('.sell-upload-drop-box').on('drop',function(event){
-//     event.preventDefault();
-//     // イベントによって得たファイルを配列で取り込む
-//     files = event.originalEvent.dataTransfer.files;
-//     // 画像のファイルを一つずつ画像管理用の配列に追加
-//     for (var i=0; i<files.length; i++) {
-//       files_array.push(files[i]);
-//       var fileReader = new FileReader();
-//       // ファイルが読み込まれた際に行う動作を定義
-//       fileReader.onload = function( event ) {
-//         // 画像のurlを取得
-//         var loadedImageUri = event.target.result;
-//         // 画像数に応じてclass名変更 & 取得したURLを利用してビューにHTMLを挿入
-//         if(files_array.length==1){
-//           document.querySelector(".sell-upload-items.have-item-0").classList.value = "sell-upload-items have-item-1";
-//           document.querySelector(".sell-upload-drop-box.have-item-0").classList.value = "sell-upload-drop-box have-item-1";
-//           $(buildImage(loadedImageUri,)).appendTo(".sell-upload-items.have-item-1 ul").trigger("create");
-//         }else if(files_array.length==2){
-//           document.querySelector(".sell-upload-items.have-item-1").classList.value = "sell-upload-items have-item-2";
-//           document.querySelector(".sell-upload-drop-box.have-item-1").classList.value = "sell-upload-drop-box have-item-2";
-//           $(buildImage(loadedImageUri,)).appendTo(".sell-upload-items.have-item-2 ul").trigger("create");
-//         }else if(files_array.length==3){
-//           document.querySelector(".sell-upload-items.have-item-2").classList.value = "sell-upload-items have-item-3";
-//           document.querySelector(".sell-upload-drop-box.have-item-2").classList.value = "sell-upload-drop-box have-item-3";
-//           $(buildImage(loadedImageUri,)).appendTo(".sell-upload-items.have-item-3 ul").trigger("create");
-//         }else if(files_array.length==4){
-//           document.querySelector(".sell-upload-items.have-item-3").classList.value = "sell-upload-items have-item-4";
-//           document.querySelector(".sell-upload-drop-box.have-item-3").classList.value = "sell-upload-drop-box have-item-4";
-//           $(buildImage(loadedImageUri,)).appendTo(".sell-upload-items.have-item-4 ul").trigger("create");
-//         }else if(files_array.length==5){
-//           document.querySelector(".sell-upload-items.have-item-4").classList.value = "sell-upload-items have-item-5";
-//           document.querySelector(".sell-upload-drop-box.have-item-4").classList.value = "sell-upload-drop-box have-item-0";
-//           $(buildImage(loadedImageUri,)).appendTo(".sell-upload-items.have-item-5 ul").trigger("create");
-//           //画像表示枠追加(5-6個用)
-//           $(buildbox()).appendTo(".sell-upload-products-container");
-//         }else if(files_array.length==6){
-//           document.querySelector(".sell-upload-items.have-item-0").classList.value = "sell-upload-items have-item-1";
-//           document.querySelector(".sell-upload-drop-box.have-item-0").classList.value = "sell-upload-drop-box have-item-1";
-//           $(buildImage(loadedImageUri,)).appendTo(".sell-upload-items.have-item-1 ul").trigger("create");
-//         }else if(files_array.length==7){
-//           document.querySelector(".sell-upload-items.have-item-1").classList.value = "sell-upload-items have-item-2";
-//           document.querySelector(".sell-upload-drop-box.have-item-1").classList.value = "sell-upload-drop-box have-item-2";
-//           $(buildImage(loadedImageUri,)).appendTo(".sell-upload-items.have-item-2 ul").trigger("create");
-//         }else if(files_array.length==8){
-//           document.querySelector(".sell-upload-items.have-item-2").classList.value = "sell-upload-items have-item-3";
-//           document.querySelector(".sell-upload-drop-box.have-item-2").classList.value = "sell-upload-drop-box have-item-3";
-//           $(buildImage(loadedImageUri,)).appendTo(".sell-upload-items.have-item-3 ul").trigger("create");
-//         }else if(files_array.length==9){
-//           document.querySelector(".sell-upload-items.have-item-3").classList.value = "sell-upload-items have-item-4";
-//           document.querySelector(".sell-upload-drop-box.have-item-3").classList.value = "sell-upload-drop-box have-item-4";
-//           $(buildImage(loadedImageUri,)).appendTo(".sell-upload-items.have-item-4 ul").trigger("create");
-//         }else if(files_array.length==10){
-//           //一時的に"have-item-5"を"have-item-10"に変更
-//           document.querySelector(".sell-upload-items.have-item-5").classList.value = "sell-upload-items have-item-10";
-//           document.querySelector(".sell-upload-items.have-item-4").classList.value = "sell-upload-items have-item-5";
-//           document.querySelector(".sell-upload-drop-box.have-item-4").classList.value = "sell-upload-drop-box have-item-0 disabled-upload";
-//           $(buildImage(loadedImageUri,)).appendTo(".sell-upload-items.have-item-5 ul").trigger("create");
-//           //"have-item-10"を"have-item-5"に戻す
-//           document.querySelector(".sell-upload-items.have-item-10").classList.value = "sell-upload-items have-item-5";
-//         }
-//       };
-//       // ファイルの読み込み実行
-//       fileReader.readAsDataURL(files[i]);
-//     }
-//   });
-
-
-// });
-
-
 /************************************************************************/
 /**                           カテゴリ選択処理                            **/
 /************************************************************************/
@@ -303,6 +196,7 @@ $(function(){
                       </div>`;
     $('.product-detail-category').append(grandchildSelectHtml);
   }
+
   // 親カテゴリー選択後のイベント
   $('#parent_category').on('change', function(){
     // var parentCategory = document.getElementById('parent_category').value; //選択された親カテゴリーの名前を取得
@@ -456,7 +350,6 @@ $(function(){
     $("#brand").autocomplete({
       source: availableTags
     });
-    console.log($("#brand").value);
   });
 
 });
@@ -536,91 +429,91 @@ function builderHTMLType(targetObj, addObj, message){
   $(addObj).after(html);
 }
 
+//テキスト・セレクト項目が空かどうかチェック
 function isEmptyInput (obj){
   (obj.val() == "" || obj.val() == "---") ?  result = true : result = false;
   return result;
 }
 
-// $(function(){
-//   $('#new_product').submit(function(){
+$(function(){
+  $('#new_product').submit(function(){
 
-//     /************* 空チェック処理 ************/
-//     flag = 0;
+    /************* 空チェック処理 ************/
+    flag = 0;
+    //画像の有無チェック
+    if ($('li.sell-upload-item').length < 1){
+       builderHTMLType($('#sell-dropbox-container'),$('#imgview') ,'画像がありません'); flag = ++flag;
+    }else{$('#sell-dropbox-container_error').remove();}
 
-//     //画像チェック用
-//     // if (isEmptyInput($('#product_name'))) {
-//     //   builderHTMLType($('#product_name'),$('#imgview') ,'入力してください');
-//     // }else{$('#product_name_error').remove();}
+    if (isEmptyInput($('#product_name'))) {
+      builderHTMLType($('#product_name'),$('#product_name') ,'入力してください'); flag = ++flag;
+    }else{$('#product_name_error').remove();}
 
-//     if (isEmptyInput($('#product_name'))) {
-//       builderHTMLType($('#product_name'),$('#product_name') ,'入力してください'); flag = ++flag;
-//     }else{$('#product_name_error').remove();}
+    if (isEmptyInput($('#product_description'))) {
+      builderHTMLType($('#product_description'), $('#product_description'), '入力してください'); flag = ++flag;
+    }else{$('#product_description_error').remove();}
 
-//     if (isEmptyInput($('#product_description'))) {
-//       builderHTMLType($('#product_description'), $('#product_description'), '入力してください'); flag = ++flag;
-//     }else{$('#product_description_error').remove();}
+    if (isEmptyInput($('#parent_category'))) {
+      builderHTMLType($('#parent_category'),$('#product-detail-category'), '選択してください'); flag = ++flag;
+    }else{$('#parent_category_error').remove();}
 
-//     if (isEmptyInput($('#parent_category'))) {
-//       builderHTMLType($('#parent_category'),$('#product-detail-category'), '選択してください'); flag = ++flag;
-//     }else{$('#parent_category_error').remove();}
+    if (isEmptyInput($('#child_category'))) {
+      builderHTMLType($('#child_category'),$('#product-detail-category'), '選択してください'); flag = ++flag;
+    }else{$('#child_category_error').remove();}
 
-//     if (isEmptyInput($('#child_category'))) {
-//       builderHTMLType($('#child_category'),$('#product-detail-category'), '選択してください'); flag = ++flag;
-//     }else{$('#child_category_error').remove();}
+    if (isEmptyInput($('#grandchild_category'))) {
+      builderHTMLType($('#grandchild_category'),$('#product-detail-category'), '選択してください'); flag = ++flag;
+    }else{$('#grandchild_category_error').remove();}
 
-//     if (isEmptyInput($('#grandchild_category'))) {
-//       builderHTMLType($('#grandchild_category'),$('#product-detail-category'), '選択してください'); flag = ++flag;
-//     }else{$('#grandchild_category_error').remove();}
-
-//     if (isEmptyInput($('#size'))) {
-//       builderHTMLType($('#size'),$('#size_wrapper'), '選択してください'); flag = ++flag;
-//     }else{$('#size_error').remove();}
+    if (isEmptyInput($('#size'))) {
+      builderHTMLType($('#size'),$('#size_wrapper'), '選択してください'); flag = ++flag;
+    }else{$('#size_error').remove();}
     
-//     if (isEmptyInput($('#product_status'))) {
-//       builderHTMLType($('#product_status'),$('#product_status'), '選択してください'); flag = ++flag;
-//     }else{$('#product_status_error').remove();}
+    if (isEmptyInput($('#product_status'))) {
+      builderHTMLType($('#product_status'),$('#product_status'), '選択してください'); flag = ++flag;
+    }else{$('#product_status_error').remove();}
 
-//     if (isEmptyInput($('#shipping_charge'))) {
-//       builderHTMLType($('#shipping_charge'),$('#shipping_charge'), '選択してください'); flag = ++flag;
-//     }else{$('#shipping_charge_error').remove();}
+    if (isEmptyInput($('#shipping_charge'))) {
+      builderHTMLType($('#shipping_charge'),$('#shipping_charge'), '選択してください'); flag = ++flag;
+    }else{$('#shipping_charge_error').remove();}
 
-//     if (isEmptyInput($('#shipping_area'))) {
-//       builderHTMLType($('#shipping_area'),$('#shipping_area'), '選択してください'); flag = ++flag;
-//     }else{$('#shipping_area_error').remove();}
+    if (isEmptyInput($('#shipping_area'))) {
+      builderHTMLType($('#shipping_area'),$('#shipping_area'), '選択してください'); flag = ++flag;
+    }else{$('#shipping_area_error').remove();}
 
-//     if (isEmptyInput($('#shipping_time'))) {
-//       builderHTMLType($('#shipping_time'),$('#shipping_time'), '選択してください'); flag = ++flag;
-//     }else{$('#shipping_time_error').remove();}
+    if (isEmptyInput($('#shipping_time'))) {
+      builderHTMLType($('#shipping_time'),$('#shipping_time'), '選択してください'); flag = ++flag;
+    }else{$('#shipping_time_error').remove();}
 
-//     if (isEmptyInput($('#price_calc'))) {
-//       builderHTMLType($('#price_calc'),$('#priceview'), '300以上9999999以下で入力してください'); flag = ++flag;
-//     }else{$('#price_calc_error').remove();}
+    if (isEmptyInput($('#price_calc'))) {
+      builderHTMLType($('#price_calc'),$('#priceview'), '300以上9999999以下で入力してください'); flag = ++flag;
+    }else{$('#price_calc_error').remove();}
 
-//     if(!flag == 0){
-//       return false;  // submitを中止
-//     }else{
-//       // モーダルウィンドウ用HTML
-//       function appendModalView(){
-//         var methodSelectHtml = '';
-//         methodSelectHtml = `<div>
-//                               <h3 class="modal-head">出品が完了しました</h3>
-//                               <div class="sell-modal-body">
-//                                 あなたが出品した商品は「出品した商品一覧」からいつでも見ることができます。
-//                                 <a class="btn-default btn-red" href="./">続けて出品する</a>
-//                                 <p class="text-center">
-//                                   <a href="./">商品ページへ言ってシェアする</a>
-//                                 </p>
-//                               </div>
-//                             </div>`;
-//         $('.modal-inner').append(methodSelectHtml);
-//       }
-//       appendModalView();  // モーダルウィンドウHTML追加
-//       $(".modal").addClass("is-show is-animate sell-draft");  //HTMLタグにクラス追加
-//       $(".overlay").addClass("modal-open is-animate");  //HTMLタグにクラス追加
-//       $('.modal').fadeIn();  //モーダルウィンドウをフェードインで表示
-//     }
-//   })
-// });
+    if(!flag == 0){
+      return false;  // submitを中止
+    }else{
+      // モーダルウィンドウ用HTML
+      function appendModalView(){
+        var methodSelectHtml = '';
+        methodSelectHtml = `<div>
+                              <h3 class="modal-head">出品が完了しました</h3>
+                              <div class="sell-modal-body">
+                                あなたが出品した商品は「出品した商品一覧」からいつでも見ることができます。
+                                <a class="btn-default btn-red" href="./sell" data-turbolinks="false">続けて出品する</a>
+                                <p class="text-center">
+                                  <a href="./">商品ページへ言ってシェアする</a>
+                                </p>
+                              </div>
+                            </div>`;
+        $('.modal-inner').append(methodSelectHtml);
+      }
+      appendModalView();  // モーダルウィンドウHTML追加
+      $(".modal").addClass("is-show is-animate sell-draft");  //HTMLタグにクラス追加
+      $(".overlay").addClass("modal-open is-animate");  //HTMLタグにクラス追加
+      $('.modal').fadeIn();  //モーダルウィンドウをフェードインで表示
+    }
+  })
+});
 
 
 

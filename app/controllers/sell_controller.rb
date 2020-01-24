@@ -45,7 +45,16 @@ class SellController < ApplicationController
   def create
     @product = Product.create(product_params)
     @productStatus = ProductsStatus.create(product_id:@product.id,seller_id:current_user.id,category_parent_id:@product.category_id,brand_id:@product.brand,selling_status:"0",dealing_status:"0")
-    # @image = ProductImage.new(image_params)
+
+    image_params[:urls].each do |image|
+      @image = ProductImage.new(url: image, product_id: @product.id)
+      if @image.save
+        # 画像保存完了
+      else
+        render action: :new
+      end
+    end
+
   end
 
   def show
@@ -105,13 +114,13 @@ private
     
     if brandId.nil? then
       params1["brand"] = ""
-    end    
+    end
     
     productParams = params1.merge(params2).merge(hash_profit)
   end
 
   def image_params
-    params.require(:product).permit(image: [])
+    params.require(:product).permit({urls: []})
   end
 
   def profit_calc(price)

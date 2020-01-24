@@ -88,7 +88,7 @@
         %ul.product__list
           = render partial: 'product', collection: @lv_products, as: "product"
   .product-btn__container
-    = link_to 'sell', class: 'product-btn__link' do
+    = link_to 'sell', class: 'product-btn__link', data: {"turbolinks" => false} do
       .product-btn__innner
         .product-btn__text
           出品
