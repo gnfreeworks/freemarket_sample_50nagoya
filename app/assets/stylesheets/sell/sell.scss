@@ -150,24 +150,28 @@ a {
       width: 80%;
       @media screen and (min-width: 768px){
         width: 491px;
+        top: -172px;
       }
     }
     &-drop-box.have-item-7 {
       width: 60%;
       @media screen and (min-width: 768px){
         width: 363px;
+        top: -172px;
       }
     }
     &-drop-box.have-item-8 {
       width: 40%;
       @media screen and (min-width: 768px){
         width: 234px;
+        top: -172px;
       }
     }
     &-drop-box.have-item-9 {
       width: 20%;
       @media screen and (min-width: 768px){
         width: 106px;
+        top: -172px;
       }
     }
     &-drop-box.have-item-10 {
@@ -538,6 +542,7 @@ select {
   }
 }
 
+
 .error_alert{
   color: red;
   list-style: none;
@@ -557,32 +562,7 @@ select {
 }
 
 
-//モーダルウィンドウ用
-// .modal{
-//     display: none;
-//     background: rgba(0,0,0,0.8);
-//     height: 100vh;
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-// }
-// .modal__bg{
-//     background: rgba(0,0,0,0.8);
-//     height: 100vh;
-//     position: absolute;
-//     width: 100%;
-// }
-// .modal__content{
-//     background: #fff;
-//     left: 50%;
-//     padding: 40px;
-//     position: absolute;
-//     top: 50%;
-//     transform: translate(-50%,-50%);
-//     width: 60%;
-// }
-
+//-------------モーダルウィンドウ用-----------------//
 .modal.is-animate {
   opacity: 1;
   -webkit-transform: translate(0, 0);
@@ -694,3 +674,5 @@ select {
   transition: all ease-out .3s;
   opacity: 0;
 }
+
+//------------------------------------------//
