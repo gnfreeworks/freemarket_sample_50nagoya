@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'products_buy' => 'products_statuses#buy'
 
   get 'sell' => 'sell#new'
-  resources :sell, only: [:create,:show,:destroy] do
+  resources :sell, only: [:create,:new] do
     get 'edit' => 'sell#edit'
     collection do
       #Ajaxで動くアクションのルートを作成
