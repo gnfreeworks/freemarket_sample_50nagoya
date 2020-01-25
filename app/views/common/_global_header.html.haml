@@ -46,11 +46,11 @@
             カテゴリーから探す
           .category__container
             %ul.large__category__container
-              - @category_parent.each do |parent|
+              - @parents.each do |parent|
                 %li.large__category__inner
                   = link_to "#{parent.name}", "##{parent.id}", class: 'category__text'
                   %ul.medium__category__container
-                    = render partial: "layouts/header_child_category", collection: @category_children1, as: "category"
+                    = render partial: "layouts/header_child_category", collection: parent.children, as: "category"
         .serch__by__brand
           = link_to '#', class: 'serch__by__category__link' do
             %i.fas.fa-tags.fa-fw.red

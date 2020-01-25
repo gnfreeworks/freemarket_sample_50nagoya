@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200123075358) do
+ActiveRecord::Schema.define(version: 20191104234302) do
 
   create_table "account_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -54,14 +54,6 @@ ActiveRecord::Schema.define(version: 20200123075358) do
     t.index ["products_status_id"], name: "index_canseling_products_on_products_status_id", using: :btree
   end
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "parent_id",     null: false
-    t.integer  "children_id",   null: false
-    t.integer  "grandchild_id", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "products_status_id"
     t.integer  "user_id",                          null: false
@@ -86,18 +78,6 @@ ActiveRecord::Schema.define(version: 20200123075358) do
     t.index ["products_status_id"], name: "index_goods_on_products_status_id", using: :btree
   end
 
-  create_table "large_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "medium_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "payment_methods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.string   "card_number",     null: false
@@ -116,22 +96,23 @@ ActiveRecord::Schema.define(version: 20200123075358) do
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                             null: false
-    t.text     "description",        limit: 65535, null: false
-    t.integer  "price",                            null: false
-    t.integer  "profit",                           null: false
-    t.integer  "area_id",                          null: false
+    t.string   "name",                                 null: false
+    t.text     "description",            limit: 65535, null: false
+    t.integer  "price",                                null: false
+    t.integer  "profit",                               null: false
+    t.integer  "area_id",                              null: false
     t.string   "brand"
     t.integer  "size_id"
+    t.integer  "category_parent_id",                   null: false
+    t.integer  "category_children_id",                 null: false
+    t.integer  "category_grandchild_id"
     t.integer  "sale_charge_id"
     t.integer  "status_id"
-    t.integer  "category_id"
     t.integer  "shipping_charge_id"
     t.integer  "shipping_time_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "shipping_method_id"
-    t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["sale_charge_id"], name: "index_products_on_sale_charge_id", using: :btree
     t.index ["shipping_charge_id"], name: "index_products_on_shipping_charge_id", using: :btree
     t.index ["shipping_method_id"], name: "index_products_on_shipping_method_id", using: :btree
@@ -190,18 +171,13 @@ ActiveRecord::Schema.define(version: 20200123075358) do
   end
 
   create_table "sizes_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "category_id"
     t.integer  "size_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["category_id"], name: "index_sizes_categories_on_category_id", using: :btree
+    t.integer  "category_parent_id",     null: false
+    t.integer  "category_children_id",   null: false
+    t.integer  "category_grandchild_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["size_id"], name: "index_sizes_categories_on_size_id", using: :btree
-  end
-
-  create_table "smail_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "statuses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -283,14 +259,12 @@ ActiveRecord::Schema.define(version: 20200123075358) do
   add_foreign_key "comments", "products_statuses"
   add_foreign_key "goods", "products_statuses"
   add_foreign_key "payment_methods", "users"
-  add_foreign_key "products", "categories"
   add_foreign_key "products", "sale_charges"
   add_foreign_key "products", "shipping_charges"
   add_foreign_key "products", "shipping_methods"
   add_foreign_key "products", "shipping_times"
   add_foreign_key "products", "statuses"
   add_foreign_key "products_statuses", "products"
-  add_foreign_key "sizes_categories", "categories"
   add_foreign_key "sizes_categories", "sizes"
   add_foreign_key "todos", "products_statuses"
   add_foreign_key "transfer_addresses", "banks"

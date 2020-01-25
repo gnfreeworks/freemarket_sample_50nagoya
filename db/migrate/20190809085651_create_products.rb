@@ -8,9 +8,11 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.integer :area_id,       null: false
       t.string  :brand
       t.integer :size_id
+      t.integer :category_parent_id,          null: false
+      t.integer :category_children_id,        null: false
+      t.integer :category_grandchild_id
       t.references :sale_charge,     foreign_key: true
       t.references :status,          foreign_key: true
-      t.references :category,        foreign_key: true
       t.references :shipping_charge, foreign_key: true
       t.references :shipping_time,   foreign_key: true
       t.timestamps

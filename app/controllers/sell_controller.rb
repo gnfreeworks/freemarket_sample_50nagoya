@@ -13,8 +13,9 @@ class SellController < ApplicationController
     @category_parent_array = ["---"]
     
     #データベースから、親カテゴリーのみ抽出し、配列化
+    @category_parent = ViewCategory.where("ancestry is Null")
     @category_parent.each do |parent|
-      @category_parent_array << [parent.name,parent.id]
+      @category_parent_array << [parent[:name],parent[:id]]
     end
     #--- 商品の状態 ---
     @status = Status.all
@@ -44,8 +45,7 @@ class SellController < ApplicationController
 
   def create
     @product = Product.create(product_params)
-    @productStatus = ProductsStatus.create(product_id:@product.id,seller_id:current_user.id,category_parent_id:@product.category_id,brand_id:@product.brand,selling_status:"0",dealing_status:"0")
-    
+    @productStatus = ProductsStatus.create(product_id:@product.id,seller_id:current_user.id,category_parent_id:@product.category_parent_id,brand_id:@product.brand,selling_status:"0",dealing_status:"0")
     image_params[:urls].each do |image|
       @image = ProductImage.new(url: image, product_id: @product.id)
       if !@image.save
@@ -74,8 +74,7 @@ class SellController < ApplicationController
   # //孫カテゴリーが選択された後に動くアクション
   def get_size
     parentId = "#{params[:parent_id]}".to_i
-    selected_CategoryId = Category.where("parent_id=#{parentId} and children_id=#{params[:child_id]} and grandchild_id=#{params[:grandchild_id]}")[0].id
-    size_Category = SizesCategory.where(category_id: selected_CategoryId).select("size_id")
+    size_Category = SizesCategory.where("category_parent_id=#{parentId} and category_children_id=#{params[:child_id]}").select("size_id")
     sizeCategory_Array = []
     for i in 0..(size_Category.length-1)
       sizeCategory_Array << Size.find(size_Category[i].size_id)
@@ -95,14 +94,16 @@ class SellController < ApplicationController
 private
 
   def product_params
-    params1 = params.require(:product).permit(:name,:description,:price,:area_id,:brand,:status_id,:category_id,:shipping_charge_id,:shipping_time_id,:shipping_method_id)
-    params2 = params.permit(:size_id).merge(sale_charge_id:1)
+    params1 = params.require(:product).permit(:name,:description,:price,:area_id,:brand,:status_id,:category_parent_id,:shipping_charge_id,:shipping_time_id,:shipping_method_id)
+    params2 = params.permit(:size_id,:category_children_id,:category_grandchildren_id).merge(sale_charge_id:1)
     profit = profit_calc(params.require(:product)["price"].to_i)
     hash_profit = {"profit" => profit}
     brandId = brand_check(params.require(:product)["brand"])
     
     if brandId.nil? then
       params1["brand"] = ""
+    else
+      params1["brand"] = brandId
     end
     
     productParams = params1.merge(params2).merge(hash_profit)
@@ -118,7 +119,7 @@ private
   end
 
   def brand_check(brand)
-    brand_id = Brand.find_by(name: brand)
+    brand_id = Brand.find_by(name: brand).id
   end
 
 
