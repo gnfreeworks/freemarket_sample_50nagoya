@@ -77,7 +77,7 @@
               必須
             %br/
             .birthday-select-wrap
-              != sprintf(f.date_select(:birthday_date, use_month_numbers: true, include_blank: '%i.fas.fa-arrow-down', start_year: Time.now.year, end_year: (Time.now.year - 30), with_css_classes: 'XXXX', date_separator: '%s'), '年','月')+'日'
+              != sprintf(f.date_select(:birthday_date, use_month_numbers: true, include_blank: '%i.fas.fa-arrow-down', start_year: Time.now.year, end_year: (Time.now.year - 50), with_css_classes: 'XXXX', date_separator: '%s'), '年','月')+'日'
             .form-separate
             
           .form__block
