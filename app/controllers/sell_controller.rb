@@ -95,7 +95,7 @@ private
 
   def product_params
     params1 = params.require(:product).permit(:name,:description,:price,:area_id,:brand,:status_id,:category_parent_id,:shipping_charge_id,:shipping_time_id,:shipping_method_id)
-    params2 = params.permit(:size_id,:category_children_id,:category_grandchildren_id).merge(sale_charge_id:1)
+    params2 = params.permit(:size_id,:category_children_id,:category_grandchild_id).merge(sale_charge_id:1)
     profit = profit_calc(params.require(:product)["price"].to_i)
     hash_profit = {"profit" => profit}
     brandId = brand_check(params.require(:product)["brand"])
@@ -103,7 +103,7 @@ private
     if brandId.nil? then
       params1["brand"] = ""
     else
-      params1["brand"] = brandId
+      params1["brand"] = brandId.id
     end
     
     productParams = params1.merge(params2).merge(hash_profit)
@@ -119,7 +119,7 @@ private
   end
 
   def brand_check(brand)
-    brand_id = Brand.find_by(name: brand).id
+    brand_id = Brand.find_by(name: brand)
   end
 
 
