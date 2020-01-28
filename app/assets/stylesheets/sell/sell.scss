@@ -576,7 +576,6 @@ select {
 .modal {
   display: none;
   position: fixed;
-  // background: rgba(0,0,0,0.8);
   top: 0;
   right: 0;
   bottom: 0;
@@ -705,20 +704,18 @@ select {
 
 input.upload-image {
   width: 100%;
-  // display:none; //inputの表示を非表示
+  display:none; //inputの表示を非表示
   overflow: auto;
 }
 
 .item__img__dropzone__input__description, .item__img__dropzone2__input2__description {
   display: inline-block;
-  // padding-top: 55px;
 }
 
 .add_img{
   position: relative;
   display: inline-block;
   width: 18%;
-  // margin: 0 0 2% 2%;
   margin: 0;
   border: 1px solid #eee;
   box-sizing: border-box;

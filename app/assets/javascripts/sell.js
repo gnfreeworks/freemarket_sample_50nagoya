@@ -978,11 +978,4 @@ $(document).ready(function () {
       $('.l-right2').html('-');
     }
 
-
-
-
-
-
-
-
 });

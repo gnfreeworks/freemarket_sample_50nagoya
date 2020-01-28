@@ -110,7 +110,7 @@ class SellController < ApplicationController
       end
 
       flash[:notice] = '編集が完了しました'
-      # redirect_to item_path(@product), data: {turbolinks: false}
+      redirect_to item_path(@product), data: {turbolinks: false}
 
     else
       flash[:alert] = '未入力項目があります'
@@ -159,7 +159,9 @@ class SellController < ApplicationController
     @methods = ShippingMethod.all
   end
 
+
 private
+
 
   def product_params
     params1 = params.require(:product).permit(:name,:description,:price,:area_id,:brand,:status_id,:category_parent_id,:category_children_id,:category_grandchild_id,:size_id,:shipping_charge_id,:shipping_time_id,:shipping_method_id,product_images_attributes:[:url]).merge(sale_charge_id:1)
@@ -204,7 +206,6 @@ private
   def new_image_params
     params.require(:new_images).permit({images: []})
   end
-
 
 
   def set_select
