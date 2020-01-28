@@ -21,8 +21,11 @@ Rails.application.routes.draw do
   get 'products_buy' => 'products_statuses#buy'
 
   get 'sell' => 'sell#new'
-  resources :sell, only: [:create,:new] do
-    get 'edit' => 'sell#edit'
+  get 'sell/edit/:id' => 'sell#edit'
+  patch 'sell/edit/:id' => 'sell#update'
+  # delete 'sell/:id' => 'sell#destroy'
+
+  resources :sell, only: [:create,:destroy] do
     collection do
       #Ajaxで動くアクションのルートを作成
       get 'get_category_children', defaults: { format: 'json' }
@@ -44,6 +47,17 @@ Rails.application.routes.draw do
       get    'logout'
       get    'identification'
       post   'identificationSave'
+      
+      resources :listings do
+        get   'listing'
+        get   'in_progress'
+        get   'completed'
+      end
+
+      resources :items, only: :show do
+
+      end
+
     end
   end
 end

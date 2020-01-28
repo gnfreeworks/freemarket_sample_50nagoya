@@ -1,3 +1,7 @@
+//===============================================================================//
+//                                     new 処理                                  //
+//===============================================================================//
+
 /************************************************************************/
 /**                      販売手数料・販売利益計算処理                       **/
 /************************************************************************/
@@ -82,7 +86,7 @@ $(function(){
 
     //画像表示が終わったらファイルが入ったinputのidを変更し、新しいinputを挿入
     $('#post_img_last').attr('id', 'post_img');
-    var html = `<input multiple="multiple" class="sell-upload-drop-file" id="post_img_last" data-img-input-id="${count+1}" accept="image/*" type="file" name="product[urls][]">`
+    var html = `<input multiple="multiple" class="sell-upload-drop-file" id="post_img_last" data-img-input-id="${count+1}" accept="image/*" type="file" name="product[product_images_attributes][${count+1}][url]">`
     $(html).appendTo('.sell-upload-drop-box');
 
   });
@@ -116,7 +120,7 @@ $(function(){
 
     //画像表示が終わったらファイルが入ったinputのidを変更し、新しいinputを挿入
     $('#post_img_last').attr('id', 'post_img');
-    var html = `<input multiple="multiple" class="sell-upload-drop-file" id="post_img_last" data-img-input-id="${count+1}" accept="image/*" type="file" name="product[urls][]">`
+    var html = `<input multiple="multiple" class="sell-upload-drop-file" id="post_img_last" data-img-input-id="${count+1}" accept="image/*" type="file" name="product[product_images_attributes][${count+1}][url]">`
     $(html).appendTo('.sell-upload-drop-box');
 
   });
@@ -176,7 +180,7 @@ $(function(){
   function appendChidrenBox(insertHTML){
     var childSelectHtml = '';
     childSelectHtml = `<div class='select-wrap' id= 'children_wrapper'>
-                        <select class="select-default" id="child_category" name="category_children_id">
+                        <select class="select-default" id="child_category" name="product[category_children_id]">
                           <option value="---" data-category="---">---</option>
                           ${insertHTML}
                         <select>
@@ -188,7 +192,7 @@ $(function(){
   function appendGrandchidrenBox(insertHTML){
     var grandchildSelectHtml = '';
     grandchildSelectHtml = `<div class='select-wrap' id= 'grandchildren_wrapper'>
-                        <select class="select-default" id="grandchild_category" name="category_grandchild_id">
+                        <select class="select-default" id="grandchild_category" name="product[category_grandchild_id]">
                           <option value="---" data-category="---">---</option>
                           ${insertHTML}
                         <select>
@@ -281,7 +285,7 @@ $(function(){
                         <label class="form-group label" for="サイズ">サイズ</label>
                         <span class='form-require'>必須</span>
                         <div class='select-wrap'>
-                          <select class="select-default" id="size" name="size_id">
+                          <select class="select-default" id="size" name="product[size_id]">
                             <option value="---">---</option>
                             ${insertHTML}
                           <select>
@@ -516,5 +520,469 @@ $(function(){
 });
 
 
+//===============================================================================//
+//                                edit update 処理                                //
+//===============================================================================//
+
+/************************************************************************/
+/**                             画像表示処理                             **/
+/************************************************************************/
+$(window).on("turbolinks:load", function() {
+  var dropzone = $(".item__img__dropzone__input");
+  var dropzone2 = $(".item__img__dropzone2__input2");
+  var appendzone = $(".item__img__dropzone2")
+  var input_area = $(".input-area");
+  var preview = $("#preview");
+  var preview2 = $("#preview2");
+
+  // 登録済画像と新規追加画像を全て格納する配列（ビュー用）
+  var images = [];
+  // 登録済画像データだけの配列（DB用）
+  var registered_images_ids =[]
+  // 新規追加画像データだけの配列（DB用）
+  var new_image_files = [];
+
+  // 登録済画像のプレビュー表示
+  gon.product_images.forEach(function(image, index){
+    var img = $(`<div class= "add_img"><div class="img_area"><img class="image"></div></div>`);
+
+    // カスタムデータ属性を付与
+    img.data("image", index)
+
+    var btn_wrapper = $('<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete">削除</a></div>');
+
+    // 画像に編集・削除ボタンをつける
+    img.append(btn_wrapper);
+
+    binary_data = gon.product_images_binary_datas[index]
+
+    // 表示するビューにバイナリーデータを付与
+    img.find("img").attr({
+      src: "data:image/*;base64," + binary_data
+    });
+
+    // 登録済画像のビューをimagesに格納
+    images.push(img)
+    registered_images_ids.push(image.id)
+  })
+
+  // 画像が４枚以下のとき
+  if (images.length <= 4) {
+    $(preview).empty();
+    $.each(images, function(index, image) {
+      image.data('image', index);
+      preview.append(image);
+    })
+    dropzone.css({
+      'width': `calc(100% - (3px * ${images.length}) - (20% * ${images.length}))`,
+      'margin-left': "11px"
+    })
 
 
+    // 画像が５枚のとき１段目の枠を消し、２段目の枠を出す
+  } else if (images.length == 5) {
+    $("#preview").empty();
+    $.each(images, function(index, image) {
+      image.data("image", index);
+      preview.append(image);
+    });
+    appendzone.css({
+      display: "block"
+    });
+    dropzone.css({
+      display: "none"
+    });
+    preview2.empty();
+
+    // 画像が６枚以上のとき
+  } else if (images.length >= 6) {
+    // １〜５枚目の画像を抽出
+    var pickup_images1 = images.slice(0, 5);
+
+    // １〜５枚目を１段目に表示
+    $('#preview').empty();
+    $.each(pickup_images1, function(index, image) {
+      image.data('image', index);
+      preview.append(image);
+    })
+
+    // ６枚目以降の画像を抽出
+    var pickup_images2 = images.slice(5);
+
+    // ６枚目以降を２段目に表示
+    $.each(pickup_images2, function(index, image) {
+      image.data('image', index + 5);
+      preview2.append(image);
+    })
+
+    dropzone.css({
+      'display': 'none'
+    })
+    appendzone.css({
+      'display': 'block'
+    })
+
+    dropzone2.css({
+      'display': 'block',
+      'width': `calc(100% - 6px - (20% * ${images.length - 5}))`,
+      'margin-left': "12px"
+    })
+
+    // 画像が１０枚になったら枠を消す
+    if (images.length == 10) {
+      dropzone2.css({
+        display: "none"
+      });
+    }
+  }
+
+
+  // 画像を新しく追加する場合
+  $("#cell-container .item__img__dropzone, #cell-container .item__img__dropzone2").on("change", 'input[type= "file"].upload-image', function() {
+    var file = $(this).prop("files")[0];
+    new_image_files.push(file)
+    var reader = new FileReader();
+    var img = $(`<div class= "add_img"><div class="img_area"><img class="image"></div></div>`);
+
+    reader.onload = function(e) {
+      var btn_wrapper = $('<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete">削除</a></div>');
+
+      // 画像に編集・削除ボタンをつける
+      img.append(btn_wrapper);
+      img.find("img").attr({
+        src: e.target.result
+      });
+    };
+
+    reader.readAsDataURL(file);
+    images.push(img);
+
+    // 画像が４枚以下のとき
+    if (images.length <= 4) {
+      $('#preview').empty();
+      $.each(images, function(index, image) {
+        image.data('image', index);
+        preview.append(image);
+      })
+      dropzone.css({
+        'width': `calc(100% - (3px * ${images.length}) - (20% * ${images.length}))`,
+        'margin-left': "11px"
+      })
+
+      // 画像が５枚のとき１段目の枠を消し、２段目の枠を出す
+    } else if (images.length == 5) {
+      $("#preview").empty();
+      $.each(images, function(index, image) {
+        image.data("image", index);
+        preview.append(image);
+      });
+      appendzone.css({
+        display: "block"
+      });
+      dropzone.css({
+        display: "none"
+      });
+      preview2.empty();
+
+      // 画像が６枚以上のとき
+    } else if (images.length >= 6) {
+
+      // 配列から６枚目以降の画像を抽出
+      var pickup_images = images.slice(5);
+
+      $.each(pickup_images, function(index, image) {
+        image.data("image", index + 5);
+        preview2.append(image);
+
+        dropzone2.css({
+          'width': `calc(100% - (3px * ${images.length - 5}) - (20% * ${images.length - 5}))`,
+          'margin-left': "11px",
+          'float': "right"
+        })
+      });
+
+      // 画像が１０枚になったら枠を消す
+      if (images.length == 10) {
+        dropzone2.css({
+          display: "none"
+        });
+      }
+    }
+
+    // inputの値をクリア (同じ画像を連続投稿出来なくなるため)
+    $("input.upload-image").val('')
+
+  });
+
+
+
+  // 削除ボタン
+  $("#cell-container .item__img__dropzone, #cell-container .item__img__dropzone2").on('click', '.btn_delete', function() {
+
+    // 削除ボタンを押した画像を取得
+    var target_image = $(this).parent().parent();
+
+    // 削除画像のdata-image番号を取得
+    var target_image_num = target_image.data('image');
+
+    // 対象の画像をビュー上で削除
+    target_image.remove();
+
+    // 対象の画像を削除した新たな配列を生成
+    images.splice(target_image_num, 1);
+
+    // target_image_numが登録済画像の数以下の場合は登録済画像データの配列から削除、それより大きい場合は新たに追加した画像データの配列から削除
+    if (target_image_num < registered_images_ids.length) {
+      registered_images_ids.splice(target_image_num, 1);
+    } else {
+      new_image_files.splice((target_image_num - registered_images_ids.length), 1);
+    }
+
+    if(images.length == 0) {
+      $('input[type= "file"].upload-image').attr({
+        'data-image': 0
+      })
+    }
+
+    // 削除後の配列の中身の数で条件分岐
+    // 画像が0枚のとき
+    if(images.length == 0){
+      $('#preview').empty();
+      dropzone.css({
+        'width': '100%',
+        'display': 'block',
+        'margin-left': '0px'
+      })
+      appendzone.css({
+        'display': 'none'
+      })
+
+    // 画像が４枚以下のとき
+    } else if (images.length <= 4) {
+      $('#preview').empty();
+      $.each(images, function(index, image) {
+        image.data('image', index);
+        preview.append(image);
+      })
+      dropzone.css({
+        'width': `calc(100% - (3px * ${images.length}) - (20% * ${images.length}))`,
+        'margin-left': "11px",
+        'display': 'block'
+      })
+      appendzone.css({
+        'display': 'none'
+      })
+
+    // 画像が５枚のとき１段目の枠を消し、２段目の枠を出す
+    } else if (images.length == 5) {
+      $('#preview').empty();
+      $.each(images, function(index, image) {
+        image.data('image', index);
+        preview.append(image);
+      })
+      appendzone.css({
+        'display': 'block',
+      })
+      dropzone2.css({
+        'width': '100%'
+      })
+      dropzone.css({
+        'display': 'none'
+      })
+      preview2.empty();
+
+    // 画像が６枚以上のとき
+    } else {
+      // １〜５枚目の画像を抽出
+      var pickup_images1 = images.slice(0, 5);
+
+      // １〜５枚目を１段目に表示
+      $('#preview').empty();
+      $.each(pickup_images1, function(index, image) {
+        image.data('image', index);
+        preview.append(image);
+      })
+
+      // ６枚目以降の画像を抽出
+      var pickup_images2 = images.slice(5);
+
+      // ６枚目以降を２段目に表示
+      $.each(pickup_images2, function(index, image) {
+        image.data('image', index + 5);
+        preview2.append(image);
+        dropzone2.css({
+          'display': 'block',
+          'width': `calc(100% - (3px * ${images.length - 5}) - (20% * ${images.length - 5}))`,
+          'margin-left': "11px",
+        })
+      })
+    }
+  })
+
+
+  $('.sell-form').on('submit', function(e){
+    // 通常のsubmitイベントを止める
+    e.preventDefault();
+    // images以外のform情報をformDataに追加
+    var formData = new FormData($(this).get(0));
+
+    // 登録済画像が残っていない場合は便宜的に0を入れる
+    if (registered_images_ids.length == 0) {
+      formData.append("registered_images_ids[ids][]", 0)
+    // 登録済画像で、まだ残っている画像があればidをformDataに追加していく
+    } else {
+      registered_images_ids.forEach(function(registered_image){
+        formData.append("registered_images_ids[ids][]", registered_image)
+      });
+    }
+
+    // 新しく追加したimagesがない場合は便宜的に空の文字列を入れる
+    if (new_image_files.length == 0) {
+      formData.append("new_images[images][]", " ")
+    // 新しく追加したimagesがある場合はformDataに追加する
+    } else {
+      new_image_files.forEach(function(file){
+        formData.append("new_images[images][]", file)
+      });
+    }
+
+    $.ajax({
+      url:         gon.product.id,
+      type:        "PATCH",
+      data:        formData,
+      contentType: false,
+      processData: false,
+    })
+  });
+});
+
+
+/************************************************************************/
+/**                   カテゴリ(子・孫)、ブランド初期表示処理                 **/
+/************************************************************************/
+$(document).ready(function () {
+  // カテゴリーセレクトボックスのオプションを作成
+  function appendOption(category,category_id){
+    if(category.id == category_id){
+      var html = `<option value="${category.id}" selected data-category="${category.id}">${category.name}</option>`;
+      return html;
+    }else{
+      var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
+      return html;
+    }
+  }
+  // 子カテゴリーの表示作成
+  function appendChidrenBox(insertHTML){
+    var childSelectHtml = '';
+    childSelectHtml = `<div class='select-wrap' id= 'children_wrapper'>
+                        <select class="select-default" id="child_category" name="product[category_children_id]">
+                          <option value="---" data-category="---">---</option>
+                          ${insertHTML}
+                        <select>
+                        <i class="fas fa-chevron-down"></i>
+                      </div>`;
+    $('.product-detail-category').append(childSelectHtml);
+  }
+  // 孫カテゴリーの表示作成
+  function appendGrandchidrenBox(insertHTML){
+    var grandchildSelectHtml = '';
+    grandchildSelectHtml = `<div class='select-wrap' id= 'grandchildren_wrapper'>
+                        <select class="select-default" id="grandchild_category" name="product[category_grandchild_id]">
+                          <option value="---" data-category="---">---</option>
+                          ${insertHTML}
+                        <select>
+                        <i class="fas fa-chevron-down"></i>
+                      </div>`;
+    $('.product-detail-category').append(grandchildSelectHtml);
+  }
+
+  // サイズセレクトボックスのオプションを作成
+  function appendSizeOption(size,size_id){
+    if(size.id == size_id){
+      var html = `<option value="${size.id}" selected>${size.name}</option>`;
+      return html;
+    }else{
+      var html = `<option value="${size.id}">${size.name}</option>`;
+      return html;
+    }
+  }
+  // サイズ・ブランド入力欄の表示作成
+  function appendSizeBox(insertHTML,brand){
+    var sizeSelectHtml = '';
+    sizeSelectHtml = `<div class="form-group" id= 'size_wrapper'>
+                        <label class="form-group label" for="サイズ">サイズ</label>
+                        <span class='form-require'>必須</span>
+                        <div class='select-wrap'>
+                          <select class="select-default" id="size" name="product[size_id]">
+                            <option value="---">---</option>
+                            ${insertHTML}
+                          <select>
+                        <i class="fas fa-chevron-down"></i>
+                        </div>
+                      </div>
+                      <div class="form-group" id= 'brand_wrapper'>
+                        <label class="form-group label" for="ブランド">ブランド</label>
+                        <span class='form-arbitrary'>任意</span>
+                        <input class="input-default" placeholder="例)シャネル" type="text" value="${brand}" name="product[brand]" id="brand" list="brandsList"
+                        <i class="fas fa-chevron-down"></i>
+                        </div>
+                      </div>`;
+    $('.product-detail-size_brand').append(sizeSelectHtml);
+  }
+
+  // 子カテゴリー一覧作成と初期値設定
+  var insertHTML = '';
+  gon.category_chidren_array.forEach(function(child){
+    insertHTML += appendOption(child,gon.product.category_children_id);
+  });
+  appendChidrenBox(insertHTML);
+
+  // 孫カテゴリー一覧作成と初期値設定
+  var insertHTML = '';
+  gon.category_grandchild_array.forEach(function(grandchild){
+    insertHTML += appendOption(grandchild,gon.product.category_grandchild_id);
+  });
+  appendGrandchidrenBox(insertHTML);
+
+  // サイズ・ブランド一覧作成と初期値設定
+  if(gon.product.size_id !== null){
+    var insertHTML = '';
+    gon.size_array.forEach(function(size){
+      insertHTML += appendSizeOption(size,gon.product.size_id);
+    });
+    appendSizeBox(insertHTML,gon.brand);
+  }
+
+  // 販売手数料・販売利益を初期表示
+    var data = $('#price_calc').val();
+    if ((data >= 300) && (data <= 9999999)){
+      var profit = Math.ceil(data * 90 / 100)
+      var fee = (data - profit).toLocaleString();
+      profit = profit.toLocaleString();
+      $('.l-right1').html(fee);
+      $('.l-right1').prepend('¥');
+      $('.l-right2').html(profit);
+      $('.l-right2').prepend('¥');
+      $('#price').val(data);
+    }
+    else if(data == ''){
+      $('.l-right2').html('-');
+      $('.l-right1').html('-');
+    }
+    else if ((data >= 300) && (data >= 9999999)) {
+      $('.l-right1').html('-');
+      $('.l-right2').html('-');
+    }
+    else if (data <= 300) {
+      $('.l-right1').html('-');
+      $('.l-right2').html('-');
+    }
+
+
+
+
+
+
+
+
+});
