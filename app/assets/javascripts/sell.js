@@ -125,12 +125,7 @@ $(function(){
 
   });
 
-});
-
-
-//-----------------画像「編集」と「削除」ボタンの処理-----------------//
-// 今回は「削除」ボタンのみ実装する
-$(function(){
+  //-----------------画像「編集」と「削除」ボタンの処理-----------------//
   $('#img_field').on('click','li a',function() {  //クリックされたaタグ情報を取得
     if($(this).context.text == "削除"){
     //----- 削除クリック時の処理
@@ -159,12 +154,88 @@ $(function(){
           document.querySelector(`.sell-upload-drop-box.have-item-${className21}`).classList.value = `sell-upload-drop-box have-item-${className21 - 1}`;
         }
       }
-    }else if($(this).context.text == "編集"){
-    //----- 編集クリック時の処理(今回は未実装)
     }
   });
 
+
+  //----- 編集クリック時の処理
+  // 編集用に.sell-upload-itemsへ編集用inputタグを挿入
+  var html = $(`<input multiple="multiple" class="sell-upload-drop-file" id="post_img" accept="image/*" type="file" name="product[product_images_attributes][][url]">`)
+  $('.sell-upload-items').append(html);
+
+  $(".sell-upload-items").on('click', '.sell-upload-edit', function(){
+    // クリックした画像を取得
+    var target_image = $(this).parent().parent();
+    // 編集画像のdata-image番号を取得
+    var target_image_num = target_image.data('img-id');
+    // inputタグを取得
+    var getInput = document.getElementsByClassName('sell-upload-drop-file');
+
+    //編集用inputをクリックさせる
+    $('.sell-upload-products-container .sell-upload-drop-file').click();
+
+    // 編集用inputの内容変更されたら処理
+    $(".sell-upload-products-container").on('change', 'input[type= "file"].sell-upload-drop-file', function(e){
+      // changeイベントが重複実行されないようにイベントをOFFへ変更。これにより１度だけ実行される。
+      $(".sell-upload-items .sell-upload-drop-file").off('change');
+
+      for (var i=0; i < getInput.length; i++){
+        if(target_image_num == Number(getInput[i].dataset.imgInputId)){
+
+          var file = $(this).prop("files")[0];
+          var reader = new FileReader();
+            var img = $(`<li class="sell-upload-item">
+                          <figure class="sell-upload-figure landscape">
+                            <img>
+                          </figure>
+                          <div class="sell-upload-button">
+                            <a href="javascript:void(0)" class="sell-upload-edit">編集</a>
+                            <a href="javascript:void(0)" class="sell-img-delete">削除</a>
+                          </div>
+                        </li>`)
+
+          reader.onload = function(e) {
+            img.find("img").attr({
+              src: e.target.result,
+              id: target_image_num
+            });
+            img.attr('data-img-id', target_image_num);
+          }
+          reader.readAsDataURL(file);
+          
+          // 画像の挿入処理
+          var list = $('#img_field').children()
+          for (var n=0; n < list.length; n++){
+            if (target_image_num == Number(list[n].dataset.imgId)){
+              // クリックした画像の位置の後ろへ新しい画像を挿入
+              $(img).insertAfter(list[n]);
+              
+              // クリックした画像を削除
+              list[n].remove();
+              
+              // 新しいinputにdata属性付与、name属性の配列番号付与
+              $('.sell-upload-products-container .sell-upload-drop-file').attr({
+                'data-img-input-id': target_image_num,
+                name: `product[product_images_attributes][${target_image_num}][url]`
+              });
+              
+              // クリックした画像のinputの後ろへ新しい画像のinputを移動
+              $('.sell-upload-products-container .sell-upload-drop-file').insertAfter(getInput[i]);
+              
+              // クリックした画像のinputを削除
+              getInput[n].remove();
+
+              break;
+            }
+          }
+        }
+      }
+
+    });
+  })
+
 });
+
 
 
 /************************************************************************/
@@ -491,7 +562,18 @@ $(function(){
 
     if (isEmptyInput($('#price_calc'))) {
       builderHTMLType($('#price_calc'),$('#priceview'), '300以上9999999以下で入力してください'); flag = ++flag;
-    }else{$('#price_calc_error').remove();}
+    }else{
+      if($('#price_calc').val() < 300) {
+        builderHTMLType($('#price_calc'),$('#priceview'), '300以上9999999以下で入力してください'); flag = ++flag;
+      }else{
+        if($('#price_calc').val() > 9999999) {
+          builderHTMLType($('#price_calc'),$('#priceview'), '300以上9999999以下で入力してください'); flag = ++flag;
+        }else{
+          $('#price_calc_error').remove();
+        }
+      }
+    }
+
 
     if(!flag == 0){
       return false;  // submitを中止
@@ -503,7 +585,7 @@ $(function(){
                               <h3 class="modal-head">出品が完了しました</h3>
                               <div class="sell-modal-body">
                                 あなたが出品した商品は「出品した商品一覧」からいつでも見ることができます。
-                                <a class="btn-default btn-red" href="./sell" data-turbolinks="false">続けて出品する</a>
+                                <a class="btn-default btn-red" href="./" data-turbolinks="false">続けて出品する</a>
                                 <p class="text-center">
                                   <a href="./">商品ページへ言ってシェアする</a>
                                 </p>
@@ -537,10 +619,13 @@ $(window).on("turbolinks:load", function() {
 
   // 登録済画像と新規追加画像を全て格納する配列（ビュー用）
   var images = [];
-  // 登録済画像データだけの配列（DB用）
+  // 登録済画像データだけの配列（DB用）idのみの配列
   var registered_images_ids =[]
   // 新規追加画像データだけの配列（DB用）
   var new_image_files = [];
+  // 編集画像データだけの配列（DB用）[id,画像データ]
+  var edit_image_files = [];
+  var edit_image_ids = [];
 
   // 登録済画像のプレビュー表示
   gon.product_images.forEach(function(image, index){
@@ -548,7 +633,6 @@ $(window).on("turbolinks:load", function() {
 
     // カスタムデータ属性を付与
     img.data("image", index)
-
     var btn_wrapper = $('<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete">削除</a></div>');
 
     // 画像に編集・削除ボタンをつける
@@ -578,7 +662,6 @@ $(window).on("turbolinks:load", function() {
       'margin-left': "11px"
     })
 
-
     // 画像が５枚のとき１段目の枠を消し、２段目の枠を出す
   } else if (images.length == 5) {
     $("#preview").empty();
@@ -587,7 +670,8 @@ $(window).on("turbolinks:load", function() {
       preview.append(image);
     });
     appendzone.css({
-      display: "block"
+      display: "block",
+      'margin-bottom': '10px'
     });
     dropzone.css({
       display: "none"
@@ -619,13 +703,14 @@ $(window).on("turbolinks:load", function() {
       'display': 'none'
     })
     appendzone.css({
-      'display': 'block'
+      'display': 'block',
+      'margin-bottom': '0px'
     })
 
     dropzone2.css({
       'display': 'block',
-      'width': `calc(100% - 6px - (20% * ${images.length - 5}))`,
-      'margin-left': "12px"
+      'width': `calc(100% - (3px * ${images.length - 5}) - (20% * ${images.length - 5}))`,
+      'margin-left': "11px"
     })
 
     // 画像が１０枚になったら枠を消す
@@ -677,7 +762,8 @@ $(window).on("turbolinks:load", function() {
         preview.append(image);
       });
       appendzone.css({
-        display: "block"
+        display: "block",
+        'margin-bottom': '10px'
       });
       dropzone.css({
         display: "none"
@@ -700,6 +786,10 @@ $(window).on("turbolinks:load", function() {
           'float': "right"
         })
       });
+
+      appendzone.css({
+        'margin-bottom': '0px'
+      })
 
       // 画像が１０枚になったら枠を消す
       if (images.length == 10) {
@@ -751,7 +841,8 @@ $(window).on("turbolinks:load", function() {
       dropzone.css({
         'width': '100%',
         'display': 'block',
-        'margin-left': '0px'
+        'margin-left': '0px',
+        'margin-bottom': '10px'
       })
       appendzone.css({
         'display': 'none'
@@ -782,9 +873,11 @@ $(window).on("turbolinks:load", function() {
       })
       appendzone.css({
         'display': 'block',
+        'margin-bottom': '10px'
       })
       dropzone2.css({
-        'width': '100%'
+        'width': '100%',
+        'margin-left': '0px'
       })
       dropzone.css({
         'display': 'none'
@@ -816,10 +909,138 @@ $(window).on("turbolinks:load", function() {
           'margin-left': "11px",
         })
       })
+
+      appendzone.css({
+        'margin-bottom': '0px'
+      })
     }
   })
 
 
+  // 編集用inputタグを挿入
+  var edit_image = $(`<input class="edit-image" type="file" accept="image/*" id="edit-image">`);
+  $('.input-area').append(edit_image);
+
+  // 編集ボタン処理
+  $(".sell-upload-box").on('click', '.btn_edit', function() {
+    // 編集ボタンを押した画像を取得
+    var target_image = $(this).parent().parent();
+    // 編集画像のdata-image番号を取得
+    var target_image_num = target_image.data('image');
+console.log((target_image_num));
+console.log(registered_images_ids);
+    // 編集用inputをclickして画像を選択させる
+    $('#edit-image').click();
+
+    // 編集用inputの内容変更されたら処理
+    $("#cell-container .item__img__dropzone, #cell-container .item__img__dropzone2").on('change', 'input[type= "file"].edit-image', function(e){
+      // changeイベントが重複実行されないようにイベントをOFFへ変更。これにより１度だけ実行される。
+      $("#cell-container .item__img__dropzone, #cell-container .item__img__dropzone2").off('change');
+
+      var file = $(this).prop("files")[0];
+      var reader = new FileReader();
+      var img = $(`<div class= "add_img"><div class="img_area"><img class="image"></div></div>`);
+      reader.onload = function(e) {
+        var btn_wrapper = $('<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete">削除</a></div>');
+        // 画像に編集・削除ボタンをつける
+        img.append(btn_wrapper);
+        img.find("img").attr({
+          src: e.target.result
+        });
+      };
+      reader.readAsDataURL(file);
+
+      //新規か既存かの判定は、クリックされた画像の番号が「既存配列registered_images_idsのlength」より大きい場合は新規、同じ以下は既存
+      if (target_image_num  >= registered_images_ids.length){
+      // 新規追加した画像を編集した場合
+        // 新規配列new_image_filesの何番目を置き換えるかの番号を取得
+        replace_num = target_image_num - registered_images_ids.length
+        // 新規配列new_image_filesから対象画像を削除し新しい画像と置き換える
+        new_image_files.splice(replace_num,1,file);
+      }else{
+      // DB保存済の既存画像を編集した場合
+        // 変更した画像ファイルのid番号(DB保存済みのid)をedit_image_ids配列へpush
+        edit_image_ids.push(registered_images_ids[target_image_num]);
+        // 変更した画像ファイルをedit_image_files配列へpush
+        edit_image_files.push(file);
+      }
+
+      // 対象の画像を削除し、同じ位置へ新しい画像データを挿入した配列を生成
+      images.splice(target_image_num, 1, img)
+
+      // 画像が４枚以下のとき
+      if (images.length <= 4) {
+        $(preview).empty();
+        $.each(images, function(index, image) {
+          image.data('image', index);
+          preview.append(image);
+        })
+        dropzone.css({
+          'width': `calc(100% - (3px * ${images.length}) - (20% * ${images.length}))`,
+          'margin-left': "11px"
+        })
+
+        // 画像が５枚のとき１段目の枠を消し、２段目の枠を出す
+      } else if (images.length == 5) {
+        $("#preview").empty();
+        $.each(images, function(index, image) {
+          image.data("image", index);
+          preview.append(image);
+        });
+        appendzone.css({
+          display: "block"
+        });
+        dropzone.css({
+          display: "none"
+        });
+        dropzone2.css({
+          'width': '100%',
+          'margin-left': '0px'
+        });
+        preview2.empty();
+
+        // 画像が６枚以上のとき
+      } else if (images.length >= 6) {
+        // １〜５枚目の画像を抽出
+        var pickup_images1 = images.slice(0, 5);
+
+        // １〜５枚目を１段目に表示
+        $('#preview').empty();
+        $.each(pickup_images1, function(index, image) {
+          image.data('image', index);
+          preview.append(image);
+        })
+
+        // ６枚目以降の画像を抽出
+        var pickup_images2 = images.slice(5);
+
+        // ６枚目以降を２段目に表示
+        $('#preview2').empty();
+        $.each(pickup_images2, function(index, image) {
+          image.data('image', index + 5);
+          preview2.append(image);
+        })
+
+        dropzone.css({
+          'display': 'none'
+        })
+        appendzone.css({
+          'display': 'block'
+        })
+        
+        dropzone2.css({
+          'display': 'block',
+          'width': `calc(100% - (3px * ${images.length - 5}) - (20% * ${images.length - 5}))`,
+          'margin-left': "11px"
+        })
+      }
+
+      $("input.edit-image").val('');
+    });
+  });
+
+
+  // submit処理
   $('.sell-form').on('submit', function(e){
     // 通常のsubmitイベントを止める
     e.preventDefault();
@@ -843,6 +1064,30 @@ $(window).on("turbolinks:load", function() {
     } else {
       new_image_files.forEach(function(file){
         formData.append("new_images[images][]", file)
+      });
+    }
+
+console.log(images);
+console.log(registered_images_ids);
+console.log(new_image_files);
+console.log(edit_image_files);
+console.log(edit_image_ids);
+
+    // 変更をかけた画像ファイルがない場合は便宜的に0を入れる
+    if (edit_image_files.length == 0) {
+      formData.append("edit_images[images][]", " ")
+    } else {
+      edit_image_files.forEach(function(file){
+        formData.append("edit_images[images][]", file)
+      });
+    }
+
+    // 変更をかけた画像idがない場合は便宜的に0を入れる
+    if (edit_image_ids.length == 0) {
+      formData.append("edit_image_ids[ids][]", " ")
+    } else {
+      edit_image_ids.forEach(function(id){
+        formData.append("edit_image_ids[ids][]", id)
       });
     }
 

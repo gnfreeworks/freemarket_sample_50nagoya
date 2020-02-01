@@ -708,6 +708,12 @@ input.upload-image {
   overflow: auto;
 }
 
+input.edit-image {
+  width: 100%;
+  display:none; //inputの表示を非表示
+  overflow: auto;
+}
+
 .item__img__dropzone__input__description, .item__img__dropzone2__input2__description {
   display: inline-block;
 }

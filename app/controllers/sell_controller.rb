@@ -88,11 +88,28 @@ class SellController < ApplicationController
     # 登録済画像のidの配列を生成
     ids = @product.product_images.map{|image| image.id }
     # 登録済画像のうち、編集後もまだ残っている画像のidの配列を生成(文字列から数値に変換)
-    exist_ids = registered_image_params[:ids].map(&:to_i)
+    exist_ids = registered_image_params[:ids].map(&:to_i)    
     # 登録済画像が残っていない場合(配列に０が格納されている)、配列を空にする
     exist_ids.clear if exist_ids[0] == 0
+    # 編集で入れ替えた画像のidの配列を生成(文字列から数値に変換)
+    edit_ids = edit_id_params[:ids].map(&:to_i)
 
-    if (exist_ids.length != 0 || new_image_params[:images][0] != " ") && @product.update(item_params)
+    if ((exist_ids.length != 0 || new_image_params[:images][0] != " ") && @product.update(item_params)) || (edit_image_params[:images][0] != " " && edit_id_params[:ids][0] != " ")
+      # 更新された画像がある場合の処理
+      unless edit_image_params[:images][0] == ""
+        edit_ids.each_with_index do |edit_id,i|
+          ids.each do |id|
+            if id == edit_id
+              edit_image_params[:images].each do |image|
+                img = @product.product_images.find(id)
+                img.url = image
+                img.save!
+              end
+            end
+          end
+        end
+      end
+
       # 登録済画像のうち削除ボタンをおした画像を削除
       unless ids.length == exist_ids.length
         # 削除する画像のidの配列を生成
@@ -110,7 +127,8 @@ class SellController < ApplicationController
       end
 
       flash[:notice] = '編集が完了しました'
-      redirect_to item_path(@product), data: {turbolinks: false}
+      # TODO: 後で出品商品ページへリダイレクトの処理を記載する
+      # redirect_to "/sell/edit/#{params.id}", data: {turbolinks: false}
 
     else
       flash[:alert] = '未入力項目があります'
@@ -122,7 +140,8 @@ class SellController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     if @product.destroy
-      # TODO: 出品商品ページへリダイレクトの処理を記載する
+      # TODO: 後で出品商品ページへリダイレクトの処理を記載する
+      # redirect_to "/sell/edit/#{params.id}", data: {turbolinks: false}
     end
   end
 
@@ -205,6 +224,14 @@ private
 
   def new_image_params
     params.require(:new_images).permit({images: []})
+  end
+
+  def edit_image_params
+    params.require(:edit_images).permit({images: []})
+  end
+
+  def edit_id_params
+    params.require(:edit_image_ids).permit({ids: []})
   end
 
 
