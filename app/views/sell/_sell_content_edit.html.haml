@@ -12,34 +12,25 @@
                 必須
             %p
               最大10枚までアップロードできます
-
+              
             = f.fields_for :product_images, @product.product_images.first do |image|
               .item__img__dropzone.clearfix
                 #preview
                 -# １〜５枚目プレビュー表示
                 .item__img__dropzone__input
-                  = image.label :image, for: "upload-image" do
-                    .input-area
-                      = image.file_field :url, id: "upload-image", class: "upload-image", accept:"image/*", 'data-image': 0
-
-                    .item__img__dropzone__input__description
-                      .item__img__dropzone__input__description__text
-                        ドラッグアンドドロップ
-                        %br
-                        またはクリックしてファイルをアップロード
-
+                  = image.file_field :url, id: "upload-image", class: "upload-image", accept:"image/*", 'data-image': 0
+                  %pre.visible-pc
+                    ドラッグアンドドロップ
+                    またはクリックしてファイルをアップロード
               .item__img__dropzone2.clearfix
                 #preview2
                 -# ６〜１０枚目プレビュー表示
                 .item__img__dropzone2__input2
-                  = image.label :image, for: "upload-image" do
-                    .input-area
-                      = image.file_field :url, id: "upload-image", class: "upload-image", 'data-image': 0
-                    .item__img__dropzone2__input2__description
-                      .item__img__dropzone2__input2__description__text
-                        ドラッグアンドドロップ
-                        %br
-                        またはクリックしてファイルをアップロード
+                  = image.file_field :url, id: "upload-image", class: "upload-image", accept:"image/*", 'data-image': 0
+                  %pre.visible-pc
+                    ドラッグアンドドロップ
+                    またはクリックしてファイルをアップロード
+
           .sell-content
             .form-group
               %label
