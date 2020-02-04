@@ -1072,12 +1072,6 @@ $(window).on("turbolinks:load", function() {
       });
     }
 
-console.log(images);
-console.log(registered_images_ids);
-console.log(new_image_files);
-console.log(edit_image_files);
-console.log(edit_image_ids);
-
     // 変更をかけた画像ファイルがない場合は便宜的に0を入れる
     if (edit_image_files.length == 0) {
       formData.append("edit_images[images][]", " ")
