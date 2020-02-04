@@ -1,0 +1,12 @@
+-# autocomplete を使用するための記述
+<link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/cupertino/jquery-ui.min.css" />
+
+-# この記述で画面遷移時にjavascriptが読み込まれるようになり発火するようになる。→ 二重で画像が投稿されるようになってしまった
+-# = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+-# gemの「gon」を読み込み
+= include_gon
+
+= render partial: 'entry/entry-header'
+= render partial: 'sell_content_edit'
+= render partial: 'entry/entry-footer'
