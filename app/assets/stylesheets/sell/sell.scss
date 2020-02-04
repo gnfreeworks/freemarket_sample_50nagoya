@@ -675,8 +675,6 @@ select {
 }
 
 
-
-
 //----------------edit時の画像用CSS--------------------//
 
 .item__img__dropzone2 { //画像6-10個目の枠は初期値で非表示
@@ -702,8 +700,10 @@ select {
   justify-content: center;
 }
 
+
 input.upload-image {
   width: 100%;
+  height: 100%;
   display:none; //inputの表示を非表示
   overflow: auto;
 }

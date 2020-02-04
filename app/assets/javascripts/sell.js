@@ -721,9 +721,9 @@ $(window).on("turbolinks:load", function() {
     }
   }
 
-
+  //--------------------------クリックでの追加-----------------------------
   // 画像を新しく追加する場合
-  $("#cell-container .item__img__dropzone, #cell-container .item__img__dropzone2").on("change", 'input[type= "file"].upload-image', function() {
+  $("#cell-container").on("change", '.upload-image', function() {
     var file = $(this).prop("files")[0];
     new_image_files.push(file)
     var reader = new FileReader();
@@ -805,9 +805,97 @@ $(window).on("turbolinks:load", function() {
   });
 
 
+//   //-----------------------ドラッグでの追加---------------------------
+//   // 画像を新しく追加する場合
+//   $(".item__img__dropzone__input").on("drop",".upload-image", function() {
+// alert("入った");
+//     var file = $(this).prop("files")[0];
+//     new_image_files.push(file)
+//     var reader = new FileReader();
+//     var img = $(`<div class= "add_img"><div class="img_area"><img class="image"></div></div>`);
+
+//     reader.onload = function(e) {
+//       var btn_wrapper = $('<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete">削除</a></div>');
+
+//       // 画像に編集・削除ボタンをつける
+//       img.append(btn_wrapper);
+//       img.find("img").attr({
+//         src: e.target.result
+//       });
+//     };
+
+//     reader.readAsDataURL(file);
+//     images.push(img);
+
+//     // 画像が４枚以下のとき
+//     if (images.length <= 4) {
+//       $('#preview').empty();
+//       $.each(images, function(index, image) {
+//         image.data('image', index);
+//         preview.append(image);
+//       })
+//       dropzone.css({
+//         'width': `calc(100% - (3px * ${images.length}) - (20% * ${images.length}))`,
+//         'margin-left': "11px"
+//       })
+
+//       // 画像が５枚のとき１段目の枠を消し、２段目の枠を出す
+//     } else if (images.length == 5) {
+//       $("#preview").empty();
+//       $.each(images, function(index, image) {
+//         image.data("image", index);
+//         preview.append(image);
+//       });
+//       appendzone.css({
+//         display: "block",
+//         'margin-bottom': '10px'
+//       });
+//       dropzone.css({
+//         display: "none"
+//       });
+//       preview2.empty();
+
+//       // 画像が６枚以上のとき
+//     } else if (images.length >= 6) {
+
+//       // 配列から６枚目以降の画像を抽出
+//       var pickup_images = images.slice(5);
+
+//       $.each(pickup_images, function(index, image) {
+//         image.data("image", index + 5);
+//         preview2.append(image);
+
+//         dropzone2.css({
+//           'width': `calc(100% - (3px * ${images.length - 5}) - (20% * ${images.length - 5}))`,
+//           'margin-left': "11px",
+//           'float': "right"
+//         })
+//       });
+
+//       appendzone.css({
+//         'margin-bottom': '0px'
+//       })
+
+//       // 画像が１０枚になったら枠を消す
+//       if (images.length == 10) {
+//         dropzone2.css({
+//           display: "none"
+//         });
+//       }
+//     }
+
+//     // inputの値をクリア (同じ画像を連続投稿出来なくなるため)
+//     $("input.upload-image").val('')
+
+//   });
+
+
+
+
+
 
   // 削除ボタン
-  $("#cell-container .item__img__dropzone, #cell-container .item__img__dropzone2").on('click', '.btn_delete', function() {
+  $("#cell-container").on('click', '.btn_delete', function() {
 
     // 削除ボタンを押した画像を取得
     var target_image = $(this).parent().parent();
@@ -927,8 +1015,6 @@ $(window).on("turbolinks:load", function() {
     var target_image = $(this).parent().parent();
     // 編集画像のdata-image番号を取得
     var target_image_num = target_image.data('image');
-console.log((target_image_num));
-console.log(registered_images_ids);
     // 編集用inputをclickして画像を選択させる
     $('#edit-image').click();
 
