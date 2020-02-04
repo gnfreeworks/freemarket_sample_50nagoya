@@ -14,8 +14,7 @@ class ApplicationController < ActionController::Base
       puts "this is username"
       puts username
       puts password
-      # username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]
-      username == 'admin' && password == '2222'
+      username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]
     end
   end
 
