@@ -96,3 +96,9 @@ gem 'ancestry', '3.0.7'
 
 # サジェスト入力用gem https://qiita.com/anuma/items/c76de8d009266491fba1
 gem 'jquery-ui-rails'
+
+# Controllerで指定した値をjavascriptで扱えるgem
+gem 'gon'
+
+# AWS SDK for Ruby
+gem 'aws-sdk'

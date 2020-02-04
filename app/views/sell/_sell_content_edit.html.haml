@@ -4,7 +4,7 @@
       .sell-container-inner
         %h2.l-single-head
           商品の情報を入力
-        = form_for @product,url: { controller: "sell",action: "create"}, html: {class: "sell-form"} do |f|
+        = form_for @product, html: {class: "sell-form"} do |f|
           .sell-upload-box
             %h3.sell-upload-head
               出品画像
@@ -12,16 +12,34 @@
                 必須
             %p
               最大10枚までアップロードできます
-            .sell-dropbox-container.clearfix.state-image-number-10#imgview
-              .sell-upload-products-container
-                .sell-upload-items.have-item-0
-                  %ul{id:"img_field",onClick:"$('#file').click()"}
-              .sell-upload-drop-box.have-item-0
-                = f.file_field :urls ,multiple: true, class:"sell-upload-drop-file", id:"post_img_last",data: {"img-input-id": 0},accept: "image/*"
-                %pre.visible-pc
-                  ドラッグアンドドロップ
-                  またはクリックしてファイルをアップロード
-                = icon 'fas', 'camera'
+
+            = f.fields_for :product_images, @product.product_images.first do |image|
+              .item__img__dropzone.clearfix
+                #preview
+                -# １〜５枚目プレビュー表示
+                .item__img__dropzone__input
+                  = image.label :image, for: "upload-image" do
+                    .input-area
+                      = image.file_field :url, id: "upload-image", class: "upload-image", accept:"image/*", 'data-image': 0
+
+                    .item__img__dropzone__input__description
+                      .item__img__dropzone__input__description__text
+                        ドラッグアンドドロップ
+                        %br
+                        またはクリックしてファイルをアップロード
+
+              .item__img__dropzone2.clearfix
+                #preview2
+                -# ６〜１０枚目プレビュー表示
+                .item__img__dropzone2__input2
+                  = image.label :image, for: "upload-image" do
+                    .input-area
+                      = image.file_field :url, id: "upload-image", class: "upload-image", 'data-image': 0
+                    .item__img__dropzone2__input2__description
+                      .item__img__dropzone2__input2__description__text
+                        ドラッグアンドドロップ
+                        %br
+                        またはクリックしてファイルをアップロード
           .sell-content
             .form-group
               %label
@@ -49,7 +67,7 @@
                     .select-wrap#parent_wrapper
                       = f.select :category_parent_id, @category_parent_array, {}, {class:"select-default", id:'parent_category'}
                       = icon 'fas', 'chevron-down'
-                  .product-detail-size_brand#product-detail-size_brand
+                .product-detail-size_brand#product-detail-size_brand
               .form-group
                 %label
                   商品の状態

@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20191104234302) do
     t.string   "url",        null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_images_on_product_id", using: :btree
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -259,6 +260,7 @@ ActiveRecord::Schema.define(version: 20191104234302) do
   add_foreign_key "comments", "products_statuses"
   add_foreign_key "goods", "products_statuses"
   add_foreign_key "payment_methods", "users"
+  add_foreign_key "product_images", "products"
   add_foreign_key "products", "sale_charges"
   add_foreign_key "products", "shipping_charges"
   add_foreign_key "products", "shipping_methods"
