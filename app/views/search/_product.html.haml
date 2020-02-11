@@ -1,6 +1,7 @@
 %li.product__inner
   .product__content
-    = link_to "#{product.id}", class: 'product__box' do
+    -# = link_to "#{product.id}", class: 'product__box' do
+    = link_to products_status_path(product.id), class: 'product__box' do
       %figure.product__figure
         %figcaption
           %span.product__title
