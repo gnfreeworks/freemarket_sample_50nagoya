@@ -1,6 +1,6 @@
 %li.product__inner
   .product__content
-    = link_to "#{product.id}", class: 'product__box' do
+    = link_to products_status_path(product.id), class: 'product__box' do
       %figure.product__figure
         %figcaption
           %span.product__title
@@ -8,4 +8,4 @@
         .product__image__box
           .product__price
             = number_to_currency(product.product.price, :format => "%u%n", :unit => "￥")
-          = image_tag '/images/m93608280668_1.jpg', alt: 'product', class: 'product__image'
+          = image_tag "data:image/*;base64,#{Base64.strict_encode64(File.read(product.product.product_images[0].url.file.file))}", alt: 'product', class: 'product__image'
