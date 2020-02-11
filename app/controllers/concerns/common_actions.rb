@@ -4,7 +4,7 @@ module CommonActions
   def set_categories
     #### カテゴリー表示
     @parents = ViewCategory.where(ancestry: nil)
-
+    
     #### ブランドは表示したいidを列挙する
     @brands = Brand.where("(id = ?) OR (id = ?) OR (id = ?) OR (id = ?) OR (id = ?) OR (id = ?)", 2446, 3812, 6154, 2446, 219, 3093)
 

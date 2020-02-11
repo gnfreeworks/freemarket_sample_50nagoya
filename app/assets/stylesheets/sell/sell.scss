@@ -700,17 +700,32 @@ select {
   justify-content: center;
 }
 
+pre.visible-pc{
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  right: 16px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.5;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  pointer-events: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 
 input.upload-image {
   width: 100%;
-  height: 100%;
-  display:none; //inputの表示を非表示
+  height: 160px;
+  opacity: 0;
   overflow: auto;
 }
 
 input.edit-image {
   width: 100%;
-  display:none; //inputの表示を非表示
+  display: none;
   overflow: auto;
 }
 

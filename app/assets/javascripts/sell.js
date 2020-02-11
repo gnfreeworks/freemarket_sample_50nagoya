@@ -805,93 +805,13 @@ $(window).on("turbolinks:load", function() {
   });
 
 
-//   //-----------------------ドラッグでの追加---------------------------
-//   // 画像を新しく追加する場合
-//   $(".item__img__dropzone__input").on("drop",".upload-image", function() {
-// alert("入った");
-//     var file = $(this).prop("files")[0];
-//     new_image_files.push(file)
-//     var reader = new FileReader();
-//     var img = $(`<div class= "add_img"><div class="img_area"><img class="image"></div></div>`);
+  //-----------------------ドラッグでの追加---------------------------
+  // 画像を新しく追加する場合
+  $(".sell-upload-box").on("drop",".upload-image", function() {
 
-//     reader.onload = function(e) {
-//       var btn_wrapper = $('<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete">削除</a></div>');
+    // ドラッグでinputタグに画像がドロップされたタイミングでクリックでの画像追加のchangeイベントが発生するのでそちらで処理
 
-//       // 画像に編集・削除ボタンをつける
-//       img.append(btn_wrapper);
-//       img.find("img").attr({
-//         src: e.target.result
-//       });
-//     };
-
-//     reader.readAsDataURL(file);
-//     images.push(img);
-
-//     // 画像が４枚以下のとき
-//     if (images.length <= 4) {
-//       $('#preview').empty();
-//       $.each(images, function(index, image) {
-//         image.data('image', index);
-//         preview.append(image);
-//       })
-//       dropzone.css({
-//         'width': `calc(100% - (3px * ${images.length}) - (20% * ${images.length}))`,
-//         'margin-left': "11px"
-//       })
-
-//       // 画像が５枚のとき１段目の枠を消し、２段目の枠を出す
-//     } else if (images.length == 5) {
-//       $("#preview").empty();
-//       $.each(images, function(index, image) {
-//         image.data("image", index);
-//         preview.append(image);
-//       });
-//       appendzone.css({
-//         display: "block",
-//         'margin-bottom': '10px'
-//       });
-//       dropzone.css({
-//         display: "none"
-//       });
-//       preview2.empty();
-
-//       // 画像が６枚以上のとき
-//     } else if (images.length >= 6) {
-
-//       // 配列から６枚目以降の画像を抽出
-//       var pickup_images = images.slice(5);
-
-//       $.each(pickup_images, function(index, image) {
-//         image.data("image", index + 5);
-//         preview2.append(image);
-
-//         dropzone2.css({
-//           'width': `calc(100% - (3px * ${images.length - 5}) - (20% * ${images.length - 5}))`,
-//           'margin-left': "11px",
-//           'float': "right"
-//         })
-//       });
-
-//       appendzone.css({
-//         'margin-bottom': '0px'
-//       })
-
-//       // 画像が１０枚になったら枠を消す
-//       if (images.length == 10) {
-//         dropzone2.css({
-//           display: "none"
-//         });
-//       }
-//     }
-
-//     // inputの値をクリア (同じ画像を連続投稿出来なくなるため)
-//     $("input.upload-image").val('')
-
-//   });
-
-
-
-
+  });
 
 
   // 削除ボタン
@@ -1007,7 +927,7 @@ $(window).on("turbolinks:load", function() {
 
   // 編集用inputタグを挿入
   var edit_image = $(`<input class="edit-image" type="file" accept="image/*" id="edit-image">`);
-  $('.input-area').append(edit_image);
+  $('.item__img__dropzone__input').append(edit_image);
 
   // 編集ボタン処理
   $(".sell-upload-box").on('click', '.btn_edit', function() {
@@ -1017,11 +937,10 @@ $(window).on("turbolinks:load", function() {
     var target_image_num = target_image.data('image');
     // 編集用inputをclickして画像を選択させる
     $('#edit-image').click();
-
     // 編集用inputの内容変更されたら処理
-    $("#cell-container .item__img__dropzone, #cell-container .item__img__dropzone2").on('change', 'input[type= "file"].edit-image', function(e){
+    $(".sell-upload-box").on('change', '.edit-image', function(e){
       // changeイベントが重複実行されないようにイベントをOFFへ変更。これにより１度だけ実行される。
-      $("#cell-container .item__img__dropzone, #cell-container .item__img__dropzone2").off('change');
+      $(".sell-upload-box").off('change');
 
       var file = $(this).prop("files")[0];
       var reader = new FileReader();
@@ -1152,12 +1071,6 @@ $(window).on("turbolinks:load", function() {
         formData.append("new_images[images][]", file)
       });
     }
-
-console.log(images);
-console.log(registered_images_ids);
-console.log(new_image_files);
-console.log(edit_image_files);
-console.log(edit_image_ids);
 
     // 変更をかけた画像ファイルがない場合は便宜的に0を入れる
     if (edit_image_files.length == 0) {
