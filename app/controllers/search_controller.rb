@@ -60,6 +60,4 @@ class SearchController < ApplicationController
 
   end
 
-  #       # "data:image/*;base64,#{Base64.strict_encode64(File.read(product.product.product_images[0].url.file.file))}"
-
 end
