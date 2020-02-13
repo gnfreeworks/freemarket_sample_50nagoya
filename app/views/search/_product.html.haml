@@ -8,4 +8,11 @@
         .product__image__box
           .product__price
             = number_to_currency(product.product.price, :format => "%u%n", :unit => "￥")
-          = image_tag "data:image/*;base64,#{Base64.strict_encode64(File.read(product.product.product_images[0].url.file.file))}", alt: 'product', class: 'product__image'
+          - if Rails.env.production?
+            - client = Aws::S3::Client.new(region: 'ap-northeast-1',access_key_id: Rails.application.secrets[:aws_access_key_id],secret_access_key: Rails.application.secrets[:aws_secret_access_key],)
+            = image_tag "data:image/*;base64,#{Base64.strict_encode64(client.get_object(bucket: 'upload-freemarket', key: products.product.product_images[0].url.file.path).body.read)}", alt: 'product', class: 'product__image'
+            -# = image_tag "data:image/*;base64,#{image}", alt: 'product', class: 'product__image'
+          - else
+            = image_tag "data:image/*;base64,#{Base64.strict_encode64(File.read(product.product.product_images[0].url.file.file))}", alt: 'product', class: 'product__image'
+            -# = image_tag "data:image/*;base64,#{image}", alt: 'product', class: 'product__image'
+          -# = image_tag "data:image/*;base64,#{Base64.strict_encode64(File.read(product.product.product_images[0].url.file.file))}", alt: 'product', class: 'product__image'
