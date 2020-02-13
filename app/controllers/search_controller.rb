@@ -1,11 +1,15 @@
 class SearchController < ApplicationController
   include CommonActions
   before_action :set_categories, only: :index
-  
+
+  # product_imagse.urlをバイナリーデータにしてビューで表示できるようにする
+  require 'base64'
+  require 'aws-sdk'
+
   def index
     # レディース
     @ladies_products = ProductsStatus.where("category_parent_id = 1 and buyer_id IS NULL").order(created_at: :desc).limit(10)
-    @ladies_product_images = base64image(@ladies_products)
+    # @ladies_product_images = base64image(@ladies_products)
 
     # メンズ
     @mens_products = ProductsStatus.where("category_parent_id = 219 and buyer_id IS NULL").order(created_at: :desc).limit(10)
@@ -25,31 +29,31 @@ class SearchController < ApplicationController
   end
 
 
-  def base64image(products)
+  # def base64image(products)
 
-    # product_imagse.urlをバイナリーデータにしてビューで表示できるようにする
-    require 'base64'
-    require 'aws-sdk'
+  #   # product_imagse.urlをバイナリーデータにしてビューで表示できるようにする
+  #   require 'base64'
+  #   require 'aws-sdk'
 
-    product_images_binary_datas = []
+  #   product_images_binary_datas = []
     
-    if Rails.env.production?
-      client = Aws::S3::Client.new(
-                              region: 'ap-northeast-1',
-                              access_key_id: Rails.application.secrets[:aws_access_key_id],
-                              secret_access_key: Rails.application.secrets[:aws_secret_access_key],
-                              )
-      products.product.product_images.each do |image|
-        binary_data = client.get_object(bucket: 'upload-freemarket', key: image.url.file.path).body.read
-        product_images_binary_datas << Base64.strict_encode64(binary_data)
-      end
-    else
-      products.each do |product|
-        binary_data = File.read(product.product.product_images[0].url.file.file)
-        product_images_binary_datas << Base64.strict_encode64(binary_data)
-      end
-      return product_images_binary_datas
-    end
-  end
+  #   if Rails.env.production?
+  #     client = Aws::S3::Client.new(
+  #                             region: 'ap-northeast-1',
+  #                             access_key_id: Rails.application.secrets[:aws_access_key_id],
+  #                             secret_access_key: Rails.application.secrets[:aws_secret_access_key],
+  #                             )
+  #     products.product.product_images.each do |image|
+  #       binary_data = client.get_object(bucket: 'upload-freemarket', key: image.url.file.path).body.read
+  #       product_images_binary_datas << Base64.strict_encode64(binary_data)
+  #     end
+  #   else
+  #     products.each do |product|
+  #       binary_data = File.read(product.product.product_images[0].url.file.file)
+  #       product_images_binary_datas << Base64.strict_encode64(binary_data)
+  #     end
+  #     return product_images_binary_datas
+  #   end
+  # end
         # "data:image/*;base64,#{Base64.strict_encode64(File.read(product.product.product_images[0].url.file.file))}"
 end
