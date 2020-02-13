@@ -36,25 +36,25 @@
           もっと見る
       .products__continer
         %ul.product__list
-          = render partial: 'product',locals: {product: @ladies_products,image: @ladies_product_images}
+          = render partial: 'product',locals: {product: @ladies_products,image: @ladies_products_images}
       .main__inner
         %h3.main__title
           メンズ新着アイテム
       .products__continer
         %ul.product__list
-          = render partial: 'product', collection: @mens_products, as: "product"
+          = render partial: 'product', locals: {product: @mens_products,image: @mens_products_images}
       .main__inner
         %h3.main__title
           家電・スマホ・カメラ 新着アイテム
       .products__continer
         %ul.product__list
-          = render partial: 'product', collection: @goods_products, as: "product"
+          = render partial: 'product', locals: {product: @goods_products,image: @goods_products_images}
       .main__inner
         %h3.main__title
           おもちゃ・ホビー・グッズ 新着アイテム
       .products__continer
         %ul.product__list
-          = render partial: 'product', collection: @toy_products, as: "product"
+          = render partial: 'product', locals: {product: @toy_products,image: @toy_products_images}
     .spacer__container
       .spacr__inner
         %h2.spacer__title
@@ -80,13 +80,13 @@
           もっと見る
       .products__continer
         %ul.product__list
-          = render partial: 'product', collection: @chanel_products, as: "product"
+          = render partial: 'product', locals: {product: @chanel_products,image: @chanel_products_images}
       .main__inner
         %h3.main__title
           ルイヴィトン新着アイテム
       .products__continer
         %ul.product__list
-          = render partial: 'product', collection: @lv_products, as: "product"
+          = render partial: 'product', locals: {product: @lv_products,image: @lv_products_images}
   .product-btn__container
     = link_to 'sell', class: 'product-btn__link', data:{turbolinks: false} do
       .product-btn__innner
