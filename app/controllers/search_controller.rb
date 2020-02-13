@@ -16,7 +16,7 @@ class SearchController < ApplicationController
   def index
     # レディース
     @ladies_products = ProductsStatus.where("category_parent_id = 1 and buyer_id IS NULL").order(created_at: :desc).limit(10)
-    @ladies_product_images = base64image(@ladies_products)
+    @ladies_products_images = base64image(@ladies_products)
     # メンズ
     @mens_products = ProductsStatus.where("category_parent_id = 219 and buyer_id IS NULL").order(created_at: :desc).limit(10)
     @mens_products_images = base64image(@mens_products)
