@@ -1,6 +1,6 @@
 class ProductsStatusesController < ApplicationController
   include CommonActions
-  before_action :set_categories, only: :index
+  before_action :set_categories, only: [:index,:show]
 
   def show
     # 製品情報
