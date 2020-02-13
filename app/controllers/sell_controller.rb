@@ -70,7 +70,7 @@ class SellController < ApplicationController
                               secret_access_key: Rails.application.secrets[:aws_secret_access_key],
                               )
       @product.product_images.each do |image|
-        binary_data = client.get_object(bucket: 'upload-freemarket', key: 'uploads/product_image/url/1/スクリーンショット_2020-02-04_13.55.54.png').body.read
+        binary_data = client.get_object(bucket: 'upload-freemarket', key: image.url.file.path).body.read
         gon.product_images_binary_datas << Base64.strict_encode64(binary_data)
       end
     else
