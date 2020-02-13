@@ -9,28 +9,5 @@
           .product__image__box
             .product__price
               = number_to_currency(product.product.price, :format => "%u%n", :unit => "￥")
-            - if Rails.env.production?
               = image_tag "data:image/*;base64,#{image}", alt: 'product', class: 'product__image'
-            - else
-              = image_tag "data:image/*;base64,#{image}", alt: 'product', class: 'product__image'
-              -# = image_tag "data:image/*;base64,#{image}", alt: 'product', class: 'product__image'
-            -# = image_tag "data:image/*;base64,#{Base64.strict_encode64(File.read(product.product.product_images[0].url.file.file))}", alt: 'product', class: 'product__image'
 
-
-    -# = link_to products_status_path(product.id), class: 'product__box' do
-    -#   %figure.product__figure
-    -#     %figcaption
-    -#       %span.product__title
-    -#         = product.product.name
-    -#     .product__image__box
-    -#       .product__price
-    -#         = number_to_currency(product.product.price, :format => "%u%n", :unit => "￥")
-    -#       - if Rails.env.production?
-    -#         = image_tag "data:image/*;base64,#{image}", alt: 'product', class: 'product__image'
-    -#       - else
-    -#         = image_tag "data:image/*;base64,#{Base64.strict_encode64(image)}", alt: 'product', class: 'product__image'
-    -#         -# = image_tag "data:image/*;base64,#{image}", alt: 'product', class: 'product__image'
-    -#       -# = image_tag "data:image/*;base64,#{Base64.strict_encode64(File.read(product.product.product_images[0].url.file.file))}", alt: 'product', class: 'product__image'
-
-
-    -#   = @ladies_products.zip(@ladies_product_images) do |product, image|
