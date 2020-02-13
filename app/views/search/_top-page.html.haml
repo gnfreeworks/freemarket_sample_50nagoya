@@ -36,7 +36,7 @@
           もっと見る
       .products__continer
         %ul.product__list
-          = render partial: 'product', collection: @ladies_products, as: "product"
+          = render partial: 'product',locals: {product: @ladies_products,image: @ladies_product_images}
       .main__inner
         %h3.main__title
           メンズ新着アイテム
