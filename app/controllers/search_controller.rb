@@ -46,6 +46,7 @@ class SearchController < ApplicationController
       # products.product.product_images.each do |image|
       products.each do |product|
         # binary_data = client.get_object(bucket: 'upload-freemarket', key: image.url.file.path).body.read
+        logger.debug(product.product.product_images[0])
         binary_data = client.get_object(bucket: 'upload-freemarket', key: product.product.product_images[0].url.file.file).body.read
         product_images_binary_datas << Base64.strict_encode64(binary_data)
       end
