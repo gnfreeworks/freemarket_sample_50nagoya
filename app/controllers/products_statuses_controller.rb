@@ -1,6 +1,6 @@
 class ProductsStatusesController < ApplicationController
   include CommonActions
-  before_action :set_categories, only: :index
+  before_action :set_categories, only: [:index,:show]
 
   def show
     # 製品情報
@@ -10,16 +10,16 @@ class ProductsStatusesController < ApplicationController
     @product_name = @product_status.product.name
 
     # ユーザー情報
-    @user = User.find(@product_status.buyer_id)
-    @buyer_name = @user.nickname
+    @user = User.find(@product_status.seller_id)
+    @seller_name = @user.nickname
     @good_count = @user.buyer_evaluations.where(evaluation_id: 1).count
     @normal_count = @user.buyer_evaluations.where(evaluation_id: 2).count
     @bad_count = @user.buyer_evaluations.where(evaluation_id: 3).count
 
     # カテゴリ
-    @large_category_name = @product_status.product.category.large_category.name
-    @medium_category_name = @product_status.product.category.medium_category.name
-    @smail_category_name = @product_status.product.category.smail_category.name
+    @large_category_name = ViewCategory.find_by(id: @product_status.product.category_parent_id).name
+    @medium_category_name = ViewCategory.find_by(id: @product_status.product.category_children_id).name
+    @smail_category_name = ViewCategory.find_by(id: @product_status.product.category_grandchild_id).name
 
     # ブランド
     brand_id = @product_status.product.brand
@@ -37,18 +37,6 @@ class ProductsStatusesController < ApplicationController
     # 配送方法
     @shipping_method_name = @product_status.product.shipping_method.name
     
-    # 配送元地域
-    @area_name = @product_status.product.area.name
-
-    # 発送日目安
-    @shipping_time_name = @product_status.product.shipping_time.name
-
-    # 価格
-    @price = @product_status.product.price.to_s(:delimited)
-
-    # 商品詳細文
-    @description = @product_status.product.description
-  
   end
 
   def buy
