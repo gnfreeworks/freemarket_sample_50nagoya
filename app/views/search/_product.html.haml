@@ -9,5 +9,5 @@
           .product__image__box
             .product__price
               = number_to_currency(product.product.price, :format => "%u%n", :unit => "￥")
-            -# = image_tag "data:image/*;base64,#{image}", alt: 'product', class: 'product__image'
+            = image_tag "data:image/*;base64,#{image}", alt: 'product', class: 'product__image'
 
