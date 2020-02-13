@@ -43,8 +43,10 @@ class SearchController < ApplicationController
                               access_key_id: Rails.application.secrets[:aws_access_key_id],
                               secret_access_key: Rails.application.secrets[:aws_secret_access_key],
                               )
-      products.product.product_images.each do |image|
-        binary_data = client.get_object(bucket: 'upload-freemarket', key: image.url.file.path).body.read
+      # products.product.product_images.each do |image|
+      products.each do |product|
+        # binary_data = client.get_object(bucket: 'upload-freemarket', key: image.url.file.path).body.read
+        binary_data = client.get_object(bucket: 'upload-freemarket', key: product.url.file.path).body.read
         product_images_binary_datas << Base64.strict_encode64(binary_data)
       end
       return product_images_binary_datas
