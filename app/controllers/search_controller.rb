@@ -36,7 +36,7 @@ class SearchController < ApplicationController
     require 'aws-sdk'
 
     product_images_binary_datas = []
-    
+
     if Rails.env.production?
       client = Aws::S3::Client.new(
                               region: 'ap-northeast-1',
@@ -46,7 +46,7 @@ class SearchController < ApplicationController
       # products.product.product_images.each do |image|
       products.each do |product|
         # binary_data = client.get_object(bucket: 'upload-freemarket', key: image.url.file.path).body.read
-        binary_data = client.get_object(bucket: 'upload-freemarket', key: product.url.file.path).body.read
+        binary_data = client.get_object(bucket: 'upload-freemarket', key: product.product.product_images[0].url.file.file).body.read
         product_images_binary_datas << Base64.strict_encode64(binary_data)
       end
       return product_images_binary_datas
@@ -57,6 +57,7 @@ class SearchController < ApplicationController
       end
       return product_images_binary_datas
     end
+
   end
   #       # "data:image/*;base64,#{Base64.strict_encode64(File.read(product.product.product_images[0].url.file.file))}"
 
