@@ -123,14 +123,17 @@
   }
 }
 
-.product {
-  &-name {
-    font-size: 24px;
-    text-align: center;
-    word-wrap: break-word;
-    line-height: 1.4;
-  }
+h1.product-name {
+  font-size: 24px;
+  text-align: center;
+  word-wrap: break-word;
+  line-height: 1.4;
+  margin: 0;
+  font-weight: bold;
+  display: block;
+}
 
+.product {
   &-main-content {
     margin: 16px 0 0;
   }
