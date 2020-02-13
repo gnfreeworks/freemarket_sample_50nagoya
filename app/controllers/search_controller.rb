@@ -2,17 +2,6 @@ class SearchController < ApplicationController
   include CommonActions
   before_action :set_categories, only: :index
 
-  # product_imagse.urlをバイナリーデータにしてビューで表示できるようにする
-  require 'base64'
-  require 'aws-sdk'
-
-  @client = Aws::S3::Client.new(
-                          region: 'ap-northeast-1',
-                          access_key_id: Rails.application.secrets[:aws_access_key_id],
-                          secret_access_key: Rails.application.secrets[:aws_secret_access_key],
-                          )
-
-
   def index
     # レディース
     @ladies_products = ProductsStatus.where("category_parent_id = 1 and buyer_id IS NULL").order(created_at: :desc).limit(10)
@@ -58,6 +47,7 @@ class SearchController < ApplicationController
         binary_data = client.get_object(bucket: 'upload-freemarket', key: image.url.file.path).body.read
         product_images_binary_datas << Base64.strict_encode64(binary_data)
       end
+      return product_images_binary_datas
     else
       products.each do |product|
         binary_data = File.read(product.product.product_images[0].url.file.file)
