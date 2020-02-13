@@ -17,12 +17,7 @@
 
 .clearfix{zoom:1}
 
-
-.main_container {
-  background-color: #EEEEEE;
-}
-
-.l-single-container {
+.ll-single-container {
   background: #fff;
   @media screen and (min-width: 768px){
     width: 620px;
@@ -123,14 +118,18 @@
   }
 }
 
-.product {
-  &-name {
-    font-size: 24px;
-    text-align: center;
-    word-wrap: break-word;
-    line-height: 1.4;
-  }
 
+h1.product-name {
+  font-size: 24px;
+  text-align: center;
+  word-wrap: break-word;
+  line-height: 1.4;
+  margin: 0;
+  font-weight: bold;
+  display: block;
+}
+
+.product {
   &-main-content {
     margin: 16px 0 0;
   }
@@ -340,7 +339,6 @@
 }
 
 .message-form {
-  width:600px;
   margin: 0 auto;
 
   p {
@@ -569,3 +567,4 @@ a {
     }
   }
 }
+
