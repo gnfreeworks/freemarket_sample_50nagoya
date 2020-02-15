@@ -136,6 +136,16 @@ class SellController < ApplicationController
     end
   end
 
+
+  def destroy
+    @product = Product.find(params[:id])
+    if @product.destroy
+      # TODO: 後で出品商品ページへリダイレクトの処理を記載する
+      # redirect_to "/sell/edit/#{params.id}", data: {turbolinks: false}
+    end
+  end
+
+
   # //親カテゴリーが選択された後に動くアクション
   def get_category_children
     #選択された親カテゴリーに紐付く子カテゴリーの配列を取得（カテゴリ名で検索）
