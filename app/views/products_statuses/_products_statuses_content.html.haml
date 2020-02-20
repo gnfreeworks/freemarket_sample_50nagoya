@@ -46,7 +46,7 @@
             %th 出品者
             %td
               = link_to '#' do
-                = @buyer_name
+                = @seller_name
               %div 
                 .product-user-ratings
                   = icon("fas", "laugh",class: "icon-lauph")
@@ -97,8 +97,7 @@
           %tr
             %th 配送元地域
             %td
-              = link_to '#' do
-                = @area_name
+              = @area_name
           %tr
             %th 発送日の目安
             %td
@@ -112,7 +111,7 @@
         (税込)
       %span.product-price-box_shipping-fee
         送料込み
-    = link_to '#',class:"product-buy-btn" do
+    = link_to buy_products_statuses_path(@product_status.id), class:"product-buy-btn" do
       購入画面に進む
 
     .product-description.f14

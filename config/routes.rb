@@ -15,10 +15,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :products_statuses, only: :show
+  resources :products_statuses, only: :show do
+    collection do
+      get 'buy/:id' => 'products_statuses#buy', as: :buy
+    end
+  end
 
   get 'signup/show' => 'signup#show'
-  get 'products_buy' => 'products_statuses#buy'
 
   get 'sell' => 'sell#new'
   get 'sell/edit/:id' => 'sell#edit'
@@ -35,6 +38,14 @@ Rails.application.routes.draw do
       get 'get_brand', defaults: { format: 'json' }  #brandモデルにメソッド記載
     end
   end
+
+  # resources :transaction do
+  #   collection do
+  #     resources :buy, only: :show do
+
+  #     end
+  #   end
+  # end
 
   resources :mypage, only: :index do
     collection do
