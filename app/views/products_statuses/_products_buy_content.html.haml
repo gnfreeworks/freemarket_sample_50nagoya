@@ -5,7 +5,7 @@
       .buy-content-inner
         .buy-product-box
           %h3.buy-product-image
-            = image_tag 'm50773888918_1.jpg', class:"lazyloaded"
+            = image_tag "data:image/*;base64,#{@product_image[0]}", class:"lazyloaded"
           .buy-product-detail
             %p.buy-product-name
               = @product_name

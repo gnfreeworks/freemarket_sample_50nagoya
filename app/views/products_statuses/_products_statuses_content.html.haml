@@ -6,39 +6,16 @@
       .product-photo
         .owl-carousel.owl-loaded.owl-drag
           .owl-stage-outer
-            .owl-stage{style:"left:0px,width:2400px"}
-              .owl-product
-                .owl-product-inner.is-higher-height
-                  = image_tag 'm50773888918_1.jpg',class: "owl-lazy",alt:"ZUCCa キャンパススニーカー",style:"opacity :1;"
-          
-          .owl-nav
-            .owl-prev
-              prev
-            .owl-next
-              next
-              
+            .owl-stage{style:"left: 0px;"}
+              - @product_image.each do |image|
+                .owl-product{ style: 'width:300px'}
+                  .owl-product-inner.is-higher-width
+                    = image_tag "data:image/*;base64,#{image}",class: "owl-lazy",style:"opacity :1;"
           .owl-dots
-            .owl-dot
-              .owl-dot-inner
-                = image_tag 'm50773888918_1.jpg',class: "is-higher-height",height: "50"
-            .owl-dot
-              .owl-dot-inner
-                = image_tag 'm50773888918_2.jpg',class: "is-higher-height",height: "50"
-            .owl-dot
-              .owl-dot-inner
-                = image_tag 'm50773888918_3.jpg',class: "is-higher-height",height: "50"
-            .owl-dot
-              .owl-dot-inner
-                = image_tag 'm50773888918_4.jpg',class: "is-higher-height",height: "50"
-            .owl-dot
-              .owl-dot-inner
-                = image_tag 'm50773888918_5.jpg',class: "is-higher-height",height: "50"
-            .owl-dot
-              .owl-dot-inner
-                = image_tag 'm50773888918_6.jpg',class: "is-higher-height",height: "50"
-            .owl-dot
-              .owl-dot-inner
-                = image_tag 'm50773888918_7.jpg',class: "is-higher-height",height: "50"
+            - @product_image.each do |image|
+              .owl-dot
+                .owl-dot-inner
+                  = image_tag "data:image/*;base64,#{image}",class: "is-higher-width"
 
       %table.product-detail-table
         %tbody

@@ -8,6 +8,8 @@ class ProductsStatusesController < ApplicationController
   def show
     # 製品情報
     @product_status = ProductsStatus.find(params[:id])
+    # 製品画像
+    @product_image = base64image(@product_status)
 
     # 製品名
     @product_name = @product_status.product.name
@@ -67,6 +69,12 @@ class ProductsStatusesController < ApplicationController
   def buy
     # 製品情報
     @product_status = ProductsStatus.find(params[:id])
+    # 製品画像
+    @product_image = base64image(@product_status)
+    # 製品名
+    @product_name = @product_status.product.name
+    # 価格
+    @price = @product_status.product.price.to_s(:delimited)
 
     # 購入ユーザー情報
     @user = current_user
@@ -80,13 +88,34 @@ class ProductsStatusesController < ApplicationController
     @seller = User.find(@product_status.seller_id)
     @seller_name = @seller.nickname
 
-    # 製品名
-    @product_name = @product_status.product.name
-
-    # 価格
-    @price = @product_status.product.price.to_s(:delimited)
-
-
   end
-  
+
+
+  def base64image(product)
+    # product_imagse.urlをバイナリーデータにしてビューで表示できるようにする
+    require 'base64'
+    require 'aws-sdk'
+
+    product_images_binary_datas = []
+
+    if Rails.env.production?
+      client = Aws::S3::Client.new(
+                              region: 'ap-northeast-1',
+                              access_key_id: Rails.application.secrets[:aws_access_key_id],
+                              secret_access_key: Rails.application.secrets[:aws_secret_access_key],
+                              )
+      product.each do |product|
+        binary_data = client.get_object(bucket: 'upload-freemarket', key: product.product.product_images[0].url.file.path).body.read
+        product_images_binary_datas << Base64.strict_encode64(binary_data)
+      end
+      return product_images_binary_datas
+    else
+      product.product.product_images.each do |product|
+        binary_data = File.read(product.url.file.file)
+        product_images_binary_datas << Base64.strict_encode64(binary_data)
+      end
+      return product_images_binary_datas
+    end
+  end
+
 end
