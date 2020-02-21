@@ -28,7 +28,11 @@ class ProductsStatusesController < ApplicationController
 
     # ブランド
     brand_id = @product_status.product.brand
-    @brand_name = Brand.find(brand_id).name
+    if brand_id == ""
+      @brand_name = ""
+    else
+      @brand_name = Brand.find(brand_id).name
+    end
 
     # 商品サイズ
     @size_name = @product_status.product.size.name
