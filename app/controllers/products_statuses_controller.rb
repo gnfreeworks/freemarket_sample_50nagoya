@@ -104,7 +104,8 @@ class ProductsStatusesController < ApplicationController
                               access_key_id: Rails.application.secrets[:aws_access_key_id],
                               secret_access_key: Rails.application.secrets[:aws_secret_access_key],
                               )
-      product.each do |product|
+      # product.each do |product|
+      product.product.product_images.each do |product|
         binary_data = client.get_object(bucket: 'upload-freemarket', key: product.product.product_images[0].url.file.path).body.read
         product_images_binary_datas << Base64.strict_encode64(binary_data)
       end
