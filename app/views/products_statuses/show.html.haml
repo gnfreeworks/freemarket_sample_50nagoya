@@ -1,5 +1,10 @@
 = render partial: 'common/global_header'
 %nav.bread-crumbs
+
+/* CDN : slick(スライダー用) */
+%link{rel: "stylesheet", type:"text/css", href: "//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"}
+%script{type: "text/javascript", src: "//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"}
+
 %main.l-container.clearfix
   = render partial: 'products_statuses_content'
 = render partial: 'common/global_pc_banner'

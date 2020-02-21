@@ -52,27 +52,35 @@ ul, ol {
   }
 
   &-content {
-    margin: 40px 0 0;
     padding: 24px 12.5% 0;
     border-top: 1px solid #f5f5f5;
+    @media screen and (min-width: 768px){
+      padding: 32px 16px;
+    }
   }
 
   &-content:last-of-type {
-    padding: 24px 12.5% 40px;
+    padding-bottom: 48px;
   }
   
   &-content-inner {
-    max-width: 320px;
+    max-width: 343px;
     margin: 0 auto;
   }
 
   &-product {
     text-align: center;
 
-    .buy-content-inner {
-      display: flex;
-      flex-wrap: wrap;
-    }
+    // .buy-content-inner {
+    //   display: flex;
+    //   flex-wrap: wrap;
+    // }
+  }
+
+  &-product-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
 
   &-product img {
@@ -80,9 +88,15 @@ ul, ol {
     height: 64px;
   }
 
+  &-product-detail {
+    margin-left: 16px;
+  }
+
   &-product-name{
-    width: calc(100% - 80px);
-    margin: 0 0 0 16px;
+    font-size: 14px;
+    margin: 0;
+    padding: 0 0 8px;
+    line-height: 1.5;
     text-align: left;
   }
 
@@ -97,13 +111,11 @@ ul, ol {
 
   &-price {
     &-ja {
-      margin: 16px 0 0;
-      font-size: 22px;
+      margin: 0;
+      text-align: left;
       
       .product-shipping-fee {
-        margin: 0 0 0 8px;
-        font-size: 14px;
-        font-weight: 400;
+        font-size: 12px;
       }
     }
 
@@ -122,7 +134,7 @@ ul, ol {
       font-size: 28px;
     }
 
-    &-table {
+    &-table:first-child {
       display: table;
       border-collapse: collapse;
       width: 100%;
@@ -136,7 +148,7 @@ ul, ol {
   &-you-pay {
     font-size: 16px;
     @media screen and (min-width: 768px) {
-      font-size: 18px;    
+      font-size: 18px;
     }
   }
 
@@ -144,16 +156,18 @@ ul, ol {
     &-info {
       -webkit-transition: all ease-out .3s;
       transition: all ease-out .3s;
-
-      h3:first-child {
-        margin: 0;
+      @media screen and (min-width: 768px){
+        padding: 32px 0;
       }
 
       h3 {
-        margin: 40px 0 0;
+        margin: 0;
         font-size: 14px;
-        font-weight: bold;
       }
+    }
+
+    &-info:last-of-type {
+      padding-bottom: 0;
     }
 
     &-info-text {
@@ -191,4 +205,15 @@ img {
 
 h3 {
   font-size: 22px;
+}
+
+.btn-red {
+  background-color: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff;
+  margin: 0;
+}
+
+.buy-card-logo {
+  margin-top: 8px;
 }
