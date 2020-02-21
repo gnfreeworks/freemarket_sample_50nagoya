@@ -1,7 +1,7 @@
 = product.zip(image) do |product, image|
   %li.product__inner
     .product__content
-      = link_to products_status_path(product.product.id), class: 'product__box' do
+      = link_to products_status_path(product.product.id), class: 'product__box', data:{turbolinks: false} do
         %figure.product__figure
           %figcaption
             %span.product__title
