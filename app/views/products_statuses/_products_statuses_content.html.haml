@@ -88,34 +88,79 @@
         (税込)
       %span.product-price-box_shipping-fee
         送料込み
-    = link_to buy_products_statuses_path(@product_status.id), class:"product-buy-btn" do
-      購入画面に進む
+    - if current_user.id != @seller.id
+      = link_to buy_products_statuses_path(@product_status.id), class:"product-buy-btn" do
+        購入画面に進む
 
     .product-description.f14
       %p.product-description-inner
         = @description
-      .product-button-container.clearfix
-        .product-button-left
-          %button{class:"product-button product-button-like"}
-            = icon("far fa-heart","heart",class:"icon-like")
-            %span{class:"product-button-container span"} いいね！
-          = link_to '#',class:"product-button product-button-report" do
-            = icon("far fa-flag","flag")
-            %span{class:"product-button-container span"} 不適切な商品の報告
-        .product-button-right
-          = link_to '#',class:"item-button-container a" do
-            = icon("fas fa-lock","lock")
-            %span{class:"product-button-container span"} あんしん・あんぜんへの取り組み
+      
+      - if current_user == @seller.id
+        .product-button-container.clearfix
+          .product-button-left
+            %button{class:"product-button product-button-like"}
+              = icon("far fa-heart","heart",class:"icon-like")
+              %span{class:"product-button-container span"} いいね！
+            = link_to '#',class:"product-button product-button-report" do
+              = icon("far fa-flag","flag")
+              %span{class:"product-button-container span"} 不適切な商品の報告
+          .product-button-right
+            = link_to '#',class:"item-button-container a" do
+              = icon("fas fa-lock","lock")
+              %span{class:"product-button-container span"} あんしん・あんぜんへの取り組み
 
-  .product-detail-message
-    .message-container
-      .message-content
-        %form{class:"message-form",method:"POST"}
-          %p
-            相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          %textarea{type:"text",name:"body",class:"textarea-default"}
-          %button{type:"submit",class:"message-submit btn-default btn-gray"}
-            コメントする
+  - if current_user.id == @seller.id
+    .l-single-container
+      .listing-product-change-box
+        = link_to "商品の編集",sell_edit_path(@product_status.id), class:"btn-default btn-red"
+        %p.text-center or
+        - if @product_status.selling_status == 0
+          = form_for(@product_status, url: pause_sell_products_statuses_path, method: :post) do |f|
+            = f.hidden_field :product_id, value: @product_status.id
+            = f.submit "出品を一旦停止する", class:"btn-default btn-gray"
+        - elsif @product_status.selling_status == 9
+          = form_for(@product_status, url: resume_sell_products_statuses_path, method: :post) do |f|
+            = f.hidden_field :product_id, value: @product_status.id
+            = f.submit "出品を再開する", class:"btn-default btn-red"
+        %button#modal-open-btn.btn-default.btn-gray この商品を削除する
+        = link_to "", "#{@product_status.id}",method: :delete, id:'item-delete-btn'
+        #overlay
+          #modalWindow
+            .modal-message-box
+              .modal-head.bold 確認
+              %div 削除すると二度と復活できません。<br>削除する代わりに停止することもできます。<br><br>本当に削除しますか？
+            %button#modal-close-btn キャンセル
+            %button#delete-comformation-btn 削除する
+            -#   %p 確認
+            -#   %p 削除すると二度と復活できません。
+            -#   %p 削除する代わりに停止することもできます。
+            -#   %p 本当に削除しますか？
+            -# %button#modal-close-btn キャンセル
+            -# %button#delete-comformation-btn 削除する
+
+    .product-detail-message
+      .message-container
+        .message-content
+          %form{class:"message-form",method:"POST"}
+            %p
+              相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+            %textarea{type:"text",name:"body",class:"textarea-default"}
+            %button{type:"submit",class:"message-submit btn-default btn-gray"}
+              コメントする
+
+  - else
+    .product-detail-message
+      .message-container
+        /*.message-content
+        /*message一覧表示*/
+        .message-content
+          %form{class:"message-form",method:"POST"}
+            %p
+              相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+            %textarea{type:"text",name:"body",class:"textarea-default"}
+            %button{type:"submit",class:"message-submit btn-default btn-gray"}
+              コメントする
 
   %ul.nav-product-link-prev-next.clearfix
     %li.nav-product-link-prev
@@ -146,5 +191,3 @@
   
   .products-in-user-profile
     //この出品者の他の商品を表示
-
-  
