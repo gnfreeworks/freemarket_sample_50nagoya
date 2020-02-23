@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   belongs_to :size
   belongs_to :category
   belongs_to :view_categories
-  has_many   :products_statuses, dependent: :destroy
+  has_many   :products_statuses
   has_many   :product_images, dependent: :destroy
   accepts_nested_attributes_for :product_images
   
