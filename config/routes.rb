@@ -15,8 +15,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :products_statuses, only: :show do
+  resources :products_statuses, only: [:show, :destroy] do
     collection do
+      post 'resume_sell'
+      post 'pause_sell'
       get 'buy/:id' => 'products_statuses#buy', as: :buy
     end
   end
@@ -24,7 +26,7 @@ Rails.application.routes.draw do
   get 'signup/show' => 'signup#show'
 
   get 'sell' => 'sell#new'
-  get 'sell/edit/:id' => 'sell#edit'
+  get 'sell/edit/:id' => 'sell#edit', as: :sell_edit
   patch 'sell/edit/:id' => 'sell#update'
   # delete 'sell/:id' => 'sell#destroy'
 
