@@ -70,6 +70,45 @@ class ProductsStatusesController < ApplicationController
 
   end
 
+  def resume_sell
+  # 出品再開処理
+    @product_status = ProductsStatus.find(params[:products_status][:product_id])
+      @product_status.selling_status = 0  #出品中へ変更
+    if @product_status.save
+      flash[:notice] = '出品の再開をしました'
+      redirect_to products_status_path(@product_status.id)
+      # redirect_back(fallback_location: root_path)
+    else
+      flash[:alert] = '該当の商品がみつかりませんでした'
+      redirect_to root_path
+    end
+  end
+
+  def pause_sell
+  # 出品一時停止処理(公開停止)
+    @product_status = ProductsStatus.find(params[:products_status][:product_id])
+      @product_status.selling_status = 9  #一時停止へ変更
+    if @product_status.save
+      flash[:notice] = '出品の一時停止をしました'
+      redirect_to products_status_path(@product_status.id)
+      # redirect_back(fallback_location: root_path)
+    else
+      flash[:alert] = '該当の商品がみつかりませんでした'
+      redirect_to root_path
+    end
+  end
+
+  def destroy
+    @product_status = ProductsStatus.find(params[:id])
+    if @product_status.destroy 
+      flash[:notice] = '商品を削除しました'
+      redirect_to root_path
+    else
+      flash[:alert] = '商品の削除ができませんでした'
+      redirect_to root_path
+    end
+  end
+
   def buy
     # 製品情報
     @product_status = ProductsStatus.find(params[:id])

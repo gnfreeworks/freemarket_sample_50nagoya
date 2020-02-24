@@ -614,7 +614,114 @@ ul,ol {
   }
 }
 
-// slick
+
+.listing-product-change-box {
+  margin: 24px 0 24px 0;
+  background: #fff;
+  padding: 8px 16px 8px 16px;
+}
+
+
+// ボタン
+.btn-red {
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff;
+}
+
+.btn-default {
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  -webkit-transition: all ease-out .3s;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
+}
+
+.listing-product-change-box .btn-default {
+  margin: 16px 0 16px 0;
+}
+
+// 削除用モーダルウィンドウCSS
+#overlay {
+  //モーダルウィンドウの背景を設定
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  
+  //透過度をつける
+  background: rgba(0, 0, 0, 0.3);
+  display: none;
+  z-index: 1;
+}
+
+#modalWindow {
+  // モーダルウィンドウの画面を設定(高さ・幅は調整ください)
+  width: 650px;
+  height: 235px;
+  position: absolute;
+  
+  //トップからの場所を指定（topをいじれば高さが調整できます）
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  z-index: 2;
+  
+  //flexboxで子要素のボタンとメッセージボックスの要素を配置する
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .modal-message-box {
+    padding: 64px;
+    line-height: 1.5;
+    text-align: center;
+    width: 100%;
+    
+    //下記heightの60pxはボタンの高さで、それを画面の大きさから引いています。
+    height: calc(100% - 127px);
+    text-align: center;
+    
+    //flexboxで文字の配置を決める（縦方向、中央揃え）
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .modal-head bold {
+      font-weight: bold;
+    }
+  }
+
+  #modal-close-btn {
+    width: 50%;
+    height: 60px;
+    font-size: 14px;
+  }
+
+  #delete-comformation-btn {
+    width: calc(50% - 1px);
+    height: 60px;
+    font-size: 14px;
+  }
+}
+
+.item-delete-btn {
+  //削除ボタンの非表示
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+
+// slick (画像スライダー)
 .slick-list {
   height: 300px;
 }

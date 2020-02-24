@@ -1,6 +1,5 @@
 /* slick スライダー */
 $(document).on('ready turbolinks:load', function() {
-// $(function(){
   //始めにactionを追加
   $('.owl-dots .owl-dot:first-child').addClass('active');
   $('.owl-dots .owl-dot:first-child').css({'opacity':'1','pointer':'default'});
@@ -45,4 +44,20 @@ $(document).on('ready turbolinks:load', function() {
   if($('.owl-dot').length <= 1) {
     $('.owl-dot').css({'display':'none'});
   }
+});
+
+
+
+/* 削除用モーダルウィンドウ*/
+$(document).on('ready turbolinks:load', function(e) {
+  let modal_open = document.getElementById("modal-open-btn");
+  modal_open.onclick = function () {
+    $('#overlay').fadeIn();
+    document.getElementById('modal-close-btn').onclick = function () {
+      $('#overlay').fadeOut();
+    };
+    document.getElementById("delete-comformation-btn").onclick = function () {
+      document.getElementById("item-delete-btn").click();
+    };
+  };
 });
