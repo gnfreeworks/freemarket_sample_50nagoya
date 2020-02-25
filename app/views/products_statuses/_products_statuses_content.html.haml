@@ -17,6 +17,14 @@
                 .owl-dot-inner
                   = image_tag "data:image/*;base64,#{image}",class: "is-higher-width"
 
+        - if @product_status.selling_status == 1
+          .product-stop-badge_sold
+            %div SOLD
+        - if current_user.id == @seller.id && @product_status.selling_status == 9        
+          .product-stop-badge_pause
+            %div 公開停止中
+
+
       %table.product-detail-table
         %tbody
           %tr
@@ -88,9 +96,14 @@
         (税込)
       %span.product-price-box_shipping-fee
         送料込み
-    - if current_user.id != @seller.id
+
+
+    - if current_user.id != @seller.id && @product_status.selling_status == 0
       = link_to buy_products_statuses_path(@product_status.id), class:"product-buy-btn" do
         購入画面に進む
+    - if current_user.id != @seller.id && @product_status.selling_status == 1
+      %button.product-buy-btn-sold 売り切れました
+
 
     .product-description.f14
       %p.product-description-inner

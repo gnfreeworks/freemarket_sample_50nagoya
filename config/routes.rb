@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       post 'resume_sell'
       post 'pause_sell'
       get 'buy/:id' => 'products_statuses#buy', as: :buy
+      get 'buy_confirm/:id' => 'products_statuses#buy_confirm', as: :buy_confirm
     end
   end
 
@@ -28,7 +29,6 @@ Rails.application.routes.draw do
   get 'sell' => 'sell#new'
   get 'sell/edit/:id' => 'sell#edit', as: :sell_edit
   patch 'sell/edit/:id' => 'sell#update'
-  # delete 'sell/:id' => 'sell#destroy'
 
   resources :sell, only: [:create,:destroy] do
     collection do
@@ -40,14 +40,6 @@ Rails.application.routes.draw do
       get 'get_brand', defaults: { format: 'json' }  #brandモデルにメソッド記載
     end
   end
-
-  # resources :transaction do
-  #   collection do
-  #     resources :buy, only: :show do
-
-  #     end
-  #   end
-  # end
 
   resources :mypage, only: :index do
     collection do
