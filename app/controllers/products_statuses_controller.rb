@@ -77,7 +77,6 @@ class ProductsStatusesController < ApplicationController
     if @product_status.save
       flash[:notice] = '出品の再開をしました'
       redirect_to products_status_path(@product_status.id)
-      # redirect_back(fallback_location: root_path)
     else
       flash[:alert] = '該当の商品がみつかりませんでした'
       redirect_to root_path
@@ -121,10 +120,13 @@ class ProductsStatusesController < ApplicationController
 
     # 購入ユーザー情報
     @user = current_user
-    @credit_card = @user.payment_method
-    @credit_card_number = @credit_card.card_number.gsub(/\d(?=(\D*\d){4})/, '*')
-    @credit_card_expiration_date_year = @credit_card.expiration_date.strftime("%Y")[-2,2]
-    @credit_card_expiration_date_month = @credit_card.expiration_date.strftime("%m")
+    if @user.payment_method
+      @credit_card = @user.payment_method
+      @credit_card_number = @credit_card.card_number.gsub(/\d(?=(\D*\d){4})/, '*')
+      @credit_card_expiration_date_year = @credit_card.expiration_date.strftime("%Y")[-2,2]
+      @credit_card_expiration_date_month = @credit_card.expiration_date.strftime("%m")
+    end
+
     # @address_zipcode = @address_zipcode.to_s.insert(3, '-')
     
     # 販売ユーザー情報
