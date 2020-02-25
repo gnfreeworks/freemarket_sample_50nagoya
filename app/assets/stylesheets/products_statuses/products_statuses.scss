@@ -299,6 +299,28 @@ h1.product-name {
       font-size: 24px;
       line-height: 60px;
     }
+
+    &-sold {
+      background: #888;
+    }
+  }
+
+  &-buy-btn-sold {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    background:  #888;
+    font-size: 14px;
+    color: #fff;
+    line-height: 56;
+    text-align: center;
+    font-weight: 600;
+    text-decoration: none;
+
+    @media screen and (min-width: 768px){
+      font-size: 24px;
+      line-height: 60px;
+    }
   }
 
   &-description {
@@ -719,6 +741,57 @@ ul,ol {
   padding: 0;
   border: 0;
 }
+
+/* 出品状態バッヂ */
+//出品停止中
+.product-stop-badge_pause {
+  position: absolute;
+  top: 0px;
+
+  border-width: 120px 120px 0 0;
+  border-color: #888 transparent transparent transparent;
+  z-index:1;
+
+  div {
+    position: absolute;
+    height: 0px;
+    width: 130px;
+    top: -90px;
+    left: -15px;
+    font-size: 18px;
+    z-index: 200;
+    color: #fff;
+    -webkit-transform: rotate(-45deg);
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+}
+
+//SOLD
+.product-stop-badge_sold {
+  position: absolute;
+  top: 0px;
+
+  border-width: 120px 120px 0 0;
+  border-color: #ea352d transparent transparent transparent;
+  z-index:1;
+
+  div {
+    position: absolute;
+    height: 0px;
+    width: 130px;
+    top: -105px;
+    left: -11px;
+    font-size: 24px;
+    z-index: 200;
+    color: #fff;
+    -webkit-transform: rotate(-45deg);
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+}
+
+
 
 
 // slick (画像スライダー)

@@ -125,10 +125,9 @@ class SellController < ApplicationController
           @product.product_images.create(url: image, product_id: @product.id)
         end
       end
-
+      
       flash[:notice] = '編集が完了しました'
-      # TODO: 後で出品商品ページへリダイレクトの処理を記載する
-      # redirect_to "/sell/edit/#{params.id}", data: {turbolinks: false}
+      redirect_to products_status_path(params[:id])
 
     else
       flash[:alert] = '未入力項目があります'
