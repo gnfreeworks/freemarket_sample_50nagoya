@@ -66,6 +66,14 @@ class ProductsStatusesController < ApplicationController
     # 価格
     @price = @product_status.product.price.to_s(:delimited)
 
+    # 送料表示
+    if @product_status.product.shipping_charge.id == 1
+      @shipping_charge_name = "送料込み"
+    elsif @product_status.product.shipping_charge.id == 2
+      @shipping_charge_name = "着払い"
+    end
+
+    # 商品説明
     @description = @product_status.product.description
 
   end
@@ -117,6 +125,12 @@ class ProductsStatusesController < ApplicationController
     @product_name = @product_status.product.name
     # 価格
     @price = @product_status.product.price.to_s(:delimited)
+    # 送料表示
+    if @product_status.product.shipping_charge.id == 1
+      @shipping_charge_name = "送料込み"
+    elsif @product_status.product.shipping_charge.id == 2
+      @shipping_charge_name = "着払い"
+    end
 
     # 購入ユーザー情報
     @user = current_user
@@ -135,15 +149,23 @@ class ProductsStatusesController < ApplicationController
   def buy_confirm
     # 製品情報
     @product_status = ProductsStatus.find(params[:id])
+
     # 製品画像
     @product_image = base64image(@product_status)
     # 製品名
     @product_name = @product_status.product.name
     # 価格
     @price = @product_status.product.price.to_s(:delimited)
-
+    # 送料表示
+    if @product_status.product.shipping_charge.id == 1
+      @shipping_charge_name = "送料込み"
+    elsif @product_status.product.shipping_charge.id == 2
+      @shipping_charge_name = "着払い"
+    end
+    
     @product_status = ProductsStatus.find(params[:id])
       @product_status.selling_status = 1  #SOLDへ変更
+      @product_status.buyer_id = current_user.id
     unless @product_status.save
       flash[:alert] = '該当の商品がみつかりませんでした'
       redirect_to root_path

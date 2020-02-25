@@ -95,7 +95,7 @@
       %span.product-price-box_tax
         (税込)
       %span.product-price-box_shipping-fee
-        送料込み
+        = @shipping_charge_name
 
 
     - if current_user.id != @seller.id && @product_status.selling_status == 0

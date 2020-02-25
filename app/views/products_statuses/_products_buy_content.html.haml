@@ -12,7 +12,8 @@
             %p.buy-price-ja.bold
               %span
                 = '¥' + @price
-              %span.product-shipping-fee （税込）送料込み
+              %span.product-shipping-fee
+                = ' （税込）' + @shipping_charge_name
 
     %section.buy-content.buy-item
       .buy-content-inner
