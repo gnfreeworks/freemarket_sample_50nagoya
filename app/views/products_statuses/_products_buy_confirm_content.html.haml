@@ -1,0 +1,22 @@
+.main_product_buy_container
+  .buy-product-container.l-single-container
+    .buy-message
+      .buy-message-main 発送をお待ち下さい
+      .buy-message-content  出品者からの発送通知をお待ちください
+    
+    .buy-status
+      %h2.buy-status-message  購入が完了しました
+
+    .buy-content-main
+      .buy-content-main-box
+        .buy-content-main-box-image
+          = image_tag "data:image/*;base64,#{@product_image[0]}",class:"confirm-image"
+        .buy-content-main-box-detail
+          %p.buy-content-main-box-name
+            = @product_name
+    
+    .buy-confirm-pricebox
+      %p.buy-confirm-pricebox-price
+        %span
+          = '¥' + @price
+        = @shipping_charge_name
