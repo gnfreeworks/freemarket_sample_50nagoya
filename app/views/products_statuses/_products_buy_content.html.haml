@@ -12,7 +12,8 @@
             %p.buy-price-ja.bold
               %span
                 = '¥' + @price
-              %span.product-shipping-fee （税込）送料込み
+              %span.product-shipping-fee
+                = ' （税込）' + @shipping_charge_name
 
     %section.buy-content.buy-item
       .buy-content-inner
@@ -65,5 +66,5 @@
                 %p.buy-user-info-text
 
             %section.buy-content.buy-user-info
-              %button.btn-default.btn-red.bold
+              = link_to buy_confirm_products_statuses_path(@product_status.id), class:"product-buy-btn" do
                 購入する

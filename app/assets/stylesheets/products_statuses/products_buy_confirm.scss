@@ -1,0 +1,46 @@
+.buy-message {
+  padding: 32px 16px;
+  text-align: center;
+  background-color: #fdf5e6;
+
+  &-main {
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 30px;
+  }
+
+}
+
+.buy-status {
+  &-message {
+    font-size: 19px;
+    font-weight: bold;
+    text-align: center;
+    padding: 42px 16px;
+  }
+}
+
+.buy-content-main {
+  border-top: 1px solid #f5f5f5;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 50px;
+  &-box {
+    text-align: center;
+  
+    &-name{
+      margin-top: 20px;
+    }
+
+  }
+}
+
+.buy-confirm-pricebox {
+  padding: 32px 16px;
+}
+
+.buy-confirm-pricebox-price{
+  text-align:center;
+  padding: 20px;
+  font-size: 17px;
+}
