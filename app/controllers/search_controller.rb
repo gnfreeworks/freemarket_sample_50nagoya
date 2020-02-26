@@ -4,28 +4,28 @@ class SearchController < ApplicationController
 
   def index
     # レディース
-    @ladies_products = ProductsStatus.where("category_parent_id = 1 and buyer_id IS NULL and selling_status = 0").order(created_at: :desc).limit(10)
+    @ladies_products = ProductsStatus.where(category_parent_id: 1, buyer_id: nil, selling_status: 0).order(created_at: :desc).limit(10)
     @ladies_products_images = base64image(@ladies_products)
 
     # メンズ
-    @mens_products = ProductsStatus.where("category_parent_id = 219 and buyer_id IS NULL and selling_status = 0").order(created_at: :desc).limit(10)
+    @mens_products = ProductsStatus.where(category_parent_id: 219, buyer_id: nil, selling_status: 0).order(created_at: :desc).limit(10)
     @mens_products_images = base64image(@mens_products)
     
     # 家電・スマホ・カメラ
-    @goods_products = ProductsStatus.where("category_parent_id = 983 and buyer_id IS NULL and selling_status = 0").order(created_at: :desc).limit(10)
+    @goods_products = ProductsStatus.where(category_parent_id: 983, buyer_id: nil, selling_status: 0).order(created_at: :desc).limit(10)
     @goods_products_images = base64image(@goods_products)
     
     # おもちゃ・ホビー・グッズ
-    @toy_products = ProductsStatus.where("category_parent_id = 748 and buyer_id IS NULL and selling_status = 0").order(created_at: :desc).limit(10)
+    @toy_products = ProductsStatus.where(category_parent_id: 748, buyer_id: nil, selling_status: 0).order(created_at: :desc).limit(10)
     @toy_products_images = base64image(@toy_products)
     
     # ブランド
       # シャネル
-    @chanel_products = ProductsStatus.where("brand_id = 2446 and buyer_id IS NULL and selling_status = 0").order(created_at: :desc).limit(10)
+    @chanel_products = ProductsStatus.where(brand_id: 2446, buyer_id: nil, selling_status: 0).order(created_at: :desc).limit(10)
     @chanel_products_images = base64image(@chanel_products)
     
     # ヴィトン
-    @lv_products = ProductsStatus.where("brand_id = 6154 and buyer_id IS NULL and selling_status = 0").order(created_at: :desc).limit(10)
+    @lv_products = ProductsStatus.where(brand_id: 6154, buyer_id: nil, selling_status: 0).order(created_at: :desc).limit(10)
     @lv_products_images = base64image(@lv_products)
   end
 
