@@ -585,7 +585,7 @@ $(function(){
                               <h3 class="modal-head">出品が完了しました</h3>
                               <div class="sell-modal-body">
                                 あなたが出品した商品は「出品した商品一覧」からいつでも見ることができます。
-                                <a class="btn-default btn-red" href="./" data-turbolinks="false">続けて出品する</a>
+                                <a class="btn-default btn-red" href="sell" data-turbolinks="false">続けて出品する</a>
                                 <p class="text-center">
                                   <a href="./">商品ページへ言ってシェアする</a>
                                 </p>
