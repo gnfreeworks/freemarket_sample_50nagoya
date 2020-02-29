@@ -20,9 +20,10 @@
         - if @product_status.selling_status == 1
           .product-stop-badge_sold
             %div SOLD
-        - if current_user.id == @seller.id && @product_status.selling_status == 9        
-          .product-stop-badge_pause
-            %div 公開停止中
+        - if current_user
+          - if current_user.id == @seller.id && @product_status.selling_status == 9
+            .product-stop-badge_pause
+              %div 公開停止中
 
 
       %table.product-detail-table
@@ -97,12 +98,16 @@
       %span.product-price-box_shipping-fee
         = @shipping_charge_name
 
+    - if current_user
+      - if current_user.id != @seller.id && @product_status.selling_status == 0
+        = link_to buy_products_statuses_path(@product_status.id), class:"product-buy-btn" do
+          購入画面に進む
+      - if current_user.id != @seller.id && @product_status.selling_status == 1
+        %button.product-buy-btn-sold 売り切れました
 
-    - if current_user.id != @seller.id && @product_status.selling_status == 0
-      = link_to buy_products_statuses_path(@product_status.id), class:"product-buy-btn" do
+    - else
+      = link_to user_session_path, class:"product-buy-btn" do
         購入画面に進む
-    - if current_user.id != @seller.id && @product_status.selling_status == 1
-      %button.product-buy-btn-sold 売り切れました
 
 
     .product-description.f14
@@ -123,51 +128,52 @@
               = icon("fas fa-lock","lock")
               %span{class:"product-button-container span"} あんしん・あんぜんへの取り組み
 
-  - if current_user.id == @seller.id
-    .l-single-container
-      .listing-product-change-box
-        = link_to "商品の編集",sell_edit_path(@product_status.id), class:"btn-default btn-red"
-        %p.text-center or
-        - if @product_status.selling_status == 0
-          = form_for(@product_status, url: pause_sell_products_statuses_path, method: :post) do |f|
-            = f.hidden_field :product_id, value: @product_status.id
-            = f.submit "出品を一旦停止する", class:"btn-default btn-gray"
-        - elsif @product_status.selling_status == 9
-          = form_for(@product_status, url: resume_sell_products_statuses_path, method: :post) do |f|
-            = f.hidden_field :product_id, value: @product_status.id
-            = f.submit "出品を再開する", class:"btn-default btn-red"
-        %button#modal-open-btn.btn-default.btn-gray この商品を削除する
-        = link_to "", "#{@product_status.id}",method: :delete, id:'item-delete-btn'
-        #overlay
-          #modalWindow
-            .modal-message-box
-              .modal-head.bold 確認
-              %div 削除すると二度と復活できません。<br>削除する代わりに停止することもできます。<br><br>本当に削除しますか？
-            %button#modal-close-btn キャンセル
-            %button#delete-comformation-btn 削除する
+  - if current_user
+    - if current_user.id == @seller.id
+      .l-single-container
+        .listing-product-change-box
+          = link_to "商品の編集",sell_edit_path(@product_status.id), class:"btn-default btn-red"
+          %p.text-center or
+          - if @product_status.selling_status == 0
+            = form_for(@product_status, url: pause_sell_products_statuses_path, method: :post) do |f|
+              = f.hidden_field :product_id, value: @product_status.id
+              = f.submit "出品を一旦停止する", class:"btn-default btn-gray"
+          - elsif @product_status.selling_status == 9
+            = form_for(@product_status, url: resume_sell_products_statuses_path, method: :post) do |f|
+              = f.hidden_field :product_id, value: @product_status.id
+              = f.submit "出品を再開する", class:"btn-default btn-red"
+          %button#modal-open-btn.btn-default.btn-gray この商品を削除する
+          = link_to "", "#{@product_status.id}",method: :delete, id:'item-delete-btn'
+          #overlay
+            #modalWindow
+              .modal-message-box
+                .modal-head.bold 確認
+                %div 削除すると二度と復活できません。<br>削除する代わりに停止することもできます。<br><br>本当に削除しますか？
+              %button#modal-close-btn キャンセル
+              %button#delete-comformation-btn 削除する
 
-    .product-detail-message
-      .message-container
-        .message-content
-          %form{class:"message-form",method:"POST"}
-            %p
-              相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-            %textarea{type:"text",name:"body",class:"textarea-default"}
-            %button{type:"submit",class:"message-submit btn-default btn-gray"}
-              コメントする
+      .product-detail-message
+        .message-container
+          .message-content
+            %form{class:"message-form",method:"POST"}
+              %p
+                相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              %textarea{type:"text",name:"body",class:"textarea-default"}
+              %button{type:"submit",class:"message-submit btn-default btn-gray"}
+                コメントする
 
-  - else
-    .product-detail-message
-      .message-container
-        /*.message-content
-        /*message一覧表示*/
-        .message-content
-          %form{class:"message-form",method:"POST"}
-            %p
-              相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-            %textarea{type:"text",name:"body",class:"textarea-default"}
-            %button{type:"submit",class:"message-submit btn-default btn-gray"}
-              コメントする
+    - else
+      .product-detail-message
+        .message-container
+          /*.message-content
+          /*message一覧表示*/
+          .message-content
+            %form{class:"message-form",method:"POST"}
+              %p
+                相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              %textarea{type:"text",name:"body",class:"textarea-default"}
+              %button{type:"submit",class:"message-submit btn-default btn-gray"}
+                コメントする
 
   %ul.nav-product-link-prev-next.clearfix
     %li.nav-product-link-prev
