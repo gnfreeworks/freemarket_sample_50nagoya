@@ -1,4 +1,8 @@
 = render partial: 'common/global_header'
+
+- breadcrumb :profile
+= render "layouts/breadcrumbs"
+
 %nav.bread-crumbs
 %main.l-container.clearfix
   = render partial: 'profile_content'
