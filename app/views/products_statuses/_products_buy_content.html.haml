@@ -47,24 +47,38 @@
                   .clearfix
                     %h3.l-left 支払い方法
                   = link_to cardcreate_mypage_index_path do
-                    .buy-user-info-text
+                    .buy-user-info-text-link
                       登録してください
 
 
-            %section.buy-content.buy-user-info
-              .buy-content-inner
-                .clearfix
-                  %h3.l-left 配送先
-                  = link_to '#',class:"buy-user-info-fix" do
-                    変更する
-                %address.buy-user-info-text
-                  = "〒#{@user.address_zipcode.to_s.insert(3, '-')}"
-                  %br
-                  = "#{@user.address_prefecture} #{@user.address_city} #{@user.address_block} #{@user.address_building}"
-                  %br
-                  = "#{@user.address_first_name + @user.address_last_name}"
-                %p.buy-user-info-text
+            - if @user.address_zipcode && @user.address_prefecture && @user.address_city && @user.address_block && @user.address_first_name && @user.address_last_name
+              %section.buy-content.buy-user-info
+                .buy-content-inner
+                  .clearfix
+                    %h3.l-left 配送先
+                    = link_to '#',class:"buy-user-info-fix" do
+                      変更する
+                  %address.buy-user-info-text
+                    = "〒#{@user.address_zipcode.to_s.insert(3, '-')}"
+                    %br
+                    = "#{@user.address_prefecture} #{@user.address_city} #{@user.address_block} #{@user.address_building}"
+                    %br
+                    = "#{@user.address_first_name + @user.address_last_name}"
+                  %p.buy-user-info-text
+
+            - else
+              %section.buy-content.buy-user-info
+                .buy-content-inner
+                  .clearfix
+                    %h3.l-left 配送先
+                  = link_to '#' do
+                    .buy-user-info-text-link
+                      登録してください
+
+
 
             %section.buy-content.buy-user-info
-              = link_to buy_confirm_products_statuses_path(@product_status.id), class:"product-buy-btn" do
+              = link_to 'javascript:void(0)', class:"product-buy-btn", id:"submitflag" do
                 購入する
+              -# = link_to buy_confirm_products_statuses_path(@product_status.id), class:"product-buy-btn" do
+              -#   購入する
