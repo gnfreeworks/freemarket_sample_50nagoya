@@ -176,10 +176,19 @@ ul, ol {
       line-height: 1.4;
     }
 
+    &-info-text-link {
+      margin: 8px 0 0;
+      font-size: 14px;
+      line-height: 1.4;
+      color: #0099e8;
+    }
+
     &-info-fix {
       display: block;
       text-align: right;
+      color: #0099e8;
     }
+
   }
 }
 
@@ -216,4 +225,40 @@ h3 {
 
 .buy-card-logo {
   margin-top: 8px;
+}
+
+
+
+.product-buy-btn {
+  display: block;
+  margin-top: 16px;
+  background: #ea352d;
+  font-size: 14px;
+  color: #fff;
+  line-height: 56;
+  text-align: center;
+  font-weight: 600;
+  text-decoration: none;
+
+  @media screen and (min-width: 768px){
+    font-size: 24px;
+    line-height: 60px;
+  }
+}
+
+.product-buy-btn-gray {
+  display: block;
+  margin-top: 16px;
+  background: #888888;
+  font-size: 14px;
+  color: #fff;
+  line-height: 56;
+  text-align: center;
+  font-weight: 600;
+  text-decoration: none;
+
+  @media screen and (min-width: 768px){
+    font-size: 24px;
+    line-height: 60px;
+  }
 }

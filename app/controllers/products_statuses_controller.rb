@@ -144,6 +144,14 @@ class ProductsStatusesController < ApplicationController
     # 販売ユーザー情報
     @seller = User.find(@product_status.seller_id)
     @seller_name = @seller.nickname
+
+    #jsへ渡すパラメーター
+    gon.payment_method = @user.payment_method
+    gon.user = @user
+    gon.href = "/products_statuses/buy_confirm/#{params[:id]}"
+
+
+
   end
 
   def buy_confirm
