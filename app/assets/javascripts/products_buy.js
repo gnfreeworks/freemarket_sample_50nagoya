@@ -5,12 +5,12 @@ $(window).on("turbolinks:load", function() {
 
   if(!gon.payment_method){
   // 支払い方法が設定されてない場合
-    var element = document.querySelector('#submitflag');
+    var element = document.querySelector('#buysubmitflag');
     element.className = 'product-buy-btn-gray';
     e.preventDefault();
   }else if(!gon.user.address_zipcode || !gon.user.address_prefecture || !gon.user.address_city || !gon.user.address_block || !gon.user.address_first_name || !gon.user.address_last_name){
   // 配送先が設定されてない場合
-    var element = document.querySelector('#submitflag');
+    var element = document.querySelector('#buysubmitflag');
     element.className = 'product-buy-btn-gray';
     e.preventDefault();
   }
