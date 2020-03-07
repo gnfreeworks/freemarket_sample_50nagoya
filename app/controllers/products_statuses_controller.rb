@@ -98,7 +98,6 @@ class ProductsStatusesController < ApplicationController
     if @product_status.save
       flash[:notice] = '出品の一時停止をしました'
       redirect_to products_status_path(@product_status.id)
-      # redirect_back(fallback_location: root_path)
     else
       flash[:alert] = '該当の商品がみつかりませんでした'
       redirect_to root_path
