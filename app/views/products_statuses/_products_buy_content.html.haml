@@ -65,7 +65,6 @@
                     %br
                     = "#{@user.address_first_name + @user.address_last_name}"
                   %p.buy-user-info-text
-
             - else
               %section.buy-content.buy-user-info
                 .buy-content-inner
@@ -76,9 +75,6 @@
                       登録してください
 
 
-
             %section.buy-content.buy-user-info
-              = link_to 'javascript:void(0)', class:"product-buy-btn", id:"submitflag" do
+              = link_to 'javascript:void(0)', class:"product-buy-btn", id:"buysubmitflag" do
                 購入する
-              -# = link_to buy_confirm_products_statuses_path(@product_status.id), class:"product-buy-btn" do
-              -#   購入する
